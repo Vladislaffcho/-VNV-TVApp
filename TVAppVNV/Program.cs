@@ -19,7 +19,7 @@ namespace TVAppVNV
             Application.Run(new CoreForm());
 
             /* My comment */
-            /* And my first commit ;)*/
+            /* And my commit ;)*/
         }
     }
 }
