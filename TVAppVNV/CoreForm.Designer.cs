@@ -1,6 +1,6 @@
 ﻿namespace TVAppVNV
 {
-    partial class Form1
+    partial class CoreForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
