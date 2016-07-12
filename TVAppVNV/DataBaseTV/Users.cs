@@ -45,6 +45,7 @@ namespace TVAppVNV.DataBaseTV
 
         // user type
         // check for using Foreign Keys here
+        [MaxLength(2)]
         [Required]
         public int Type { get; set; }
 
