@@ -32,11 +32,11 @@
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openChanelListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveYourListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changeScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bSaveCore = new System.Windows.Forms.Button();
             this.bCancelCore = new System.Windows.Forms.Button();
             this.scCore = new System.Windows.Forms.SplitContainer();
@@ -78,12 +78,17 @@
             this.openChanelListToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.openChanelListToolStripMenuItem.Text = "Open chanel list";
             // 
+            // changeScheduleToolStripMenuItem
+            // 
+            this.changeScheduleToolStripMenuItem.Name = "changeScheduleToolStripMenuItem";
+            this.changeScheduleToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.changeScheduleToolStripMenuItem.Text = "Change schedule";
+            // 
             // saveYourListToolStripMenuItem
             // 
             this.saveYourListToolStripMenuItem.Name = "saveYourListToolStripMenuItem";
             this.saveYourListToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.saveYourListToolStripMenuItem.Text = "Save your list";
-            this.saveYourListToolStripMenuItem.Click += new System.EventHandler(this.saveYourListToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -95,18 +100,13 @@
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
-            // 
-            // changeScheduleToolStripMenuItem
-            // 
-            this.changeScheduleToolStripMenuItem.Name = "changeScheduleToolStripMenuItem";
-            this.changeScheduleToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.changeScheduleToolStripMenuItem.Text = "Change schedule";
             // 
             // bSaveCore
             // 
@@ -125,7 +125,7 @@
             this.bCancelCore.TabIndex = 2;
             this.bCancelCore.Text = "Cancel";
             this.bCancelCore.UseVisualStyleBackColor = true;
-            this.bCancelCore.Click += new System.EventHandler(this.button2_Click);
+            this.bCancelCore.Click += new System.EventHandler(this.bCancelCore_Click);
             // 
             // scCore
             // 
@@ -136,10 +136,6 @@
             // scCore.Panel1
             // 
             this.scCore.Panel1.Controls.Add(this.lvListChanel);
-            // 
-            // scCore.Panel2
-            // 
-            this.scCore.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
             this.scCore.Size = new System.Drawing.Size(666, 340);
             this.scCore.SplitterDistance = 184;
             this.scCore.TabIndex = 5;

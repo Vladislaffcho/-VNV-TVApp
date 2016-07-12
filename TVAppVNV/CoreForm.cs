@@ -17,24 +17,14 @@ namespace TVAppVNV
             InitializeComponent();
         }
 
-        private void saveYourListToolStripMenuItem_Click(object sender, EventArgs e)
+        private void bCancelCore_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
-        {
-
+            Close();
         }
     }
 }
