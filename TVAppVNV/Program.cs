@@ -18,8 +18,8 @@ namespace TVAppVNV
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new CoreForm());
 
-            /* My first comment */
-            /* And my first commit ;)*/
+            /* My comment */
+            /* And my commit ;)*/
         }
     }
 }
