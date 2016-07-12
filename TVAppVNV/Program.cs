@@ -17,6 +17,8 @@ namespace TVAppVNV
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new CoreForm());
+
+            /* My first comment */
         }
     }
 }
