@@ -34,5 +34,8 @@ namespace TVAppVNV.DataBaseTV
         // false if a show does not have age limitations
         [DefaultValue(false)]
         public bool AgeLimit { get; set; }
+
+        [NotMapped]
+        public string Gogo { get; set; }
     }
 }
