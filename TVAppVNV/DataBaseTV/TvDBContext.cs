@@ -11,18 +11,20 @@ namespace TVAppVNV.DataBaseTV
         }
 
         //list of tables in our database
-        public DbSet<User> Users { get; set; }
-        public DbSet<UserAddress> UserAddresses { get; set; }
-        public DbSet<Phone> Phones { get; set; }
-        public DbSet<Email> Emails { get; set; }
-        public DbSet<UserType> UserTypes { get; set; }
-        public DbSet<TypeConnect> TypeConnects { get; set; }
-        public DbSet<Payment> Payments { get; set; }
-        public DbSet<DepositAccount> DepositAccounts { get; set; }
-        public DbSet<UserSchedule> UserSchedules { get; set; }
-        public DbSet<TVShow> TvShows { get; set; }
-        public DbSet<Channel> Channels { get; set; }
-        public DbSet<AdditionalService> AddServices { get; set; }
-        public DbSet<Order> Orders { get; set; }
+        public DbSet<User> Users { get; set; } // 1
+        public DbSet<UserAddress> UserAddresses { get; set; } //2
+        public DbSet<Phone> Phones { get; set; } //3
+        public DbSet<Email> Emails { get; set; } //4
+        public DbSet<UserType> UserTypes { get; set; } //5
+        public DbSet<TypeConnect> TypeConnects { get; set; } //6
+        public DbSet<Payment> Payments { get; set; } //7
+        public DbSet<DepositAccount> DepositAccounts { get; set; } //8
+        public DbSet<UserSchedule> UserSchedules { get; set; } //9
+        public DbSet<TVShow> TvShows { get; set; } //10
+        public DbSet<Channel> Channels { get; set; } //11
+        public DbSet<AdditionalService> AddServices { get; set; } //12
+        public DbSet<Order> Orders { get; set; } //13
+        public DbSet<OrderChanel> OrderChanels { get; set; } //14
+        public DbSet<OrderService> OrderServices { get; set; } //15
     }
 }
