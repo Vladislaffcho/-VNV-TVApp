@@ -17,7 +17,7 @@ namespace TVAppVNV.DataBaseTV
         public DbSet<Email> Emails { get; set; }
         public DbSet<UserType> UserTypes { get; set; }
         public DbSet<TypeConnect> TypeConnects { get; set; }
-        public DbSet<Access> Accesses { get; set; }
+        public DbSet<Payment> Payments { get; set; }
         public DbSet<DepositAccount> DepositAccounts { get; set; }
         public DbSet<UserSchedule> UserSchedules { get; set; }
         public DbSet<TVShow> TvShows { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace TVAppVNV.DataBaseTV
 {
-    public class Access
+    public class OrderService
     {
         
     }
