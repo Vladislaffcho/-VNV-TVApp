@@ -62,18 +62,18 @@
       <DependentUpon>CoreForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DataBaseTV\Access.cs" />
-    <Compile Include="DataBaseTV\AdditionalServices.cs" />
-    <Compile Include="DataBaseTV\Chanel.cs" />
+    <Compile Include="DataBaseTV\AdditionalService.cs" />
+    <Compile Include="DataBaseTV\Channel.cs" />
     <Compile Include="DataBaseTV\DepositAccount.cs" />
     <Compile Include="DataBaseTV\Email.cs" />
     <Compile Include="DataBaseTV\Order.cs" />
     <Compile Include="DataBaseTV\Phone.cs" />
-    <Compile Include="DataBaseTV\Show.cs" />
+    <Compile Include="DataBaseTV\TVShow.cs" />
     <Compile Include="DataBaseTV\TvDBContext.cs" />
     <Compile Include="DataBaseTV\TvDbIntializer.cs" />
     <Compile Include="DataBaseTV\TypeConnect.cs" />
     <Compile Include="DataBaseTV\UserAddress.cs" />
-    <Compile Include="DataBaseTV\Users.cs" />
+    <Compile Include="DataBaseTV\User.cs" />
     <Compile Include="DataBaseTV\UserSchedule.cs" />
     <Compile Include="DataBaseTV\UserType.cs" />
     <Compile Include="Program.cs" />

@@ -11,7 +11,7 @@ namespace TVAppVNV.DataBaseTV
         }
 
         //list of tables in our database
-        public DbSet<Users> User { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<UserAddress> UserAddresses { get; set; }
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Email> Emails { get; set; }
@@ -20,9 +20,9 @@ namespace TVAppVNV.DataBaseTV
         public DbSet<Access> Accesses { get; set; }
         public DbSet<DepositAccount> DepositAccounts { get; set; }
         public DbSet<UserSchedule> UserSchedules { get; set; }
-        public DbSet<Show> Shows { get; set; }
-        public DbSet<Chanel> Chanels { get; set; }
-        public DbSet<AdditionalServices> AdditionalService { get; set; }
+        public DbSet<TVShow> TvShows { get; set; }
+        public DbSet<Channel> Channels { get; set; }
+        public DbSet<AdditionalService> AddServices { get; set; }
         public DbSet<Order> Orders { get; set; }
     }
 }

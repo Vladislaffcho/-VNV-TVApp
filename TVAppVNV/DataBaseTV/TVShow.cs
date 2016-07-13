@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TVAppVNV.DataBaseTV
 {
-    public class Show
+    public class TVShow
     {
-        public Show()
+        public TVShow()
         {
             Id = Guid.NewGuid();
         }
@@ -35,7 +35,7 @@ namespace TVAppVNV.DataBaseTV
         [DefaultValue(false)]
         public bool AgeLimit { get; set; }
 
-        [NotMapped]
-        public string Gogo { get; set; }
+        //[NotMapped]
+        //public string Gogo { get; set; }
     }
 }

@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TVAppVNV.DataBaseTV
 {
-    public class Users
+    public class User
     {
-        public Users()
+        public User()
         {
             Id = Guid.NewGuid();
         }

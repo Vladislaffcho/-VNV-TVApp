@@ -1,6 +1,6 @@
 ﻿namespace TVAppVNV.DataBaseTV
 {
-    public class AdditionalServices
+    public class Channel
     {
         
     }
