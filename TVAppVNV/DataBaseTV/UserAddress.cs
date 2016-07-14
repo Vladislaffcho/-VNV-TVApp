@@ -9,15 +9,16 @@ namespace TVAppVNV.DataBaseTV
     {
         public UserAddress()
         {
-            Id = Guid.NewGuid();
+             
         }
+
         //Mark this field as primary key
         [Key]
-        [MaxLength(11)]
-        public Guid Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
         //create unique field of user address ???
-        //[Index(IsUnique = true)]
+        [Index(IsUnique = true)]
         [MinLength(10, ErrorMessage = "Too short address")]
         [MaxLength(100)]
         [Required]
@@ -35,18 +36,16 @@ namespace TVAppVNV.DataBaseTV
         //Id of user, who has this address
         [MaxLength(11)]
         [Required]
-        public int IdUser { get; set; }
+        public int UserId { get; set; }
 
         //Make linked entity as virtual for lazy loading work
-        //[Required]
-        //public virtual Users Users { get; set; }
+        [Required]
+        public virtual User User { get; set; }
 
-        //[Required]
-        //public virtual TypeConnect TypeConnect { get; set; }
-        
-            
-        
+        [Required]
+        public virtual TypeConnect TypeConnect { get; set; }
 
+        
 
     }
 }

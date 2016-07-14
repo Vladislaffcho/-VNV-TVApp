@@ -10,7 +10,7 @@ namespace TVAppVNV.DataBaseTV
             Database.SetInitializer<TvDBContext>(new TvDbIntializer());
         }
 
-        //list of tables in our database
+        //list of tables in TV database
         public DbSet<User> Users { get; set; } // 1
         public DbSet<UserAddress> UserAddresses { get; set; } //2
         public DbSet<Phone> Phones { get; set; } //3
