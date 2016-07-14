@@ -7,11 +7,6 @@ namespace TVAppVNV.DataBaseTV
 {
     public class UserEmail
     {
-        public UserEmail()
-        {
-            
-        }
-
         // set Primary Key
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -6,26 +6,21 @@ namespace TVAppVNV.DataBaseTV
 {
     public class UserSchedule
     {
-        public UserSchedule()
-        {
-            Id = Guid.NewGuid();
-        }
-        // set unique identifier
+        // set Primary Key
         [Key]
-        public Guid Id { get; set; }
-
-        // set user ID for a particular user
-        //need to use Foreign Key
-        [Required]
-        public int IdUser { get; set; }
-
-        // set show ID
-        //need to use Foreign Key
-        [Required]
-        public int IdShow { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         
         // time of a show broadcasting
         [Column(TypeName = "datetime2")]
-        public DateTime AirTime { get; set; }
+        public DateTime DateDue { get; set; }
+
+        // set user ID from Users table
+        [Required]
+        public virtual User User { get; set; }
+
+        // set show ID from TVShow table
+        [Required]
+        public virtual TVShow TVShow { get; set; }
     }
 }
