@@ -1,19 +1,15 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TVAppVNV.DataBaseTV
 {
     public class TypeConnect
     {
-        public TypeConnect()
-        {
-            Id = Guid.NewGuid();
-        }
-
-        // set unique identifier
+        // set Primary Key
         [Key]
-        //[MaxLength(11)]
-        public Guid Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
         // set contact type name
         [MinLength(3, ErrorMessage = "Too short contact type name")]
