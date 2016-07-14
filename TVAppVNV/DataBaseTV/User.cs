@@ -38,10 +38,6 @@ namespace TVAppVNV.DataBaseTV
         [MaxLength(12, ErrorMessage = "Password should be 6 to 12 symbols")]
         [Required]
         public string Password { get; set; }
-
-        // salt for password
-        [Required]
-        public int SaltPassword { get; set; }
         
         // if content for adults is allowed
         [DefaultValue(true)]
