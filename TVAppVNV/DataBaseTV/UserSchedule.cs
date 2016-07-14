@@ -11,8 +11,9 @@ namespace TVAppVNV.DataBaseTV
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         
-        // time of a show broadcasting
+        // date when schedule expires
         [Column(TypeName = "datetime2")]
+        [Required]
         public DateTime DateDue { get; set; }
 
         // set user ID from Users table

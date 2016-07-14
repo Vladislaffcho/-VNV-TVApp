@@ -7,33 +7,33 @@ namespace TVAppVNV.DataBaseTV
 {
     public class TVShow
     {
-        public TVShow()
-        {
-            Id = Guid.NewGuid();
-        }
-        // set unique identifier
+        // set Primary Key
         [Key]
-        //[MaxLength(11)]
-        public Guid Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
-        // set channel ID for a particular show
-        //need to use Foreign Key
-        //[MaxLength(11)]
+        // set show name
+        [MinLength(2, ErrorMessage = "Too short name")]
+        [MaxLength(255)]
         [Required]
-        public int IdChannel { get; set; }
+        public string Name { get; set; }
 
-        // true if show is currently in air
-        [DefaultValue(true)]
-        public bool Status { get; set; }
-
-        // time of a show broadcasting
-        // think about removing one property from here or Schedule class
+        // date of a show broadcasting
         [Column(TypeName = "datetime2")]
-        public DateTime AirTime { get; set; }
+        [Required]
+        public DateTime Date { get; set; }
+
+        // set show name
+        [MaxLength(255)]
+        [DefaultValue(null)]
+        public string Description { get; set; }
 
         // false if a show does not have age limitations
         [DefaultValue(false)]
         public bool AgeLimit { get; set; }
 
+        // set ID from Channel table
+        [Required]
+        public virtual Channel Channel { get; set; }
     }
 }
