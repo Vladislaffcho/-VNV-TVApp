@@ -12,7 +12,7 @@ namespace TVAppVNV.DataBaseTV
 
         // set unique identifier
         [Key]
-        [MaxLength(11)]
+        //[MaxLength(11)]
         public Guid Id { get; set; }
 
         // set contact type name

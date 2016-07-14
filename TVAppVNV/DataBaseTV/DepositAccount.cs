@@ -14,10 +14,9 @@ namespace TVAppVNV.DataBaseTV
         //Mark this field as primary key
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         //the balance of the account
-        [MaxLength(11)]
         [Required]
         public double Balance { get; set; }
 
@@ -30,7 +29,6 @@ namespace TVAppVNV.DataBaseTV
         public string Comment { get; set; }
 
         //Id of user, who has this account
-        [MaxLength(11)]
         [Required]
         public int UserId { get; set; }
 

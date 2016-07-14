@@ -13,12 +13,12 @@ namespace TVAppVNV.DataBaseTV
         }
         // set unique identifier
         [Key]
-        [MaxLength(11)]
+        //[MaxLength(11)]
         public Guid Id { get; set; }
 
         // set email owner ID
         //need to use Foreign Key
-        [MaxLength(11)]
+        //[MaxLength(11)]
         [Required]
         public int IdUser { get; set; }
 
@@ -35,7 +35,7 @@ namespace TVAppVNV.DataBaseTV
         public string Comment { get; set; }
 
         //set address type
-        [MaxLength(11)]
+        //[MaxLength(11)]
         [Required]
         public int TypeAddress { get; set; }
     }

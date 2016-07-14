@@ -13,12 +13,12 @@ namespace TVAppVNV.DataBaseTV
         }
         // set unique identifier
         [Key]
-        [MaxLength(11)]
+        //[MaxLength(11)]
         public Guid Id { get; set; }
 
         // set channel ID for a particular show
         //need to use Foreign Key
-        [MaxLength(11)]
+        //[MaxLength(11)]
         [Required]
         public int IdChannel { get; set; }
 
@@ -35,7 +35,5 @@ namespace TVAppVNV.DataBaseTV
         [DefaultValue(false)]
         public bool AgeLimit { get; set; }
 
-        //[NotMapped]
-        //public string Gogo { get; set; }
     }
 }

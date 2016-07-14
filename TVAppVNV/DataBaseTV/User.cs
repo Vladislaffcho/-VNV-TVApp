@@ -13,7 +13,7 @@ namespace TVAppVNV.DataBaseTV
         }
         // set user's unique identifier
         [Key]
-        [MaxLength(11)]
+        //[MaxLength(11)]
         public Guid Id { get; set; }
 
         // set first name
@@ -45,7 +45,7 @@ namespace TVAppVNV.DataBaseTV
 
         // user type
         // check for using Foreign Keys here
-        [MaxLength(2)]
+        //[MaxLength(2)]
         [Required]
         public int Type { get; set; }
 

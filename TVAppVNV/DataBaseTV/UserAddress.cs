@@ -25,7 +25,6 @@ namespace TVAppVNV.DataBaseTV
         public string Address { get; set; }
 
         //create field for type address(home, work, dacha....)
-        [MaxLength(11)]
         [Required]
         public int TypeAddress { get; set; }
 
@@ -34,7 +33,6 @@ namespace TVAppVNV.DataBaseTV
         public string Comment { get; set; }
 
         //Id of user, who has this address
-        [MaxLength(11)]
         [Required]
         public int UserId { get; set; }
 

@@ -16,13 +16,11 @@ namespace TVAppVNV.DataBaseTV
         public int Id { get; set; }
         
         //Id of user, who has this phone
-        [MaxLength(11)]
         [Required]
         public int UserId { get; set; }
         
         //create unique field of user phone
         [Index(IsUnique = true)]
-        [MaxLength(11)]
         [Required]
         public int Number { get; set; }
 
@@ -31,7 +29,6 @@ namespace TVAppVNV.DataBaseTV
         public string Comment { get; set; }
         
         //create field for type phone(home, work, for advertise....)
-        [MaxLength(11)]
         [Required]
         public int TypePhone { get; set; }
         
