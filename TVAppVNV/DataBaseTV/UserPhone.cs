@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TVAppVNV.DataBaseTV
 {
-    public class Phone
+    public class UserPhone
     {
-        public Phone()
+        public UserPhone()
         {
             
         }

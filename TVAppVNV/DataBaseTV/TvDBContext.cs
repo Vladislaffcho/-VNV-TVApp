@@ -13,8 +13,8 @@ namespace TVAppVNV.DataBaseTV
         //list of tables in TV database
         public DbSet<User> Users { get; set; } // 1
         public DbSet<UserAddress> UserAddresses { get; set; } //2
-        public DbSet<Phone> Phones { get; set; } //3
-        public DbSet<Email> Emails { get; set; } //4
+        public DbSet<UserPhone> Phones { get; set; } //3
+        public DbSet<UserEmail> Emails { get; set; } //4
         public DbSet<UserType> UserTypes { get; set; } //5
         public DbSet<TypeConnect> TypeConnects { get; set; } //6
         //public DbSet<Payment> Payments { get; set; } //7

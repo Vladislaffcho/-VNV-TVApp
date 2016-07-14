@@ -64,12 +64,12 @@
     <Compile Include="DataBaseTV\AdditionalService.cs" />
     <Compile Include="DataBaseTV\Channel.cs" />
     <Compile Include="DataBaseTV\DepositAccount.cs" />
-    <Compile Include="DataBaseTV\Email.cs" />
+    <Compile Include="DataBaseTV\UserEmail.cs" />
     <Compile Include="DataBaseTV\Order.cs" />
     <Compile Include="DataBaseTV\OrderChanel.cs" />
     <Compile Include="DataBaseTV\OrderService.cs" />
     <Compile Include="DataBaseTV\Payment.cs" />
-    <Compile Include="DataBaseTV\Phone.cs" />
+    <Compile Include="DataBaseTV\UserPhone.cs" />
     <Compile Include="DataBaseTV\TVShow.cs" />
     <Compile Include="DataBaseTV\TvDBContext.cs" />
     <Compile Include="DataBaseTV\TvDbIntializer.cs" />

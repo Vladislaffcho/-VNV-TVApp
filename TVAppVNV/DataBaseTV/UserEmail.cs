@@ -5,22 +5,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TVAppVNV.DataBaseTV
 {
-    public class Email
+    public class UserEmail
     {
-        public Email()
+        public UserEmail()
         {
-            Id = Guid.NewGuid();
+            
         }
-        // set unique identifier
-        [Key]
-        //[MaxLength(11)]
-        public Guid Id { get; set; }
 
-        // set email owner ID
-        //need to use Foreign Key
-        //[MaxLength(11)]
-        [Required]
-        public int IdUser { get; set; }
+        // set Primary Key
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
         // set unique email address
         [MinLength(5, ErrorMessage = "Too short email")]
@@ -34,9 +29,12 @@ namespace TVAppVNV.DataBaseTV
         [DefaultValue(null)]
         public string Comment { get; set; }
 
-        //set address type
-        //[MaxLength(11)]
+        // set email owner ID from Users table
         [Required]
-        public int TypeAddress { get; set; }
+        public virtual User User { get; set; }
+
+        // set Connect Type
+        [Required]
+        public virtual TypeConnect TypeConnect { get; set; }
     }
 }
