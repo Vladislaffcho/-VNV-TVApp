@@ -7,6 +7,11 @@ namespace TVAppVNV.DataBaseTV
 {
     public class User
     {
+
+        public User()
+        {
+
+        } 
         // set user's unique identifier
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -42,6 +47,9 @@ namespace TVAppVNV.DataBaseTV
         // if content for adults is allowed
         [DefaultValue(true)]
         public bool AllowAdultContent { get; set; }
+
+        [Required] 
+        public int UserTypeId { get; set; }
 
         // set type of a user from UserType table
         [Required]

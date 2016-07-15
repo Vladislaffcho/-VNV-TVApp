@@ -16,13 +16,12 @@ namespace TVAppVNV.DataBaseTV
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        // Foreign key 
         [Required]
-        public int OrderId { get; set; }
+        public int OredrId { get; set; }
 
-        // Foreign key 
         [Required]
         public int AdditionalServiceId { get; set; }
+
 
         //Make linked entity as virtual for lazy loading work
         [Required]

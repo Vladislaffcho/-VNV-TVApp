@@ -7,6 +7,11 @@ namespace TVAppVNV.DataBaseTV
 {
     public class UserEmail
     {
+        public UserEmail()
+        {
+
+        }
+
         // set Primary Key
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -23,6 +28,12 @@ namespace TVAppVNV.DataBaseTV
         [MaxLength(100, ErrorMessage = "Too long comment")]
         [DefaultValue(null)]
         public string Comment { get; set; }
+
+        [Required]
+        public int UserId { get; set; }
+
+        [Required]
+        public int TypeConnectId { get; set; }
 
         // set email owner ID from Users table
         [Required]

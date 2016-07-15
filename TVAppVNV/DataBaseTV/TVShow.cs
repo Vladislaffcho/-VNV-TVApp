@@ -7,6 +7,10 @@ namespace TVAppVNV.DataBaseTV
 {
     public class TVShow
     {
+        public TVShow()
+        {
+
+        }
         // set Primary Key
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -24,7 +28,7 @@ namespace TVAppVNV.DataBaseTV
         public DateTime Date { get; set; }
 
         // set show name
-        [MaxLength(255)]
+        [MaxLength(100)]
         [DefaultValue(null)]
         public string Description { get; set; }
 
@@ -32,7 +36,11 @@ namespace TVAppVNV.DataBaseTV
         [DefaultValue(false)]
         public bool AgeLimit { get; set; }
 
-        // set ID from Channel table
+        //connect with Id channel
+        [Required]
+        public int ChannelId { get; set; }
+
+        // link with table Channel
         [Required]
         public virtual Channel Channel { get; set; }
     }

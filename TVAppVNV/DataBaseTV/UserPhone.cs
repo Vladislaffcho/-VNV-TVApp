@@ -30,7 +30,7 @@ namespace TVAppVNV.DataBaseTV
         
         //create field for type phone(home, work, for advertise....)
         [Required]
-        public int TypePhone { get; set; }
+        public int TypeConnectId { get; set; }
         
         //Make linked entity as virtual for lazy loading work
         [Required]

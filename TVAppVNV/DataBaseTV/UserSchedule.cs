@@ -6,6 +6,12 @@ namespace TVAppVNV.DataBaseTV
 {
     public class UserSchedule
     {
+
+        public UserSchedule()
+        {
+
+        }
+
         // set Primary Key
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -15,6 +21,13 @@ namespace TVAppVNV.DataBaseTV
         [Column(TypeName = "datetime2")]
         [Required]
         public DateTime DateDue { get; set; }
+
+        [Required]
+        public int UserId { get; set; }
+
+        [Required] 
+        public int TvShowId { get; set; }
+
 
         // set user ID from Users table
         [Required]

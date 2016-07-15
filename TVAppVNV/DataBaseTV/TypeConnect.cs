@@ -6,6 +6,10 @@ namespace TVAppVNV.DataBaseTV
 {
     public class TypeConnect
     {
+        public TypeConnect()
+        {
+
+        }
         // set Primary Key
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -16,5 +20,7 @@ namespace TVAppVNV.DataBaseTV
         [MaxLength(30)]
         [Required]
         public string NameType { get; set; }
+
     }
+
 }
