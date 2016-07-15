@@ -125,7 +125,6 @@ namespace TVAppVNV.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Date = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         Summ = c.Double(nullable: false),
-                        UserId = c.Int(nullable: false),
                         OrderId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
