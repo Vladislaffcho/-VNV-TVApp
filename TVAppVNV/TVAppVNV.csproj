@@ -64,6 +64,7 @@
     <Compile Include="DataBaseTV\Access.cs" />
     <Compile Include="DataBaseTV\AdditionalServices.cs" />
     <Compile Include="DataBaseTV\Chanel.cs" />
+    <Compile Include="DataBaseTV\Channel.cs" />
     <Compile Include="DataBaseTV\DepositAccount.cs" />
     <Compile Include="DataBaseTV\Email.cs" />
     <Compile Include="DataBaseTV\Order.cs" />
