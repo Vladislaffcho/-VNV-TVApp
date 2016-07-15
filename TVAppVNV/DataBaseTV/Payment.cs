@@ -24,7 +24,15 @@ namespace TVAppVNV.DataBaseTV
         [Required]
         public float summ { get; set; }
 
-    
+        // Foreign key 
+        [Required]
+        public int OrderId { get; set; }
+
+        // Foreign key 
+        [Required]
+        public int UserId { get; set; }
+
+
         //Make linked entity as virtual for lazy loading work
         [Required]
         public virtual User User { get; set; }
