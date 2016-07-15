@@ -21,9 +21,9 @@ namespace TVAppVNV.DataBaseTV
         public DbSet<DepositAccount> DepositAccounts { get; set; } //8
         public DbSet<UserSchedule> UserSchedules { get; set; } //9
         public DbSet<TVShow> TvShows { get; set; } //10
-        //public DbSet<Channel> Channels { get; set; } //11
-        //public DbSet<AdditionalService> AddServices { get; set; } //12
-        //public DbSet<Order> Orders { get; set; } //13
+        public DbSet<Channel> Channels { get; set; } //11
+        public DbSet<AdditionalService> AddServices { get; set; } //12
+        public DbSet<Order> Orders { get; set; } //13
         public DbSet<OrderChanel> OrderChanels { get; set; } //14
         public DbSet<OrderService> OrderServices { get; set; } //15
     }

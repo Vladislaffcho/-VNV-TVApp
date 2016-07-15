@@ -15,13 +15,19 @@ namespace TVAppVNV.DataBaseTV
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-      
-        //Make linked entity as virtual for lazy loading work
-        //[Required]
-        //public virtual Order Order { get; set; }
+        [Required]
+        public int OrderId { get; set; }
 
-        //[Required]
-        //public virtual Channel Chanel { get; set; }
+        [Required]
+        private int ChannelId { get; set; }
+
+
+        //Make linked entity as virtual for lazy loading work
+        [Required]
+        public virtual Order Order { get; set; }
+
+        [Required]
+        public virtual Channel Chanel { get; set; }
 
     }
 }

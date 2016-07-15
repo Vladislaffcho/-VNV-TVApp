@@ -7,13 +7,13 @@ namespace TVAppVNV.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Ivanstablesareready : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Ivanstablesareready));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201607142043060_Ivan's tables are ready"; }
+            get { return "201607150754417_init"; }
         }
         
         string IMigrationMetadata.Source

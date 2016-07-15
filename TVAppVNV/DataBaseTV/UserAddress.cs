@@ -26,7 +26,7 @@ namespace TVAppVNV.DataBaseTV
 
         //create field for type address(home, work, dacha....)
         [Required]
-        public int TypeAddress { get; set; }
+        public int TypeConnectId { get; set; }
 
         //comment for different situations
         [MaxLength(100, ErrorMessage = "Too long comment")]

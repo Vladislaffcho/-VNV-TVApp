@@ -48,6 +48,9 @@ namespace TVAppVNV.DataBaseTV
         [DefaultValue(true)]
         public bool AllowAdultContent { get; set; }
 
+        [Required] 
+        public int UserTypeId { get; set; }
+
         // set type of a user from UserType table
         [Required]
         public virtual UserType UserType { get; set; }

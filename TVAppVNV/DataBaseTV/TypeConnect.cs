@@ -20,5 +20,7 @@ namespace TVAppVNV.DataBaseTV
         [MaxLength(30)]
         [Required]
         public string NameType { get; set; }
+
     }
+
 }
