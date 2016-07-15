@@ -18,19 +18,19 @@ namespace TVAppVNV.DataBaseTV
         //Payment date
         [Required]
         [Column(TypeName = "datetime2")]
-        public DateTime date { get; set; }
+        public DateTime Date { get; set; }
 
         //Payment sum
         [Required]
-        public float summ { get; set; }
+        public float Summ { get; set; }
 
     
         //Make linked entity as virtual for lazy loading work
         [Required]
         public virtual User User { get; set; }
 
-        [Required]
-        public virtual Order Order { get; set; }
+        //[Required]
+        //public virtual Order Order { get; set; }
 
     }
 }

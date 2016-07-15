@@ -7,6 +7,11 @@ namespace TVAppVNV.DataBaseTV
 {
     public class User
     {
+
+        public User()
+        {
+
+        } 
         // set user's unique identifier
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -7,6 +7,10 @@ namespace TVAppVNV.DataBaseTV
 {
     public class TVShow
     {
+        public TVShow()
+        {
+
+        }
         // set Primary Key
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -33,7 +37,7 @@ namespace TVAppVNV.DataBaseTV
         public bool AgeLimit { get; set; }
 
         // set ID from Channel table
-        [Required]
-        public virtual Channel Channel { get; set; }
+        //[Required]
+        //public virtual Channel Channel { get; set; }
     }
 }

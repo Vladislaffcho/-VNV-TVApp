@@ -17,11 +17,11 @@ namespace TVAppVNV.DataBaseTV
 
       
         //Make linked entity as virtual for lazy loading work
-        [Required]
-        public virtual Order Order { get; set; }
+        //[Required]
+        //public virtual Order Order { get; set; }
 
-        [Required]
-        public virtual Channel Chanel { get; set; }
+        //[Required]
+        //public virtual Channel Chanel { get; set; }
 
     }
 }

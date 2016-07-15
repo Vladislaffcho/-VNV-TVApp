@@ -6,6 +6,12 @@ namespace TVAppVNV.DataBaseTV
 {
     public class UserSchedule
     {
+
+        public UserSchedule()
+        {
+
+        }
+
         // set Primary Key
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
