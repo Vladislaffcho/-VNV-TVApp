@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TVAppVNV.DataBaseTV;
 
 namespace TVAppVNV
 {
@@ -14,9 +15,12 @@ namespace TVAppVNV
         [STAThread]
         static void Main()
         {
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new CoreForm());
+
+
         }
     }
 }
