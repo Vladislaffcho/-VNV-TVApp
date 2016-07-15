@@ -66,7 +66,7 @@
     <Compile Include="DataBaseTV\DepositAccount.cs" />
     <Compile Include="DataBaseTV\UserEmail.cs" />
     <Compile Include="DataBaseTV\Order.cs" />
-    <Compile Include="DataBaseTV\OrderChanel.cs" />
+    <Compile Include="DataBaseTV\OrderChannel.cs" />
     <Compile Include="DataBaseTV\OrderService.cs" />
     <Compile Include="DataBaseTV\Payment.cs" />
     <Compile Include="DataBaseTV\UserPhone.cs" />
@@ -78,9 +78,9 @@
     <Compile Include="DataBaseTV\User.cs" />
     <Compile Include="DataBaseTV\UserSchedule.cs" />
     <Compile Include="DataBaseTV\UserType.cs" />
-    <Compile Include="Migrations\201607150837594_init.cs" />
-    <Compile Include="Migrations\201607150837594_init.Designer.cs">
-      <DependentUpon>201607150837594_init.cs</DependentUpon>
+    <Compile Include="Migrations\201607151340155_init.cs" />
+    <Compile Include="Migrations\201607151340155_init.Designer.cs">
+      <DependentUpon>201607151340155_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -88,8 +88,8 @@
     <EmbeddedResource Include="CoreForm.resx">
       <DependentUpon>CoreForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607150837594_init.resx">
-      <DependentUpon>201607150837594_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201607151340155_init.resx">
+      <DependentUpon>201607151340155_init.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

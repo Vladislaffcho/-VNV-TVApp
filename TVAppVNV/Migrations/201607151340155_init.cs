@@ -73,18 +73,18 @@ namespace TVAppVNV.Migrations
                 .Index(t => t.TypeName, unique: true);
             
             CreateTable(
-                "dbo.OrderChanels",
+                "dbo.OrderChannels",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         OrderId = c.Int(nullable: false),
-                        Chanel_Id = c.Int(nullable: false),
+                        ChannelId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Channels", t => t.Chanel_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Channels", t => t.ChannelId, cascadeDelete: true)
                 .ForeignKey("dbo.Orders", t => t.OrderId, cascadeDelete: true)
                 .Index(t => t.OrderId)
-                .Index(t => t.Chanel_Id);
+                .Index(t => t.ChannelId);
             
             CreateTable(
                 "dbo.Orders",
@@ -237,9 +237,9 @@ namespace TVAppVNV.Migrations
             DropForeignKey("dbo.Payments", "OrderId", "dbo.Orders");
             DropForeignKey("dbo.OrderServices", "Order_Id", "dbo.Orders");
             DropForeignKey("dbo.OrderServices", "AdditionalServiceId", "dbo.AdditionalServices");
-            DropForeignKey("dbo.OrderChanels", "OrderId", "dbo.Orders");
+            DropForeignKey("dbo.OrderChannels", "OrderId", "dbo.Orders");
             DropForeignKey("dbo.Orders", "UserId", "dbo.Users");
-            DropForeignKey("dbo.OrderChanels", "Chanel_Id", "dbo.Channels");
+            DropForeignKey("dbo.OrderChannels", "ChannelId", "dbo.Channels");
             DropForeignKey("dbo.DepositAccounts", "UserId", "dbo.Users");
             DropForeignKey("dbo.Users", "UserTypeId", "dbo.UserTypes");
             DropIndex("dbo.UserSchedules", new[] { "TvShowId" });
@@ -258,8 +258,8 @@ namespace TVAppVNV.Migrations
             DropIndex("dbo.OrderServices", new[] { "Order_Id" });
             DropIndex("dbo.OrderServices", new[] { "AdditionalServiceId" });
             DropIndex("dbo.Orders", new[] { "UserId" });
-            DropIndex("dbo.OrderChanels", new[] { "Chanel_Id" });
-            DropIndex("dbo.OrderChanels", new[] { "OrderId" });
+            DropIndex("dbo.OrderChannels", new[] { "ChannelId" });
+            DropIndex("dbo.OrderChannels", new[] { "OrderId" });
             DropIndex("dbo.UserTypes", new[] { "TypeName" });
             DropIndex("dbo.Users", new[] { "UserTypeId" });
             DropIndex("dbo.Users", new[] { "Login" });
@@ -273,7 +273,7 @@ namespace TVAppVNV.Migrations
             DropTable("dbo.Payments");
             DropTable("dbo.OrderServices");
             DropTable("dbo.Orders");
-            DropTable("dbo.OrderChanels");
+            DropTable("dbo.OrderChannels");
             DropTable("dbo.UserTypes");
             DropTable("dbo.Users");
             DropTable("dbo.DepositAccounts");
