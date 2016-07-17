@@ -1,6 +1,4 @@
-﻿using System.Data.Entity;
-
-namespace TVAppVNV.DataBaseTV
+﻿namespace TVAppVNV.DataBaseTV
 {
     public class TvDbIntializer : CreateDatabaseIfNotExists<TvDBContext> // this class used only when database is creating
     {

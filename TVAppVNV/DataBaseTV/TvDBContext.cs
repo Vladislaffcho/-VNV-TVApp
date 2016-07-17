@@ -1,6 +1,4 @@
-﻿using System.Data.Entity;
-
-namespace TVAppVNV.DataBaseTV
+﻿namespace TVAppVNV.DataBaseTV
 {
     public class TvDBContext : DbContext
     {
