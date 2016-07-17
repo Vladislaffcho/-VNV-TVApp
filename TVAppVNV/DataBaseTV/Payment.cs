@@ -22,15 +22,20 @@ namespace TVAppVNV.DataBaseTV
 
         //Payment sum
         [Required]
-        public float Summ { get; set; }
+        public double Summ { get; set; }
 
-    
-        //Make linked entity as virtual for lazy loading work
         [Required]
-        public virtual User User { get; set; }
+        public int UserId { get; set; }
 
+        [Required]
+        public int OrderId { get; set; }
+
+        //Make linked entity as virtual for lazy loading work
         //[Required]
-        //public virtual Order Order { get; set; }
+        //public virtual User User { get; set; }
+
+        [Required]
+        public virtual Order Order { get; set; }
 
     }
 }

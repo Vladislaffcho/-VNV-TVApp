@@ -22,6 +22,13 @@ namespace TVAppVNV.DataBaseTV
         [Required]
         public DateTime DateDue { get; set; }
 
+        [Required]
+        public int UserId { get; set; }
+
+        [Required] 
+        public int TvShowId { get; set; }
+
+
         // set user ID from Users table
         [Required]
         public virtual User User { get; set; }

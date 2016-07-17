@@ -29,6 +29,12 @@ namespace TVAppVNV.DataBaseTV
         [DefaultValue(null)]
         public string Comment { get; set; }
 
+        [Required]
+        public int UserId { get; set; }
+
+        [Required]
+        public int TypeConnectId { get; set; }
+
         // set email owner ID from Users table
         [Required]
         public virtual User User { get; set; }
