@@ -8,7 +8,7 @@ namespace TVAppVNV.DataBaseTV
     {
         public UserType()
         {
-            
+            //Id++;
         }
 
         //Mark this field as primary key

@@ -10,7 +10,7 @@ namespace TVAppVNV.DataBaseTV
 
         public User()
         {
-
+            Id++;
         } 
         // set user's unique identifier
         [Key]
@@ -54,5 +54,10 @@ namespace TVAppVNV.DataBaseTV
         // set type of a user from UserType table
         [Required]
         public virtual UserType UserType { get; set; }
+
+        public override string ToString()
+        {
+            return FirstName + " " + LastName + " " + UserType + Environment.NewLine;
+        }
     }
 }
