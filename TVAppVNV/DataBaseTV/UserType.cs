@@ -25,7 +25,7 @@ namespace TVAppVNV.DataBaseTV
 
         //create field for type of access each position
         [MinLength(2, ErrorMessage = "Too short access description")]
-        [MaxLength(30)]
+        [MaxLength(300)]
         [Required]
         public string AccessToData { get; set; }
 

@@ -17,10 +17,6 @@ namespace TVAppVNV.DataBaseTV
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        
-        [Required]
-        public int UserId { get; set; }
-
         //Oreder date
         [Required]
         [Column(TypeName = "datetime2")]

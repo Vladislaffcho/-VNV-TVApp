@@ -12,12 +12,12 @@ namespace TVAppVNV.DataBaseTV
             //Create default data for UserType
             List<UserType> defaultUserType = new List<UserType>
             {
-                new UserType() { TypeName = "Chief", AccessToData = "Full access"},
-                new UserType() { TypeName = "Admun", AccessToData = "Full access"},
-                new UserType() { TypeName = "Manager", AccessToData = "Read Order only"},
+                new UserType() {TypeName = "Chief", AccessToData = "Full access", Comment = ""},
+                new UserType() {TypeName = "Admin", AccessToData = "Full access", Comment = ""},
+                new UserType() {TypeName = "Manager", AccessToData = "Read Order only", Comment = ""},
                 new UserType()
                 {
-                    TypeName = "Client",
+                    TypeName = "Client", Comment = "",
                     AccessToData = "Read Channels, create Order, create Schedule, read own Payment history"
                 }
             };
@@ -25,31 +25,13 @@ namespace TVAppVNV.DataBaseTV
 
             foreach (var item in defaultUserType)
             {
-                //Console.WriteLine(item.ToString());
                 context.UserTypes.Add(item);
             }
 
-
-
-            /*
-            List<Department> defaultDepartments = new List<Department>();
-
-            defaultDepartments.Add(new Department() { Name = "IT", Code = 1 });
-            defaultDepartments.Add(new Department() { Name = "QA", Code = 2 });
-            defaultDepartments.Add(new Department() { Name = "Sales", Code = 3 });
-
-            foreach (var item in defaultDepartments)
-            {
-                context.Departments.Add(item);
-            }
-            */
-
-            //context.SaveChanges();
-
+            
             base.Seed(context);
 
             
-
         }
     }
 }

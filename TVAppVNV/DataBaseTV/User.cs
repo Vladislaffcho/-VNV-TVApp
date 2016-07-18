@@ -11,8 +11,9 @@ namespace TVAppVNV.DataBaseTV
 
         public User()
         {
-            Id++;
+           
         } 
+
         // set user's unique identifier
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -54,16 +55,13 @@ namespace TVAppVNV.DataBaseTV
         [DefaultValue(true)]
         public bool AllowAdultContent { get; set; }
 
-        [Required] 
-        public int UserTypeId { get; set; }
-
         // set type of a user from UserType table
-        [Required]
-        public virtual UserType UserType { get; set; }
+        //[Required]
+        //public virtual UserType UserType { get; set; }
 
-        public override string ToString()
-        {
-            return FirstName + " " + LastName + " " + UserType + Environment.NewLine;
-        }
+        //public override string ToString()
+        //{
+        //    return FirstName + " " + LastName + " " + UserType + Environment.NewLine;
+        //}
     }
 }

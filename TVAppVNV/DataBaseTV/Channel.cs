@@ -8,6 +8,7 @@ namespace TVAppVNV.DataBaseTV
     {
         public Channel()
         {
+
         }
 
         //primary key

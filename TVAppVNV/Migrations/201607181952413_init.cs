@@ -23,7 +23,7 @@ namespace TVAppVNV.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 30),
+                        Name = c.String(nullable: false),
                         Price = c.Double(nullable: false),
                         AgeLimit = c.Boolean(nullable: false),
                     })
@@ -37,11 +37,11 @@ namespace TVAppVNV.Migrations
                         Balance = c.Double(nullable: false),
                         Status = c.Boolean(nullable: false),
                         Comment = c.String(maxLength: 100),
-                        UserId = c.Int(nullable: false),
+                        User_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId);
+                .ForeignKey("dbo.Users", t => t.User_Id, cascadeDelete: true)
+                .Index(t => t.User_Id);
             
             CreateTable(
                 "dbo.Users",
@@ -53,24 +53,35 @@ namespace TVAppVNV.Migrations
                         Login = c.String(nullable: false, maxLength: 12),
                         Password = c.String(nullable: false, maxLength: 12),
                         AllowAdultContent = c.Boolean(nullable: false),
-                        UserTypeId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.UserTypes", t => t.UserTypeId, cascadeDelete: true)
-                .Index(t => t.Login, unique: true)
-                .Index(t => t.UserTypeId);
+                .Index(t => t.Login, unique: true);
             
             CreateTable(
-                "dbo.UserTypes",
+                "dbo.UserAddresses",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        TypeName = c.String(nullable: false, maxLength: 30),
-                        AccessToData = c.String(nullable: false, maxLength: 30),
+                        Address = c.String(nullable: false, maxLength: 100),
                         Comment = c.String(maxLength: 100),
+                        TypeConnect_Id = c.Int(nullable: false),
+                        User_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .Index(t => t.TypeName, unique: true);
+                .ForeignKey("dbo.TypeConnects", t => t.TypeConnect_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.User_Id, cascadeDelete: true)
+                .Index(t => t.Address, unique: true)
+                .Index(t => t.TypeConnect_Id)
+                .Index(t => t.User_Id);
+            
+            CreateTable(
+                "dbo.TypeConnects",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        NameType = c.String(nullable: false, maxLength: 30),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.OrderChannels",
@@ -91,17 +102,17 @@ namespace TVAppVNV.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        UserId = c.Int(nullable: false),
                         DateOrder = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         DateFrom = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         DateDue = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         TotalPrice = c.Double(nullable: false),
                         Paid = c.Boolean(nullable: false),
                         IsDeleted = c.Boolean(nullable: false),
+                        User_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId);
+                .ForeignKey("dbo.Users", t => t.User_Id, cascadeDelete: true)
+                .Index(t => t.User_Id);
             
             CreateTable(
                 "dbo.OrderServices",
@@ -147,32 +158,6 @@ namespace TVAppVNV.Migrations
                 .Index(t => t.ChannelId);
             
             CreateTable(
-                "dbo.TypeConnects",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        NameType = c.String(nullable: false, maxLength: 30),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.UserAddresses",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Address = c.String(nullable: false, maxLength: 100),
-                        TypeConnectId = c.Int(nullable: false),
-                        Comment = c.String(maxLength: 100),
-                        UserId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.TypeConnects", t => t.TypeConnectId, cascadeDelete: true)
-                .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.Address, unique: true)
-                .Index(t => t.TypeConnectId)
-                .Index(t => t.UserId);
-            
-            CreateTable(
                 "dbo.UserEmails",
                 c => new
                     {
@@ -194,17 +179,17 @@ namespace TVAppVNV.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        UserId = c.Int(nullable: false),
                         Number = c.Int(nullable: false),
                         Comment = c.String(maxLength: 100),
-                        TypeConnectId = c.Int(nullable: false),
+                        TypeConnect_Id = c.Int(nullable: false),
+                        User_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.TypeConnects", t => t.TypeConnectId, cascadeDelete: true)
-                .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId)
+                .ForeignKey("dbo.TypeConnects", t => t.TypeConnect_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.User_Id, cascadeDelete: true)
                 .Index(t => t.Number, unique: true)
-                .Index(t => t.TypeConnectId);
+                .Index(t => t.TypeConnect_Id)
+                .Index(t => t.User_Id);
             
             CreateTable(
                 "dbo.UserSchedules",
@@ -221,60 +206,70 @@ namespace TVAppVNV.Migrations
                 .Index(t => t.TVShow_Id)
                 .Index(t => t.User_Id);
             
+            CreateTable(
+                "dbo.UserTypes",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        TypeName = c.String(nullable: false, maxLength: 30),
+                        AccessToData = c.String(nullable: false, maxLength: 300),
+                        Comment = c.String(maxLength: 100),
+                    })
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.TypeName, unique: true);
+            
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.UserSchedules", "User_Id", "dbo.Users");
             DropForeignKey("dbo.UserSchedules", "TVShow_Id", "dbo.TVShows");
-            DropForeignKey("dbo.UserPhones", "UserId", "dbo.Users");
-            DropForeignKey("dbo.UserPhones", "TypeConnectId", "dbo.TypeConnects");
+            DropForeignKey("dbo.UserPhones", "User_Id", "dbo.Users");
+            DropForeignKey("dbo.UserPhones", "TypeConnect_Id", "dbo.TypeConnects");
             DropForeignKey("dbo.UserEmails", "UserId", "dbo.Users");
             DropForeignKey("dbo.UserEmails", "TypeConnectId", "dbo.TypeConnects");
-            DropForeignKey("dbo.UserAddresses", "UserId", "dbo.Users");
-            DropForeignKey("dbo.UserAddresses", "TypeConnectId", "dbo.TypeConnects");
             DropForeignKey("dbo.TVShows", "ChannelId", "dbo.Channels");
             DropForeignKey("dbo.Payments", "OrderId", "dbo.Orders");
             DropForeignKey("dbo.OrderServices", "Order_Id", "dbo.Orders");
             DropForeignKey("dbo.OrderServices", "AdditionalServiceId", "dbo.AdditionalServices");
             DropForeignKey("dbo.OrderChannels", "OrderId", "dbo.Orders");
-            DropForeignKey("dbo.Orders", "UserId", "dbo.Users");
+            DropForeignKey("dbo.Orders", "User_Id", "dbo.Users");
             DropForeignKey("dbo.OrderChannels", "ChannelId", "dbo.Channels");
-            DropForeignKey("dbo.DepositAccounts", "UserId", "dbo.Users");
-            DropForeignKey("dbo.Users", "UserTypeId", "dbo.UserTypes");
+            DropForeignKey("dbo.DepositAccounts", "User_Id", "dbo.Users");
+            DropForeignKey("dbo.UserAddresses", "User_Id", "dbo.Users");
+            DropForeignKey("dbo.UserAddresses", "TypeConnect_Id", "dbo.TypeConnects");
+            DropIndex("dbo.UserTypes", new[] { "TypeName" });
             DropIndex("dbo.UserSchedules", new[] { "User_Id" });
             DropIndex("dbo.UserSchedules", new[] { "TVShow_Id" });
-            DropIndex("dbo.UserPhones", new[] { "TypeConnectId" });
+            DropIndex("dbo.UserPhones", new[] { "User_Id" });
+            DropIndex("dbo.UserPhones", new[] { "TypeConnect_Id" });
             DropIndex("dbo.UserPhones", new[] { "Number" });
-            DropIndex("dbo.UserPhones", new[] { "UserId" });
             DropIndex("dbo.UserEmails", new[] { "TypeConnectId" });
             DropIndex("dbo.UserEmails", new[] { "UserId" });
             DropIndex("dbo.UserEmails", new[] { "EmailName" });
-            DropIndex("dbo.UserAddresses", new[] { "UserId" });
-            DropIndex("dbo.UserAddresses", new[] { "TypeConnectId" });
-            DropIndex("dbo.UserAddresses", new[] { "Address" });
             DropIndex("dbo.TVShows", new[] { "ChannelId" });
             DropIndex("dbo.Payments", new[] { "OrderId" });
             DropIndex("dbo.OrderServices", new[] { "Order_Id" });
             DropIndex("dbo.OrderServices", new[] { "AdditionalServiceId" });
-            DropIndex("dbo.Orders", new[] { "UserId" });
+            DropIndex("dbo.Orders", new[] { "User_Id" });
             DropIndex("dbo.OrderChannels", new[] { "ChannelId" });
             DropIndex("dbo.OrderChannels", new[] { "OrderId" });
-            DropIndex("dbo.UserTypes", new[] { "TypeName" });
-            DropIndex("dbo.Users", new[] { "UserTypeId" });
+            DropIndex("dbo.UserAddresses", new[] { "User_Id" });
+            DropIndex("dbo.UserAddresses", new[] { "TypeConnect_Id" });
+            DropIndex("dbo.UserAddresses", new[] { "Address" });
             DropIndex("dbo.Users", new[] { "Login" });
-            DropIndex("dbo.DepositAccounts", new[] { "UserId" });
+            DropIndex("dbo.DepositAccounts", new[] { "User_Id" });
+            DropTable("dbo.UserTypes");
             DropTable("dbo.UserSchedules");
             DropTable("dbo.UserPhones");
             DropTable("dbo.UserEmails");
-            DropTable("dbo.UserAddresses");
-            DropTable("dbo.TypeConnects");
             DropTable("dbo.TVShows");
             DropTable("dbo.Payments");
             DropTable("dbo.OrderServices");
             DropTable("dbo.Orders");
             DropTable("dbo.OrderChannels");
-            DropTable("dbo.UserTypes");
+            DropTable("dbo.TypeConnects");
+            DropTable("dbo.UserAddresses");
             DropTable("dbo.Users");
             DropTable("dbo.DepositAccounts");
             DropTable("dbo.Channels");
