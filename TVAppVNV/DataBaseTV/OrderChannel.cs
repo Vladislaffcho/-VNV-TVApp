@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TVAppVNV.DataBaseTV
 {
-    public class OrderChanel
+    public class OrderChannel
     {
-        public OrderChanel()
+        public OrderChannel()
         {
 
         }
@@ -19,15 +20,14 @@ namespace TVAppVNV.DataBaseTV
         public int OrderId { get; set; }
 
         [Required]
-        private int ChannelId { get; set; }
-
+        public int ChannelId { get; set; }
 
         //Make linked entity as virtual for lazy loading work
         [Required]
         public virtual Order Order { get; set; }
 
         [Required]
-        public virtual Channel Chanel { get; set; }
+        public virtual Channel Channel { get; set; }
 
     }
 }

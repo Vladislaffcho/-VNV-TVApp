@@ -25,15 +25,9 @@ namespace TVAppVNV.DataBaseTV
         public double Summ { get; set; }
 
         [Required]
-        public int UserId { get; set; }
-
-        [Required]
         public int OrderId { get; set; }
 
         //Make linked entity as virtual for lazy loading work
-        //[Required]
-        //public virtual User User { get; set; }
-
         [Required]
         public virtual Order Order { get; set; }
 

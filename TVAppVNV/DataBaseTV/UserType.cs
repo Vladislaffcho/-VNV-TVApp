@@ -33,9 +33,6 @@ namespace TVAppVNV.DataBaseTV
         [MaxLength(100, ErrorMessage = "Too long comment")]
         public string Comment { get; set; }
 
-        //Make linked entity as virtual for lazy loading work
-        [Required]
-        public virtual ICollection<User> User { get; set; }
-
+        
     }
 }

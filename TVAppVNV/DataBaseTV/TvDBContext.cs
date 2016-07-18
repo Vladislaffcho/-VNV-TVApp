@@ -22,7 +22,7 @@
         public DbSet<Channel> Channels { get; set; } //11
         public DbSet<AdditionalService> AddServices { get; set; } //12
         public DbSet<Order> Orders { get; set; } //13
-        public DbSet<OrderChanel> OrderChanels { get; set; } //14
+        public DbSet<OrderChannel> OrderChannels { get; set; } //14
         public DbSet<OrderService> OrderServices { get; set; } //15
     }
 }
