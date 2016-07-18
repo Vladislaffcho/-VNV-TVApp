@@ -9,19 +9,24 @@ namespace TVAppVNV.DataBaseTV
         public Channel()
         {
         }
+
         //primary key
+        //autoincrement
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
-        [Required]
-        public char name { get; set; }
-        [Required]
-        public float price { get; set; }
-     
+        public int Id { get; set; }
 
-        // if ageLimit - OK - true
+        //channel name
+        [Required]
+        public string Name { get; set; }
+
+        //channel price per week
+        [Required]
+        public double Price { get; set; }
+     
+        // if ageLimit 18+ - true
         [Required]
         [DefaultValue(false)]
-        public bool ageLimit { get; set; }
+        public bool AgeLimit { get; set; }
     }
 }

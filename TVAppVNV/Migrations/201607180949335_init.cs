@@ -212,21 +212,21 @@ namespace TVAppVNV.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         DateDue = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
-                        UserId = c.Int(nullable: false),
-                        TvShowId = c.Int(nullable: false),
+                        TVShow_Id = c.Int(nullable: false),
+                        User_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.TVShows", t => t.TvShowId, cascadeDelete: true)
-                .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId)
-                .Index(t => t.TvShowId);
+                .ForeignKey("dbo.TVShows", t => t.TVShow_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.User_Id, cascadeDelete: true)
+                .Index(t => t.TVShow_Id)
+                .Index(t => t.User_Id);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.UserSchedules", "UserId", "dbo.Users");
-            DropForeignKey("dbo.UserSchedules", "TvShowId", "dbo.TVShows");
+            DropForeignKey("dbo.UserSchedules", "User_Id", "dbo.Users");
+            DropForeignKey("dbo.UserSchedules", "TVShow_Id", "dbo.TVShows");
             DropForeignKey("dbo.UserPhones", "UserId", "dbo.Users");
             DropForeignKey("dbo.UserPhones", "TypeConnectId", "dbo.TypeConnects");
             DropForeignKey("dbo.UserEmails", "UserId", "dbo.Users");
@@ -242,8 +242,8 @@ namespace TVAppVNV.Migrations
             DropForeignKey("dbo.OrderChannels", "ChannelId", "dbo.Channels");
             DropForeignKey("dbo.DepositAccounts", "UserId", "dbo.Users");
             DropForeignKey("dbo.Users", "UserTypeId", "dbo.UserTypes");
-            DropIndex("dbo.UserSchedules", new[] { "TvShowId" });
-            DropIndex("dbo.UserSchedules", new[] { "UserId" });
+            DropIndex("dbo.UserSchedules", new[] { "User_Id" });
+            DropIndex("dbo.UserSchedules", new[] { "TVShow_Id" });
             DropIndex("dbo.UserPhones", new[] { "TypeConnectId" });
             DropIndex("dbo.UserPhones", new[] { "Number" });
             DropIndex("dbo.UserPhones", new[] { "UserId" });

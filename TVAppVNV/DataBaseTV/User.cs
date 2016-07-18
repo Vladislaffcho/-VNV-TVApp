@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,6 +17,11 @@ namespace TVAppVNV.DataBaseTV
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        public virtual  ICollection<UserAddress> UserAddresses
+        {
+            get;
+            set;
+        }
 
         // set first name
         [MinLength(2, ErrorMessage = "Too short name")]
