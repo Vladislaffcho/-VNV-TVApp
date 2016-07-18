@@ -38,6 +38,7 @@ namespace TVAppVNV.DataBaseTV
 
         //order price per week
         [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public double TotalPrice { get; set; }
 
         //true - paid, false - not paid

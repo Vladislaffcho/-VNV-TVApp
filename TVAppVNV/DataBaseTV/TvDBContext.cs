@@ -7,8 +7,15 @@ namespace TVAppVNV.DataBaseTV
         public TvDBContext() : base("sample")
         {
             //set DB intializer for default value of dictionary on create bd
-            Database.SetInitializer<TvDBContext>(new TvDbIntializer());
+            Database.SetInitializer(new TvDbIntializer());
         }
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Company>().HasMany(company => company.Employees)
+        //        .WithRequired(employee => employee.CompanyWhereIWork);
+        //}
+        
 
         //list of tables in TV database
         public DbSet<User> Users { get; set; } // 1
