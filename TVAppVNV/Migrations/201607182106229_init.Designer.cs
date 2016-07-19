@@ -13,7 +13,7 @@ namespace TVAppVNV.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201607181952413_init"; }
+            get { return "201607182106229_init"; }
         }
         
         string IMigrationMetadata.Source

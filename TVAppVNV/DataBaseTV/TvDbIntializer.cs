@@ -6,9 +6,37 @@ namespace TVAppVNV.DataBaseTV
 {
     public class TvDbIntializer : CreateDatabaseIfNotExists<TvDBContext> // this class used only when database is creating
     {
-        protected override void Seed(TvDBContext context)
-        {
+        //protected override void Seed(TvDBContext context)
+        //{
 
+        //    //Create default data for UserType
+        //    List<UserType> defaultUserType = new List<UserType>
+        //    {
+        //        new UserType() {TypeName = "Chief", AccessToData = "Full access", Comment = ""},
+        //        new UserType() {TypeName = "Admin", AccessToData = "Full access", Comment = ""},
+        //        new UserType() {TypeName = "Manager", AccessToData = "Read Order only", Comment = ""},
+        //        new UserType()
+        //        {
+        //            TypeName = "Client",
+        //            AccessToData = "Read Channels, create Order, create Schedule, read own Payment history",
+        //            Comment = ""
+        //        }
+        //    };
+
+
+        //    foreach (var item in defaultUserType)
+        //    {
+        //        context.UserTypes.Add(item);
+        //    }
+            
+        //    base.Seed(context);
+            
+        //}
+        
+
+        public void IntializeDbHand(TvDBContext context)
+        {
+            
             //Create default data for UserType
             List<UserType> defaultUserType = new List<UserType>
             {
@@ -17,21 +45,19 @@ namespace TVAppVNV.DataBaseTV
                 new UserType() {TypeName = "Manager", AccessToData = "Read Order only", Comment = ""},
                 new UserType()
                 {
-                    TypeName = "Client", Comment = "",
-                    AccessToData = "Read Channels, create Order, create Schedule, read own Payment history"
+                    TypeName = "Client",
+                    AccessToData = "Read Channels, create Order, create Schedule, read own Payment history",
+                    Comment = ""
                 }
             };
-
-
+            
             foreach (var item in defaultUserType)
             {
                 context.UserTypes.Add(item);
             }
 
-            
-            base.Seed(context);
+            context.SaveChanges();
 
-            
         }
     }
 }

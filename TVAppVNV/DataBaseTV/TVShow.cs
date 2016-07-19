@@ -36,10 +36,6 @@ namespace TVAppVNV.DataBaseTV
         [DefaultValue(false)]
         public bool AgeLimit { get; set; }
 
-        //connect with Id channel
-        [Required]
-        public int ChannelId { get; set; }
-
         // link with table Channel
         [Required]
         public virtual Channel Channel { get; set; }

@@ -17,7 +17,7 @@ namespace TVAppVNV.DataBaseTV
         public int Id { get; set; }
 
         //create unique field for type of users
-        [Index(IsUnique = true)]
+        //[Index(IsUnique = true)]
         [MinLength(2, ErrorMessage = "Too short address")]
         [MaxLength(30)]
         [Required]

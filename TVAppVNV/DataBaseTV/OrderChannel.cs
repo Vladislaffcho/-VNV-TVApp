@@ -11,16 +11,11 @@ namespace TVAppVNV.DataBaseTV
         {
 
         }
+
         //Mark this field as primary key
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-
-        [Required]
-        public int OrderId { get; set; }
-
-        [Required]
-        public int ChannelId { get; set; }
 
         //Make linked entity as virtual for lazy loading work
         [Required]
