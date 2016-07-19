@@ -28,18 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.gbTvShow = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
+            // 
+            // gbTvShow
+            // 
+            this.gbTvShow.Location = new System.Drawing.Point(3, 3);
+            this.gbTvShow.Name = "gbTvShow";
+            this.gbTvShow.Size = new System.Drawing.Size(550, 300);
+            this.gbTvShow.TabIndex = 0;
+            this.gbTvShow.TabStop = false;
+            this.gbTvShow.Text = "TV Show choose";
             // 
             // ucTvShow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.gbTvShow);
             this.Name = "ucTvShow";
-            this.Size = new System.Drawing.Size(463, 365);
+            this.Size = new System.Drawing.Size(560, 310);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.GroupBox gbTvShow;
     }
 }

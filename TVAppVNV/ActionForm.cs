@@ -12,9 +12,22 @@ namespace TVAppVNV
 {
     public partial class ActionForm : Form
     {
-        public ActionForm()
+        public ActionForm(UserControl control)
         {
             InitializeComponent();
+            panelUserAction.Controls.Add(control);
+        }
+
+
+
+        private void btActionCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btActionOk_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
 

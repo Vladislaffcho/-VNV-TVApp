@@ -32,7 +32,7 @@ namespace TVAppVNV
 
         private void tVShowsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ActionForm action = new ActionForm();
+            ActionForm action = new ActionForm(new ucTvShow());
             action.Show();
         }
 

@@ -15,6 +15,8 @@ namespace TVAppVNV
         public ucTvShow()
         {
             InitializeComponent();
+            this.BackColor = Color.CornflowerBlue;
         }
+
     }
 }
