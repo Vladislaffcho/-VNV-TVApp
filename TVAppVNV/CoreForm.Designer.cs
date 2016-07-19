@@ -31,11 +31,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CoreForm));
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changeScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveYourListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tVShowsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.channelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.additionalServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.accountRechargeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bSaveCore = new System.Windows.Forms.Button();
@@ -45,13 +52,6 @@
             this.chNumColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chNameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cbDaysWeek = new System.Windows.Forms.ComboBox();
-            this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.scheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tVShowsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.channelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.accountRechargeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.additionalServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scCore)).BeginInit();
             this.scCore.Panel1.SuspendLayout();
@@ -84,17 +84,17 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // changeScheduleToolStripMenuItem
-            // 
-            this.changeScheduleToolStripMenuItem.Name = "changeScheduleToolStripMenuItem";
-            this.changeScheduleToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.changeScheduleToolStripMenuItem.Text = "Open xml File";
-            // 
             // logInToolStripMenuItem
             // 
             this.logInToolStripMenuItem.Name = "logInToolStripMenuItem";
             this.logInToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.logInToolStripMenuItem.Text = "Log In";
+            // 
+            // changeScheduleToolStripMenuItem
+            // 
+            this.changeScheduleToolStripMenuItem.Name = "changeScheduleToolStripMenuItem";
+            this.changeScheduleToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.changeScheduleToolStripMenuItem.Text = "Open xml File";
             // 
             // saveYourListToolStripMenuItem
             // 
@@ -114,6 +114,56 @@
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
+            // actionsToolStripMenuItem
+            // 
+            this.actionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.scheduleToolStripMenuItem,
+            this.tVShowsToolStripMenuItem,
+            this.channelsToolStripMenuItem,
+            this.additionalServiceToolStripMenuItem,
+            this.ordersToolStripMenuItem,
+            this.accountRechargeToolStripMenuItem});
+            this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
+            this.actionsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.actionsToolStripMenuItem.Text = "Actions";
+            // 
+            // scheduleToolStripMenuItem
+            // 
+            this.scheduleToolStripMenuItem.Name = "scheduleToolStripMenuItem";
+            this.scheduleToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.scheduleToolStripMenuItem.Text = "Schedules";
+            // 
+            // tVShowsToolStripMenuItem
+            // 
+            this.tVShowsToolStripMenuItem.Name = "tVShowsToolStripMenuItem";
+            this.tVShowsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.tVShowsToolStripMenuItem.Text = "TV Shows";
+            this.tVShowsToolStripMenuItem.Click += new System.EventHandler(this.tVShowsToolStripMenuItem_Click);
+            // 
+            // channelsToolStripMenuItem
+            // 
+            this.channelsToolStripMenuItem.Name = "channelsToolStripMenuItem";
+            this.channelsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.channelsToolStripMenuItem.Text = "Channels";
+            // 
+            // additionalServiceToolStripMenuItem
+            // 
+            this.additionalServiceToolStripMenuItem.Name = "additionalServiceToolStripMenuItem";
+            this.additionalServiceToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.additionalServiceToolStripMenuItem.Text = "Additional service";
+            // 
+            // ordersToolStripMenuItem
+            // 
+            this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
+            this.ordersToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.ordersToolStripMenuItem.Text = "Orders";
+            // 
+            // accountRechargeToolStripMenuItem
+            // 
+            this.accountRechargeToolStripMenuItem.Name = "accountRechargeToolStripMenuItem";
+            this.accountRechargeToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.accountRechargeToolStripMenuItem.Text = "Account Recharge";
             // 
             // userListToolStripMenuItem
             // 
@@ -135,6 +185,7 @@
             this.bSaveCore.TabIndex = 1;
             this.bSaveCore.Text = "Save";
             this.bSaveCore.UseVisualStyleBackColor = true;
+            this.bSaveCore.Click += new System.EventHandler(this.bSaveCore_Click);
             // 
             // bCancelCore
             // 
@@ -205,55 +256,6 @@
             this.cbDaysWeek.Name = "cbDaysWeek";
             this.cbDaysWeek.Size = new System.Drawing.Size(121, 21);
             this.cbDaysWeek.TabIndex = 0;
-            // 
-            // actionsToolStripMenuItem
-            // 
-            this.actionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.scheduleToolStripMenuItem,
-            this.tVShowsToolStripMenuItem,
-            this.channelsToolStripMenuItem,
-            this.additionalServiceToolStripMenuItem,
-            this.ordersToolStripMenuItem,
-            this.accountRechargeToolStripMenuItem});
-            this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
-            this.actionsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.actionsToolStripMenuItem.Text = "Actions";
-            // 
-            // scheduleToolStripMenuItem
-            // 
-            this.scheduleToolStripMenuItem.Name = "scheduleToolStripMenuItem";
-            this.scheduleToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.scheduleToolStripMenuItem.Text = "Schedules";
-            // 
-            // tVShowsToolStripMenuItem
-            // 
-            this.tVShowsToolStripMenuItem.Name = "tVShowsToolStripMenuItem";
-            this.tVShowsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.tVShowsToolStripMenuItem.Text = "TV Shows";
-            // 
-            // channelsToolStripMenuItem
-            // 
-            this.channelsToolStripMenuItem.Name = "channelsToolStripMenuItem";
-            this.channelsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.channelsToolStripMenuItem.Text = "Channels";
-            // 
-            // ordersToolStripMenuItem
-            // 
-            this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
-            this.ordersToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.ordersToolStripMenuItem.Text = "Orders";
-            // 
-            // accountRechargeToolStripMenuItem
-            // 
-            this.accountRechargeToolStripMenuItem.Name = "accountRechargeToolStripMenuItem";
-            this.accountRechargeToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.accountRechargeToolStripMenuItem.Text = "Account Recharge";
-            // 
-            // additionalServiceToolStripMenuItem
-            // 
-            this.additionalServiceToolStripMenuItem.Name = "additionalServiceToolStripMenuItem";
-            this.additionalServiceToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.additionalServiceToolStripMenuItem.Text = "Additional service";
             // 
             // CoreForm
             // 

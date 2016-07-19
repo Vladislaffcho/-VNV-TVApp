@@ -20,9 +20,22 @@ namespace TVAppVNV
             Close();
         }
 
+        private void bSaveCore_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
         private void saveYourListToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void tVShowsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ActionForm action = new ActionForm();
+            action.Show();
+        }
+
+
     }
 }
