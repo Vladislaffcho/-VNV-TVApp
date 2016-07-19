@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -15,13 +16,6 @@ namespace TVAppVNV.DataBaseTV
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-
-        [Required]
-        public int OredrId { get; set; }
-
-        [Required]
-        public int AdditionalServiceId { get; set; }
-
 
         //Make linked entity as virtual for lazy loading work
         [Required]

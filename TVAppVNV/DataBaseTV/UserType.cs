@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,7 +8,7 @@ namespace TVAppVNV.DataBaseTV
     {
         public UserType()
         {
-            
+            //Id++;
         }
 
         //Mark this field as primary key
@@ -18,7 +17,7 @@ namespace TVAppVNV.DataBaseTV
         public int Id { get; set; }
 
         //create unique field for type of users
-        [Index(IsUnique = true)]
+        //[Index(IsUnique = true)]
         [MinLength(2, ErrorMessage = "Too short address")]
         [MaxLength(30)]
         [Required]
@@ -26,7 +25,7 @@ namespace TVAppVNV.DataBaseTV
 
         //create field for type of access each position
         [MinLength(2, ErrorMessage = "Too short access description")]
-        [MaxLength(30)]
+        [MaxLength(300)]
         [Required]
         public string AccessToData { get; set; }
 
@@ -34,9 +33,6 @@ namespace TVAppVNV.DataBaseTV
         [MaxLength(100, ErrorMessage = "Too long comment")]
         public string Comment { get; set; }
 
-        //Make linked entity as virtual for lazy loading work
-        [Required]
-        public virtual ICollection<User> User { get; set; }
-
+        
     }
 }

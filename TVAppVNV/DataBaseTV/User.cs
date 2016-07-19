@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,12 +11,14 @@ namespace TVAppVNV.DataBaseTV
 
         public User()
         {
-
+           
         } 
+
         // set user's unique identifier
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        public virtual  ICollection<UserAddress> UserAddresses { get; set; }
 
         // set first name
         [MinLength(2, ErrorMessage = "Too short name")]
@@ -48,11 +51,13 @@ namespace TVAppVNV.DataBaseTV
         [DefaultValue(true)]
         public bool AllowAdultContent { get; set; }
 
-        [Required] 
-        public int UserTypeId { get; set; }
-
         // set type of a user from UserType table
-        [Required]
-        public virtual UserType UserType { get; set; }
+        //[Required]
+        //public virtual UserType UserType { get; set; }
+
+        //public override string ToString()
+        //{
+        //    return FirstName + " " + LastName + " " + UserType + Environment.NewLine;
+        //}
     }
 }

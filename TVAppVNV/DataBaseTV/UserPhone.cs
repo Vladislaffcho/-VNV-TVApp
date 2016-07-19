@@ -15,10 +15,6 @@ namespace TVAppVNV.DataBaseTV
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         
-        //Id of user, who has this phone
-        [Required]
-        public int UserId { get; set; }
-        
         //create unique field of user phone
         [Index(IsUnique = true)]
         [Required]
@@ -27,10 +23,6 @@ namespace TVAppVNV.DataBaseTV
         //comment for different situations
         [MaxLength(100, ErrorMessage = "Too long comment")]
         public string Comment { get; set; }
-        
-        //create field for type phone(home, work, for advertise....)
-        [Required]
-        public int TypeConnectId { get; set; }
         
         //Make linked entity as virtual for lazy loading work
         [Required]

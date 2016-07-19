@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TVAppVNV.DataBaseTV
@@ -27,10 +26,6 @@ namespace TVAppVNV.DataBaseTV
         //comment for different situations
         [MaxLength(100, ErrorMessage = "Too long comment")]
         public string Comment { get; set; }
-
-        //Id of user, who has this account
-        [Required]
-        public int UserId { get; set; }
 
         //Make linked entity as virtual for lazy loading work
         [Required]

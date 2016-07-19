@@ -17,10 +17,6 @@ namespace TVAppVNV.DataBaseTV
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        
-        [Required]
-        public int UserId { get; set; }
-
         //Oreder date
         [Required]
         [Column(TypeName = "datetime2")]
@@ -38,6 +34,7 @@ namespace TVAppVNV.DataBaseTV
 
         //order price per week
         [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public double TotalPrice { get; set; }
 
         //true - paid, false - not paid

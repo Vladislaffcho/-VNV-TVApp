@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -21,13 +22,6 @@ namespace TVAppVNV.DataBaseTV
         [Column(TypeName = "datetime2")]
         [Required]
         public DateTime DateDue { get; set; }
-
-        [Required]
-        public int UserId { get; set; }
-
-        [Required] 
-        public int TvShowId { get; set; }
-
 
         // set user ID from Users table
         [Required]

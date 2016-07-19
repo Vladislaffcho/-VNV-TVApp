@@ -7,8 +7,15 @@ namespace TVAppVNV.DataBaseTV
         public TvDBContext() : base("sample")
         {
             //set DB intializer for default value of dictionary on create bd
-            Database.SetInitializer<TvDBContext>(new TvDbIntializer());
+            Database.SetInitializer(new TvDbIntializer());
         }
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Company>().HasMany(company => company.Employees)
+        //        .WithRequired(employee => employee.CompanyWhereIWork);
+        //}
+        
 
         //list of tables in TV database
         public DbSet<User> Users { get; set; } // 1
@@ -24,7 +31,7 @@ namespace TVAppVNV.DataBaseTV
         public DbSet<Channel> Channels { get; set; } //11
         public DbSet<AdditionalService> AddServices { get; set; } //12
         public DbSet<Order> Orders { get; set; } //13
-        public DbSet<OrderChanel> OrderChanels { get; set; } //14
+        public DbSet<OrderChannel> OrderChannels { get; set; } //14
         public DbSet<OrderService> OrderServices { get; set; } //15
     }
 }
