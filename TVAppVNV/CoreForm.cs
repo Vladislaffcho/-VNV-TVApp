@@ -34,6 +34,8 @@ namespace TVAppVNV
         {
             ActionForm action = new ActionForm(new ucTvShow());
             action.Show();
+            this.Enabled = false;
+
         }
 
 

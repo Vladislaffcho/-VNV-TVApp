@@ -16,9 +16,9 @@ namespace TVAppVNV
         {
             InitializeComponent();
             panelUserAction.Controls.Add(control);
+            
         }
-
-
+        
 
         private void btActionCancel_Click(object sender, EventArgs e)
         {

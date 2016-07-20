@@ -37,7 +37,7 @@
             // btActionCancel
             // 
             this.btActionCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btActionCancel.Location = new System.Drawing.Point(498, 329);
+            this.btActionCancel.Location = new System.Drawing.Point(508, 339);
             this.btActionCancel.Name = "btActionCancel";
             this.btActionCancel.Size = new System.Drawing.Size(75, 23);
             this.btActionCancel.TabIndex = 0;
@@ -48,7 +48,7 @@
             // btActionOk
             // 
             this.btActionOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btActionOk.Location = new System.Drawing.Point(417, 329);
+            this.btActionOk.Location = new System.Drawing.Point(417, 339);
             this.btActionOk.Name = "btActionOk";
             this.btActionOk.Size = new System.Drawing.Size(75, 23);
             this.btActionOk.TabIndex = 1;
@@ -60,7 +60,7 @@
             // 
             this.panelUserAction.Location = new System.Drawing.Point(13, 13);
             this.panelUserAction.Name = "panelUserAction";
-            this.panelUserAction.Size = new System.Drawing.Size(560, 310);
+            this.panelUserAction.Size = new System.Drawing.Size(570, 320);
             this.panelUserAction.TabIndex = 2;
             // 
             // ActionForm
@@ -69,7 +69,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btActionCancel;
-            this.ClientSize = new System.Drawing.Size(584, 361);
+            this.ClientSize = new System.Drawing.Size(594, 371);
             this.Controls.Add(this.panelUserAction);
             this.Controls.Add(this.btActionOk);
             this.Controls.Add(this.btActionCancel);
