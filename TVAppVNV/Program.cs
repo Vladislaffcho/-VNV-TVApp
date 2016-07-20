@@ -14,13 +14,13 @@ namespace TVAppVNV
         static void Main()
         {
 
-            using (var context = new TvDBContext())
-            {
+            //using (var context = new TvDBContext())
+            //{
 
-                TvDbIntializer init = new TvDbIntializer();
-                init.IntializeDbHand(context);
-                    
-            }
+            //    TvDbIntializer init = new TvDbIntializer();
+            //    init.IntializeDbHand(context);
+
+            //}
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

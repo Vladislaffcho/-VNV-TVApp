@@ -8,6 +8,7 @@ namespace TVAppVNV.DataBaseTV
         {
             //set DB intializer for default value of dictionary on create bd
             Database.SetInitializer(new TvDbIntializer());
+            Database.Initialize(true);
         }
 
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
