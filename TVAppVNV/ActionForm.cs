@@ -28,6 +28,7 @@ namespace TVAppVNV
         private void btActionOk_Click(object sender, EventArgs e)
         {
             Close();
+
         }
 
 
