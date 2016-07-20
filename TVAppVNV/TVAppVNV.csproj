@@ -84,6 +84,11 @@
     <Compile Include="DataBaseTV\User.cs" />
     <Compile Include="DataBaseTV\UserSchedule.cs" />
     <Compile Include="DataBaseTV\UserType.cs" />
+    <Compile Include="Migrations\201607200925564_initial.cs" />
+    <Compile Include="Migrations\201607200925564_initial.Designer.cs">
+      <DependentUpon>201607200925564_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ucTvShow.cs">
@@ -97,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CoreForm.resx">
       <DependentUpon>CoreForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607200925564_initial.resx">
+      <DependentUpon>201607200925564_initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
