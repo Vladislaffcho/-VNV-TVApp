@@ -29,5 +29,10 @@ namespace TVAppVNV.DataBaseTV
         [Required]
         [DefaultValue(false)]
         public bool AgeLimit { get; set; }
+
+        //description of channel
+        [Required]
+        [MaxLength(500)]
+        public string Description { get; set; }
     }
 }

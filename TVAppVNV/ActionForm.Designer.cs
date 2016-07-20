@@ -52,7 +52,7 @@
             this.btActionOk.Name = "btActionOk";
             this.btActionOk.Size = new System.Drawing.Size(75, 23);
             this.btActionOk.TabIndex = 1;
-            this.btActionOk.Text = "Ok";
+            this.btActionOk.Text = "Save";
             this.btActionOk.UseVisualStyleBackColor = true;
             this.btActionOk.Click += new System.EventHandler(this.btActionOk_Click);
             // 

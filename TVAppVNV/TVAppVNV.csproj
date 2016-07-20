@@ -84,7 +84,6 @@
     <Compile Include="DataBaseTV\User.cs" />
     <Compile Include="DataBaseTV\UserSchedule.cs" />
     <Compile Include="DataBaseTV\UserType.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ucTvShow.cs">

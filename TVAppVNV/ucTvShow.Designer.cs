@@ -98,21 +98,7 @@
             this.chLBClientChoiceTvShow.FormattingEnabled = true;
             this.chLBClientChoiceTvShow.Items.AddRange(new object[] {
             "Savik Shuster live",
-            "95-Kvartal",
-            "KVN",
-            "Morning with 1+1",
-            "Looking for you",
-            "I am ashamed of my body",
-            "An animal world",
-            "Window in America",
-            "What? Where? When?",
-            "Evil kitchen",
-            "Computer world",
-            "Seven and I",
-            "Who is up?",
-            "Who is down?",
-            "Where am I?",
-            "First millionare"});
+            "95-Kvartal"});
             this.chLBClientChoiceTvShow.Location = new System.Drawing.Point(0, 16);
             this.chLBClientChoiceTvShow.Name = "chLBClientChoiceTvShow";
             this.chLBClientChoiceTvShow.Size = new System.Drawing.Size(365, 184);
@@ -141,11 +127,22 @@
             this.chLBTvShowList.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.chLBTvShowList.FormattingEnabled = true;
             this.chLBTvShowList.Items.AddRange(new object[] {
-            "1+1",
-            "2+2",
-            "Inter",
-            "ICTV",
-            "TET"});
+            "Savik Shuster live",
+            "95-Kvartal",
+            "KVN",
+            "Morning with 1+1",
+            "Looking for you",
+            "I am ashamed of my body",
+            "An animal world",
+            "Window in America",
+            "What? Where? When?",
+            "Evil kitchen",
+            "Computer world",
+            "Seven and I",
+            "Who is up?",
+            "Who is down?",
+            "Where am I?",
+            "First millionare"});
             this.chLBTvShowList.Location = new System.Drawing.Point(0, 83);
             this.chLBTvShowList.Name = "chLBTvShowList";
             this.chLBTvShowList.Size = new System.Drawing.Size(167, 274);
