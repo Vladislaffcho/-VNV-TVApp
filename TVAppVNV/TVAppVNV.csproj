@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActionForm.Designer.cs">
+      <DependentUpon>ActionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CoreForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,18 +84,27 @@
     <Compile Include="DataBaseTV\User.cs" />
     <Compile Include="DataBaseTV\UserSchedule.cs" />
     <Compile Include="DataBaseTV\UserType.cs" />
-    <Compile Include="Migrations\201607182106229_init.cs" />
-    <Compile Include="Migrations\201607182106229_init.Designer.cs">
-      <DependentUpon>201607182106229_init.cs</DependentUpon>
+    <Compile Include="Migrations\201607200925564_initial.cs" />
+    <Compile Include="Migrations\201607200925564_initial.Designer.cs">
+      <DependentUpon>201607200925564_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ucTvShow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucTvShow.Designer.cs">
+      <DependentUpon>ucTvShow.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ActionForm.resx">
+      <DependentUpon>ActionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CoreForm.resx">
       <DependentUpon>CoreForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607182106229_init.resx">
-      <DependentUpon>201607182106229_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201607200925564_initial.resx">
+      <DependentUpon>201607200925564_initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -100,6 +115,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ucTvShow.resx">
+      <DependentUpon>ucTvShow.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
