@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace TvForms
 {
-    public partial class ucTvShow : UserControl
+    public partial class ucShowListNoChBox : UserControl
     {
-        public ucTvShow()
+        public ucShowListNoChBox()
         {
             InitializeComponent();
-            this.BackColor = Color.CornflowerBlue;
-            rtbTvShowDescript.Text = "THIS USERCONTROL NEEDS REBUILD!!!!";
-           
         }
-
-
     }
 }

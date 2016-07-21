@@ -8,6 +8,9 @@ namespace TvForms
         public CoreForm()
         {
             InitializeComponent();
+            tabCoreAllCh.Controls.Add(new ucAllChannels());
+            tabCoreTvShow.Controls.Add(new ucTvShow());
+
         }
 
         private void bCancelCore_Click(object sender, EventArgs e)
@@ -38,6 +41,8 @@ namespace TvForms
 
 
         }
+
+    
 
         //Uncomment when bookmarks will be ready end specify appropriate one!!!!
         //private void tVShowsToolStripMenuItem_Click(object sender, EventArgs e)

@@ -30,6 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -40,6 +42,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionForm.cs">
@@ -55,6 +58,18 @@
       <DependentUpon>CoreForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ucAllChannels.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucAllChannels.Designer.cs">
+      <DependentUpon>ucAllChannels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucShowListNoChBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucShowListNoChBox.Designer.cs">
+      <DependentUpon>ucShowListNoChBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucTvShow.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -68,6 +83,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CoreForm.resx">
       <DependentUpon>CoreForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucAllChannels.resx">
+      <DependentUpon>ucAllChannels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucShowListNoChBox.resx">
+      <DependentUpon>ucShowListNoChBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucTvShow.resx">
       <DependentUpon>ucTvShow.cs</DependentUpon>

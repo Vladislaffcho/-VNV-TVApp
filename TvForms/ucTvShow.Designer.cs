@@ -33,9 +33,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chLBClientChoiceTvShow = new System.Windows.Forms.CheckedListBox();
             this.gbShowDescrpt = new System.Windows.Forms.GroupBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.rtbTvShowDescript = new System.Windows.Forms.RichTextBox();
             this.chLBTvShowList = new System.Windows.Forms.CheckedListBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.saturdayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sundayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mondayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,8 +43,7 @@
             this.thursdayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fridayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saturdayToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.gbTvShow.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gbShowDescrpt.SuspendLayout();
@@ -61,7 +59,7 @@
             this.gbTvShow.Controls.Add(this.menuStrip1);
             this.gbTvShow.Location = new System.Drawing.Point(3, 3);
             this.gbTvShow.Name = "gbTvShow";
-            this.gbTvShow.Size = new System.Drawing.Size(550, 372);
+            this.gbTvShow.Size = new System.Drawing.Size(628, 321);
             this.gbTvShow.TabIndex = 0;
             this.gbTvShow.TabStop = false;
             this.gbTvShow.Text = "TV Show choose";
@@ -85,9 +83,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.chLBClientChoiceTvShow);
-            this.groupBox1.Location = new System.Drawing.Point(185, 146);
+            this.groupBox1.Location = new System.Drawing.Point(185, 118);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(365, 211);
+            this.groupBox1.Size = new System.Drawing.Size(437, 203);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Your preference";
@@ -101,26 +99,26 @@
             "95-Kvartal"});
             this.chLBClientChoiceTvShow.Location = new System.Drawing.Point(0, 16);
             this.chLBClientChoiceTvShow.Name = "chLBClientChoiceTvShow";
-            this.chLBClientChoiceTvShow.Size = new System.Drawing.Size(365, 184);
+            this.chLBClientChoiceTvShow.Size = new System.Drawing.Size(437, 184);
             this.chLBClientChoiceTvShow.TabIndex = 3;
             // 
             // gbShowDescrpt
             // 
-            this.gbShowDescrpt.Controls.Add(this.richTextBox1);
+            this.gbShowDescrpt.Controls.Add(this.rtbTvShowDescript);
             this.gbShowDescrpt.Location = new System.Drawing.Point(185, 56);
             this.gbShowDescrpt.Name = "gbShowDescrpt";
-            this.gbShowDescrpt.Size = new System.Drawing.Size(365, 84);
+            this.gbShowDescrpt.Size = new System.Drawing.Size(437, 58);
             this.gbShowDescrpt.TabIndex = 2;
             this.gbShowDescrpt.TabStop = false;
             this.gbShowDescrpt.Text = "Show description";
             // 
-            // richTextBox1
+            // rtbTvShowDescript
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(0, 19);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(365, 65);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "";
+            this.rtbTvShowDescript.Location = new System.Drawing.Point(0, 19);
+            this.rtbTvShowDescript.Name = "rtbTvShowDescript";
+            this.rtbTvShowDescript.Size = new System.Drawing.Size(437, 37);
+            this.rtbTvShowDescript.TabIndex = 1;
+            this.rtbTvShowDescript.Text = "";
             // 
             // chLBTvShowList
             // 
@@ -145,25 +143,8 @@
             "First millionare"});
             this.chLBTvShowList.Location = new System.Drawing.Point(0, 83);
             this.chLBTvShowList.Name = "chLBTvShowList";
-            this.chLBTvShowList.Size = new System.Drawing.Size(167, 274);
+            this.chLBTvShowList.Size = new System.Drawing.Size(167, 229);
             this.chLBTvShowList.TabIndex = 0;
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saturdayToolStripMenuItem,
-            this.sundayToolStripMenuItem,
-            this.mondayToolStripMenuItem,
-            this.tuesdayToolStripMenuItem,
-            this.wednesdayToolStripMenuItem,
-            this.thursdayToolStripMenuItem,
-            this.fridayToolStripMenuItem,
-            this.saturdayToolStripMenuItem1});
-            this.menuStrip1.Location = new System.Drawing.Point(3, 16);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(544, 24);
-            this.menuStrip1.TabIndex = 5;
-            this.menuStrip1.Text = "menuStrip1";
             // 
             // saturdayToolStripMenuItem
             // 
@@ -213,13 +194,30 @@
             this.saturdayToolStripMenuItem1.Size = new System.Drawing.Size(65, 20);
             this.saturdayToolStripMenuItem1.Text = "Saturday";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saturdayToolStripMenuItem,
+            this.sundayToolStripMenuItem,
+            this.mondayToolStripMenuItem,
+            this.tuesdayToolStripMenuItem,
+            this.wednesdayToolStripMenuItem,
+            this.thursdayToolStripMenuItem,
+            this.fridayToolStripMenuItem,
+            this.saturdayToolStripMenuItem1});
+            this.menuStrip1.Location = new System.Drawing.Point(3, 16);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(622, 24);
+            this.menuStrip1.TabIndex = 5;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
             // ucTvShow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gbTvShow);
             this.Name = "ucTvShow";
-            this.Size = new System.Drawing.Size(560, 378);
+            this.Size = new System.Drawing.Size(634, 327);
             this.gbTvShow.ResumeLayout(false);
             this.gbTvShow.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -235,20 +233,18 @@
         private System.Windows.Forms.GroupBox gbTvShow;
         private System.Windows.Forms.CheckedListBox chLBTvShowList;
         private System.Windows.Forms.GroupBox gbShowDescrpt;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.RichTextBox rtbTvShowDescript;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckedListBox chLBClientChoiceTvShow;
-        private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem saturdayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sundayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mondayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tuesdayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem wednesdayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thursdayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fridayToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saturdayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saturdayToolStripMenuItem1;
     }
 }
