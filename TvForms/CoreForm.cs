@@ -5,15 +5,14 @@ using System.Xml.Schema;
 using System.IO;
 using System.Text;
 using System.Collections.Generic;
-using System.Data.Entity;
-using TvDbContext;
+using TVContext;
+
 
 namespace TvForms
 {
-
     public partial class CoreForm : Form
     {
-        TvDbContext context;
+        
         public CoreForm()
         {
             InitializeComponent();
@@ -171,11 +170,10 @@ namespace TvForms
 
             }
         }
-       
-        private static void IntializeDbTv()
+
+        private static void IntializeDbTv(TvDBContext context)
         {
-            using (var context = new TvDbContext.TvDBContext())
-            {
+           
                 List<Channel> channels = new List<Channel>();
                 channels.Add(new Channel()
                 {
@@ -190,7 +188,7 @@ namespace TvForms
                 }
 
                 context.SaveChanges();
-            }
+
         }
 
 

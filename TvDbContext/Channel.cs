@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TvDbContext
+namespace TVContext
 {
     public class Channel
     {
@@ -34,5 +35,11 @@ namespace TvDbContext
         [Required]
         [MaxLength(500)]
         public string Description { get; set; }
+
+        //info about orders
+        public virtual OrderChannel OredChannel { get; set; }
+
+        public virtual ICollection<TVShow> TvShows { get; set; }
+
     }
 }

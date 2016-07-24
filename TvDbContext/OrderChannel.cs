@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TvDbContext
+namespace TVContext
 {
     public class OrderChannel
     {
@@ -22,7 +22,7 @@ namespace TvDbContext
         public virtual Order Order { get; set; }
 
         [Required]
-        public virtual Channel Channel { get; set; }
+        public virtual ICollection<Channel> Channels { get; set; }
 
     }
 }

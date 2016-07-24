@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TvDbContext
+namespace TVContext
 {
     public class AdditionalService
     {
@@ -30,6 +30,10 @@ namespace TvDbContext
         [Required]
         [DefaultValue(true)]
         public bool AgeLimit { get; set; }
+
+        //info about table OrderService
+        public virtual OrderService OrderService { get; set; }
+
 
 
     }

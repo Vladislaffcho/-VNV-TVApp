@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 
-namespace TvDbContext
+namespace TVContext
 {
     public class TvDbIntializer : CreateDatabaseIfNotExists<TvDBContext> // this class used only when database is creating
     {

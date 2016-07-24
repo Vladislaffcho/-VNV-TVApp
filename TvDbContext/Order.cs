@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TvDbContext
+namespace TVContext
 {
     public class Order
     {
@@ -50,6 +51,14 @@ namespace TvDbContext
         //FK for OrderService table
         [Required]
         public virtual User User { get; set; }
+
+        //info about this payment
+        public virtual Payment Payment { get; set; }
+
+        //info about all ordered servisec and channels
+        public virtual ICollection<OrderChannel> OrderChannels { get; set; }
+
+        public virtual ICollection<OrderService> OrderServices { get; set; }
 
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using TvForms;
+using TVContext;
 
 namespace TVAppVNV
 {
@@ -17,9 +18,11 @@ namespace TVAppVNV
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new CoreForm());
+     
 
         }
 
-        
+
+
     }
 }

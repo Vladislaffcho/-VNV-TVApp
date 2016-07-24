@@ -2,14 +2,14 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TvDbContext
+namespace TVContext
 {
     
     public class UserType
     {
         public UserType()
         {
-            //Id++;
+            
         }
 
         //Mark this field as primary key
@@ -33,6 +33,9 @@ namespace TvDbContext
         //comment for different situations
         [MaxLength(100, ErrorMessage = "Too long comment")]
         public string Comment { get; set; }
+
+        //list of users who have specified access
+        public virtual ICollection<User> Users { get; set; }
         
         
     }
