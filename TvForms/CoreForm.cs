@@ -5,7 +5,7 @@ using System.Xml.Schema;
 using System.IO;
 using System.Text;
 using System.Collections.Generic;
-using TvDbContext;
+using TVContext;
 
 
 namespace TvForms
@@ -171,7 +171,7 @@ namespace TvForms
             }
         }
 
-        private static void IntializeDbTv(TvDbContext context)
+        private static void IntializeDbTv(TvDBContext context)
         {
            
                 List<Channel> channels = new List<Channel>();
@@ -184,7 +184,7 @@ namespace TvForms
                 });
                 foreach (var item in channels)
                 {
-                    context.Channel.Add(item);
+                    context.Channels.Add(item);
                 }
 
                 context.SaveChanges();

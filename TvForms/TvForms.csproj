@@ -113,9 +113,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TvDbContext\TvDbContext.csproj">
+    <ProjectReference Include="..\TvDbContext\TVContext.csproj">
       <Project>{4915D8DB-F82B-4046-9CA9-B697DA0013F8}</Project>
-      <Name>TvDbContext</Name>
+      <Name>TVContext</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
