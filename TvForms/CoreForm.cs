@@ -120,26 +120,25 @@ namespace TvForms
                                     {
                                         Name = reader.ReadInnerXml(),
                                         Price = 0,
-                                        AgeLimit = false,
                                         Description = ""
                                     });
+                                    if (channels.Count != 0)
+                                    {
+                                        foreach (var item in channels)
+                                        {
+                                            context.Channels.Add(item);
+                                        }
 
+                                        context.SaveChanges();
+                                    }
                                     //add programme
-                                    parseProgramme(temp, b, ChannelId);
+                                    //parseProgramme(temp, b, ChannelId);
 
                                 }
                             }
                         }
                     }
-                    if (channels.Count != 0)
-                    {
-                        foreach (var item in channels)
-                        {
-                            context.Channels.Add(item);
-                        }
-
-                        context.SaveChanges();
-                    }
+                    
                 }
                 catch (Exception)
                 {
@@ -173,14 +172,14 @@ namespace TvForms
 
                             )
                         {
-
+                            string title = "";
+                            string desc = "";
+                            string start = "";
                             while (reader.Read())
                             {
                                 int chanel = Int32.Parse(reader.GetAttribute("channel"));
-                                string start = reader.GetAttribute("start");
-                                string stop = reader.GetAttribute("stop");
-                                string title = "";
-                                string desc = "";
+                                start = reader.GetAttribute("start");
+
 
                                 if (chanel == ChannelId)
                                 {
@@ -198,13 +197,14 @@ namespace TvForms
 
                             }
 
-                            if ()
+                            if (title.Length != 0)
                             {
+                               
                                 //add chennel to db
                                 tvshows.Add(new TVShow()
                                 {
-                                    Name = reader.ReadInnerXml(),
-                                    Date = 0,
+                                    Name = title,
+                                    Date = Convert.ToDateTime(toDatetime2(start)),
                                     AgeLimit = false,
                                     Description = desc
                                 });
@@ -236,6 +236,25 @@ namespace TvForms
         {
                 
 
+        }
+
+        private string toDatetime2(string date)
+        {
+            if (date.Length != 0)
+            {
+                string year = date.Substring(0, 3);
+                string month = date.Substring(4, 5);
+                string day = date.Substring(6, 7);
+                string hour = date.Substring(8, 9);
+                string minute = date.Substring(10, 11);
+                string second = date.Substring(12, 13);
+
+                return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+            }
+            else
+            {
+                return "0000-00-00 00:00:00";
+            }
         }
 
 

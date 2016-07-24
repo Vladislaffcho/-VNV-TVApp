@@ -52,11 +52,6 @@
     <Compile Include="AdditionalService.cs" />
     <Compile Include="Channel.cs" />
     <Compile Include="DepositAccount.cs" />
-    <Compile Include="Migrations\201607241551257_init.cs" />
-    <Compile Include="Migrations\201607241551257_init.Designer.cs">
-      <DependentUpon>201607241551257_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderChannel.cs" />
     <Compile Include="OrderService.cs" />
@@ -76,11 +71,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201607241551257_init.resx">
-      <DependentUpon>201607241551257_init.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

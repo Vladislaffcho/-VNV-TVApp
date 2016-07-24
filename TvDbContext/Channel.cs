@@ -37,7 +37,7 @@ namespace TVContext
         public string Description { get; set; }
 
         //info about orders
-        public virtual OrderChannel OredChannel { get; set; }
+        public virtual OrderChannel OrderChannel { get; set; }
 
         public virtual ICollection<TVShow> TvShows { get; set; }
 
