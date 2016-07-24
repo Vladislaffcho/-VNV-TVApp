@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using TVAppVNV.DataBaseTV;
+using TvForms;
 
 namespace TVAppVNV
 {
@@ -14,13 +13,6 @@ namespace TVAppVNV
         static void Main()
         {
 
-            //using (var context = new TvDBContext())
-            //{
-
-            //    TvDbIntializer init = new TvDbIntializer();
-            //    init.IntializeDbHand(context);
-
-            //}
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

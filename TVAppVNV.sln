@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TVAppVNV", "TVAppVNV\TVAppVNV.csproj", "{5E39C316-12C9-43FA-8B6C-B5378B23E72F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TvDbContext", "TvDbContext\TvDbContext.csproj", "{4915D8DB-F82B-4046-9CA9-B697DA0013F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TvForms", "TvForms\TvForms.csproj", "{8177BFBE-E63B-4314-AE1D-5A492EF5B008}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{5E39C316-12C9-43FA-8B6C-B5378B23E72F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E39C316-12C9-43FA-8B6C-B5378B23E72F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E39C316-12C9-43FA-8B6C-B5378B23E72F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4915D8DB-F82B-4046-9CA9-B697DA0013F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4915D8DB-F82B-4046-9CA9-B697DA0013F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4915D8DB-F82B-4046-9CA9-B697DA0013F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4915D8DB-F82B-4046-9CA9-B697DA0013F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8177BFBE-E63B-4314-AE1D-5A492EF5B008}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8177BFBE-E63B-4314-AE1D-5A492EF5B008}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8177BFBE-E63B-4314-AE1D-5A492EF5B008}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8177BFBE-E63B-4314-AE1D-5A492EF5B008}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
