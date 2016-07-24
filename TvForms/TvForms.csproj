@@ -58,6 +58,12 @@
       <DependentUpon>CoreForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ucAdminView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucAdminView.Designer.cs">
+      <DependentUpon>ucAdminView.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucAllChannels.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -83,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CoreForm.resx">
       <DependentUpon>CoreForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucAdminView.resx">
+      <DependentUpon>ucAdminView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucAllChannels.resx">
       <DependentUpon>ucAllChannels.cs</DependentUpon>
