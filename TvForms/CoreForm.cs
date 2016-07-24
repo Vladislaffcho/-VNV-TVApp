@@ -17,6 +17,7 @@ namespace TvForms
         {
             EnterForm access = new EnterForm();
             access.ShowDialog();
+
             //pnCoreForm.Controls.Add(access);
             
             int whoUser = access.IsValidPass;
@@ -34,8 +35,9 @@ namespace TvForms
                     break;
                 default: //access denied
                     InitializeComponent();
+                    //this.Enabled = false;
                     MessageBox.Show("Invalid password", "Access denied",
-                        MessageBoxButtons.RetryCancel, MessageBoxIcon.Hand);
+                        MessageBoxButtons.OK, MessageBoxIcon.Hand);
                     break;
             }
             

@@ -38,6 +38,7 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.lbEnterF_Welcome = new System.Windows.Forms.Label();
             this.picLogin = new System.Windows.Forms.PictureBox();
+            this.chBEnterF_ShowPass = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picLogin)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,6 +50,7 @@
             this.bEnterF_Cancel.TabIndex = 0;
             this.bEnterF_Cancel.Text = "Cancel";
             this.bEnterF_Cancel.UseVisualStyleBackColor = true;
+     
             // 
             // bEnterF_Enter
             // 
@@ -123,11 +125,22 @@
             this.picLogin.TabIndex = 8;
             this.picLogin.TabStop = false;
             // 
+            // chBEnterF_ShowPass
+            // 
+            this.chBEnterF_ShowPass.AutoSize = true;
+            this.chBEnterF_ShowPass.Location = new System.Drawing.Point(121, 108);
+            this.chBEnterF_ShowPass.Name = "chBEnterF_ShowPass";
+            this.chBEnterF_ShowPass.Size = new System.Drawing.Size(76, 17);
+            this.chBEnterF_ShowPass.TabIndex = 9;
+            this.chBEnterF_ShowPass.Text = "show pass";
+            this.chBEnterF_ShowPass.UseVisualStyleBackColor = true;
+            // 
             // EnterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(414, 164);
+            this.Controls.Add(this.chBEnterF_ShowPass);
             this.Controls.Add(this.picLogin);
             this.Controls.Add(this.lbEnterF_Welcome);
             this.Controls.Add(this.linkLabel1);
@@ -160,5 +173,6 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label lbEnterF_Welcome;
         private System.Windows.Forms.PictureBox picLogin;
+        private System.Windows.Forms.CheckBox chBEnterF_ShowPass;
     }
 }
