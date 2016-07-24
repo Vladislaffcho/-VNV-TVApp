@@ -79,6 +79,7 @@
             this.changeScheduleToolStripMenuItem.Name = "changeScheduleToolStripMenuItem";
             this.changeScheduleToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.changeScheduleToolStripMenuItem.Text = "Open xml File";
+            this.changeScheduleToolStripMenuItem.Click += new System.EventHandler(this.changeScheduleToolStripMenuItem_Click);
             // 
             // saveYourListToolStripMenuItem
             // 
