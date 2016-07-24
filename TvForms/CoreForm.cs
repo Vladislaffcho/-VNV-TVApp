@@ -97,7 +97,6 @@ namespace TvForms
                     {
 
                         parseChennel(temp, b);
-                        parseProgramme(temp, b);
 
                     }
                 }
@@ -121,25 +120,47 @@ namespace TvForms
             {
                 try
                 {
+                    TvDBContext context = new TvDBContext();
+                    List<Channel> channels = new List<Channel>();
+
                     while (reader.Read())
                     {
+
 
                         if (reader.IsStartElement() && reader.Name == "channel" &&
                             reader.NodeType == XmlNodeType.Element)
                         {
-                            MessageBox.Show(reader.GetAttribute("id"));
+                            int ChannelId = Int32.Parse(reader.GetAttribute("id"));
+
                             while (reader.Read())
                             {
                                 if (reader.IsStartElement() && reader.Name == "display-name" &&
                                     reader.NodeType == XmlNodeType.Element)
                                 {
-                                    MessageBox.Show(reader.ReadInnerXml());
+                                    //add chennel to db
+                                    channels.Add(new Channel()
+                                    {
+                                        Name = reader.ReadInnerXml(),
+                                        Price = 0,
+                                        Description = ""
+                                    });
+                                    if (channels.Count != 0)
+                                    {
+                                        foreach (var item in channels)
+                                        {
+                                            context.Channels.Add(item);
+                                        }
+
+                                        context.SaveChanges();
+                                    }
+                                    //add programme
+                                    //parseProgramme(temp, b, ChannelId);
+
                                 }
                             }
                         }
                     }
-
-                   
+                    
                 }
                 catch (Exception)
                 {
@@ -149,7 +170,7 @@ namespace TvForms
             }
         }
 
-        private void parseProgramme(UTF8Encoding temp, byte[] b)
+        private void parseProgramme(UTF8Encoding temp, byte[] b, int ChannelId)
         {
             XmlReaderSettings settings = new XmlReaderSettings();
             settings.DtdProcessing = DtdProcessing.Parse;
@@ -160,30 +181,70 @@ namespace TvForms
             {
                 try
                 {
-                  
+                    TvDBContext context = new TvDBContext();
+                    List<TVShow> tvshows = new List<TVShow>();
+
                     while (reader.Read())
                     {
 
-                        if (reader.IsStartElement() && reader.Name == "programme" && reader.NodeType == XmlNodeType.Element)
-                        {
+                        if (
+                            reader.IsStartElement() 
+                            && reader.Name == "programme" 
+                            && reader.NodeType == XmlNodeType.Element
 
+                            )
+                        {
+                            string title = "";
+                            string desc = "";
+                            string start = "";
                             while (reader.Read())
                             {
-                                string chanelId = reader.GetAttribute("channel");
-                                string start = reader.GetAttribute("start");
-                                string stop = reader.GetAttribute("stop");
+                                int chanel = Int32.Parse(reader.GetAttribute("channel"));
+                                start = reader.GetAttribute("start");
 
-                                if (reader.IsStartElement() && reader.Name == "title" && reader.NodeType == XmlNodeType.Element)
+
+                                if (chanel == ChannelId)
                                 {
-                                    MessageBox.Show(reader.ReadInnerXml());
+                                    if (reader.IsStartElement() && reader.Name == "title" &&
+                                        reader.NodeType == XmlNodeType.Element)
+                                    {
+                                        title = reader.ReadInnerXml();
+                                    }
+                                    else if (reader.IsStartElement() && reader.Name == "category" &&
+                                             reader.NodeType == XmlNodeType.Element)
+                                    {
+                                        desc = reader.ReadInnerXml();
+                                    }
                                 }
-                                else if (reader.IsStartElement() && reader.Name == "category" && reader.NodeType == XmlNodeType.Element)
-                                {
-                                    MessageBox.Show(reader.ReadInnerXml());
-                                }
+
                             }
+
+                            if (title.Length != 0)
+                            {
+                               
+                                //add chennel to db
+                                tvshows.Add(new TVShow()
+                                {
+                                    Name = title,
+                                    Date = Convert.ToDateTime(toDatetime2(start)),
+                                    AgeLimit = false,
+                                    Description = desc
+                                });
+                            }
+
+
                         }
                     }
+                    if (tvshows.Count != 0)
+                    {
+                        foreach (var item in tvshows)
+                        {
+                            context.TvShows.Add(item);
+                        }
+
+                        context.SaveChanges();
+                    }
+
                 }
                 catch (Exception)
                 {
@@ -195,22 +256,27 @@ namespace TvForms
 
         private static void IntializeDbTv(TvDBContext context)
         {
-           
-                List<Channel> channels = new List<Channel>();
-                channels.Add(new Channel()
-                {
-                    Name = "Chief",
-                    Price = 0,
-                    AgeLimit = true,
-                    Description = ""
-                });
-                foreach (var item in channels)
-                {
-                    context.Channels.Add(item);
-                }
+                
 
-                context.SaveChanges();
+        }
 
+        private string toDatetime2(string date)
+        {
+            if (date.Length != 0)
+            {
+                string year = date.Substring(0, 3);
+                string month = date.Substring(4, 5);
+                string day = date.Substring(6, 7);
+                string hour = date.Substring(8, 9);
+                string minute = date.Substring(10, 11);
+                string second = date.Substring(12, 13);
+
+                return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+            }
+            else
+            {
+                return "0000-00-00 00:00:00";
+            }
         }
 
 
