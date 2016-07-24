@@ -43,12 +43,8 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bSaveCore = new System.Windows.Forms.Button();
             this.bCancelCore = new System.Windows.Forms.Button();
-            this.tabCore = new System.Windows.Forms.TabControl();
-            this.tabCoreAllCh = new System.Windows.Forms.TabPage();
-            this.tabCoreMyCh = new System.Windows.Forms.TabPage();
-            this.tabCoreTvShow = new System.Windows.Forms.TabPage();
+            this.pnCoreForm = new System.Windows.Forms.Panel();
             this.msMain.SuspendLayout();
-            this.tabCore.SuspendLayout();
             this.SuspendLayout();
             // 
             // msMain
@@ -162,56 +158,19 @@
             this.bCancelCore.UseVisualStyleBackColor = true;
             this.bCancelCore.Click += new System.EventHandler(this.bCancelCore_Click);
             // 
-            // tabCore
+            // pnCoreForm
             // 
-            this.tabCore.Controls.Add(this.tabCoreAllCh);
-            this.tabCore.Controls.Add(this.tabCoreMyCh);
-            this.tabCore.Controls.Add(this.tabCoreTvShow);
-            this.tabCore.Location = new System.Drawing.Point(12, 27);
-            this.tabCore.Multiline = true;
-            this.tabCore.Name = "tabCore";
-            this.tabCore.SelectedIndex = 0;
-            this.tabCore.Size = new System.Drawing.Size(642, 353);
-            this.tabCore.TabIndex = 3;
-            this.tabCore.Tag = "";
-            // 
-            // tabCoreAllCh
-            // 
-            this.tabCoreAllCh.BackColor = System.Drawing.Color.Khaki;
-            this.tabCoreAllCh.Location = new System.Drawing.Point(4, 22);
-            this.tabCoreAllCh.Name = "tabCoreAllCh";
-            this.tabCoreAllCh.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCoreAllCh.Size = new System.Drawing.Size(634, 327);
-            this.tabCoreAllCh.TabIndex = 0;
-            this.tabCoreAllCh.Text = "All Channels";
-            // 
-            // tabCoreMyCh
-            // 
-            this.tabCoreMyCh.BackColor = System.Drawing.Color.MistyRose;
-            this.tabCoreMyCh.Location = new System.Drawing.Point(4, 22);
-            this.tabCoreMyCh.Name = "tabCoreMyCh";
-            this.tabCoreMyCh.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCoreMyCh.Size = new System.Drawing.Size(634, 327);
-            this.tabCoreMyCh.TabIndex = 1;
-            this.tabCoreMyCh.Text = "My Channels";
-            // 
-            // tabCoreTvShow
-            // 
-            this.tabCoreTvShow.BackColor = System.Drawing.Color.PowderBlue;
-            this.tabCoreTvShow.Location = new System.Drawing.Point(4, 22);
-            this.tabCoreTvShow.Name = "tabCoreTvShow";
-            this.tabCoreTvShow.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCoreTvShow.Size = new System.Drawing.Size(634, 327);
-            this.tabCoreTvShow.TabIndex = 2;
-            this.tabCoreTvShow.Text = "My TV Show";
-            
+            this.pnCoreForm.Location = new System.Drawing.Point(12, 27);
+            this.pnCoreForm.Name = "pnCoreForm";
+            this.pnCoreForm.Size = new System.Drawing.Size(642, 353);
+            this.pnCoreForm.TabIndex = 3;
             // 
             // CoreForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(666, 421);
-            this.Controls.Add(this.tabCore);
+            this.Controls.Add(this.pnCoreForm);
             this.Controls.Add(this.bCancelCore);
             this.Controls.Add(this.bSaveCore);
             this.Controls.Add(this.msMain);
@@ -222,7 +181,6 @@
             this.Text = "VNV TV Shedule";
             this.msMain.ResumeLayout(false);
             this.msMain.PerformLayout();
-            this.tabCore.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,10 +202,7 @@
         private System.Windows.Forms.ToolStripMenuItem additionalServiceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem accountRechargeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem profileToolStripMenuItem;
-        private System.Windows.Forms.TabControl tabCore;
-        private System.Windows.Forms.TabPage tabCoreAllCh;
-        private System.Windows.Forms.TabPage tabCoreMyCh;
-        private System.Windows.Forms.TabPage tabCoreTvShow;
+        private System.Windows.Forms.Panel pnCoreForm;
     }
 }
 

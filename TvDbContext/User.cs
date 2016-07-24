@@ -70,10 +70,8 @@ namespace TVContext
         public virtual ICollection<Order> Orders { get; set; }
 
         //info about user TvShow Schedule
-        public virtual UserSchedule UserSchedule { get; set; }
-
-
-
+        public virtual ICollection<UserSchedule> UserSchedules { get; set; }
+        
 
 
         //public override string ToString()

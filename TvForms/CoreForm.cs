@@ -15,11 +15,33 @@ namespace TvForms
         
         public CoreForm()
         {
-            InitializeComponent();
-            tabCoreAllCh.Controls.Add(new ucAllChannels());
-            tabCoreTvShow.Controls.Add(new ucTvShow());
+            EnterForm access = new EnterForm();
+            access.ShowDialog();
+            //pnCoreForm.Controls.Add(access);
+            
+            int whoUser = access.IsValidPass;
 
+            switch (whoUser)
+            {
+                case 1: //admin
+                    InitializeComponent();
+                    pnCoreForm.Controls.Add(new ucAdminView());
+                    break;
+                case 2: //user
+                    InitializeComponent();
+                    pnCoreForm.Controls.Add(new ucAllChannels());
+                    pnCoreForm.Controls.Add(new ucTvShow());
+                    break;
+                default: //access denied
+                    InitializeComponent();
+                    MessageBox.Show("Invalid password", "Access denied",
+                        MessageBoxButtons.RetryCancel, MessageBoxIcon.Hand);
+                    break;
+            }
+            
         }
+
+
 
         private void bCancelCore_Click(object sender, EventArgs e)
         {
