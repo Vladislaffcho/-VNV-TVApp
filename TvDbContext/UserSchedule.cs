@@ -29,6 +29,6 @@ namespace TvDbContext
 
         // set show ID from TVShow table
         [Required]
-        public virtual TVShow TVShow { get; set; }
+        public virtual ICollection<TVShow> TVShows { get; set; }
     }
 }

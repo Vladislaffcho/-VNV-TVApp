@@ -18,8 +18,7 @@ namespace TvDbContext
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public virtual  ICollection<UserAddress> UserAddresses { get; set; }
-
+        
         // set first name
         [MinLength(2, ErrorMessage = "Too short name")]
         [MaxLength(30)]
@@ -51,9 +50,31 @@ namespace TvDbContext
         [DefaultValue(true)]
         public bool AllowAdultContent { get; set; }
 
-        // set type of a user from UserType table
-        //[Required]
-        //public virtual UserType UserType { get; set; }
+        //set type of a user from UserType table
+        [Required]
+        public virtual UserType UserType { get; set; }
+
+        //FK for UserAddress table
+        public virtual ICollection<UserAddress> UserAddresses { get; set; }
+
+        //Phones list of user
+        public virtual ICollection<UserPhone> UserPhones { get; set; }
+
+        //Emails list of user
+        public virtual ICollection<UserEmail> UserEmails{ get; set; }
+
+        //info about user's account
+        public virtual DepositAccount DepositAccount { get; set; }
+
+        //orders list of user
+        public virtual ICollection<Order> Orders { get; set; }
+
+        //info about user TvShow Schedule
+        public virtual UserSchedule UserSchedule { get; set; }
+
+
+
+
 
         //public override string ToString()
         //{

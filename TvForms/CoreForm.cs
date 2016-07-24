@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using TvDbContext;
 
 namespace TvForms
 {
@@ -38,7 +39,6 @@ namespace TvForms
             ActionForm action = new ActionForm(new ucTvShow());
             action.Show();
             this.Enabled = false;
-
 
         }
 

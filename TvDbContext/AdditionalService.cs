@@ -31,6 +31,10 @@ namespace TvDbContext
         [DefaultValue(true)]
         public bool AgeLimit { get; set; }
 
+        //info about table OrderService
+        public virtual OrderService OrderService { get; set; }
+
+
 
     }
 }

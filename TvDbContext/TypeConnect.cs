@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TvDbContext
@@ -19,6 +20,13 @@ namespace TvDbContext
         [MaxLength(30)]
         [Required]
         public string NameType { get; set; }
+
+        //lists different connecting ways
+        public virtual ICollection<UserPhone> UserPhones { get; set; }
+
+        public virtual ICollection<UserAddress> UserAddresses{ get; set; }
+
+        public virtual ICollection<UserEmail> UserEmails { get; set; }
 
     }
 

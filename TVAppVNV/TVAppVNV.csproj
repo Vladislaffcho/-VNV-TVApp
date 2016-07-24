@@ -87,6 +87,10 @@
     <Folder Include="icons\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TvDbContext\TvDbContext.csproj">
+      <Project>{4915D8DB-F82B-4046-9CA9-B697DA0013F8}</Project>
+      <Name>TvDbContext</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TvForms\TvForms.csproj">
       <Project>{8177BFBE-E63B-4314-AE1D-5A492EF5B008}</Project>
       <Name>TvForms</Name>

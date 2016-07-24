@@ -22,7 +22,7 @@ namespace TvDbContext
         public virtual Order Order { get; set; }
 
         [Required]
-        public virtual Channel Channel { get; set; }
+        public virtual ICollection<Channel> Channels { get; set; }
 
     }
 }

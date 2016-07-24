@@ -22,7 +22,7 @@ namespace TvDbContext
         public virtual Order Order { get; set; }
 
         [Required]
-        public virtual AdditionalService AdditionalService { get; set; }
+        public virtual ICollection<AdditionalService> AdditionalServices { get; set; }
 
 
     }

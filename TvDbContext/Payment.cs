@@ -10,6 +10,7 @@ namespace TvDbContext
         {
 
         }
+
         //Mark this field as primary key
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
