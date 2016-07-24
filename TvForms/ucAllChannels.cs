@@ -16,15 +16,19 @@ namespace TvForms
         {
             InitializeComponent();
             this.rtbAllCh_Description.Text = "This is description of channel zhanr!";
-            tabAllCh_Monday.Controls.Add(new ucShowListNoChBox());
+            tabAllCh_Shows.SelectedTab.Controls.Add(new ucShowListNoChBox(1));
         }
 
-        private void tabAllChTuesday_Click(object sender, EventArgs e)
+        private void tabAllCh_Shows_Selecting(object sender, TabControlCancelEventArgs e)
         {
-            tabAllCh_Tuesday.Controls.Add(new ucShowListNoChBox());
+            
+            int day = tabAllCh_Shows.SelectedIndex;
+            
+            ucShowListNoChBox dayProgram = new ucShowListNoChBox(day);
+            //dayProgram.
+            tabAllCh_Shows.SelectedTab.Controls.Add(dayProgram);
+            
+
         }
-
-
-
     }
 }
