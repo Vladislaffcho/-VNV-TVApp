@@ -123,13 +123,12 @@ namespace TvForms
             {
                 try
                 {
+
                     TvDBContext context = new TvDBContext();
                     List<Channel> channels = new List<Channel>();
-
                     while (reader.Read())
                     {
-
-
+                        
                         if (reader.IsStartElement() && reader.Name == "channel" &&
                             reader.NodeType == XmlNodeType.Element)
                         {
@@ -143,6 +142,7 @@ namespace TvForms
                                     
                                     try
                                     {
+                                       
                                         //add chennel to db
                                         channels.Add(new Channel()
                                         {
