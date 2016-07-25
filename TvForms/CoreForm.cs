@@ -5,6 +5,7 @@ using System.Xml.Schema;
 using System.IO;
 using System.Text;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using TVContext;
 
 
@@ -139,25 +140,49 @@ namespace TvForms
                                 if (reader.IsStartElement() && reader.Name == "display-name" &&
                                     reader.NodeType == XmlNodeType.Element)
                                 {
-                                    //add chennel to db
-                                    channels.Add(new Channel()
+                                    
+                                    try
                                     {
-                                        Name = reader.ReadInnerXml(),
-                                        Price = 0,
-                                        Description = ""
-                                    });
-                                    if (channels.Count != 0)
-                                    {
-                                        foreach (var item in channels)
+                                        //add chennel to db
+                                        channels.Add(new Channel()
                                         {
-                                            context.Channels.Add(item);
-                                        }
+                                            OriginalId = ChannelId,
+                                            Name = reader.ReadInnerXml(),
+                                            Price = 0,
+                                            AgeLimit = false
+                                        });
+                                        if (channels.Count != 0)
+                                        {
+                                            foreach (var item in channels)
+                                            {
+                                                context.Channels.Add(item);
+                                            }
 
-                                        context.SaveChanges();
+                                            context.SaveChanges();
+                                        }
                                     }
+                                    catch (DbEntityValidationException ex)
+                                    {
+                                        StringBuilder sb = new StringBuilder();
+
+                                        foreach (var failure in ex.EntityValidationErrors)
+                                        {
+                                            sb.AppendFormat("{0} failed validation\n", failure.Entry.Entity.GetType());
+                                            foreach (var error in failure.ValidationErrors)
+                                            {
+                                                sb.AppendFormat("- {0} : {1}", error.PropertyName, error.ErrorMessage);
+                                                sb.AppendLine();
+                                            }
+                                        }
+                                        throw new DbEntityValidationException(
+                                            "Entity Validation Failed - errors follow:\n" +
+                                            sb.ToString(), ex
+                                        ); // Add the original exception as the innerException
+                                    }
+
                                     //add programme
                                     //parseProgramme(temp, b, ChannelId);
-
+                                    
                                 }
                             }
                         }

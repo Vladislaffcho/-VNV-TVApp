@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
 
 namespace TVContext
 {
@@ -18,6 +19,10 @@ namespace TVContext
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
+        [Required]
+        [Index(IsUnique = true)]
+        public int OriginalId { get; set; }
+
         //channel name
         [Required]
         public string Name { get; set; }
@@ -32,7 +37,6 @@ namespace TVContext
         public bool AgeLimit { get; set; }
 
         //description of channel
-        [Required]
         [MaxLength(500)]
         public string Description { get; set; }
 
