@@ -6,9 +6,10 @@ using System.IO;
 using System.Text;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using System.Linq;
 using System.Xml.Linq;
 using TVContext;
-
+using System.Xml.Serialization;
 
 namespace TvForms
 {
@@ -92,204 +93,143 @@ namespace TvForms
                OpenXml.FileName.Length > 0)
             {
 
-                //Open the stream and read it back.
-                using (FileStream fs = File.OpenRead(OpenXml.FileName))
-                {
-                    byte[] b = new byte[1024];
-                    UTF8Encoding temp = new UTF8Encoding(true);
-                    while (fs.Read(b, 0, b.Length) > 0)
-                    {
-
-                        parseChennel(temp, b);
-
-                    }
-                }
-
+                parseChennel(OpenXml.FileName);   
+                
             }
         }
 
+      
         private static void ValidationCallBack(object sender, ValidationEventArgs e)
         {
             
         }
 
-        private void parseChennel(UTF8Encoding temp, byte[] b)
+        private void parseChennel(string filename)
         {
-            XmlReaderSettings settings = new XmlReaderSettings();
-            settings.DtdProcessing = DtdProcessing.Parse;
-            settings.ValidationType = ValidationType.DTD;
-            settings.IgnoreWhitespace = true;
-            settings.ValidationEventHandler += new ValidationEventHandler(ValidationCallBack);
+            
+             
+                 try
+                 {
+                XmlNode searched = null;
+                XmlDocument doc = new XmlDocument();
+                doc.Load(filename);
 
-            using (XmlReader reader = XmlReader.Create(new StringReader(temp.GetString(b)), settings))
-            {
-                try
+                foreach (XmlNode node in doc.SelectNodes("/tv/channel"))
                 {
+                    //node.FirstChild.InnerText
 
-                    TvDBContext context = new TvDBContext();
-                    List<Channel> channels = new List<Channel>();
-                    while (reader.Read())
-                    {
-                        
-                        if (reader.ReadToFollowing("channel"))
+                        TvDBContext context = new TvDBContext();
+                        List<Channel> channels = new List<Channel>();
+                        //add chennel to db
+                  
+                        var clientEntity = new Channel()
                         {
-                            int ChannelId = Int32.Parse(reader.GetAttribute("id"));
-
-                            XmlReader nameSubtree = reader.ReadSubtree();
-
-                            if (nameSubtree.ReadToFollowing("display-name"))
-                            {
-                                //nameSubtree.ReadToDescendant("display-name");
-
-                              
-
-                                //while (reader.Read())
-                                //{
-                                //if (reader.IsStartElement() && reader.Name == "display-name" && reader.NodeType == XmlNodeType.Element)
-                                //{
-
-                                try
-                                {
-                                   
-                                    //add chennel to db
-                                    channels.Add(new Channel()
-                                    {
-                                        OriginalId = ChannelId,
-                                        Name = nameSubtree.ReadInnerXml(),
-                                        Price = 0,
-                                        AgeLimit = false
-                                    });
-
-                                   
-                                }
-                                catch (DbEntityValidationException ex)
-                                {
-                                    StringBuilder sb = new StringBuilder();
-
-                                    foreach (var failure in ex.EntityValidationErrors)
-                                    {
-                                        sb.AppendFormat("{0} failed validation\n", failure.Entry.Entity.GetType());
-                                        foreach (var error in failure.ValidationErrors)
-                                        {
-                                            sb.AppendFormat("- {0} : {1}", error.PropertyName, error.ErrorMessage);
-                                            sb.AppendLine();
-                                        }
-                                    }
-                                    throw new DbEntityValidationException(
-                                        "Entity Validation Failed - errors follow:\n" +
-                                        sb.ToString(), ex
-                                        ); // Add the original exception as the innerException
-                                }
-
-                                //add programme
-                                //parseProgramme(temp, b, ChannelId);
-
-                                //}
-                                //}
-                            }
-                        }
-                    }
-                    if (channels.Count != 0)
-                    {
-                        foreach (var item in channels)
-                        {
-                            context.Channels.Add(item);
-                        }
-
+                            Name = node.FirstChild.InnerText,
+                            Price = 0,
+                            AgeLimit = false
+                        };
+                        context.Channels.Add(clientEntity);
+                      
                         context.SaveChanges();
-                    }
-
+                     
+                        parseProgramme(filename, clientEntity.Id);
+                        
+ 
                 }
-                catch (Exception)
-                {
-
-                }
-
             }
+                 catch (DbEntityValidationException ex)
+                  {
+                            StringBuilder sb = new StringBuilder();
+
+                            foreach (var failure in ex.EntityValidationErrors)
+                            {
+                                sb.AppendFormat("{0} failed validation\n", failure.Entry.Entity.GetType());
+                                foreach (var error in failure.ValidationErrors)
+                                {
+                                    sb.AppendFormat("- {0} : {1}", error.PropertyName, error.ErrorMessage);
+                                    sb.AppendLine();
+                                }
+                            }
+                            throw new DbEntityValidationException(
+                                "Entity Validation Failed - errors follow:\n" +
+                                sb.ToString(), ex
+                                ); // Add the original exception as the innerException
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+
+                       
+    
+             
         }
 
-        private void parseProgramme(UTF8Encoding temp, byte[] b, int ChannelId)
+        private void parseProgramme(string filename,  int ChannelId)
         {
-            XmlReaderSettings settings = new XmlReaderSettings();
-            settings.DtdProcessing = DtdProcessing.Parse;
-            settings.ValidationType = ValidationType.DTD;
-            settings.ValidationEventHandler += new ValidationEventHandler(ValidationCallBack);
-
-            using (XmlReader reader = XmlReader.Create(new StringReader(temp.GetString(b)), settings))
-            {
+            
                 try
                 {
                     TvDBContext context = new TvDBContext();
                     List<TVShow> tvshows = new List<TVShow>();
 
-                    while (reader.Read())
+                    XmlNode searched = null;
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(filename);
+
+                    foreach (XmlNode node in doc.SelectNodes("/tv/programme"))
                     {
+                        //node.FirstChild.InnerText
+                        
+                        string title = node.FirstChild.InnerText;
 
-                        if (
-                            reader.IsStartElement() 
-                            && reader.Name == "programme" 
-                            && reader.NodeType == XmlNodeType.Element
+                        string mySqlTimestamp = toDatetime2(node.Attributes["start"].Value);
+                    //DateTime time = DateTime.Parse(mySqlTimestamp);
+                    DateTime stt = Convert.ToDateTime(mySqlTimestamp);
 
-                            )
-                        {
-                            string title = "";
-                            string desc = "";
-                            string start = "";
-                            while (reader.Read())
-                            {
-                                int chanel = Int32.Parse(reader.GetAttribute("channel"));
-                                start = reader.GetAttribute("start");
+                    Channel ivan = context.Channels.Find(ChannelId);
 
 
-                                if (chanel == ChannelId)
-                                {
-                                    if (reader.IsStartElement() && reader.Name == "title" &&
-                                        reader.NodeType == XmlNodeType.Element)
-                                    {
-                                        title = reader.ReadInnerXml();
-                                    }
-                                    else if (reader.IsStartElement() && reader.Name == "category" &&
-                                             reader.NodeType == XmlNodeType.Element)
-                                    {
-                                        desc = reader.ReadInnerXml();
-                                    }
-                                }
-
-                            }
-
-                            if (title.Length != 0)
-                            {
-                               
-                                //add chennel to db
-                                tvshows.Add(new TVShow()
+                    context.TvShows.Add(new TVShow()
                                 {
                                     Name = title,
-                                    Date = Convert.ToDateTime(toDatetime2(start)),
-                                    AgeLimit = false,
-                                    Description = desc
-                                });
-                            }
+                                    Date = stt,
+                                    Channel = ivan
+                    });
+                           
+
+                            context.SaveChanges();
 
 
-                        }
                     }
-                    if (tvshows.Count != 0)
+
+                    
+
+            }
+            catch (DbEntityValidationException ex)
+            {
+                StringBuilder sb = new StringBuilder();
+
+                foreach (var failure in ex.EntityValidationErrors)
+                {
+                    sb.AppendFormat("{0} failed validation\n", failure.Entry.Entity.GetType());
+                    foreach (var error in failure.ValidationErrors)
                     {
-                        foreach (var item in tvshows)
-                        {
-                            context.TvShows.Add(item);
-                        }
-
-                        context.SaveChanges();
+                        sb.AppendFormat("- {0} : {1}", error.PropertyName, error.ErrorMessage);
+                        sb.AppendLine();
                     }
-
                 }
-                catch (Exception)
+                throw new DbEntityValidationException(
+                    "Entity Validation Failed - errors follow:\n" +
+                    sb.ToString(), ex
+                    ); // Add the original exception as the innerException
+            }
+            catch (Exception)
                 {
 
                 }
 
-            }
+            
         }
 
         private static void IntializeDbTv(TvDBContext context)
@@ -302,14 +242,14 @@ namespace TvForms
         {
             if (date.Length != 0)
             {
-                string year = date.Substring(0, 3);
-                string month = date.Substring(4, 5);
-                string day = date.Substring(6, 7);
-                string hour = date.Substring(8, 9);
-                string minute = date.Substring(10, 11);
-                string second = date.Substring(12, 13);
-
-                return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+                string year = date.Substring(0, 4);
+                string month = date.Substring(4, 2);
+                string day = date.Substring(6, 2);
+                string hour = date.Substring(8, 2);
+                string minute = date.Substring(10, 2);
+                string second = date.Substring(12, 2);
+            
+                return day + "-" + month + "-" + year + " " + hour + ":" + minute + ":" + second;
             }
             else
             {
