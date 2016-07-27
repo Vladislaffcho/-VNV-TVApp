@@ -28,9 +28,9 @@ namespace TvForms
         private void PassValidator()
         {
             //go to database and check user or admin if exists
-            if (tbPassword.Text != String.Empty)
+            if (tbEnForm_Pass.Text != String.Empty)
             {
-                int pass = Int32.Parse(tbPassword.Text);
+                int pass = Int32.Parse(tbEnForm_Pass.Text);
                 if (pass == 1) //temporary admin password = 1
                 {
                     IsValidPass = 1;
@@ -52,5 +52,10 @@ namespace TvForms
 
         }
 
+        private void EnterForm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            PassValidator();
+        }
     }
 }
