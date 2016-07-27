@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using System.Xml.Linq;
 using TVContext;
 
 
@@ -117,6 +118,7 @@ namespace TvForms
             XmlReaderSettings settings = new XmlReaderSettings();
             settings.DtdProcessing = DtdProcessing.Parse;
             settings.ValidationType = ValidationType.DTD;
+            settings.IgnoreWhitespace = true;
             settings.ValidationEventHandler += new ValidationEventHandler(ValidationCallBack);
 
             using (XmlReader reader = XmlReader.Create(new StringReader(temp.GetString(b)), settings))
@@ -129,65 +131,74 @@ namespace TvForms
                     while (reader.Read())
                     {
                         
-                        if (reader.IsStartElement() && reader.Name == "channel" &&
-                            reader.NodeType == XmlNodeType.Element)
+                        if (reader.ReadToFollowing("channel"))
                         {
                             int ChannelId = Int32.Parse(reader.GetAttribute("id"));
 
-                            while (reader.Read())
+                            XmlReader nameSubtree = reader.ReadSubtree();
+
+                            if (nameSubtree.ReadToFollowing("display-name"))
                             {
-                                if (reader.IsStartElement() && reader.Name == "display-name" &&
-                                    reader.NodeType == XmlNodeType.Element)
+                                //nameSubtree.ReadToDescendant("display-name");
+
+                              
+
+                                //while (reader.Read())
+                                //{
+                                //if (reader.IsStartElement() && reader.Name == "display-name" && reader.NodeType == XmlNodeType.Element)
+                                //{
+
+                                try
                                 {
-                                    
-                                    try
+                                   
+                                    //add chennel to db
+                                    channels.Add(new Channel()
                                     {
-                                       
-                                        //add chennel to db
-                                        channels.Add(new Channel()
-                                        {
-                                            OriginalId = ChannelId,
-                                            Name = reader.ReadInnerXml(),
-                                            Price = 0,
-                                            AgeLimit = false
-                                        });
-                                        if (channels.Count != 0)
-                                        {
-                                            foreach (var item in channels)
-                                            {
-                                                context.Channels.Add(item);
-                                            }
+                                        OriginalId = ChannelId,
+                                        Name = nameSubtree.ReadInnerXml(),
+                                        Price = 0,
+                                        AgeLimit = false
+                                    });
 
-                                            context.SaveChanges();
-                                        }
-                                    }
-                                    catch (DbEntityValidationException ex)
-                                    {
-                                        StringBuilder sb = new StringBuilder();
-
-                                        foreach (var failure in ex.EntityValidationErrors)
-                                        {
-                                            sb.AppendFormat("{0} failed validation\n", failure.Entry.Entity.GetType());
-                                            foreach (var error in failure.ValidationErrors)
-                                            {
-                                                sb.AppendFormat("- {0} : {1}", error.PropertyName, error.ErrorMessage);
-                                                sb.AppendLine();
-                                            }
-                                        }
-                                        throw new DbEntityValidationException(
-                                            "Entity Validation Failed - errors follow:\n" +
-                                            sb.ToString(), ex
-                                        ); // Add the original exception as the innerException
-                                    }
-
-                                    //add programme
-                                    //parseProgramme(temp, b, ChannelId);
-                                    
+                                   
                                 }
+                                catch (DbEntityValidationException ex)
+                                {
+                                    StringBuilder sb = new StringBuilder();
+
+                                    foreach (var failure in ex.EntityValidationErrors)
+                                    {
+                                        sb.AppendFormat("{0} failed validation\n", failure.Entry.Entity.GetType());
+                                        foreach (var error in failure.ValidationErrors)
+                                        {
+                                            sb.AppendFormat("- {0} : {1}", error.PropertyName, error.ErrorMessage);
+                                            sb.AppendLine();
+                                        }
+                                    }
+                                    throw new DbEntityValidationException(
+                                        "Entity Validation Failed - errors follow:\n" +
+                                        sb.ToString(), ex
+                                        ); // Add the original exception as the innerException
+                                }
+
+                                //add programme
+                                //parseProgramme(temp, b, ChannelId);
+
+                                //}
+                                //}
                             }
                         }
                     }
-                    
+                    if (channels.Count != 0)
+                    {
+                        foreach (var item in channels)
+                        {
+                            context.Channels.Add(item);
+                        }
+
+                        context.SaveChanges();
+                    }
+
                 }
                 catch (Exception)
                 {
