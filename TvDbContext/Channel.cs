@@ -20,7 +20,6 @@ namespace TVContext
         public int Id { get; set; }
 
         [Required]
-        [Index(IsUnique = true)]
         public int OriginalId { get; set; }
 
         //channel name
