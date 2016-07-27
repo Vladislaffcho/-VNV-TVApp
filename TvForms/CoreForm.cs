@@ -99,7 +99,7 @@ namespace TvForms
                     while (fs.Read(b, 0, b.Length) > 0)
                     {
 
-                        parseChennel(temp, b);
+                        parseChannel(temp, b);
 
                     }
                 }
@@ -112,7 +112,7 @@ namespace TvForms
             
         }
 
-        private void parseChennel(UTF8Encoding temp, byte[] b)
+        private void parseChannel(UTF8Encoding temp, byte[] b)
         {
             XmlReaderSettings settings = new XmlReaderSettings();
             settings.DtdProcessing = DtdProcessing.Parse;
@@ -128,7 +128,7 @@ namespace TvForms
                     List<Channel> channels = new List<Channel>();
                     while (reader.Read())
                     {
-                        
+                        //ask to Max about doubling channel field 
                         if (reader.IsStartElement() && reader.Name == "channel" &&
                             reader.NodeType == XmlNodeType.Element)
                         {
