@@ -22,10 +22,22 @@ namespace TvForms
         public ucShowListNoChBox(int day)
         {
             InitializeComponent();
-            int today = DateTime.Now.Day % 7;
-            today = (int)DateTime.Now.DayOfWeek;
-            if (day == today)
-                lv_ShowNoChBox.Items.Add("sany");
+            using (var context = new TvDBContext())
+            {
+                var sh = from s in context.TvShows
+                         select s;
+
+                foreach (var item in sh)
+                {
+                    if ((int)item.Date.DayOfWeek == day)
+                    {
+                        var punct = new ListViewItem(item.Date.ToShortTimeString());
+                        punct.SubItems.Add(item.Name);
+
+                        lv_ShowNoChBox.Items.Add(punct);
+                    }
+                }
+            }
         }
 
         public List<TVShow> TvPrograms { get; set; }

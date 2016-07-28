@@ -219,15 +219,6 @@
             // chBxAllChannel
             // 
             this.chBxAllChannel.FormattingEnabled = true;
-            this.chBxAllChannel.Items.AddRange(new object[] {
-            "1+1",
-            "TET",
-            "2+2",
-            "Inter",
-            "ICTV",
-            "Noviy",
-            "5 Channel",
-            "More..."});
             this.chBxAllChannel.Location = new System.Drawing.Point(6, 14);
             this.chBxAllChannel.Name = "chBxAllChannel";
             this.chBxAllChannel.Size = new System.Drawing.Size(205, 304);

@@ -18,12 +18,7 @@ namespace TvForms
         
         public CoreForm(int whoUser)
         {
-            //EnterForm access = new EnterForm();
-            //access.ShowDialog();
-
-            //pnCoreForm.Controls.Add(access);
-
-            //int whoUser = access.IsValidPass;
+        
 
             InitializeComponent();
 
