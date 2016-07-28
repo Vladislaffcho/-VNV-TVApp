@@ -19,9 +19,7 @@ namespace TVContext
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
-        public int OriginalId { get; set; }
-
+       
         //channel name
         [Required]
         public string Name { get; set; }

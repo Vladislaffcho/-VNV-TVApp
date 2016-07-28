@@ -36,6 +36,7 @@ namespace TVContext
         // false if a show does not have age limitations
         [DefaultValue(false)]
         public bool AgeLimit { get; set; }
+       
 
         // link with table Channel
         [Required]
