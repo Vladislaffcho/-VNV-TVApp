@@ -36,21 +36,31 @@ namespace TvForms
                 using (var context = new TvDBContext())
                 {
                     var psw = from p in context.Users
-                        where p.Password != String.Empty
+                        where p.Login != String.Empty
                         select p;
-                    psw.ToList();
-                    
-                    string pass = tbEnForm_Pass.Text;
 
-                    if (pass == "1") //temporary admin password = 1
+                    psw.ToList();
+
+                    List<string> passList = new List<string>();
+                    List<string> loginList = new List<string>();
+                    List<int> idList = new List<int>();
+
+                    foreach (var i in psw)
+                    {
+                        idList.Add(i.Id);
+                        loginList.Add(i.Login);
+                        passList.Add(i.Password);
+                    }
+                    
+                    string passEntered = tbEnForm_Pass.Text;
+
+                    if (passList.IndexOf(passEntered) == 0 /*&& passEntered == "1"*/) //temporary admin password = 1
                     {
                         IsValidPass = 1;
-
                     }
-                    else if (pass == "2") //temorary user password
+                    else if (passList.IndexOf(passEntered) == 1/* && passEntered == "1"*/) //temorary user password
                     {
                         IsValidPass = 2;
-
                     }
                     else
                         IsValidPass = 0; // access denied
