@@ -83,18 +83,13 @@ namespace TvForms
 
             String savePath = @"c:\temp\uploads\";
 
-
-            // Initialize the OpenFileDialog to look for XML files.
             OpenXml.DefaultExt = "*.xml";
             OpenXml.Filter = "XML Files|*.xml";
 
-            // Determine whether the user selected a file from the OpenFileDialog.
             if (OpenXml.ShowDialog() == System.Windows.Forms.DialogResult.OK &&
                OpenXml.FileName.Length > 0)
             {
-
-                parseChennel(OpenXml.FileName);   
-                
+                parseChennel(OpenXml.FileName);    
             }
         }
 
@@ -107,103 +102,79 @@ namespace TvForms
         private void parseChennel(string filename)
         {
             
-             
-                 try
-                 {
+            try
+            {
                 XmlNode searched = null;
                 XmlDocument doc = new XmlDocument();
                 doc.Load(filename);
 
                 foreach (XmlNode node in doc.SelectNodes("/tv/channel"))
                 {
-                    //node.FirstChild.InnerText
 
-                        TvDBContext context = new TvDBContext();
-                        List<Channel> channels = new List<Channel>();
-                        //add chennel to db
-                  
-                        var clientEntity = new Channel()
-                        {
-                            Name = node.FirstChild.InnerText,
-                            Price = 0,
-                            AgeLimit = false
-                        };
-                        context.Channels.Add(clientEntity);
-                      
-                        context.SaveChanges();
-                     
-                        parseProgramme(filename, clientEntity.Id);
-                        
- 
+                    TvDBContext context = new TvDBContext();
+                    List<Channel> channels = new List<Channel>();
+                    var clientEntity = new Channel()
+                    {
+                        Name = node.FirstChild.InnerText,
+                        Price = 0,
+                        AgeLimit = false
+                    };
+                    context.Channels.Add(clientEntity);
+                    context.SaveChanges();
+                    parseProgramme(filename, clientEntity.Id);
+
                 }
+
+                MessageBox.Show("Файл успешно импорторировался");
             }
-                 catch (DbEntityValidationException ex)
-                  {
-                            StringBuilder sb = new StringBuilder();
+            catch (DbEntityValidationException ex)
+            {
+                StringBuilder sb = new StringBuilder();
 
-                            foreach (var failure in ex.EntityValidationErrors)
-                            {
-                                sb.AppendFormat("{0} failed validation\n", failure.Entry.Entity.GetType());
-                                foreach (var error in failure.ValidationErrors)
-                                {
-                                    sb.AppendFormat("- {0} : {1}", error.PropertyName, error.ErrorMessage);
-                                    sb.AppendLine();
-                                }
-                            }
-                            throw new DbEntityValidationException(
-                                "Entity Validation Failed - errors follow:\n" +
-                                sb.ToString(), ex
-                                ); // Add the original exception as the innerException
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
+                 foreach (var failure in ex.EntityValidationErrors)
+                 {
+                      sb.AppendFormat("{0} failed validation\n", failure.Entry.Entity.GetType());
+                      foreach (var error in failure.ValidationErrors)
+                      {
+                          sb.AppendFormat("- {0} : {1}", error.PropertyName, error.ErrorMessage);
+                          sb.AppendLine();
+                      }
+                 }
+                 throw new DbEntityValidationException("Entity Validation Failed - errors follow:\n" +sb.ToString(), ex); 
+           }
+                        
 
-                       
-    
-             
         }
 
         private void parseProgramme(string filename,  int ChannelId)
         {
             
-                try
-                {
-                    TvDBContext context = new TvDBContext();
-                    List<TVShow> tvshows = new List<TVShow>();
+               try
+               {
+                   TvDBContext context = new TvDBContext();
+                   List<TVShow> tvshows = new List<TVShow>();
 
-                    XmlNode searched = null;
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load(filename);
+                   XmlNode searched = null;
+                   XmlDocument doc = new XmlDocument();
+                   doc.Load(filename);
 
-                    foreach (XmlNode node in doc.SelectNodes("/tv/programme"))
-                    {
-                        //node.FirstChild.InnerText
-                        
-                        string title = node.FirstChild.InnerText;
+                   foreach (XmlNode node in doc.SelectNodes("/tv/programme"))
+                   {
+                
+                      string title = node.FirstChild.InnerText;
+                      string mySqlTimestamp = toDatetime2(node.Attributes["start"].Value);
+                      //DateTime time = DateTime.Parse(mySqlTimestamp);
+                      DateTime stt = Convert.ToDateTime(mySqlTimestamp);
 
-                        string mySqlTimestamp = toDatetime2(node.Attributes["start"].Value);
-                    //DateTime time = DateTime.Parse(mySqlTimestamp);
-                    DateTime stt = Convert.ToDateTime(mySqlTimestamp);
+                      Channel ivan = context.Channels.Find(ChannelId);
 
-                    Channel ivan = context.Channels.Find(ChannelId);
-
-
-                    context.TvShows.Add(new TVShow()
-                                {
-                                    Name = title,
-                                    Date = stt,
-                                    Channel = ivan
-                    });
-                           
-
-                            context.SaveChanges();
-
-
+                      context.TvShows.Add(new TVShow(){
+                           Name = title,
+                           Date = stt,
+                           Channel = ivan
+                       });  
+                       context.SaveChanges();
                     }
-
-                    
 
             }
             catch (DbEntityValidationException ex)
@@ -222,12 +193,8 @@ namespace TvForms
                 throw new DbEntityValidationException(
                     "Entity Validation Failed - errors follow:\n" +
                     sb.ToString(), ex
-                    ); // Add the original exception as the innerException
+                    );
             }
-            catch (Exception)
-                {
-
-                }
 
             
         }
