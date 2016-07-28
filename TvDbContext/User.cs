@@ -35,7 +35,7 @@ namespace TVContext
         // user's login
         [MinLength(6, ErrorMessage = "Login should be 6 to 12 symbols")]
         [MaxLength(12, ErrorMessage = "Login should be 6 to 12 symbols")]
-        [Index(IsUnique = true)]
+        //[Index(IsUnique = true)]
         [Required] 
         public string Login { get; set; }
 
@@ -47,7 +47,7 @@ namespace TVContext
         public string Password { get; set; }
         
         // if content for adults is allowed
-        [DefaultValue(true)]
+        //[DefaultValue(false)]
         public bool AllowAdultContent { get; set; }
 
         //set type of a user from UserType table
