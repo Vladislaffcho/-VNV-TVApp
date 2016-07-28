@@ -54,7 +54,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionForm.cs" />
+    <Compile Include="ActionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ActionForm.Designer.cs">
       <DependentUpon>ActionForm.cs</DependentUpon>
     </Compile>
@@ -76,23 +78,33 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ucAdminView.cs" />
+    <Compile Include="ucAdminView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ucAdminView.Designer.cs">
       <DependentUpon>ucAdminView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucAllChannels.cs" />
+    <Compile Include="ucAllChannels.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ucAllChannels.Designer.cs">
       <DependentUpon>ucAllChannels.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucUserView.cs" />
+    <Compile Include="ucUserView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ucUserView.Designer.cs">
       <DependentUpon>ucUserView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucShowListNoChBox.cs" />
+    <Compile Include="ucShowListNoChBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ucShowListNoChBox.Designer.cs">
       <DependentUpon>ucShowListNoChBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucTvShow.cs" />
+    <Compile Include="ucTvShow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ucTvShow.Designer.cs">
       <DependentUpon>ucTvShow.cs</DependentUpon>
     </Compile>
@@ -128,14 +140,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TvDbContext\TVContext.csproj">
-      <Project>{4915D8DB-F82B-4046-9CA9-B697DA0013F8}</Project>
-      <Name>TVContext</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TVContext\TVContext.csproj">
+      <Project>{4915d8db-f82b-4046-9ca9-b697da0013f8}</Project>
+      <Name>TVContext</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

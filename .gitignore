@@ -243,3 +243,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+TVAppVNV/ChanelList/xmltv_old.xml

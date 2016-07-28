@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tv generator-info-name="КИТ Интернет телепрограмма">
+  <channel id="1">
+    <name lang="ru">1+1</name>
+    <icon src="H:\TRASH\Kit 1.31\Providers\vsetv.com\Icons\1+1.gif" />
+  </channel>
+  <channel id="2">
+    <name lang="ru">112 Украина</name>
+    <icon src="H:\TRASH\Kit 1.31\Providers\vsetv.com\Icons\112 Украина.gif" />
+  </channel>
+  <channel id="3">
+    <name lang="ru">24 (Телеканал новостей 24)</name>
+    <icon src="H:\TRASH\Kit 1.31\Providers\vsetv.com\Icons\24 (Телеканал новостей 24).gif" />
+  </channel>
+  <channel id="4">
+    <name lang="ru">24Док</name>
+    <icon src="H:\TRASH\Kit 1.31\Providers\vsetv.com\Icons\24Док.gif" />
+  </channel>
+  <programme start="20160725060500 +0300" stop="20160725070000 +0300" channel="1">
+    <title lang="ru">&quot;Битва салонов&quot;.</title>
+  </programme>
+  <programme start="20160725070000 +0300" stop="20160725090000 +0300" channel="1">
+    <title lang="ru">&quot;Лучший ресторан с Русланом Сеничкиным&quot;.</title>
+  </programme>
+  <programme start="20160725090000 +0300" stop="20160725094500 +0300" channel="1">
+    <title lang="ru">ТСН.</title>
+    <category lang="ru">Новости</category>
+  </programme>
+  <programme start="20160725094500 +0300" stop="20160725110000 +0300" channel="1">
+    <title lang="ru">&quot;Четыре свадьбы&quot;, 5 сезон.</title>
+  </programme>
+  <programme start="20160725110000 +0300" stop="20160725121500 +0300" channel="1">
+    <title lang="ru">&quot;Меняю жену&quot;, 2 сезон.</title>
+  </programme>
+  <programme start="20160725121500 +0300" stop="20160725131500 +0300" channel="1">
+    <title lang="ru">&quot;Слепая&quot;.</title>
+  </programme>
+  <programme start="20160725131500 +0300" stop="20160725151000 +0300" channel="1">
+    <title lang="ru">&quot;Семейные мелодрамы&quot;, 6 сезон.</title>
+  </programme>
+  <programme start="20160725151000 +0300" stop="20160725171000 +0300" channel="1">
+    <title lang="ru">&quot;Рассмеши комика&quot;, 6 сезон.</title>
+  </programme>
+  <programme start="20160725171000 +0300" stop="20160725193000 +0300" channel="1">
+    <title lang="ru">Т/с &quot;Величественный век&quot;.</title>
+    <category lang="ru">Сериал</category>
+  </programme>
+  <programme start="20160725193000 +0300" stop="20160725201500 +0300" channel="1">
+    <title lang="ru">ТСН.</title>
+    <category lang="ru">Новости</category>
+  </programme>
+  <programme start="20160725201500 +0300" stop="20160725211500 +0300" channel="1">
+    <title lang="ru">Т/с &quot;Сваты 4&quot;, 7 с.</title>
+    <category lang="ru">Сериал</category>
+  </programme>
+  <programme start="20160725211500 +0300" stop="20160725231000 +0300" channel="1">
+    <title lang="ru">Премьера. Т/с &quot;Центральная больница&quot;, 25 и 26 с.</title>
+    <category lang="ru">Сериал</category>
+  </programme>
+  <programme start="20160725231000 +0300" stop="20160726011500 +0300" channel="1">
+    <title lang="ru">Х/ф &quot;Крутая Джорджия&quot;.</title>
+    <desc lang="ru">США, 2007, драма / комедия Джейн Фонда, Линдсэй Лохан, Фелисити Хаффман Избалованную городскую девчонку на лето отправляют в ссылку к строгой бабушке в штат Айдахо. Оказавшись в захолустье, она не собирается скучать и быстро ставит провинциальный городишко Халл на уши....</desc>
+    <category lang="ru">Фильм</category>
+  </programme>
+  <programme start="20160726011500 +0300" stop="20160726024500 +0300" channel="1">
+    <title lang="ru">Х/ф &quot;Артур Ньюман&quot;.</title>
+    <desc lang="ru">США, 2012, драма Колин Фёрт, Эмили Блант, Лукас Хеджес, Энн Хеч Уоллес под влиянием кризиса среднего возраста предаётся тяжелой депрессии и попадает в жизненный тупик. Всё, что он делает, ему кажется бесполезным и бессмысленным. Ничто не приносит удовольствия и...</desc>
+    <category lang="ru">Фильм</category>
+  </programme>
+  <programme start="20160728181500 +0300" stop="20160728190000 +0300" channel="2">
+    <title lang="ru">Студия 112.</title>
+  </programme>
+  <programme start="20160728190000 +0300" stop="20160728192000 +0300" channel="2">
+    <title lang="ru">Новости.</title>
+    <category lang="ru">Новости</category>
+  </programme>
+  <programme start="20160728192000 +0300" stop="20160728200000 +0300" channel="2">
+    <title lang="ru">&quot;Вечерний прайм&quot;.</title>
+  </programme>
+  <programme start="20160728200000 +0300" stop="20160728201500 +0300" channel="2">
+    <title lang="ru">Новости.</title>
+    <category lang="ru">Новости</category>
+  </programme>
+  <programme start="20160728201500 +0300" stop="20160728210000 +0300" channel="2">
+    <title lang="ru">&quot;Вечерний прайм&quot;.</title>
+  </programme>
+  <programme start="20160729230000 +0300" stop="20160729232500 +0300" channel="3">
+    <title lang="ru">Новости.</title>
+    <category lang="ru">Новости</category>
+  </programme>
+  <programme start="20160729232500 +0300" stop="20160729233000 +0300" channel="3">
+    <title lang="ru">Погода Украины.</title>
+  </programme>
+  <programme start="20160729233000 +0300" stop="20160729234500 +0300" channel="3">
+    <title lang="ru">Вести Кремля.</title>
+  </programme>
+  <programme start="20160729234500 +0300" stop="20160729235500 +0300" channel="3">
+    <title lang="ru">Другие новости.</title>
+    <category lang="ru">Новости</category>
+  </programme>
+  <programme start="20160801044000 +0300" stop="20160801235959 +0300" channel="4">
+    <title lang="ru">Д/ф &quot;Лаборатория&quot;.</title>
+    <category lang="ru">Фильм</category>
+  </programme>
+</tv>
