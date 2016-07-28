@@ -86,18 +86,18 @@
     <Folder Include="icons\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ChanelList\111.xml" />
+    <Content Include="ChanelList\xmltv.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\TVContext\TVContext.csproj">
       <Project>{4915d8db-f82b-4046-9ca9-b697da0013f8}</Project>
       <Name>TVContext</Name>
     </ProjectReference>
     <ProjectReference Include="..\TvForms\TvForms.csproj">
-      <Project>{8177BFBE-E63B-4314-AE1D-5A492EF5B008}</Project>
+      <Project>{8177bfbe-e63b-4314-ae1d-5a492ef5b008}</Project>
       <Name>TvForms</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ChanelList\111.xml" />
-    <Content Include="ChanelList\xmltv.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
