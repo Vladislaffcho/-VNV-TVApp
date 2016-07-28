@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 
 namespace TVContext
 {
@@ -28,6 +29,7 @@ namespace TVContext
                 context.UserTypes.Add(item);
             }
 
+
             var defaultTypeConnect = new List<TypeConnect>
             {
                 new TypeConnect() {NameType = "Home"},
@@ -47,15 +49,23 @@ namespace TVContext
             {
                 new User()
                 {
-                    FirstName = "admin", LastName = "test", Login = "root", Password = "1111",
-                    /*AllowAdultContent = true */
-                },
-                new User()
-                {
-                    FirstName = "user", LastName = "testUs", Login = "user", Password = "2222",
-                    /*AllowAdultContent = false*/
+                    FirstName = "admin",
+                    LastName = "testAd",
+                    Login = "root",
+                    Password = "1111",
+                    AllowAdultContent = true,
+                    //UserTypeId = 1
+                    UserType = context.UserTypes.Find(1)
                 }
             };
+
+
+            //new User()
+            //{
+            //    FirstName = "user", LastName = "testUs", Login = "user", Password = "2222",
+            //    /*AllowAdultContent = false*/
+            //}
+
 
             foreach (var item in defaultUser)
             {

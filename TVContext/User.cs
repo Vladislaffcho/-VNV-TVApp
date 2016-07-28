@@ -51,27 +51,29 @@ namespace TVContext
         public bool AllowAdultContent { get; set; }
 
         //set type of a user from UserType table
+
         [Required]
         public virtual UserType UserType { get; set; }
 
-        //FK for UserAddress table
-        public virtual ICollection<UserAddress> UserAddresses { get; set; }
 
-        //Phones list of user
-        public virtual ICollection<UserPhone> UserPhones { get; set; }
+        ////FK for UserAddress table
+        //public virtual ICollection<UserAddress> UserAddresses { get; set; }
 
-        //Emails list of user
-        public virtual ICollection<UserEmail> UserEmails{ get; set; }
+        ////Phones list of user
+        //public virtual ICollection<UserPhone> UserPhones { get; set; }
 
-        //info about user's account
-        public virtual DepositAccount DepositAccount { get; set; }
+        ////Emails list of user
+        //public virtual ICollection<UserEmail> UserEmails{ get; set; }
 
-        //orders list of user
-        public virtual ICollection<Order> Orders { get; set; }
+        ////info about user's account
+        //public virtual DepositAccount DepositAccount { get; set; }
 
-        //info about user TvShow Schedule
-        public virtual ICollection<UserSchedule> UserSchedules { get; set; }
-        
+        ////orders list of user
+        //public virtual ICollection<Order> Orders { get; set; }
+
+        ////info about user TvShow Schedule
+        //public virtual ICollection<UserSchedule> UserSchedules { get; set; }
+
 
 
         //public override string ToString()

@@ -9,7 +9,7 @@ namespace TVContext
     {
         public UserType()
         {
-            
+            this.Users = new List<User>();
         }
 
         //Mark this field as primary key
