@@ -16,35 +16,30 @@ namespace TvForms
     public partial class CoreForm : Form
     {
         
-        public CoreForm()
+        public CoreForm(int whoUser)
         {
-            EnterForm access = new EnterForm();
-            access.ShowDialog();
+            //EnterForm access = new EnterForm();
+            //access.ShowDialog();
 
             //pnCoreForm.Controls.Add(access);
-            
-            int whoUser = access.IsValidPass;
+
+            //int whoUser = access.IsValidPass;
+
+            InitializeComponent();
 
             switch (whoUser)
             {
                 case 1: //admin
-                    InitializeComponent();
                     pnCoreForm.Controls.Add(new ucAdminView());
                     break;
                 case 2: //user
-                    InitializeComponent();
                     pnCoreForm.Controls.Add(new ucAllChannels());
                     pnCoreForm.Controls.Add(new ucTvShow());
-                    break;
-                default: //access denied
-                    InitializeComponent();
-                    //this.Enabled = false;
-                    MessageBox.Show("Invalid password", "Access denied",
-                        MessageBoxButtons.OK, MessageBoxIcon.Hand);
                     break;
             }
             
         }
+
 
 
 

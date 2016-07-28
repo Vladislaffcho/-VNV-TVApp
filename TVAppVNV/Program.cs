@@ -17,10 +17,29 @@ namespace TVAppVNV
         [STAThread]
         static void Main()
         {
-  
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CoreForm());
+
+            EnterForm access = new EnterForm();
+            access.ShowDialog();
+            int whoUser = access.IsValidPass;
+
+            switch (whoUser)
+            {
+                case 0: //access denied
+                    MessageBox.Show("Invalid password", "Access denied",
+                        MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    return;
+                    
+                default: //user 
+                    
+                    Application.Run(new CoreForm(whoUser));
+                    break;
+            }
+
+            
+           
 
         }
 

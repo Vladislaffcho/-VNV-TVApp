@@ -58,7 +58,7 @@ namespace TvForms
                     {
                         IsValidPass = 1;
                     }
-                    else if (passList.IndexOf(passEntered) == 1/* && passEntered == "1"*/) //temorary user password
+                    else if (passList.IndexOf(passEntered) == 1/* && passEntered == "1"*/) //temporary user password
                     {
                         IsValidPass = 2;
                     }
