@@ -9,7 +9,7 @@ namespace TVContext
     {
         public UserType()
         {
-            this.Users = new List<User>();
+            //this.Users = new List<User>();
         }
 
         //Mark this field as primary key
@@ -35,7 +35,7 @@ namespace TVContext
         public string Comment { get; set; }
 
         //list of users who have specified access
-        public virtual ICollection<User> Users { get; set; }
+        //public virtual ICollection<User> Users { get; set; }
         
         
     }
