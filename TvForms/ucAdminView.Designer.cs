@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.gbUsers = new System.Windows.Forms.GroupBox();
+            this.btViewPayment = new System.Windows.Forms.Button();
+            this.lbSurname = new System.Windows.Forms.Label();
+            this.lbName = new System.Windows.Forms.Label();
+            this.tbName = new System.Windows.Forms.TextBox();
+            this.tbSurname = new System.Windows.Forms.TextBox();
+            this.btViewChannels = new System.Windows.Forms.Button();
             this.btViewServices = new System.Windows.Forms.Button();
             this.btViewOrders = new System.Windows.Forms.Button();
             this.cbAdultContent = new System.Windows.Forms.CheckBox();
@@ -38,36 +44,30 @@
             this.lbMoney = new System.Windows.Forms.Label();
             this.tcUserContacts = new System.Windows.Forms.TabControl();
             this.tpAddress = new System.Windows.Forms.TabPage();
+            this.btUpdateAddress = new System.Windows.Forms.Button();
+            this.btDeleteAddress = new System.Windows.Forms.Button();
             this.lvUserAddress = new System.Windows.Forms.ListView();
             this.colTypeAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colNameAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCommentAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tpEmail = new System.Windows.Forms.TabPage();
+            this.btUpdateEmail = new System.Windows.Forms.Button();
+            this.btDeleteEmail = new System.Windows.Forms.Button();
             this.lvUserEmail = new System.Windows.Forms.ListView();
             this.colTypeEmail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colNameEmail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCommentEmail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tpTelephone = new System.Windows.Forms.TabPage();
+            this.btUpdateTelephone = new System.Windows.Forms.Button();
+            this.btDeleteTelephone = new System.Windows.Forms.Button();
             this.lvUserTelephone = new System.Windows.Forms.ListView();
             this.colTypeTelephone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colNameTelephone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCommentTelephone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lvUserList = new System.Windows.Forms.ListView();
             this.colUserID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUserLogin = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUserName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btViewChannels = new System.Windows.Forms.Button();
-            this.tbSurname = new System.Windows.Forms.TextBox();
-            this.tbName = new System.Windows.Forms.TextBox();
-            this.lbName = new System.Windows.Forms.Label();
-            this.lbSurname = new System.Windows.Forms.Label();
-            this.btViewPayment = new System.Windows.Forms.Button();
-            this.btDeleteTelephone = new System.Windows.Forms.Button();
-            this.btUpdateTelephone = new System.Windows.Forms.Button();
-            this.btUpdateEmail = new System.Windows.Forms.Button();
-            this.btDeleteEmail = new System.Windows.Forms.Button();
-            this.btUpdateAddress = new System.Windows.Forms.Button();
-            this.btDeleteAddress = new System.Windows.Forms.Button();
             this.gbUsers.SuspendLayout();
             this.tcUserContacts.SuspendLayout();
             this.tpAddress.SuspendLayout();
@@ -91,13 +91,65 @@
             this.gbUsers.Controls.Add(this.tbMoney);
             this.gbUsers.Controls.Add(this.lbMoney);
             this.gbUsers.Controls.Add(this.tcUserContacts);
-            this.gbUsers.Controls.Add(this.listView1);
+            this.gbUsers.Controls.Add(this.lvUserList);
             this.gbUsers.Location = new System.Drawing.Point(3, 3);
             this.gbUsers.Name = "gbUsers";
             this.gbUsers.Size = new System.Drawing.Size(622, 310);
             this.gbUsers.TabIndex = 0;
             this.gbUsers.TabStop = false;
             this.gbUsers.Text = "Users";
+            // 
+            // btViewPayment
+            // 
+            this.btViewPayment.Location = new System.Drawing.Point(512, 86);
+            this.btViewPayment.Name = "btViewPayment";
+            this.btViewPayment.Size = new System.Drawing.Size(93, 21);
+            this.btViewPayment.TabIndex = 15;
+            this.btViewPayment.Text = "View Payment";
+            this.btViewPayment.UseVisualStyleBackColor = true;
+            // 
+            // lbSurname
+            // 
+            this.lbSurname.AutoSize = true;
+            this.lbSurname.Location = new System.Drawing.Point(426, 20);
+            this.lbSurname.Name = "lbSurname";
+            this.lbSurname.Size = new System.Drawing.Size(49, 13);
+            this.lbSurname.TabIndex = 14;
+            this.lbSurname.Text = "Surname";
+            // 
+            // lbName
+            // 
+            this.lbName.AutoSize = true;
+            this.lbName.Location = new System.Drawing.Point(223, 23);
+            this.lbName.Name = "lbName";
+            this.lbName.Size = new System.Drawing.Size(35, 13);
+            this.lbName.TabIndex = 13;
+            this.lbName.Text = "Name";
+            // 
+            // tbName
+            // 
+            this.tbName.Location = new System.Drawing.Point(281, 20);
+            this.tbName.Name = "tbName";
+            this.tbName.ReadOnly = true;
+            this.tbName.Size = new System.Drawing.Size(121, 20);
+            this.tbName.TabIndex = 12;
+            // 
+            // tbSurname
+            // 
+            this.tbSurname.Location = new System.Drawing.Point(484, 17);
+            this.tbSurname.Name = "tbSurname";
+            this.tbSurname.ReadOnly = true;
+            this.tbSurname.Size = new System.Drawing.Size(121, 20);
+            this.tbSurname.TabIndex = 11;
+            // 
+            // btViewChannels
+            // 
+            this.btViewChannels.Location = new System.Drawing.Point(422, 86);
+            this.btViewChannels.Name = "btViewChannels";
+            this.btViewChannels.Size = new System.Drawing.Size(75, 21);
+            this.btViewChannels.TabIndex = 10;
+            this.btViewChannels.Text = "Channels";
+            this.btViewChannels.UseVisualStyleBackColor = true;
             // 
             // btViewServices
             // 
@@ -185,6 +237,26 @@
             this.tpAddress.TabIndex = 0;
             this.tpAddress.Text = "Address";
             // 
+            // btUpdateAddress
+            // 
+            this.btUpdateAddress.Enabled = false;
+            this.btUpdateAddress.Location = new System.Drawing.Point(216, 103);
+            this.btUpdateAddress.Name = "btUpdateAddress";
+            this.btUpdateAddress.Size = new System.Drawing.Size(75, 23);
+            this.btUpdateAddress.TabIndex = 6;
+            this.btUpdateAddress.Text = "Update";
+            this.btUpdateAddress.UseVisualStyleBackColor = true;
+            // 
+            // btDeleteAddress
+            // 
+            this.btDeleteAddress.Enabled = false;
+            this.btDeleteAddress.Location = new System.Drawing.Point(311, 103);
+            this.btDeleteAddress.Name = "btDeleteAddress";
+            this.btDeleteAddress.Size = new System.Drawing.Size(75, 23);
+            this.btDeleteAddress.TabIndex = 5;
+            this.btDeleteAddress.Text = "Delete";
+            this.btDeleteAddress.UseVisualStyleBackColor = true;
+            // 
             // lvUserAddress
             // 
             this.lvUserAddress.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -226,6 +298,26 @@
             this.tpEmail.Size = new System.Drawing.Size(392, 132);
             this.tpEmail.TabIndex = 1;
             this.tpEmail.Text = "Email";
+            // 
+            // btUpdateEmail
+            // 
+            this.btUpdateEmail.Enabled = false;
+            this.btUpdateEmail.Location = new System.Drawing.Point(216, 103);
+            this.btUpdateEmail.Name = "btUpdateEmail";
+            this.btUpdateEmail.Size = new System.Drawing.Size(75, 23);
+            this.btUpdateEmail.TabIndex = 4;
+            this.btUpdateEmail.Text = "Update";
+            this.btUpdateEmail.UseVisualStyleBackColor = true;
+            // 
+            // btDeleteEmail
+            // 
+            this.btDeleteEmail.Enabled = false;
+            this.btDeleteEmail.Location = new System.Drawing.Point(311, 103);
+            this.btDeleteEmail.Name = "btDeleteEmail";
+            this.btDeleteEmail.Size = new System.Drawing.Size(75, 23);
+            this.btDeleteEmail.TabIndex = 3;
+            this.btDeleteEmail.Text = "Delete";
+            this.btDeleteEmail.UseVisualStyleBackColor = true;
             // 
             // lvUserEmail
             // 
@@ -269,6 +361,26 @@
             this.tpTelephone.TabIndex = 2;
             this.tpTelephone.Text = "Telephone";
             // 
+            // btUpdateTelephone
+            // 
+            this.btUpdateTelephone.Enabled = false;
+            this.btUpdateTelephone.Location = new System.Drawing.Point(216, 103);
+            this.btUpdateTelephone.Name = "btUpdateTelephone";
+            this.btUpdateTelephone.Size = new System.Drawing.Size(75, 23);
+            this.btUpdateTelephone.TabIndex = 2;
+            this.btUpdateTelephone.Text = "Update";
+            this.btUpdateTelephone.UseVisualStyleBackColor = true;
+            // 
+            // btDeleteTelephone
+            // 
+            this.btDeleteTelephone.Enabled = false;
+            this.btDeleteTelephone.Location = new System.Drawing.Point(311, 103);
+            this.btDeleteTelephone.Name = "btDeleteTelephone";
+            this.btDeleteTelephone.Size = new System.Drawing.Size(75, 23);
+            this.btDeleteTelephone.TabIndex = 1;
+            this.btDeleteTelephone.Text = "Delete";
+            this.btDeleteTelephone.UseVisualStyleBackColor = true;
+            // 
             // lvUserTelephone
             // 
             this.lvUserTelephone.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -298,19 +410,19 @@
             this.colCommentTelephone.Text = "Comment";
             this.colCommentTelephone.Width = 173;
             // 
-            // listView1
+            // lvUserList
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvUserList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colUserID,
             this.colUserLogin,
             this.colUserName});
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(6, 17);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(210, 296);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.lvUserList.GridLines = true;
+            this.lvUserList.Location = new System.Drawing.Point(6, 17);
+            this.lvUserList.Name = "lvUserList";
+            this.lvUserList.Size = new System.Drawing.Size(210, 296);
+            this.lvUserList.TabIndex = 0;
+            this.lvUserList.UseCompatibleStateImageBehavior = false;
+            this.lvUserList.View = System.Windows.Forms.View.Details;
             // 
             // colUserID
             // 
@@ -326,118 +438,6 @@
             // 
             this.colUserName.Text = "Name";
             this.colUserName.Width = 128;
-            // 
-            // btViewChannels
-            // 
-            this.btViewChannels.Location = new System.Drawing.Point(422, 86);
-            this.btViewChannels.Name = "btViewChannels";
-            this.btViewChannels.Size = new System.Drawing.Size(75, 21);
-            this.btViewChannels.TabIndex = 10;
-            this.btViewChannels.Text = "Channels";
-            this.btViewChannels.UseVisualStyleBackColor = true;
-            // 
-            // tbSurname
-            // 
-            this.tbSurname.Location = new System.Drawing.Point(484, 17);
-            this.tbSurname.Name = "tbSurname";
-            this.tbSurname.ReadOnly = true;
-            this.tbSurname.Size = new System.Drawing.Size(121, 20);
-            this.tbSurname.TabIndex = 11;
-            // 
-            // tbName
-            // 
-            this.tbName.Location = new System.Drawing.Point(281, 20);
-            this.tbName.Name = "tbName";
-            this.tbName.ReadOnly = true;
-            this.tbName.Size = new System.Drawing.Size(121, 20);
-            this.tbName.TabIndex = 12;
-            // 
-            // lbName
-            // 
-            this.lbName.AutoSize = true;
-            this.lbName.Location = new System.Drawing.Point(223, 23);
-            this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(35, 13);
-            this.lbName.TabIndex = 13;
-            this.lbName.Text = "Name";
-            // 
-            // lbSurname
-            // 
-            this.lbSurname.AutoSize = true;
-            this.lbSurname.Location = new System.Drawing.Point(426, 20);
-            this.lbSurname.Name = "lbSurname";
-            this.lbSurname.Size = new System.Drawing.Size(49, 13);
-            this.lbSurname.TabIndex = 14;
-            this.lbSurname.Text = "Surname";
-            // 
-            // btViewPayment
-            // 
-            this.btViewPayment.Location = new System.Drawing.Point(512, 86);
-            this.btViewPayment.Name = "btViewPayment";
-            this.btViewPayment.Size = new System.Drawing.Size(93, 21);
-            this.btViewPayment.TabIndex = 15;
-            this.btViewPayment.Text = "View Payment";
-            this.btViewPayment.UseVisualStyleBackColor = true;
-            // 
-            // btDeleteTelephone
-            // 
-            this.btDeleteTelephone.Enabled = false;
-            this.btDeleteTelephone.Location = new System.Drawing.Point(311, 103);
-            this.btDeleteTelephone.Name = "btDeleteTelephone";
-            this.btDeleteTelephone.Size = new System.Drawing.Size(75, 23);
-            this.btDeleteTelephone.TabIndex = 1;
-            this.btDeleteTelephone.Text = "Delete";
-            this.btDeleteTelephone.UseVisualStyleBackColor = true;
-            // 
-            // btUpdateTelephone
-            // 
-            this.btUpdateTelephone.Enabled = false;
-            this.btUpdateTelephone.Location = new System.Drawing.Point(216, 103);
-            this.btUpdateTelephone.Name = "btUpdateTelephone";
-            this.btUpdateTelephone.Size = new System.Drawing.Size(75, 23);
-            this.btUpdateTelephone.TabIndex = 2;
-            this.btUpdateTelephone.Text = "Update";
-            this.btUpdateTelephone.UseVisualStyleBackColor = true;
-            // 
-            // btUpdateEmail
-            // 
-            this.btUpdateEmail.Enabled = false;
-            this.btUpdateEmail.Location = new System.Drawing.Point(216, 103);
-            this.btUpdateEmail.Name = "btUpdateEmail";
-            this.btUpdateEmail.Size = new System.Drawing.Size(75, 23);
-            this.btUpdateEmail.TabIndex = 4;
-            this.btUpdateEmail.Text = "Update";
-            this.btUpdateEmail.UseVisualStyleBackColor = true;
-            // 
-            // btDeleteEmail
-            // 
-            this.btDeleteEmail.Enabled = false;
-            this.btDeleteEmail.Location = new System.Drawing.Point(311, 103);
-            this.btDeleteEmail.Name = "btDeleteEmail";
-            this.btDeleteEmail.Size = new System.Drawing.Size(75, 23);
-            this.btDeleteEmail.TabIndex = 3;
-            this.btDeleteEmail.Text = "Delete";
-            this.btDeleteEmail.UseVisualStyleBackColor = true;
-            // 
-            // btUpdateAddress
-            // 
-            this.btUpdateAddress.Enabled = false;
-            this.btUpdateAddress.Location = new System.Drawing.Point(216, 103);
-            this.btUpdateAddress.Name = "btUpdateAddress";
-            this.btUpdateAddress.Size = new System.Drawing.Size(75, 23);
-            this.btUpdateAddress.TabIndex = 6;
-            this.btUpdateAddress.Text = "Update";
-            this.btUpdateAddress.UseVisualStyleBackColor = true;
-            // 
-            // btDeleteAddress
-            // 
-            this.btDeleteAddress.Enabled = false;
-            this.btDeleteAddress.Location = new System.Drawing.Point(311, 103);
-            this.btDeleteAddress.Name = "btDeleteAddress";
-            this.btDeleteAddress.Size = new System.Drawing.Size(75, 23);
-            this.btDeleteAddress.TabIndex = 5;
-            this.btDeleteAddress.Text = "Delete";
-            this.btDeleteAddress.UseVisualStyleBackColor = true;
             // 
             // ucAdminView
             // 
@@ -459,7 +459,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox gbUsers;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lvUserList;
         private System.Windows.Forms.ColumnHeader colUserID;
         private System.Windows.Forms.ColumnHeader colUserLogin;
         private System.Windows.Forms.ColumnHeader colUserName;
