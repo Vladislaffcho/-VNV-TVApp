@@ -19,10 +19,7 @@ namespace TVContext
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
-        [Index(IsUnique = true)]
-        public int OriginalId { get; set; }
-
+       
         //channel name
         [Required]
         public string Name { get; set; }
@@ -37,7 +34,7 @@ namespace TVContext
         public bool AgeLimit { get; set; }
 
         //description of channel
-        [MaxLength(500)]
+        [MaxLength(500, ErrorMessage = "Not more 500 symbols")]
         public string Description { get; set; }
 
         //info about orders

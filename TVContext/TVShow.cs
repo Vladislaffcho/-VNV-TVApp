@@ -18,7 +18,7 @@ namespace TVContext
         public int Id { get; set; }
 
         // set show name
-        [MinLength(2, ErrorMessage = "Too short name")]
+        [MinLength(2, ErrorMessage = "Too short name (must be 2-255)")]
         [MaxLength(255)]
         [Required]
         public string Name { get; set; }
@@ -36,6 +36,7 @@ namespace TVContext
         // false if a show does not have age limitations
         [DefaultValue(false)]
         public bool AgeLimit { get; set; }
+       
 
         // link with table Channel
         [Required]

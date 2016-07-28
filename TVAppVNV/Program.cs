@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity.Validation;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using TvForms;
 using TVContext;
@@ -13,12 +17,12 @@ namespace TVAppVNV
         [STAThread]
         static void Main()
         {
-
+  
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new CoreForm());
-     
+
         }
-        
+
     }
 }

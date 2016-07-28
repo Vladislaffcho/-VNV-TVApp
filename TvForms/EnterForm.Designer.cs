@@ -29,134 +29,147 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EnterForm));
-            this.bEnterF_Cancel = new System.Windows.Forms.Button();
-            this.bEnterF_Enter = new System.Windows.Forms.Button();
-            this.tbLogin = new System.Windows.Forms.TextBox();
-            this.lbLogin = new System.Windows.Forms.Label();
-            this.lbPassword = new System.Windows.Forms.Label();
-            this.tbPassword = new System.Windows.Forms.TextBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.lbEnterF_Welcome = new System.Windows.Forms.Label();
-            this.picLogin = new System.Windows.Forms.PictureBox();
-            this.chBEnterF_ShowPass = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogin)).BeginInit();
+            this.bEnForm_Cancel = new System.Windows.Forms.Button();
+            this.bEnForm_Enter = new System.Windows.Forms.Button();
+            this.tbEnForm_Login = new System.Windows.Forms.TextBox();
+            this.lbEnForm_Login = new System.Windows.Forms.Label();
+            this.lbEnForm_Password = new System.Windows.Forms.Label();
+            this.tbEnForm_Pass = new System.Windows.Forms.TextBox();
+            this.linkLbEnForm_FogotPass = new System.Windows.Forms.LinkLabel();
+            this.lbEnForm_Welcome = new System.Windows.Forms.Label();
+            this.picEnForm_Login = new System.Windows.Forms.PictureBox();
+            this.chBEnForm_ShowPass = new System.Windows.Forms.CheckBox();
+            this.linkLbEnForm_Register = new System.Windows.Forms.LinkLabel();
+            ((System.ComponentModel.ISupportInitialize)(this.picEnForm_Login)).BeginInit();
             this.SuspendLayout();
             // 
-            // bEnterF_Cancel
+            // bEnForm_Cancel
             // 
-            this.bEnterF_Cancel.Location = new System.Drawing.Point(327, 129);
-            this.bEnterF_Cancel.Name = "bEnterF_Cancel";
-            this.bEnterF_Cancel.Size = new System.Drawing.Size(75, 23);
-            this.bEnterF_Cancel.TabIndex = 0;
-            this.bEnterF_Cancel.Text = "Cancel";
-            this.bEnterF_Cancel.UseVisualStyleBackColor = true;
-     
+            this.bEnForm_Cancel.Location = new System.Drawing.Point(327, 129);
+            this.bEnForm_Cancel.Name = "bEnForm_Cancel";
+            this.bEnForm_Cancel.Size = new System.Drawing.Size(75, 23);
+            this.bEnForm_Cancel.TabIndex = 0;
+            this.bEnForm_Cancel.Text = "Cancel";
+            this.bEnForm_Cancel.UseVisualStyleBackColor = true;
             // 
-            // bEnterF_Enter
+            // bEnForm_Enter
             // 
-            this.bEnterF_Enter.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.bEnterF_Enter.Location = new System.Drawing.Point(246, 129);
-            this.bEnterF_Enter.Name = "bEnterF_Enter";
-            this.bEnterF_Enter.Size = new System.Drawing.Size(75, 23);
-            this.bEnterF_Enter.TabIndex = 1;
-            this.bEnterF_Enter.Text = "Enter";
-            this.bEnterF_Enter.UseVisualStyleBackColor = true;
-            this.bEnterF_Enter.Click += new System.EventHandler(this.bEnterF_Enter_Click);
+            this.bEnForm_Enter.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.bEnForm_Enter.Location = new System.Drawing.Point(246, 129);
+            this.bEnForm_Enter.Name = "bEnForm_Enter";
+            this.bEnForm_Enter.Size = new System.Drawing.Size(75, 23);
+            this.bEnForm_Enter.TabIndex = 1;
+            this.bEnForm_Enter.Text = "Enter";
+            this.bEnForm_Enter.UseVisualStyleBackColor = true;
+            this.bEnForm_Enter.Click += new System.EventHandler(this.bEnterF_Enter_Click);
             // 
-            // tbLogin
+            // tbEnForm_Login
             // 
-            this.tbLogin.Location = new System.Drawing.Point(121, 55);
-            this.tbLogin.Name = "tbLogin";
-            this.tbLogin.Size = new System.Drawing.Size(281, 20);
-            this.tbLogin.TabIndex = 2;
+            this.tbEnForm_Login.Location = new System.Drawing.Point(121, 55);
+            this.tbEnForm_Login.Name = "tbEnForm_Login";
+            this.tbEnForm_Login.Size = new System.Drawing.Size(281, 20);
+            this.tbEnForm_Login.TabIndex = 2;
             // 
-            // lbLogin
+            // lbEnForm_Login
             // 
-            this.lbLogin.AutoSize = true;
-            this.lbLogin.Location = new System.Drawing.Point(62, 58);
-            this.lbLogin.Name = "lbLogin";
-            this.lbLogin.Size = new System.Drawing.Size(33, 13);
-            this.lbLogin.TabIndex = 3;
-            this.lbLogin.Text = "Login";
+            this.lbEnForm_Login.AutoSize = true;
+            this.lbEnForm_Login.Location = new System.Drawing.Point(62, 58);
+            this.lbEnForm_Login.Name = "lbEnForm_Login";
+            this.lbEnForm_Login.Size = new System.Drawing.Size(33, 13);
+            this.lbEnForm_Login.TabIndex = 3;
+            this.lbEnForm_Login.Text = "Login";
             // 
-            // lbPassword
+            // lbEnForm_Password
             // 
-            this.lbPassword.AutoSize = true;
-            this.lbPassword.Location = new System.Drawing.Point(62, 84);
-            this.lbPassword.Name = "lbPassword";
-            this.lbPassword.Size = new System.Drawing.Size(53, 13);
-            this.lbPassword.TabIndex = 4;
-            this.lbPassword.Text = "Password";
+            this.lbEnForm_Password.AutoSize = true;
+            this.lbEnForm_Password.Location = new System.Drawing.Point(62, 84);
+            this.lbEnForm_Password.Name = "lbEnForm_Password";
+            this.lbEnForm_Password.Size = new System.Drawing.Size(53, 13);
+            this.lbEnForm_Password.TabIndex = 4;
+            this.lbEnForm_Password.Text = "Password";
             // 
-            // tbPassword
+            // tbEnForm_Pass
             // 
-            this.tbPassword.Location = new System.Drawing.Point(121, 81);
-            this.tbPassword.Name = "tbPassword";
-            this.tbPassword.Size = new System.Drawing.Size(281, 20);
-            this.tbPassword.TabIndex = 5;
+            this.tbEnForm_Pass.Location = new System.Drawing.Point(121, 81);
+            this.tbEnForm_Pass.Name = "tbEnForm_Pass";
+            this.tbEnForm_Pass.Size = new System.Drawing.Size(281, 20);
+            this.tbEnForm_Pass.TabIndex = 5;
             // 
-            // linkLabel1
+            // linkLbEnForm_FogotPass
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(45, 134);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(91, 13);
-            this.linkLabel1.TabIndex = 6;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Forgot password?";
+            this.linkLbEnForm_FogotPass.AutoSize = true;
+            this.linkLbEnForm_FogotPass.Location = new System.Drawing.Point(118, 142);
+            this.linkLbEnForm_FogotPass.Name = "linkLbEnForm_FogotPass";
+            this.linkLbEnForm_FogotPass.Size = new System.Drawing.Size(91, 13);
+            this.linkLbEnForm_FogotPass.TabIndex = 6;
+            this.linkLbEnForm_FogotPass.TabStop = true;
+            this.linkLbEnForm_FogotPass.Text = "Forgot password?";
             // 
-            // lbEnterF_Welcome
+            // lbEnForm_Welcome
             // 
-            this.lbEnterF_Welcome.AutoSize = true;
-            this.lbEnterF_Welcome.Location = new System.Drawing.Point(66, 18);
-            this.lbEnterF_Welcome.Name = "lbEnterF_Welcome";
-            this.lbEnterF_Welcome.Size = new System.Drawing.Size(323, 13);
-            this.lbEnterF_Welcome.TabIndex = 7;
-            this.lbEnterF_Welcome.Text = "Welcome to TV Programm application, please enter you credentials";
+            this.lbEnForm_Welcome.AutoSize = true;
+            this.lbEnForm_Welcome.Location = new System.Drawing.Point(66, 18);
+            this.lbEnForm_Welcome.Name = "lbEnForm_Welcome";
+            this.lbEnForm_Welcome.Size = new System.Drawing.Size(323, 13);
+            this.lbEnForm_Welcome.TabIndex = 7;
+            this.lbEnForm_Welcome.Text = "Welcome to TV Programm application, please enter you credentials";
             // 
-            // picLogin
+            // picEnForm_Login
             // 
-            this.picLogin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picLogin.BackgroundImage")));
-            this.picLogin.InitialImage = null;
-            this.picLogin.Location = new System.Drawing.Point(2, 2);
-            this.picLogin.Name = "picLogin";
-            this.picLogin.Size = new System.Drawing.Size(50, 50);
-            this.picLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picLogin.TabIndex = 8;
-            this.picLogin.TabStop = false;
+            this.picEnForm_Login.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picEnForm_Login.BackgroundImage")));
+            this.picEnForm_Login.InitialImage = null;
+            this.picEnForm_Login.Location = new System.Drawing.Point(2, 2);
+            this.picEnForm_Login.Name = "picEnForm_Login";
+            this.picEnForm_Login.Size = new System.Drawing.Size(50, 50);
+            this.picEnForm_Login.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picEnForm_Login.TabIndex = 8;
+            this.picEnForm_Login.TabStop = false;
             // 
-            // chBEnterF_ShowPass
+            // chBEnForm_ShowPass
             // 
-            this.chBEnterF_ShowPass.AutoSize = true;
-            this.chBEnterF_ShowPass.Location = new System.Drawing.Point(121, 108);
-            this.chBEnterF_ShowPass.Name = "chBEnterF_ShowPass";
-            this.chBEnterF_ShowPass.Size = new System.Drawing.Size(76, 17);
-            this.chBEnterF_ShowPass.TabIndex = 9;
-            this.chBEnterF_ShowPass.Text = "show pass";
-            this.chBEnterF_ShowPass.UseVisualStyleBackColor = true;
+            this.chBEnForm_ShowPass.AutoSize = true;
+            this.chBEnForm_ShowPass.Location = new System.Drawing.Point(121, 108);
+            this.chBEnForm_ShowPass.Name = "chBEnForm_ShowPass";
+            this.chBEnForm_ShowPass.Size = new System.Drawing.Size(76, 17);
+            this.chBEnForm_ShowPass.TabIndex = 9;
+            this.chBEnForm_ShowPass.Text = "show pass";
+            this.chBEnForm_ShowPass.UseVisualStyleBackColor = true;
+            // 
+            // linkLbEnForm_Register
+            // 
+            this.linkLbEnForm_Register.AutoSize = true;
+            this.linkLbEnForm_Register.Location = new System.Drawing.Point(30, 142);
+            this.linkLbEnForm_Register.Name = "linkLbEnForm_Register";
+            this.linkLbEnForm_Register.Size = new System.Drawing.Size(46, 13);
+            this.linkLbEnForm_Register.TabIndex = 10;
+            this.linkLbEnForm_Register.TabStop = true;
+            this.linkLbEnForm_Register.Text = "Register";
             // 
             // EnterForm
             // 
+            this.AcceptButton = this.bEnForm_Enter;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.bEnForm_Cancel;
             this.ClientSize = new System.Drawing.Size(414, 164);
-            this.Controls.Add(this.chBEnterF_ShowPass);
-            this.Controls.Add(this.picLogin);
-            this.Controls.Add(this.lbEnterF_Welcome);
-            this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.tbPassword);
-            this.Controls.Add(this.lbPassword);
-            this.Controls.Add(this.lbLogin);
-            this.Controls.Add(this.tbLogin);
-            this.Controls.Add(this.bEnterF_Enter);
-            this.Controls.Add(this.bEnterF_Cancel);
+            this.Controls.Add(this.linkLbEnForm_Register);
+            this.Controls.Add(this.chBEnForm_ShowPass);
+            this.Controls.Add(this.picEnForm_Login);
+            this.Controls.Add(this.lbEnForm_Welcome);
+            this.Controls.Add(this.linkLbEnForm_FogotPass);
+            this.Controls.Add(this.tbEnForm_Pass);
+            this.Controls.Add(this.lbEnForm_Password);
+            this.Controls.Add(this.lbEnForm_Login);
+            this.Controls.Add(this.tbEnForm_Login);
+            this.Controls.Add(this.bEnForm_Enter);
+            this.Controls.Add(this.bEnForm_Cancel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "EnterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Autorization";
-            ((System.ComponentModel.ISupportInitialize)(this.picLogin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picEnForm_Login)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -164,15 +177,16 @@
 
         #endregion
 
-        private System.Windows.Forms.Button bEnterF_Cancel;
-        private System.Windows.Forms.Button bEnterF_Enter;
-        private System.Windows.Forms.TextBox tbLogin;
-        private System.Windows.Forms.Label lbLogin;
-        private System.Windows.Forms.Label lbPassword;
-        private System.Windows.Forms.TextBox tbPassword;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Label lbEnterF_Welcome;
-        private System.Windows.Forms.PictureBox picLogin;
-        private System.Windows.Forms.CheckBox chBEnterF_ShowPass;
+        private System.Windows.Forms.Button bEnForm_Cancel;
+        private System.Windows.Forms.Button bEnForm_Enter;
+        private System.Windows.Forms.TextBox tbEnForm_Login;
+        private System.Windows.Forms.Label lbEnForm_Login;
+        private System.Windows.Forms.Label lbEnForm_Password;
+        private System.Windows.Forms.TextBox tbEnForm_Pass;
+        private System.Windows.Forms.LinkLabel linkLbEnForm_FogotPass;
+        private System.Windows.Forms.Label lbEnForm_Welcome;
+        private System.Windows.Forms.PictureBox picEnForm_Login;
+        private System.Windows.Forms.CheckBox chBEnForm_ShowPass;
+        private System.Windows.Forms.LinkLabel linkLbEnForm_Register;
     }
 }

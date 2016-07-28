@@ -140,14 +140,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TvDbContext\TVContext.csproj">
-      <Project>{4915D8DB-F82B-4046-9CA9-B697DA0013F8}</Project>
-      <Name>TVContext</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TVContext\TVContext.csproj">
+      <Project>{4915d8db-f82b-4046-9ca9-b697da0013f8}</Project>
+      <Name>TVContext</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

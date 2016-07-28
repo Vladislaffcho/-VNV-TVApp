@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TVContext;
 
 namespace TvForms
 {
@@ -15,6 +16,8 @@ namespace TvForms
         public EnterForm()
         {
             InitializeComponent();
+            this.tbEnForm_Pass.Select();
+            this.tbEnForm_Pass.ScrollToCaret();
         }
 
         public int IsValidPass { get; set; }
@@ -28,29 +31,48 @@ namespace TvForms
         private void PassValidator()
         {
             //go to database and check user or admin if exists
-            if (tbPassword.Text != String.Empty)
+            if (tbEnForm_Pass.Text != String.Empty)
             {
-                int pass = Int32.Parse(tbPassword.Text);
-                if (pass == 1) //temporary admin password = 1
+                using (var context = new TvDBContext())
                 {
-                    IsValidPass = 1;
+                    var psw = from p in context.Users
+                        where p.Login != String.Empty
+                        select p;
 
-                }
-                else if (pass == 2) //temorary user password
-                {
-                    IsValidPass = 2;
+                    psw.ToList();
 
+                    List<string> passList = new List<string>();
+                    List<string> loginList = new List<string>();
+                    List<int> idList = new List<int>();
+
+                    foreach (var i in psw)
+                    {
+                        idList.Add(i.Id);
+                        loginList.Add(i.Login);
+                        passList.Add(i.Password);
+                    }
+                    
+                    string passEntered = tbEnForm_Pass.Text;
+
+                    if (passList.IndexOf(passEntered) == 0 /*&& passEntered == "1"*/) //temporary admin password = 1
+                    {
+                        IsValidPass = 1;
+                    }
+                    else if (passList.IndexOf(passEntered) == 1/* && passEntered == "1"*/) //temorary user password
+                    {
+                        IsValidPass = 2;
+                    }
+                    else
+                        IsValidPass = 0; // access denied
                 }
-                else
-                    IsValidPass = 0; // access denied
             }
             else
             {
                 MessageBox.Show("Please enter password", "Password",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
+            
         }
-
+        
     }
 }

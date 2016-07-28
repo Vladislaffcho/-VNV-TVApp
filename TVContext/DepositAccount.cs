@@ -24,12 +24,11 @@ namespace TVContext
         public bool Status { get; set; }
 
         //comment for different situations
-        [MaxLength(100, ErrorMessage = "Too long comment")]
+        [MaxLength(100, ErrorMessage = "Too long comment (up 100 symbols)")]
         public string Comment { get; set; }
 
-        //Make linked entity as virtual for lazy loading work
-        [Required]
-        public virtual User User { get; set; }
+        //Make linked entity as virtual for lazy loading workS
+        //public virtual User User { get; set; }
 
     }
 }

@@ -8,7 +8,7 @@ namespace TVContext
         public TvDBContext() : base("TvDBase")
         {
             //set DB intializer for default value of dictionary on create bd
-            Database.SetInitializer(new TvDbIntializer());
+            Database.SetInitializer(new TvDBIntializer());
             Database.Initialize(true);
         }
 
