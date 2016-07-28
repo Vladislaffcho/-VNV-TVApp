@@ -59,6 +59,7 @@
             // 
             // bCancelCore
             // 
+            this.bCancelCore.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bCancelCore.Location = new System.Drawing.Point(579, 386);
             this.bCancelCore.Name = "bCancelCore";
             this.bCancelCore.Size = new System.Drawing.Size(75, 23);
@@ -167,8 +168,10 @@
             // 
             // CoreForm
             // 
+            this.AcceptButton = this.bSaveCore;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.bCancelCore;
             this.ClientSize = new System.Drawing.Size(666, 421);
             this.Controls.Add(this.pnCoreForm);
             this.Controls.Add(this.bCancelCore);

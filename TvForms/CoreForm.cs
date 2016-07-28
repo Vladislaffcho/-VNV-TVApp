@@ -39,10 +39,7 @@ namespace TvForms
             }
             
         }
-
-
-
-
+        
         private void bCancelCore_Click(object sender, EventArgs e)
         {
             Close();
@@ -68,8 +65,6 @@ namespace TvForms
             ActionForm action = new ActionForm(new ucTvShow());
             action.Show();
             this.Enabled = false;
-
-
         }
 
         private void changeScheduleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -137,8 +132,6 @@ namespace TvForms
                  }
                  throw new DbEntityValidationException("Entity Validation Failed - errors follow:\n" +sb.ToString(), ex); 
            }
-                        
-
         }
 
         private void parseProgramme(string filename,  int ChannelId)
@@ -194,11 +187,6 @@ namespace TvForms
             
         }
 
-        private static void IntializeDbTv(TvDBContext context)
-        {
-                
-
-        }
 
         private string toDatetime2(string date)
         {

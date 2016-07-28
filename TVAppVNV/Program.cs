@@ -33,7 +33,6 @@ namespace TVAppVNV
                     return;
                     
                 default: //user 
-                    
                     Application.Run(new CoreForm(whoUser));
                     break;
             }
