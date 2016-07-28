@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TVContext;
 
 namespace TvForms
 {
@@ -27,33 +28,41 @@ namespace TvForms
         }
 
 
-        private int PassValidator()
+        private void PassValidator()
         {
             //go to database and check user or admin if exists
             if (tbEnForm_Pass.Text != String.Empty)
             {
-                string pass = tbEnForm_Pass.Text;
-                if (pass == "1") //temporary admin password = 1
+                using (var context = new TvDBContext())
                 {
-                    IsValidPass = 1;
+                    var psw = from p in context.Users
+                        where p.Password != String.Empty
+                        select p;
+                    psw.ToList();
+                    
+                    string pass = tbEnForm_Pass.Text;
 
-                }
-                else if (pass == "2") //temorary user password
-                {
-                    IsValidPass = 2;
+                    if (pass == "1") //temporary admin password = 1
+                    {
+                        IsValidPass = 1;
 
+                    }
+                    else if (pass == "2") //temorary user password
+                    {
+                        IsValidPass = 2;
+
+                    }
+                    else
+                        IsValidPass = 0; // access denied
                 }
-                else
-                    IsValidPass = 0; // access denied
             }
             else
             {
                 MessageBox.Show("Please enter password", "Password",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return 0;
+            
         }
-
-
+        
     }
 }
