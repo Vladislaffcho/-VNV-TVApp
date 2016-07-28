@@ -18,14 +18,14 @@ namespace TVContext
         public int Id { get; set; }
 
         // set unique email address
-        [MinLength(5, ErrorMessage = "Too short email")]
+        [MinLength(5, ErrorMessage = "Too short email (must be 5-50)")]
         [MaxLength(50)]
         [Required]
         [Index(IsUnique = true)]
         public string EmailName { get; set; }
 
         // comment in case it is required
-        [MaxLength(100, ErrorMessage = "Too long comment")]
+        [MaxLength(100, ErrorMessage = "Too long comment (must be less than 100 symbols)")]
         [DefaultValue(null)]
         public string Comment { get; set; }
 

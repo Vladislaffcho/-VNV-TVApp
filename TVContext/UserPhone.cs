@@ -21,7 +21,7 @@ namespace TVContext
         public int Number { get; set; }
 
         //comment for different situations
-        [MaxLength(100, ErrorMessage = "Too long comment")]
+        [MaxLength(100, ErrorMessage = "Too long comment (must be less than 100 symbols)")]
         public string Comment { get; set; }
         
         //Make linked entity as virtual for lazy loading work

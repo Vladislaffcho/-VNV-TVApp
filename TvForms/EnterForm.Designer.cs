@@ -147,8 +147,10 @@
             // 
             // EnterForm
             // 
+            this.AcceptButton = this.bEnForm_Enter;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.bEnForm_Cancel;
             this.ClientSize = new System.Drawing.Size(414, 164);
             this.Controls.Add(this.linkLbEnForm_Register);
             this.Controls.Add(this.chBEnForm_ShowPass);
@@ -167,7 +169,6 @@
             this.Name = "EnterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Autorization";
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EnterForm_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.picEnForm_Login)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

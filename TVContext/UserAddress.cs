@@ -20,13 +20,13 @@ namespace TVContext
 
         //create unique field of user address ???
         [Index(IsUnique = true)]
-        [MinLength(10, ErrorMessage = "Too short address")]
+        [MinLength(5, ErrorMessage = "Too short address (must be 5-100)")]
         [MaxLength(100)]
         [Required]
         public string Address { get; set; }
 
         //comment for different situations
-        [MaxLength(100, ErrorMessage = "Too long comment")]
+        [MaxLength(100, ErrorMessage = "Too long comment (must be less than 100 symbols)")]
         public string Comment { get; set; }
 
         //Make linked entity as virtual for lazy loading work

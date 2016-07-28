@@ -20,14 +20,14 @@ namespace TVContext
         public int Id { get; set; }
 
         // set first name
-        [MinLength(2, ErrorMessage = "Too short name")]
+        [MinLength(2, ErrorMessage = "Too short name (must be 2-30)")]
         [MaxLength(30)]
         [Required]
         public string FirstName { get; set; }
 
 
         // set second name
-        [MinLength(2, ErrorMessage = "Too short surname")]
+        [MinLength(2, ErrorMessage = "Too short surname (must be 2-30)")]
         [MaxLength(30)]
         [Required]
         public string LastName { get; set; }

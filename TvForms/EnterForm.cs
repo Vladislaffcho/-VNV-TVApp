@@ -15,6 +15,8 @@ namespace TvForms
         public EnterForm()
         {
             InitializeComponent();
+            this.tbEnForm_Pass.Select();
+            this.tbEnForm_Pass.ScrollToCaret();
         }
 
         public int IsValidPass { get; set; }
@@ -25,18 +27,18 @@ namespace TvForms
         }
 
 
-        private void PassValidator()
+        private int PassValidator()
         {
             //go to database and check user or admin if exists
             if (tbEnForm_Pass.Text != String.Empty)
             {
-                int pass = Int32.Parse(tbEnForm_Pass.Text);
-                if (pass == 1) //temporary admin password = 1
+                string pass = tbEnForm_Pass.Text;
+                if (pass == "1") //temporary admin password = 1
                 {
                     IsValidPass = 1;
 
                 }
-                else if (pass == 2) //temorary user password
+                else if (pass == "2") //temorary user password
                 {
                     IsValidPass = 2;
 
@@ -49,13 +51,9 @@ namespace TvForms
                 MessageBox.Show("Please enter password", "Password",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
+            return 0;
         }
 
-        private void EnterForm_KeyPress(object sender, KeyPressEventArgs e)
-        {
 
-            PassValidator();
-        }
     }
 }
