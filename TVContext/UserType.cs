@@ -15,7 +15,7 @@ namespace TVContext
         //Mark this field as primary key
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public EUserType Id { get; set; }
 
         //create unique field for type of users
         //[Index(IsUnique = true)]

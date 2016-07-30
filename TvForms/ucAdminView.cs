@@ -38,5 +38,15 @@ namespace TvForms
                 }   
             }
         }
+
+        private void gbUsers_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace TvForms
 {
-    partial class EnterForm
+    partial class PassForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EnterForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PassForm));
             this.bEnForm_Cancel = new System.Windows.Forms.Button();
             this.bEnForm_Enter = new System.Windows.Forms.Button();
             this.tbEnForm_Login = new System.Windows.Forms.TextBox();

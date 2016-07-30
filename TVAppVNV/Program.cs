@@ -21,24 +21,23 @@ namespace TVAppVNV
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            EnterForm access = new EnterForm();
+            PassForm access = new PassForm();
             access.ShowDialog();
-            int whoUser = access.IsValidPass;
+            User whoUser = access.PassValidator();
 
-            switch (whoUser)
+            if (whoUser == null)
             {
-                case 0: //access denied
-                    MessageBox.Show("Invalid password", "Access denied",
-                        MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    return;
-                    
-                default: //user 
-                    Application.Run(new CoreForm(whoUser));
-                    break;
+                //access denied
+                MessageBox.Show("Invalid password", "Access denied",
+                    MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                return;
             }
-
-            
-           
+            else
+            {
+                //users
+                Application.Run(new CoreForm(whoUser));
+            }
+         
 
         }
 

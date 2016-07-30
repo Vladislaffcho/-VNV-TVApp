@@ -16,18 +16,18 @@ namespace TvForms
     public partial class CoreForm : Form
     {
         
-        public CoreForm(int whoUser)
+        public CoreForm(User whoUser)
         {
         
 
             InitializeComponent();
 
-            switch (whoUser)
+            switch (whoUser.UserType.Id)
             {
-                case 1: //admin
+                case EUserType.ADMIN: //admin
                     pnCoreForm.Controls.Add(new ucAdminView());
                     break;
-                case 2: //user
+                case EUserType.CLIENT: //user
                     pnCoreForm.Controls.Add(new ucAllChannels());
                     pnCoreForm.Controls.Add(new ucTvShow());
                     break;

@@ -98,6 +98,7 @@
             this.gbUsers.TabIndex = 0;
             this.gbUsers.TabStop = false;
             this.gbUsers.Text = "Users";
+            this.gbUsers.Enter += new System.EventHandler(this.gbUsers_Enter);
             // 
             // btViewPayment
             // 
@@ -186,6 +187,7 @@
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(121, 21);
             this.cbStatus.TabIndex = 5;
+            this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.cbStatus_SelectedIndexChanged);
             // 
             // lbStatus
             // 

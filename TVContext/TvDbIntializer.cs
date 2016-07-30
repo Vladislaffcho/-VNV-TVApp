@@ -59,22 +59,22 @@ namespace TVContext
                 {
                     new User()
                     {
-                        FirstName = "admin",
-                        LastName = "testAd",
+                        FirstName = "Name Admin",
+                        LastName = "LastN Admin",
                         Login = "root",
                         Password = "1111",
                         AllowAdultContent = true,
-                        UserType = context.UserTypes.First(x => x.Id == 1)
+                        UserType = context.UserTypes.First(x => x.Id == EUserType.ADMIN)
                     },
 
                     new User()
                     {
-                        FirstName = "user",
-                        LastName = "testUs",
+                        FirstName = "userName",
+                        LastName = "UserLast",
                         Login = "user",
                         Password = "2222",
                         AllowAdultContent = false,
-                        UserType = context.UserTypes.First(x => x.Id == 2)
+                        UserType = context.UserTypes.First(x => x.Id == EUserType.CLIENT)
                     }
                 };
 
