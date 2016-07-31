@@ -19,7 +19,6 @@ namespace TvForms
             InitializeComponent();
             this.tbPassForm_Pass.Select();
             this.tbPassForm_Pass.ScrollToCaret();
-            CurrentUser = new User();
             //this.tbPassForm_Login.Text = "root"; //delete this string when program will be tested
             //this.tbPassForm_Pass.Text = "1111";  //delete this string when program will be tested
             this.tbPassForm_Login.Text = "user"; //delete this string when program will be tested
@@ -73,6 +72,7 @@ namespace TvForms
             var eventSource = (Form) sender;
             if (eventSource.DialogResult == DialogResult.OK)
             {
+                CurrentUser = new User();
                 CurrentUser = UserDetect();
                 if (CurrentUser?.UserType == null)
                 {
