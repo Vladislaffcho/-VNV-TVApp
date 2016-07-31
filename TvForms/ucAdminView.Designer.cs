@@ -418,6 +418,7 @@
             this.colUserID,
             this.colUserLogin,
             this.colUserName});
+            this.lvUserList.FullRowSelect = true;
             this.lvUserList.GridLines = true;
             this.lvUserList.Location = new System.Drawing.Point(6, 17);
             this.lvUserList.Name = "lvUserList";
@@ -425,6 +426,7 @@
             this.lvUserList.TabIndex = 0;
             this.lvUserList.UseCompatibleStateImageBehavior = false;
             this.lvUserList.View = System.Windows.Forms.View.Details;
+            this.lvUserList.SelectedIndexChanged += new System.EventHandler(this.lvUserList_SelectedIndexChanged);
             // 
             // colUserID
             // 
