@@ -26,17 +26,11 @@ namespace TvForms
             this.tbPassForm_Pass.Text = "2222";  //delete this string when program will be tested
         }
 
-        private User CurrentUser { get; set; }
+        public User CurrentUser { get; set; }
 
-        private void bPassF_Enter_Click(object sender, EventArgs e)
+        public User UserDetect()
         {
-            CurrentUser = PassValidator();
-        }
-
-
-        public User PassValidator()
-        {
-            //go to database and check user or admin if exists
+            //go to database and check user or admin exists
             if (tbPassForm_Pass.Text != string.Empty)
             {
                 using (var context = new TvDBContext())
@@ -69,11 +63,27 @@ namespace TvForms
             }
             else
             {
-                MessageBox.Show("Please enter password", "Password",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 CurrentUser = null;
             }
             return CurrentUser;
         }
+
+        private void PassForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var eventSource = (Form) sender;
+            if (eventSource.DialogResult == DialogResult.OK)
+            {
+                CurrentUser = UserDetect();
+                if (CurrentUser?.UserType == null)
+                {
+                    MessageBox.Show("Incorrect login or password", "Access denied",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    e.Cancel = true;
+                }
+              
+            }
+        }
+
+
     }
 }

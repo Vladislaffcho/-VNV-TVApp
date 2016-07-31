@@ -25,7 +25,7 @@ namespace TvForms
             {
                 case EUserType.ADMIN: //admin
                     tabPCore_AllChannels.Controls.Add(new ucAdminView(whoUser));
-                    tabPCore_AllChannels.Text = "ADMINISTRATOR";
+                    tabPCore_AllChannels.Text = EUserType.ADMIN.ToString();
                     tabPanelCore.TabPages.Remove(tabPCore_MyChannels);
                     tabPanelCore.TabPages.Remove(tabPCore_MyShow);
                     break;

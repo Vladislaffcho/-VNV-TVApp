@@ -52,6 +52,7 @@
             this.bPassForm_Cancel.TabIndex = 0;
             this.bPassForm_Cancel.Text = "Cancel";
             this.bPassForm_Cancel.UseVisualStyleBackColor = true;
+            
             // 
             // bPassForm_Enter
             // 
@@ -62,7 +63,6 @@
             this.bPassForm_Enter.TabIndex = 1;
             this.bPassForm_Enter.Text = "Enter";
             this.bPassForm_Enter.UseVisualStyleBackColor = true;
-            this.bPassForm_Enter.Click += new System.EventHandler(this.bPassF_Enter_Click);
             // 
             // tbPassForm_Login
             // 
@@ -170,6 +170,7 @@
             this.Name = "PassForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Autorization";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PassForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.picPassForm_Login)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
