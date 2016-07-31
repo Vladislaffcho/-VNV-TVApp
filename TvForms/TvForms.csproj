@@ -90,6 +90,12 @@
     <Compile Include="ucAllChannels.Designer.cs">
       <DependentUpon>ucAllChannels.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucMyChannels.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucMyChannels.Designer.cs">
+      <DependentUpon>ucMyChannels.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucUserView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -128,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucAllChannels.resx">
       <DependentUpon>ucAllChannels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucMyChannels.resx">
+      <DependentUpon>ucMyChannels.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucShowListNoChBox.resx">
       <DependentUpon>ucShowListNoChBox.cs</DependentUpon>

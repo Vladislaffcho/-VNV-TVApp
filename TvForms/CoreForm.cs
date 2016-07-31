@@ -31,8 +31,8 @@ namespace TvForms
                     break;
                 case EUserType.CLIENT: //user
                     tabPCore_AllChannels.Controls.Add(new ucAllChannels());
-                    //tabPCore_AllCannels.Controls.Add(new ucMyChannels());
-                    tabPCore_AllChannels.Controls.Add(new ucMyShow());
+                    tabPCore_MyChannels.Controls.Add(new ucMyChannels());
+                    tabPCore_MyShow.Controls.Add(new ucMyShow());
                     break;
             }
             
