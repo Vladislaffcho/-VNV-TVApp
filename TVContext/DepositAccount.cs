@@ -28,7 +28,7 @@ namespace TVContext
         public string Comment { get; set; }
 
         //Make linked entity as virtual for lazy loading workS
-        //public virtual User User { get; set; }
+        public virtual User User { get; set; }
 
     }
 }

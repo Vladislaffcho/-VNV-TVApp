@@ -14,12 +14,14 @@ namespace TvForms
     public partial class ucAdminView : UserControl
     {
         
-        private User _currentUser;
+        //private User _currentUser;
         public ucAdminView(User currentUser)
         {
-            _currentUser = currentUser;
+            /*Uncomment this area to add two recordings into userEmail table
+             * 
+             * _currentUser = currentUser;
             
-            /*using (var context = new TvDBContext())
+            using (var context = new TvDBContext())
             {
                 var defaultEmail = new List<UserEmail> {
                     new UserEmail {
@@ -147,9 +149,30 @@ namespace TvForms
                         }
                     }
 
-                    // Filling Money TB
-                    /*var money = context.Users.Where(c => c.DepositAccount == id);
-                    tbMoney.Text = */
+                    // Filling Money and status TB's
+                    // uncomment when whole functionality has been provided
+                    tbMoney.Text = "Change in ucAdminClass";
+                    cbStatus.SelectedIndex = 0;
+                    /*var moneyStatus = context.DepositAccounts.Where(s => s.User.Id == id);
+                    if (moneyStatus.Any())
+                    {
+                        money.ToList();
+                        foreach (var i in money)
+                        {
+                            tbMoney.Text = i.Balance.ToString();
+                            bool status = i.Status;
+                            if (status)
+                            {
+                                cbStatus.SelectedIndex = 0;
+                            }
+                            else
+                            {
+                                cbStatus.SelectedIndex = 1;
+                            }
+                        }
+                    }*/
+
+                    cbAdultContent.Checked = context.Users.First(l => l.Id == id).AllowAdultContent;
                 }
             }
         }
@@ -170,22 +193,17 @@ namespace TvForms
             lvUserAddress.Items.Clear();
             lvUserTelephone.Items.Clear();
             lvUserEmail.Items.Clear();
-            
-
-
-            tbMoney.Text = "Change in ucAdminClass";
-            //uncomment when full functionality is available
-            //tbMoney.Text = _currentUser.DepositAccount.Balance.ToString();
-            
-            cbStatus.SelectedIndex = 0;
-            /*if (_currentUser.DepositAccount.Status)
-            {
-                cbStatus.SelectedIndex = 0;
-            }
-            else
-            {
-                cbStatus.SelectedIndex = 1;
-            }*/
         }
+
+        /*Will need these for User uc
+         * 
+         * if (_currentUser.DepositAccount.Status)
+                    {
+                        cbStatus.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        cbStatus.SelectedIndex = 1;
+                    }*/
     }
 }

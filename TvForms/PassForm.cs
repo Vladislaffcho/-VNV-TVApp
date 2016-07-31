@@ -62,7 +62,7 @@ namespace TvForms
                         CurrentUser.Password = user.First().Password;
                         CurrentUser.UserType = user.First().UserType;
                         CurrentUser.AllowAdultContent = user.First().AllowAdultContent;
-                        CurrentUser.DepositAccount = user.First().DepositAccount;
+                        //CurrentUser.DepositAccount = user.First().DepositAccount;
                         CurrentUser.FirstName = user.First().FirstName;
                         CurrentUser.LastName = user.First().LastName;
                         

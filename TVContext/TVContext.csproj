@@ -53,9 +53,9 @@
     <Compile Include="Channel.cs" />
     <Compile Include="DepositAccount.cs" />
     <Compile Include="EUserType.cs" />
-    <Compile Include="Migrations\201607311155285_Init.cs" />
-    <Compile Include="Migrations\201607311155285_Init.Designer.cs">
-      <DependentUpon>201607311155285_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201607311505466_Init.cs" />
+    <Compile Include="Migrations\201607311505466_Init.Designer.cs">
+      <DependentUpon>201607311505466_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Order.cs" />
@@ -79,8 +79,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201607311155285_Init.resx">
-      <DependentUpon>201607311155285_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201607311505466_Init.resx">
+      <DependentUpon>201607311505466_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
