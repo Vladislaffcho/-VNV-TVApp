@@ -1,6 +1,6 @@
 ﻿namespace TvForms
 {
-    partial class ucTvShow
+    partial class ucMyShow
     {
         /// <summary> 
         /// Required designer variable.

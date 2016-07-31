@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TvForms
 {
-    public partial class ucTvShow : UserControl
+    public partial class ucMyShow : UserControl
     {
-        public ucTvShow()
+        public ucMyShow()
         {
             InitializeComponent();
             this.BackColor = Color.CornflowerBlue;

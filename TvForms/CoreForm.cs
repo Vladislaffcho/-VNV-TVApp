@@ -19,17 +19,20 @@ namespace TvForms
         public CoreForm(User whoUser)
         {
         
-
             InitializeComponent();
 
             switch (whoUser.UserType.Id)
             {
                 case EUserType.ADMIN: //admin
-                    pnCoreForm.Controls.Add(new ucAdminView(whoUser));
+                    tabPCore_AllChannels.Controls.Add(new ucAdminView(whoUser));
+                    tabPCore_AllChannels.Text = "ADMINISTRATOR";
+                    tabPanelCore.TabPages.Remove(tabPCore_MyChannels);
+                    tabPanelCore.TabPages.Remove(tabPCore_MyShow);
                     break;
                 case EUserType.CLIENT: //user
-                    pnCoreForm.Controls.Add(new ucAllChannels());
-                    pnCoreForm.Controls.Add(new ucTvShow());
+                    tabPCore_AllChannels.Controls.Add(new ucAllChannels());
+                    //tabPCore_AllCannels.Controls.Add(new ucMyChannels());
+                    tabPCore_AllChannels.Controls.Add(new ucMyShow());
                     break;
             }
             
@@ -57,7 +60,7 @@ namespace TvForms
 
         private void additionalServiceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ActionForm action = new ActionForm(new ucTvShow());
+            ActionForm action = new ActionForm(new ucMyShow());
             action.Show();
             this.Enabled = false;
         }

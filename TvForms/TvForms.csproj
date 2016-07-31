@@ -102,11 +102,11 @@
     <Compile Include="ucShowListNoChBox.Designer.cs">
       <DependentUpon>ucShowListNoChBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucTvShow.cs">
+    <Compile Include="ucMyShow.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucTvShow.Designer.cs">
-      <DependentUpon>ucTvShow.cs</DependentUpon>
+    <Compile Include="ucMyShow.Designer.cs">
+      <DependentUpon>ucMyShow.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -132,8 +132,8 @@
     <EmbeddedResource Include="ucShowListNoChBox.resx">
       <DependentUpon>ucShowListNoChBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucTvShow.resx">
-      <DependentUpon>ucTvShow.cs</DependentUpon>
+    <EmbeddedResource Include="ucMyShow.resx">
+      <DependentUpon>ucMyShow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucUserView.resx">
       <DependentUpon>ucUserView.cs</DependentUpon>

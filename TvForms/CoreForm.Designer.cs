@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CoreForm));
             this.bSaveCore = new System.Windows.Forms.Button();
             this.bCancelCore = new System.Windows.Forms.Button();
-            this.pnCoreForm = new System.Windows.Forms.Panel();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveYourListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,7 +43,12 @@
             this.profileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain = new System.Windows.Forms.MenuStrip();
+            this.tabPanelCore = new System.Windows.Forms.TabControl();
+            this.tabPCore_AllChannels = new System.Windows.Forms.TabPage();
+            this.tabPCore_MyChannels = new System.Windows.Forms.TabPage();
+            this.tabPCore_MyShow = new System.Windows.Forms.TabPage();
             this.msMain.SuspendLayout();
+            this.tabPanelCore.SuspendLayout();
             this.SuspendLayout();
             // 
             // bSaveCore
@@ -67,13 +71,6 @@
             this.bCancelCore.Text = "Cancel";
             this.bCancelCore.UseVisualStyleBackColor = true;
             this.bCancelCore.Click += new System.EventHandler(this.bCancelCore_Click);
-            // 
-            // pnCoreForm
-            // 
-            this.pnCoreForm.Location = new System.Drawing.Point(12, 27);
-            this.pnCoreForm.Name = "pnCoreForm";
-            this.pnCoreForm.Size = new System.Drawing.Size(642, 353);
-            this.pnCoreForm.TabIndex = 3;
             // 
             // fileToolStripMenuItem
             // 
@@ -166,6 +163,48 @@
             this.msMain.TabIndex = 0;
             this.msMain.Text = "MainMenu";
             // 
+            // tabPanelCore
+            // 
+            this.tabPanelCore.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+            this.tabPanelCore.Controls.Add(this.tabPCore_AllChannels);
+            this.tabPanelCore.Controls.Add(this.tabPCore_MyChannels);
+            this.tabPanelCore.Controls.Add(this.tabPCore_MyShow);
+            this.tabPanelCore.Location = new System.Drawing.Point(13, 28);
+            this.tabPanelCore.Name = "tabPanelCore";
+            this.tabPanelCore.SelectedIndex = 0;
+            this.tabPanelCore.Size = new System.Drawing.Size(641, 352);
+            this.tabPanelCore.TabIndex = 3;
+            // 
+            // tabPCore_AllChannels
+            // 
+            this.tabPCore_AllChannels.Location = new System.Drawing.Point(4, 4);
+            this.tabPCore_AllChannels.Name = "tabPCore_AllChannels";
+            this.tabPCore_AllChannels.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPCore_AllChannels.Size = new System.Drawing.Size(633, 326);
+            this.tabPCore_AllChannels.TabIndex = 0;
+            this.tabPCore_AllChannels.Text = "All Channels";
+            this.tabPCore_AllChannels.UseVisualStyleBackColor = true;
+            // 
+            // tabPCore_MyChannels
+            // 
+            this.tabPCore_MyChannels.Location = new System.Drawing.Point(4, 4);
+            this.tabPCore_MyChannels.Name = "tabPCore_MyChannels";
+            this.tabPCore_MyChannels.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPCore_MyChannels.Size = new System.Drawing.Size(633, 326);
+            this.tabPCore_MyChannels.TabIndex = 1;
+            this.tabPCore_MyChannels.Text = "My Channels";
+            this.tabPCore_MyChannels.UseVisualStyleBackColor = true;
+            // 
+            // tabPCore_MyShow
+            // 
+            this.tabPCore_MyShow.Location = new System.Drawing.Point(4, 4);
+            this.tabPCore_MyShow.Name = "tabPCore_MyShow";
+            this.tabPCore_MyShow.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPCore_MyShow.Size = new System.Drawing.Size(633, 326);
+            this.tabPCore_MyShow.TabIndex = 2;
+            this.tabPCore_MyShow.Text = "My Shows";
+            this.tabPCore_MyShow.UseVisualStyleBackColor = true;
+            // 
             // CoreForm
             // 
             this.AcceptButton = this.bSaveCore;
@@ -173,7 +212,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bCancelCore;
             this.ClientSize = new System.Drawing.Size(666, 421);
-            this.Controls.Add(this.pnCoreForm);
+            this.Controls.Add(this.tabPanelCore);
             this.Controls.Add(this.bCancelCore);
             this.Controls.Add(this.bSaveCore);
             this.Controls.Add(this.msMain);
@@ -184,6 +223,7 @@
             this.Text = "VNV TV Shedule";
             this.msMain.ResumeLayout(false);
             this.msMain.PerformLayout();
+            this.tabPanelCore.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,7 +232,6 @@
         #endregion
         private System.Windows.Forms.Button bSaveCore;
         private System.Windows.Forms.Button bCancelCore;
-        private System.Windows.Forms.Panel pnCoreForm;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeScheduleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveYourListToolStripMenuItem;
@@ -205,6 +244,10 @@
         private System.Windows.Forms.ToolStripMenuItem profileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.MenuStrip msMain;
+        private System.Windows.Forms.TabControl tabPanelCore;
+        private System.Windows.Forms.TabPage tabPCore_AllChannels;
+        private System.Windows.Forms.TabPage tabPCore_MyChannels;
+        private System.Windows.Forms.TabPage tabPCore_MyShow;
     }
 }
 

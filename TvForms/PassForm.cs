@@ -17,18 +17,18 @@ namespace TvForms
         public PassForm()
         {
             InitializeComponent();
-            this.tbEnForm_Pass.Select();
-            this.tbEnForm_Pass.ScrollToCaret();
+            this.tbPassForm_Pass.Select();
+            this.tbPassForm_Pass.ScrollToCaret();
             CurrentUser = new User();
-            this.tbEnForm_Login.Text = "root"; //delete this string when program will be tested
-            this.tbEnForm_Pass.Text = "1111";  //delete this string when program will be tested
-            /*this.tbEnForm_Login.Text = "user"; //delete this string when program will be tested
-            this.tbEnForm_Pass.Text = "2222";  //delete this string when program will be tested*/
+            //this.tbPassForm_Login.Text = "root"; //delete this string when program will be tested
+            //this.tbPassForm_Pass.Text = "1111";  //delete this string when program will be tested
+            this.tbPassForm_Login.Text = "user"; //delete this string when program will be tested
+            this.tbPassForm_Pass.Text = "2222";  //delete this string when program will be tested
         }
 
         private User CurrentUser { get; set; }
 
-        private void bEnterF_Enter_Click(object sender, EventArgs e)
+        private void bPassF_Enter_Click(object sender, EventArgs e)
         {
             CurrentUser = PassValidator();
         }
@@ -37,13 +37,12 @@ namespace TvForms
         public User PassValidator()
         {
             //go to database and check user or admin if exists
-            if (tbEnForm_Pass.Text != String.Empty)
+            if (tbPassForm_Pass.Text != string.Empty)
             {
                 using (var context = new TvDBContext())
                 {
-
-                    string loginEntered = tbEnForm_Login.Text;
-                    string passEntered = tbEnForm_Pass.Text;
+                    string loginEntered = tbPassForm_Login.Text;
+                    string passEntered = tbPassForm_Pass.Text;
 
                     var user =from p in context.Users
                         where (p.Login == loginEntered &&
@@ -64,10 +63,8 @@ namespace TvForms
                         CurrentUser.AllowAdultContent = user.First().AllowAdultContent;
                         //CurrentUser.DepositAccount = user.First().DepositAccount;
                         CurrentUser.FirstName = user.First().FirstName;
-                        CurrentUser.LastName = user.First().LastName;
-                        
+                        CurrentUser.LastName = user.First().LastName;                        
                      }
-                        
                 }
             }
             else
@@ -76,9 +73,7 @@ namespace TvForms
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 CurrentUser = null;
             }
-
             return CurrentUser;
         }
-
     }
 }

@@ -54,7 +54,7 @@
             // NameShow
             // 
             this.NameShow.Text = "Name";
-            this.NameShow.Width = 335;
+            this.NameShow.Width = 336;
             // 
             // ucShowListNoChBox
             // 
