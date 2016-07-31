@@ -68,6 +68,7 @@
             this.colUserID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUserLogin = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUserName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colUserSurname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbUsers.SuspendLayout();
             this.tcUserContacts.SuspendLayout();
             this.tpAddress.SuspendLayout();
@@ -182,7 +183,7 @@
             // 
             // cbStatus
             // 
-            this.cbStatus.FormattingEnabled = true;
+            this.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStatus.Location = new System.Drawing.Point(281, 86);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(121, 21);
@@ -417,7 +418,8 @@
             this.lvUserList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colUserID,
             this.colUserLogin,
-            this.colUserName});
+            this.colUserName,
+            this.colUserSurname});
             this.lvUserList.FullRowSelect = true;
             this.lvUserList.GridLines = true;
             this.lvUserList.Location = new System.Drawing.Point(6, 17);
@@ -431,17 +433,22 @@
             // colUserID
             // 
             this.colUserID.Text = "ID";
-            this.colUserID.Width = 25;
+            this.colUserID.Width = 23;
             // 
             // colUserLogin
             // 
             this.colUserLogin.Text = "Login";
-            this.colUserLogin.Width = 55;
+            this.colUserLogin.Width = 47;
             // 
             // colUserName
             // 
             this.colUserName.Text = "Name";
-            this.colUserName.Width = 128;
+            this.colUserName.Width = 66;
+            // 
+            // colUserSurname
+            // 
+            this.colUserSurname.Text = "Surname";
+            this.colUserSurname.Width = 80;
             // 
             // ucAdminView
             // 
@@ -485,7 +492,6 @@
         private System.Windows.Forms.ColumnHeader colCommentTelephone;
         private System.Windows.Forms.TextBox tbMoney;
         private System.Windows.Forms.Label lbMoney;
-        private System.Windows.Forms.ComboBox cbStatus;
         private System.Windows.Forms.Label lbStatus;
         private System.Windows.Forms.CheckBox cbAdultContent;
         private System.Windows.Forms.Button btViewOrders;
@@ -502,5 +508,7 @@
         private System.Windows.Forms.Button btDeleteEmail;
         private System.Windows.Forms.Button btUpdateTelephone;
         private System.Windows.Forms.Button btDeleteTelephone;
+        private System.Windows.Forms.ComboBox cbStatus;
+        private System.Windows.Forms.ColumnHeader colUserSurname;
     }
 }

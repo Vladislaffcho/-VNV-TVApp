@@ -13,8 +13,12 @@ namespace TvForms
 {
     public partial class ucAdminView : UserControl
     {
-        public ucAdminView()
+        
+        private User _currentUser;
+        public ucAdminView(User currentUser)
         {
+            _currentUser = currentUser;
+            
             /*using (var context = new TvDBContext())
             {
                 var defaultEmail = new List<UserEmail> {
@@ -39,17 +43,23 @@ namespace TvForms
 
                 context.SaveChanges();
             }*/
-            
+
 
             InitializeComponent();
-            initForAdmin();
+            SetPageView();
+        }
 
+        private void SetPageView()
+        {
+            // clear the list view in case user's opened it previously during a session
+            lvUserList.Items.Clear();
+            cbStatus.Items.Add("Active");
+            cbStatus.Items.Add("Inactive");
+            initForAdmin();
         }
 
         private void initForAdmin()
         {
-            // clear the list view in case user's opened it previously during a session
-            lvUserList.Items.Clear();
             using (var context = new TvDBContext())
             {
                 // Filling the user list List View
@@ -62,7 +72,8 @@ namespace TvForms
                 {
                     var lvItem = new ListViewItem(i.Id.ToString());
                     lvItem.SubItems.Add(i.Login);
-                    lvItem.SubItems.Add(i.FirstName + " " + i.LastName);
+                    lvItem.SubItems.Add(i.FirstName);
+                    lvItem.SubItems.Add(i.LastName);
                     lvUserList.Items.Add(lvItem);
                 }
             }
@@ -80,20 +91,14 @@ namespace TvForms
 
         private void lvUserList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /*SetStatus();*/
-
-            // clear the list views in case user's opened it previously during a session
-            lvUserAddress.Items.Clear();
-            lvUserTelephone.Items.Clear();
-            lvUserEmail.Items.Clear();
-
-
-
+            SetItemsForChosenUser();
             var listView = (ListView)sender;
             if (listView.SelectedItems.Count > 0)
             {
                 var listViewItem = listView.SelectedItems[0];
                 int id = GetInt(listViewItem.SubItems[0].Text);
+                tbName.Text = listViewItem.SubItems[2].Text;
+                tbSurname.Text = listViewItem.SubItems[3].Text;
 
                 using (var context = new TvDBContext())
                 {
@@ -141,19 +146,15 @@ namespace TvForms
                             lvUserTelephone.Items.Add(lvItem);
                         }
                     }
+
+                    // Filling Money TB
+                    /*var money = context.Users.Where(c => c.DepositAccount == id);
+                    tbMoney.Text = */
                 }
             }
         }
 
-        /*private bool SetStatus()
-        {
-            cbStatus.Items.Add("Active");
-            cbStatus.Items.Add("Inactive");
-            if 
-            cbStatus.SelectedIndex =
-        }*/
-
-        public int GetInt(string source)
+        private int GetInt(string source)
         {
             int i;
             if (int.TryParse(source, out i))
@@ -161,6 +162,30 @@ namespace TvForms
                 return i;
             }
             return -1;
+        }
+
+        private void SetItemsForChosenUser()
+        {
+            // clear the list views in case user's opened it previously during a session
+            lvUserAddress.Items.Clear();
+            lvUserTelephone.Items.Clear();
+            lvUserEmail.Items.Clear();
+            
+
+
+            tbMoney.Text = "Change in ucAdminClass";
+            //uncomment when full functionality is available
+            //tbMoney.Text = _currentUser.DepositAccount.Balance.ToString();
+            
+            cbStatus.SelectedIndex = 0;
+            /*if (_currentUser.DepositAccount.Status)
+            {
+                cbStatus.SelectedIndex = 0;
+            }
+            else
+            {
+                cbStatus.SelectedIndex = 1;
+            }*/
         }
     }
 }

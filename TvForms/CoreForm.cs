@@ -25,7 +25,7 @@ namespace TvForms
             switch (whoUser.UserType.Id)
             {
                 case EUserType.ADMIN: //admin
-                    pnCoreForm.Controls.Add(new ucAdminView());
+                    pnCoreForm.Controls.Add(new ucAdminView(whoUser));
                     break;
                 case EUserType.CLIENT: //user
                     pnCoreForm.Controls.Add(new ucAllChannels());
