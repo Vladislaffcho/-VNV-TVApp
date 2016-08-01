@@ -19,10 +19,10 @@ namespace TvForms
             InitializeComponent();
             this.tbPassForm_Pass.Select();
             this.tbPassForm_Pass.ScrollToCaret();
-            //this.tbPassForm_Login.Text = "root"; //delete this string when program will be tested
-            //this.tbPassForm_Pass.Text = "1111";  //delete this string when program will be tested
-            this.tbPassForm_Login.Text = "user"; //delete this string when program will be tested
-            this.tbPassForm_Pass.Text = "2222";  //delete this string when program will be tested
+            this.tbPassForm_Login.Text = "root"; //delete this string when program will be tested
+            this.tbPassForm_Pass.Text = "1111";  //delete this string when program will be tested
+            //this.tbPassForm_Login.Text = "user"; //delete this string when program will be tested
+            //this.tbPassForm_Pass.Text = "2222";  //delete this string when program will be tested
         }
 
         public User CurrentUser { get; set; }
@@ -80,7 +80,6 @@ namespace TvForms
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     e.Cancel = true;
                 }
-              
             }
         }
 

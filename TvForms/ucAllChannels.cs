@@ -29,7 +29,6 @@ namespace TvForms
             ucShowListNoChBox dayProgram = new ucShowListNoChBox(day);
             
             tabAllCh_Shows.SelectedTab.Controls.Add(dayProgram);
-            
 
         }
 

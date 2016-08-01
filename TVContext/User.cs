@@ -65,8 +65,9 @@ namespace TVContext
         //Emails list of user
         public virtual ICollection<UserEmail> UserEmails { get; set; }
 
+        [Required]
         //info about user's account
-        //public virtual DepositAccount DepositAccount { get; set; }
+        public virtual DepositAccount DepositAccount { get; set; }
 
         //orders list of user
         public virtual ICollection<Order> Orders { get; set; }
