@@ -13,10 +13,11 @@ namespace TvForms
 {
     public partial class ucAdminView : UserControl
     {
-        
+        private int _selectedUser;
         //private User _currentUser;
         public ucAdminView(User currentUser)
         {
+            //_currentUser = currentUser;
             InitializeComponent();
             SetPageView();
         }
@@ -36,7 +37,7 @@ namespace TvForms
             {
                 // Filling the user list List View
                 var usr = from u in context.Users
-                          select u;
+                    select u;
 
                 usr.ToList();
 
@@ -64,18 +65,18 @@ namespace TvForms
         private void lvUserList_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetItemsForChosenUser();
-            var listView = (ListView)sender;
+            var listView = (ListView) sender;
             if (listView.SelectedItems.Count > 0)
             {
                 var listViewItem = listView.SelectedItems[0];
-                int id = GetInt(listViewItem.SubItems[0].Text);
+                _selectedUser = GetInt(listViewItem.SubItems[0].Text);
                 tbName.Text = listViewItem.SubItems[2].Text;
                 tbSurname.Text = listViewItem.SubItems[3].Text;
 
                 using (var context = new TvDBContext())
                 {
                     // Filling user's phone list List View
-                    var address = context.UserAddresses.Where(c => c.User.Id == id);
+                    var address = context.UserAddresses.Where(c => c.User.Id == _selectedUser);
                     if (address.Any())
                     {
                         address.ToList();
@@ -90,7 +91,7 @@ namespace TvForms
                     }
 
                     // Filling user's email list List View
-                    var email = context.UserEmails.Where(c => c.User.Id == id);
+                    var email = context.UserEmails.Where(c => c.User.Id == _selectedUser);
                     if (email.Any())
                     {
                         email.ToList();
@@ -105,7 +106,7 @@ namespace TvForms
                     }
 
                     // Filling user's phone list List View
-                    var phone = context.UserPhones.Where(c => c.User.Id == id);
+                    var phone = context.UserPhones.Where(c => c.User.Id == _selectedUser);
                     if (phone.Any())
                     {
                         phone.ToList();
@@ -142,7 +143,7 @@ namespace TvForms
                         }
                     }*/
 
-                    cbAdultContent.Checked = context.Users.First(l => l.Id == id).AllowAdultContent;
+                    cbAdultContent.Checked = context.Users.First(l => l.Id == _selectedUser).AllowAdultContent;
                 }
             }
         }
@@ -165,15 +166,32 @@ namespace TvForms
             lvUserEmail.Items.Clear();
         }
 
+        private void cbAdultContent_CheckedChanged(object sender, EventArgs e)
+        {
+            using (var context = new TvDBContext())
+            {
+                /*var query = context.Users.First(x => x.Id == _selectedUser);
+                if (query.AllowAdultContent)
+                {
+                    query.AllowAdultContent = false;
+                }
+                else
+                {
+                    query.AllowAdultContent = true;
+                }
+                context.SaveChangesAsync();*/
+            }
+        }
+
         /*Will need these for User uc
-         * 
-         * if (_currentUser.DepositAccount.Status)
-                    {
-                        cbStatus.SelectedIndex = 0;
-                    }
-                    else
-                    {
-                        cbStatus.SelectedIndex = 1;
-                    }*/
+             * 
+             * if (_currentUser.DepositAccount.Status)
+                        {
+                            cbStatus.SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            cbStatus.SelectedIndex = 1;
+                        }*/
     }
 }
