@@ -13,7 +13,7 @@ namespace TvDbContext.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201607311505466_Init"; }
+            get { return "201608010838177_Init"; }
         }
         
         string IMigrationMetadata.Source

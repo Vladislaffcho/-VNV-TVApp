@@ -28,7 +28,7 @@ namespace TvForms
                     pnCoreForm.Controls.Add(new ucAdminView(whoUser));
                     break;
                 case EUserType.CLIENT: //user
-                    pnCoreForm.Controls.Add(new ucAllChannels());
+                    //pnCoreForm.Controls.Add(new ucAllChannels());
                     pnCoreForm.Controls.Add(new ucTvShow());
                     break;
             }

@@ -17,36 +17,6 @@ namespace TvForms
         //private User _currentUser;
         public ucAdminView(User currentUser)
         {
-            /*Uncomment this area to add two recordings into userEmail table
-             * 
-             * _currentUser = currentUser;
-            
-            using (var context = new TvDBContext())
-            {
-                var defaultEmail = new List<UserEmail> {
-                    new UserEmail {
-                        EmailName = "root@root.com",
-                        Comment = "Admin's email",
-                        TypeConnect = context.TypeConnects.First(x => x.Id == 1),
-                        User = context.Users.First(l => l.Id == 1)
-                    },
-                    new UserEmail {
-                        EmailName = "user@user.com",
-                        Comment = "User's email",
-                        TypeConnect = context.TypeConnects.First(x => x.Id == 2),
-                        User = context.Users.First(l => l.Id == 2)
-                    }
-                };
-
-                foreach (var item in defaultEmail)
-                {
-                    context.UserEmails.Add(item);
-                }
-
-                context.SaveChanges();
-            }*/
-
-
             InitializeComponent();
             SetPageView();
         }
