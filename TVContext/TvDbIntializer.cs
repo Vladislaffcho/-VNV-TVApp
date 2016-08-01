@@ -82,6 +82,74 @@ namespace TVContext
                 {
                     context.Users.Add(item);
                 }
+
+                context.SaveChanges();
+
+                var defaultEmail = new List<UserEmail> {
+                    new UserEmail {
+                        EmailName = "root@root.com",
+                        Comment = "Admin's email",
+                        TypeConnect = context.TypeConnects.First(x => x.Id == 1),
+                        User = context.Users.First(l => l.Id == 1)
+                    },
+                    new UserEmail {
+                        EmailName = "user@user.com",
+                        Comment = "User's email",
+                        TypeConnect = context.TypeConnects.First(x => x.Id == 2),
+                        User = context.Users.First(l => l.Id == 2)
+                    }
+                };
+
+                foreach (var item in defaultEmail)
+                {
+                    context.UserEmails.Add(item);
+                }
+
+                context.SaveChanges();
+
+                var defaultAddress = new List<UserAddress> {
+                    new UserAddress {
+                        Address = "123-75 Keletska str, Vinnytsia",
+                        Comment = "Admin's phone",
+                        TypeConnect = context.TypeConnects.First(x => x.Id == 1),
+                        User = context.Users.First(l => l.Id == 1)
+                    },
+                    new UserAddress {
+                        Address = "77-75 Khreschyatik str, Kyiv",
+                        Comment = "User's phone",
+                        TypeConnect = context.TypeConnects.First(x => x.Id == 2),
+                        User = context.Users.First(l => l.Id == 2)
+                    }
+                };
+
+                foreach (var item in defaultAddress)
+                {
+                    context.UserAddresses.Add(item);
+                }
+
+                context.SaveChanges();
+
+                var defaultPhone = new List<UserPhone> {
+                    new UserPhone {
+                        Number = 777777,
+                        Comment = "Admin's phone",
+                        TypeConnect = context.TypeConnects.First(x => x.Id == 1),
+                        User = context.Users.First(l => l.Id == 1)
+                    },
+                    new UserPhone {
+                        Number = 222222,
+                        Comment = "User's phone",
+                        TypeConnect = context.TypeConnects.First(x => x.Id == 2),
+                        User = context.Users.First(l => l.Id == 2)
+                    }
+                };
+
+                foreach (var item in defaultPhone)
+                {
+                    context.UserPhones.Add(item);
+                }
+
+                context.SaveChanges();
             }
             catch (DbEntityValidationException ex)
             {
