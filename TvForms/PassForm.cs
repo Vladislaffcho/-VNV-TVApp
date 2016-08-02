@@ -17,12 +17,21 @@ namespace TvForms
         public PassForm()
         {
             InitializeComponent();
+            //set cursor in password textBox field by default
             this.tbPassForm_Pass.Select();
             this.tbPassForm_Pass.ScrollToCaret();
-            this.tbPassForm_Login.Text = "root"; //delete this string when program will be tested
-            this.tbPassForm_Pass.Text = "1111";  //delete this string when program will be tested
-            //this.tbPassForm_Login.Text = "user"; //delete this string when program will be tested
-            //this.tbPassForm_Pass.Text = "2222";  //delete this string when program will be tested
+            //hide characters in pass field by default
+            tbPassForm_Pass.UseSystemPasswordChar = !chBPassForm_ShowPass.Checked;
+
+            //
+            //
+            //will be deleted after finish program
+            //
+            //
+            //this.tbPassForm_Login.Text = "root"; //delete this string when program will be tested
+            //this.tbPassForm_Pass.Text = "1111";  //delete this string when program will be tested
+            this.tbPassForm_Login.Text = "user"; //delete this string when program will be tested
+
         }
 
         public User CurrentUser { get; set; }
@@ -82,6 +91,13 @@ namespace TvForms
                 }
             }
         }
+
+        private void chBPassForm_ShowPass_CheckStateChanged(object sender, EventArgs e)
+        {
+            tbPassForm_Pass.UseSystemPasswordChar = !chBPassForm_ShowPass.Checked;
+        }
+
+
 
 
     }

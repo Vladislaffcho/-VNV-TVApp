@@ -8,8 +8,8 @@ namespace TVContext
         public TvDBContext() : base("name=TvDBase")
         {
             //set DB intializer for default value of dictionary on create bd
-            //Database.SetInitializer(new TvDBIntializer());
-            //Database.Initialize(true);
+            Database.SetInitializer(new TvDBIntializer());
+            Database.Initialize(true);
         }
 
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
