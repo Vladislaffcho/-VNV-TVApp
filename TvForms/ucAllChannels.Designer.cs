@@ -223,11 +223,14 @@
             this.chBxAllChannel.Name = "chBxAllChannel";
             this.chBxAllChannel.Size = new System.Drawing.Size(205, 304);
             this.chBxAllChannel.TabIndex = 1;
+            this.chBxAllChannel.Click += new System.EventHandler(this.chBxAllChannel_Click);
+            this.chBxAllChannel.SelectedIndexChanged += new System.EventHandler(this.chBxAllChannel_SelectedIndexChanged);
             // 
             // ucAllChannels
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.Controls.Add(this.gbUcAllChannel);
             this.Name = "ucAllChannels";
             this.Size = new System.Drawing.Size(634, 327);

@@ -19,28 +19,34 @@ namespace TvForms
             InitializeComponent();
         }
 
+        public List<TVShow> TvPrograms { get; set; }
+
         public ucShowListNoChBox(int day)
         {
             InitializeComponent();
+
             using (var context = new TvDBContext())
             {
                 var sh = from s in context.TvShows
                          select s;
-
+                
                 foreach (var item in sh)
                 {
                     if ((int)item.Date.DayOfWeek == day)
                     {
-                        var punct = new ListViewItem(item.Date.ToShortTimeString());
-                        punct.SubItems.Add(item.Name);
-
-                        lv_ShowNoChBox.Items.Add(punct);
+                        var punct = new ListViewItem(
+                            item.Date.Hour <= 9 ? "0" + item.Date.ToShortTimeString() : item.Date.ToShortTimeString());
+                        punct.Text += "   " + item.Name;
+                        
+                        lv_ShowNoChBox.Items.Insert(0, punct);
                     }
                 }
             }
         }
 
-        public List<TVShow> TvPrograms { get; set; }
+        
+
+
         
         
     }

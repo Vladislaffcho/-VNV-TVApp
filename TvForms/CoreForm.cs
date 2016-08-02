@@ -62,7 +62,7 @@ namespace TvForms
         {
             ActionForm action = new ActionForm(new ucMyShow());
             action.Show();
-            this.Enabled = false;
+            //this.Enabled = false;
         }
 
         private void changeScheduleToolStripMenuItem_Click(object sender, EventArgs e)

@@ -96,12 +96,6 @@
     <Compile Include="ucMyChannels.Designer.cs">
       <DependentUpon>ucMyChannels.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucUserView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ucUserView.Designer.cs">
-      <DependentUpon>ucUserView.cs</DependentUpon>
-    </Compile>
     <Compile Include="ucShowListNoChBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -113,6 +107,12 @@
     </Compile>
     <Compile Include="ucMyShow.Designer.cs">
       <DependentUpon>ucMyShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucShowListWithChBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucShowListWithChBox.Designer.cs">
+      <DependentUpon>ucShowListWithChBox.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -144,8 +144,8 @@
     <EmbeddedResource Include="ucMyShow.resx">
       <DependentUpon>ucMyShow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucUserView.resx">
-      <DependentUpon>ucUserView.cs</DependentUpon>
+    <EmbeddedResource Include="ucShowListWithChBox.resx">
+      <DependentUpon>ucShowListWithChBox.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

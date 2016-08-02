@@ -29,15 +29,13 @@
         private void InitializeComponent()
         {
             this.lv_ShowNoChBox = new System.Windows.Forms.ListView();
-            this.TimeShow = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.NameShow = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.TimeNameShow = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lv_ShowNoChBox
             // 
             this.lv_ShowNoChBox.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.TimeShow,
-            this.NameShow});
+            this.TimeNameShow});
             this.lv_ShowNoChBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lv_ShowNoChBox.GridLines = true;
             this.lv_ShowNoChBox.Location = new System.Drawing.Point(0, 0);
@@ -47,14 +45,10 @@
             this.lv_ShowNoChBox.UseCompatibleStateImageBehavior = false;
             this.lv_ShowNoChBox.View = System.Windows.Forms.View.Details;
             // 
-            // TimeShow
+            // TimeNameShow
             // 
-            this.TimeShow.Text = "Time";
-            // 
-            // NameShow
-            // 
-            this.NameShow.Text = "Name";
-            this.NameShow.Width = 336;
+            this.TimeNameShow.Text = "Time     Program";
+            this.TimeNameShow.Width = 401;
             // 
             // ucShowListNoChBox
             // 
@@ -70,7 +64,6 @@
         #endregion
 
         private System.Windows.Forms.ListView lv_ShowNoChBox;
-        private System.Windows.Forms.ColumnHeader TimeShow;
-        private System.Windows.Forms.ColumnHeader NameShow;
+        private System.Windows.Forms.ColumnHeader TimeNameShow;
     }
 }
