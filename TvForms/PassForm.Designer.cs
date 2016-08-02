@@ -52,7 +52,6 @@
             this.bPassForm_Cancel.TabIndex = 0;
             this.bPassForm_Cancel.Text = "Cancel";
             this.bPassForm_Cancel.UseVisualStyleBackColor = true;
-            
             // 
             // bPassForm_Enter
             // 
@@ -135,6 +134,7 @@
             this.chBPassForm_ShowPass.TabIndex = 9;
             this.chBPassForm_ShowPass.Text = "show pass";
             this.chBPassForm_ShowPass.UseVisualStyleBackColor = true;
+            this.chBPassForm_ShowPass.CheckStateChanged += new System.EventHandler(this.chBPassForm_ShowPass_CheckStateChanged);
             // 
             // linkLbPassForm_Register
             // 
