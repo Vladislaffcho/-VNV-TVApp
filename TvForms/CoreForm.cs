@@ -89,7 +89,7 @@ namespace TvForms
 
         private void parseChennel(string filename)
         {
-            
+
             try
             {
                 XmlNode searched = null;
@@ -119,17 +119,21 @@ namespace TvForms
             {
                 StringBuilder sb = new StringBuilder();
 
-                 foreach (var failure in ex.EntityValidationErrors)
-                 {
-                      sb.AppendFormat("{0} failed validation\n", failure.Entry.Entity.GetType());
-                      foreach (var error in failure.ValidationErrors)
-                      {
-                          sb.AppendFormat("- {0} : {1}", error.PropertyName, error.ErrorMessage);
-                          sb.AppendLine();
-                      }
-                 }
-                 throw new DbEntityValidationException("Entity Validation Failed - errors follow:\n" +sb.ToString(), ex); 
-           }
+                foreach (var failure in ex.EntityValidationErrors)
+                {
+                    sb.AppendFormat("{0} failed validation\n", failure.Entry.Entity.GetType());
+                    foreach (var error in failure.ValidationErrors)
+                    {
+                        sb.AppendFormat("- {0} : {1}", error.PropertyName, error.ErrorMessage);
+                        sb.AppendLine();
+                    }
+                }
+                throw new DbEntityValidationException("Entity Validation Failed - errors follow:\n" + sb.ToString(), ex);
+            }
+            catch (Exception ex)
+            {
+                
+            }
         }
 
         private void parseProgramme(string filename,  int ChannelId)
@@ -143,7 +147,7 @@ namespace TvForms
                    XmlNode searched = null;
                    XmlDocument doc = new XmlDocument();
                    doc.Load(filename);
-
+                    Channel ivan = context.Channels.Find(ChannelId);
                    foreach (XmlNode node in doc.SelectNodes("/tv/programme"))
                    {
                 
@@ -151,17 +155,17 @@ namespace TvForms
                       string mySqlTimestamp = toDatetime2(node.Attributes["start"].Value);
                       //DateTime time = DateTime.Parse(mySqlTimestamp);
                       DateTime stt = Convert.ToDateTime(mySqlTimestamp);
-
-                      Channel ivan = context.Channels.Find(ChannelId);
+                      int index = doc.SelectNodes("/tv/programme").Cast<XmlNode>().ToList().IndexOf(node);
+                      
 
                       context.TvShows.Add(new TVShow(){
                            Name = title,
                            Date = stt,
                            Channel = ivan
                        });  
-                       context.SaveChanges();
+                       
                     }
-
+                    context.SaveChanges();
             }
             catch (DbEntityValidationException ex)
             {

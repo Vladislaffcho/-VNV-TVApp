@@ -38,7 +38,8 @@ namespace TvForms
             {
                 var ch = from c in context.Channels
                     select c.Name;
-                ch.ToList();
+                    //ORDER BY (c.Name) c>id
+                
 
                 foreach (var i in ch)
                     chBxAllChannel.Items.Insert(0, i);
