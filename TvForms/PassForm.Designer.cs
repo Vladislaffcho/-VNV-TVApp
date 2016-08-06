@@ -166,8 +166,11 @@
             this.Controls.Add(this.bPassForm_Cancel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(430, 203);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(430, 203);
             this.Name = "PassForm";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Autorization";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PassForm_FormClosing);
