@@ -180,6 +180,7 @@
             this.cbAdultContent.TabIndex = 7;
             this.cbAdultContent.Text = "Adult Content";
             this.cbAdultContent.UseVisualStyleBackColor = true;
+            this.cbAdultContent.CheckedChanged += new System.EventHandler(this.cbAdultContent_CheckedChanged);
             // 
             // cbStatus
             // 
