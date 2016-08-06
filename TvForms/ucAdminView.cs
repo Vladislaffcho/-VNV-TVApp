@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -75,7 +76,7 @@ namespace TvForms
 
                 using (var context = new TvDBContext())
                 {
-                    // Filling user's phone list List View
+                    // Filling user's address list List View
                     var address = context.UserAddresses.Where(c => c.User.Id == _selectedUser);
                     if (address.Any())
                     {
@@ -168,18 +169,36 @@ namespace TvForms
 
         private void cbAdultContent_CheckedChanged(object sender, EventArgs e)
         {
-            using (var context = new TvDBContext())
+            try
             {
-                /*var query = context.Users.First(x => x.Id == _selectedUser);
-                if (query.AllowAdultContent)
+                using (var context = new TvDBContext())
                 {
-                    query.AllowAdultContent = false;
+                    var query = context.Users.First(x => x.Id == _selectedUser);
+                    if (query.AllowAdultContent)
+                    {
+                        query.AllowAdultContent = false;
+                    }
+                    else
+                    {
+                        query.AllowAdultContent = true;
+                    }
+                    context.SaveChanges();
                 }
-                else
+            }
+            catch (DbEntityValidationException ex)
+            {
+                StringBuilder sb = new StringBuilder();
+
+                foreach (var failure in ex.EntityValidationErrors)
                 {
-                    query.AllowAdultContent = true;
+                    sb.AppendFormat("{0} failed validation\n", failure.Entry.Entity.GetType());
+                    foreach (var error in failure.ValidationErrors)
+                    {
+                        sb.AppendFormat("- {0} : {1}", error.PropertyName, error.ErrorMessage);
+                        sb.AppendLine();
+                    }
                 }
-                context.SaveChangesAsync();*/
+                throw new DbEntityValidationException("Entity Validation Failed - errors follow:\n" + sb.ToString(), ex);
             }
         }
 
