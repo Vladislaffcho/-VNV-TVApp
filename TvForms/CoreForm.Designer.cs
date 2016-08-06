@@ -43,12 +43,8 @@
             this.profileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain = new System.Windows.Forms.MenuStrip();
-            this.tabPanelCore = new System.Windows.Forms.TabControl();
-            this.tabPCore_AllChannels = new System.Windows.Forms.TabPage();
-            this.tabPCore_MyChannels = new System.Windows.Forms.TabPage();
-            this.tabPCore_MyShow = new System.Windows.Forms.TabPage();
+            this.panelCore = new System.Windows.Forms.Panel();
             this.msMain.SuspendLayout();
-            this.tabPanelCore.SuspendLayout();
             this.SuspendLayout();
             // 
             // bSaveCore
@@ -125,7 +121,6 @@
             this.additionalServiceToolStripMenuItem.Name = "additionalServiceToolStripMenuItem";
             this.additionalServiceToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.additionalServiceToolStripMenuItem.Text = "Additional service";
-            this.additionalServiceToolStripMenuItem.Click += new System.EventHandler(this.additionalServiceToolStripMenuItem_Click);
             // 
             // ordersToolStripMenuItem
             // 
@@ -163,47 +158,13 @@
             this.msMain.TabIndex = 0;
             this.msMain.Text = "MainMenu";
             // 
-            // tabPanelCore
+            // panelCore
             // 
-            this.tabPanelCore.Alignment = System.Windows.Forms.TabAlignment.Bottom;
-            this.tabPanelCore.Controls.Add(this.tabPCore_AllChannels);
-            this.tabPanelCore.Controls.Add(this.tabPCore_MyChannels);
-            this.tabPanelCore.Controls.Add(this.tabPCore_MyShow);
-            this.tabPanelCore.Location = new System.Drawing.Point(13, 28);
-            this.tabPanelCore.Name = "tabPanelCore";
-            this.tabPanelCore.SelectedIndex = 0;
-            this.tabPanelCore.Size = new System.Drawing.Size(641, 352);
-            this.tabPanelCore.TabIndex = 3;
-            // 
-            // tabPCore_AllChannels
-            // 
-            this.tabPCore_AllChannels.Location = new System.Drawing.Point(4, 4);
-            this.tabPCore_AllChannels.Name = "tabPCore_AllChannels";
-            this.tabPCore_AllChannels.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPCore_AllChannels.Size = new System.Drawing.Size(633, 326);
-            this.tabPCore_AllChannels.TabIndex = 0;
-            this.tabPCore_AllChannels.Text = "All Channels";
-            this.tabPCore_AllChannels.UseVisualStyleBackColor = true;
-            // 
-            // tabPCore_MyChannels
-            // 
-            this.tabPCore_MyChannels.Location = new System.Drawing.Point(4, 4);
-            this.tabPCore_MyChannels.Name = "tabPCore_MyChannels";
-            this.tabPCore_MyChannels.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPCore_MyChannels.Size = new System.Drawing.Size(633, 326);
-            this.tabPCore_MyChannels.TabIndex = 1;
-            this.tabPCore_MyChannels.Text = "My Channels";
-            this.tabPCore_MyChannels.UseVisualStyleBackColor = true;
-            // 
-            // tabPCore_MyShow
-            // 
-            this.tabPCore_MyShow.Location = new System.Drawing.Point(4, 4);
-            this.tabPCore_MyShow.Name = "tabPCore_MyShow";
-            this.tabPCore_MyShow.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPCore_MyShow.Size = new System.Drawing.Size(633, 326);
-            this.tabPCore_MyShow.TabIndex = 2;
-            this.tabPCore_MyShow.Text = "My Shows";
-            this.tabPCore_MyShow.UseVisualStyleBackColor = true;
+            this.panelCore.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelCore.Location = new System.Drawing.Point(0, 24);
+            this.panelCore.Name = "panelCore";
+            this.panelCore.Size = new System.Drawing.Size(666, 352);
+            this.panelCore.TabIndex = 3;
             // 
             // CoreForm
             // 
@@ -212,7 +173,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bCancelCore;
             this.ClientSize = new System.Drawing.Size(666, 421);
-            this.Controls.Add(this.tabPanelCore);
+            this.Controls.Add(this.panelCore);
             this.Controls.Add(this.bCancelCore);
             this.Controls.Add(this.bSaveCore);
             this.Controls.Add(this.msMain);
@@ -223,7 +184,6 @@
             this.Text = "VNV TV Shedule";
             this.msMain.ResumeLayout(false);
             this.msMain.PerformLayout();
-            this.tabPanelCore.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,10 +204,7 @@
         private System.Windows.Forms.ToolStripMenuItem profileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.MenuStrip msMain;
-        private System.Windows.Forms.TabControl tabPanelCore;
-        private System.Windows.Forms.TabPage tabPCore_AllChannels;
-        private System.Windows.Forms.TabPage tabPCore_MyChannels;
-        private System.Windows.Forms.TabPage tabPCore_MyShow;
+        private System.Windows.Forms.Panel panelCore;
     }
 }
 

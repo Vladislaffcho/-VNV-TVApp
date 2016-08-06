@@ -54,12 +54,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ActionForm.Designer.cs">
-      <DependentUpon>ActionForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="CoreForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,47 +72,32 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TabsForUser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabsForUser.Designer.cs">
+      <DependentUpon>TabsForUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucAdminView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ucAdminView.Designer.cs">
       <DependentUpon>ucAdminView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucAllChannels.cs">
+    <Compile Include="ucChannelShowInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucAllChannels.Designer.cs">
-      <DependentUpon>ucAllChannels.cs</DependentUpon>
+    <Compile Include="ucChannels.Designer.cs">
+      <DependentUpon>ucChannelShowInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucMyChannels.cs">
+    <Compile Include="ucShowProgramsListV.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucMyChannels.Designer.cs">
-      <DependentUpon>ucMyChannels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ucShowListNoChBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ucShowListNoChBox.Designer.cs">
-      <DependentUpon>ucShowListNoChBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ucMyShow.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ucMyShow.Designer.cs">
-      <DependentUpon>ucMyShow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ucShowListWithChBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ucShowListWithChBox.Designer.cs">
-      <DependentUpon>ucShowListWithChBox.cs</DependentUpon>
+    <Compile Include="ucShowProgramsListV.Designer.cs">
+      <DependentUpon>ucShowProgramsListV.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ActionForm.resx">
-      <DependentUpon>ActionForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="CoreForm.resx">
       <DependentUpon>CoreForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -129,23 +108,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="TabsForUser.resx">
+      <DependentUpon>TabsForUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucAdminView.resx">
       <DependentUpon>ucAdminView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucAllChannels.resx">
-      <DependentUpon>ucAllChannels.cs</DependentUpon>
+    <EmbeddedResource Include="ucChannels.resx">
+      <DependentUpon>ucChannelShowInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucMyChannels.resx">
-      <DependentUpon>ucMyChannels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ucShowListNoChBox.resx">
-      <DependentUpon>ucShowListNoChBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ucMyShow.resx">
-      <DependentUpon>ucMyShow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ucShowListWithChBox.resx">
-      <DependentUpon>ucShowListWithChBox.cs</DependentUpon>
+    <EmbeddedResource Include="ucShowProgramsListV.resx">
+      <DependentUpon>ucShowProgramsListV.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -24,15 +24,10 @@ namespace TvForms
             switch (whoUser.UserType.Id)
             {
                 case EUserType.ADMIN: //admin
-                    tabPCore_AllChannels.Controls.Add(new ucAdminView(whoUser));
-                    tabPCore_AllChannels.Text = EUserType.ADMIN.ToString();
-                    tabPanelCore.TabPages.Remove(tabPCore_MyChannels);
-                    tabPanelCore.TabPages.Remove(tabPCore_MyShow);
+                    panelCore.Controls.Add(new ucAdminView(whoUser));
                     break;
                 case EUserType.CLIENT: //user
-                    tabPCore_AllChannels.Controls.Add(new ucAllChannels());
-                    tabPCore_MyChannels.Controls.Add(new ucMyChannels());
-                    tabPCore_MyShow.Controls.Add(new ucMyShow());
+                    panelCore.Controls.Add(new TabsForUser());
                     break;
             }
             
@@ -58,12 +53,6 @@ namespace TvForms
 
         }
 
-        private void additionalServiceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ActionForm action = new ActionForm(new ucMyShow());
-            action.Show();
-            //this.Enabled = false;
-        }
 
         private void changeScheduleToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -208,6 +197,17 @@ namespace TvForms
                 return "0000-00-00 00:00:00";
             }
         }
+
+        private void chBxAllChannel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chBxAllChannel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
 
 
 

@@ -153,6 +153,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bPassForm_Cancel;
             this.ClientSize = new System.Drawing.Size(414, 164);
+            this.ControlBox = false;
             this.Controls.Add(this.linkLbPassForm_Register);
             this.Controls.Add(this.chBPassForm_ShowPass);
             this.Controls.Add(this.picPassForm_Login);
