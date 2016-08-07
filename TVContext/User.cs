@@ -55,6 +55,9 @@ namespace TVContext
         [Required]
         public virtual UserType UserType { get; set; }
 
+        [DefaultValue(true)]
+        public bool Status { get; set; }
+
 
         //FK for UserAddress table
         public virtual ICollection<UserAddress> UserAddresses { get; set; }

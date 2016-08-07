@@ -90,6 +90,12 @@
     <Compile Include="ucAllChannels.Designer.cs">
       <DependentUpon>ucAllChannels.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucCustomerProfile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucCustomerProfile.Designer.cs">
+      <DependentUpon>ucCustomerProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucUserView.cs">
       <SubType>UserControl</SubType>
     </Compile>
