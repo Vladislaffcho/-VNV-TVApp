@@ -44,22 +44,16 @@
             this.lbMoney = new System.Windows.Forms.Label();
             this.tcUserContacts = new System.Windows.Forms.TabControl();
             this.tpAddress = new System.Windows.Forms.TabPage();
-            this.btUpdateAddress = new System.Windows.Forms.Button();
-            this.btDeleteAddress = new System.Windows.Forms.Button();
             this.lvUserAddress = new System.Windows.Forms.ListView();
             this.colTypeAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colNameAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCommentAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tpEmail = new System.Windows.Forms.TabPage();
-            this.btUpdateEmail = new System.Windows.Forms.Button();
-            this.btDeleteEmail = new System.Windows.Forms.Button();
             this.lvUserEmail = new System.Windows.Forms.ListView();
             this.colTypeEmail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colNameEmail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCommentEmail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tpTelephone = new System.Windows.Forms.TabPage();
-            this.btUpdateTelephone = new System.Windows.Forms.Button();
-            this.btDeleteTelephone = new System.Windows.Forms.Button();
             this.lvUserTelephone = new System.Windows.Forms.ListView();
             this.colTypeTelephone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colNameTelephone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -69,6 +63,12 @@
             this.colUserLogin = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUserName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUserSurname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btDeleteTelephone = new System.Windows.Forms.Button();
+            this.btUpdateTelephone = new System.Windows.Forms.Button();
+            this.btDeleteEmail = new System.Windows.Forms.Button();
+            this.btUpdateEmail = new System.Windows.Forms.Button();
+            this.btDeleteAddress = new System.Windows.Forms.Button();
+            this.btUpdateAddress = new System.Windows.Forms.Button();
             this.gbUsers.SuspendLayout();
             this.tcUserContacts.SuspendLayout();
             this.tpAddress.SuspendLayout();
@@ -241,26 +241,6 @@
             this.tpAddress.TabIndex = 0;
             this.tpAddress.Text = "Address";
             // 
-            // btUpdateAddress
-            // 
-            this.btUpdateAddress.Enabled = false;
-            this.btUpdateAddress.Location = new System.Drawing.Point(216, 103);
-            this.btUpdateAddress.Name = "btUpdateAddress";
-            this.btUpdateAddress.Size = new System.Drawing.Size(75, 23);
-            this.btUpdateAddress.TabIndex = 6;
-            this.btUpdateAddress.Text = "Update";
-            this.btUpdateAddress.UseVisualStyleBackColor = true;
-            // 
-            // btDeleteAddress
-            // 
-            this.btDeleteAddress.Enabled = false;
-            this.btDeleteAddress.Location = new System.Drawing.Point(311, 103);
-            this.btDeleteAddress.Name = "btDeleteAddress";
-            this.btDeleteAddress.Size = new System.Drawing.Size(75, 23);
-            this.btDeleteAddress.TabIndex = 5;
-            this.btDeleteAddress.Text = "Delete";
-            this.btDeleteAddress.UseVisualStyleBackColor = true;
-            // 
             // lvUserAddress
             // 
             this.lvUserAddress.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -302,26 +282,6 @@
             this.tpEmail.Size = new System.Drawing.Size(392, 132);
             this.tpEmail.TabIndex = 1;
             this.tpEmail.Text = "Email";
-            // 
-            // btUpdateEmail
-            // 
-            this.btUpdateEmail.Enabled = false;
-            this.btUpdateEmail.Location = new System.Drawing.Point(216, 103);
-            this.btUpdateEmail.Name = "btUpdateEmail";
-            this.btUpdateEmail.Size = new System.Drawing.Size(75, 23);
-            this.btUpdateEmail.TabIndex = 4;
-            this.btUpdateEmail.Text = "Update";
-            this.btUpdateEmail.UseVisualStyleBackColor = true;
-            // 
-            // btDeleteEmail
-            // 
-            this.btDeleteEmail.Enabled = false;
-            this.btDeleteEmail.Location = new System.Drawing.Point(311, 103);
-            this.btDeleteEmail.Name = "btDeleteEmail";
-            this.btDeleteEmail.Size = new System.Drawing.Size(75, 23);
-            this.btDeleteEmail.TabIndex = 3;
-            this.btDeleteEmail.Text = "Delete";
-            this.btDeleteEmail.UseVisualStyleBackColor = true;
             // 
             // lvUserEmail
             // 
@@ -365,26 +325,6 @@
             this.tpTelephone.TabIndex = 2;
             this.tpTelephone.Text = "Telephone";
             // 
-            // btUpdateTelephone
-            // 
-            this.btUpdateTelephone.Enabled = false;
-            this.btUpdateTelephone.Location = new System.Drawing.Point(216, 103);
-            this.btUpdateTelephone.Name = "btUpdateTelephone";
-            this.btUpdateTelephone.Size = new System.Drawing.Size(75, 23);
-            this.btUpdateTelephone.TabIndex = 2;
-            this.btUpdateTelephone.Text = "Update";
-            this.btUpdateTelephone.UseVisualStyleBackColor = true;
-            // 
-            // btDeleteTelephone
-            // 
-            this.btDeleteTelephone.Enabled = false;
-            this.btDeleteTelephone.Location = new System.Drawing.Point(311, 103);
-            this.btDeleteTelephone.Name = "btDeleteTelephone";
-            this.btDeleteTelephone.Size = new System.Drawing.Size(75, 23);
-            this.btDeleteTelephone.TabIndex = 1;
-            this.btDeleteTelephone.Text = "Delete";
-            this.btDeleteTelephone.UseVisualStyleBackColor = true;
-            // 
             // lvUserTelephone
             // 
             this.lvUserTelephone.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -426,7 +366,7 @@
             this.lvUserList.HideSelection = false;
             this.lvUserList.Location = new System.Drawing.Point(6, 17);
             this.lvUserList.Name = "lvUserList";
-            this.lvUserList.Size = new System.Drawing.Size(210, 296);
+            this.lvUserList.Size = new System.Drawing.Size(210, 286);
             this.lvUserList.TabIndex = 0;
             this.lvUserList.UseCompatibleStateImageBehavior = false;
             this.lvUserList.View = System.Windows.Forms.View.Details;
@@ -450,7 +390,67 @@
             // colUserSurname
             // 
             this.colUserSurname.Text = "Surname";
-            this.colUserSurname.Width = 80;
+            this.colUserSurname.Width = 70;
+            // 
+            // btDeleteTelephone
+            // 
+            this.btDeleteTelephone.Enabled = false;
+            this.btDeleteTelephone.Location = new System.Drawing.Point(311, 103);
+            this.btDeleteTelephone.Name = "btDeleteTelephone";
+            this.btDeleteTelephone.Size = new System.Drawing.Size(75, 23);
+            this.btDeleteTelephone.TabIndex = 1;
+            this.btDeleteTelephone.Text = "Delete";
+            this.btDeleteTelephone.UseVisualStyleBackColor = true;
+            // 
+            // btUpdateTelephone
+            // 
+            this.btUpdateTelephone.Enabled = false;
+            this.btUpdateTelephone.Location = new System.Drawing.Point(216, 103);
+            this.btUpdateTelephone.Name = "btUpdateTelephone";
+            this.btUpdateTelephone.Size = new System.Drawing.Size(75, 23);
+            this.btUpdateTelephone.TabIndex = 2;
+            this.btUpdateTelephone.Text = "Update";
+            this.btUpdateTelephone.UseVisualStyleBackColor = true;
+            // 
+            // btDeleteEmail
+            // 
+            this.btDeleteEmail.Enabled = false;
+            this.btDeleteEmail.Location = new System.Drawing.Point(311, 103);
+            this.btDeleteEmail.Name = "btDeleteEmail";
+            this.btDeleteEmail.Size = new System.Drawing.Size(75, 23);
+            this.btDeleteEmail.TabIndex = 3;
+            this.btDeleteEmail.Text = "Delete";
+            this.btDeleteEmail.UseVisualStyleBackColor = true;
+            // 
+            // btUpdateEmail
+            // 
+            this.btUpdateEmail.Enabled = false;
+            this.btUpdateEmail.Location = new System.Drawing.Point(216, 103);
+            this.btUpdateEmail.Name = "btUpdateEmail";
+            this.btUpdateEmail.Size = new System.Drawing.Size(75, 23);
+            this.btUpdateEmail.TabIndex = 4;
+            this.btUpdateEmail.Text = "Update";
+            this.btUpdateEmail.UseVisualStyleBackColor = true;
+            // 
+            // btDeleteAddress
+            // 
+            this.btDeleteAddress.Enabled = false;
+            this.btDeleteAddress.Location = new System.Drawing.Point(311, 103);
+            this.btDeleteAddress.Name = "btDeleteAddress";
+            this.btDeleteAddress.Size = new System.Drawing.Size(75, 23);
+            this.btDeleteAddress.TabIndex = 5;
+            this.btDeleteAddress.Text = "Delete";
+            this.btDeleteAddress.UseVisualStyleBackColor = true;
+            // 
+            // btUpdateAddress
+            // 
+            this.btUpdateAddress.Enabled = false;
+            this.btUpdateAddress.Location = new System.Drawing.Point(216, 103);
+            this.btUpdateAddress.Name = "btUpdateAddress";
+            this.btUpdateAddress.Size = new System.Drawing.Size(75, 23);
+            this.btUpdateAddress.TabIndex = 6;
+            this.btUpdateAddress.Text = "Update";
+            this.btUpdateAddress.UseVisualStyleBackColor = true;
             // 
             // ucAdminView
             // 
@@ -504,13 +504,13 @@
         private System.Windows.Forms.TextBox tbSurname;
         private System.Windows.Forms.Button btViewChannels;
         private System.Windows.Forms.Button btViewPayment;
+        private System.Windows.Forms.ComboBox cbStatus;
+        private System.Windows.Forms.ColumnHeader colUserSurname;
         private System.Windows.Forms.Button btUpdateAddress;
         private System.Windows.Forms.Button btDeleteAddress;
         private System.Windows.Forms.Button btUpdateEmail;
         private System.Windows.Forms.Button btDeleteEmail;
         private System.Windows.Forms.Button btUpdateTelephone;
         private System.Windows.Forms.Button btDeleteTelephone;
-        private System.Windows.Forms.ComboBox cbStatus;
-        private System.Windows.Forms.ColumnHeader colUserSurname;
     }
 }

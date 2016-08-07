@@ -63,6 +63,7 @@ namespace TvForms
 
         private void cbStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
+            DialogResult result = MessageBox.Show("Test", "Exit", MessageBoxButtons.YesNo);
 
         }
 
