@@ -12,12 +12,22 @@ namespace TvForms
 {
     public partial class TabsForUser : UserControl
     {
+
+        public ucChannelShowInfo AllChannelTab { get; set; }
+        public ucChannelShowInfo MyChannelTab { get; set; }
+        public ucChannelShowInfo MyShowTab { get; set; }
+
         public TabsForUser()
         {
             InitializeComponent();
-            tabPan_AllChannels.Controls.Add(new ucChannelShowInfo(true, false));
-            tabPan_MyChannels.Controls.Add(new ucChannelShowInfo(true, true));
-            tabPan_MyShow.Controls.Add(new ucChannelShowInfo(false, true));
+
+            AllChannelTab = new ucChannelShowInfo(true, false);
+            MyChannelTab = new ucChannelShowInfo(true, true);
+            MyShowTab = new ucChannelShowInfo(false, true);
+
+            tabPan_AllChannels.Controls.Add(AllChannelTab);
+            tabPan_MyChannels.Controls.Add(MyChannelTab);
+            tabPan_MyShow.Controls.Add(MyShowTab);
         }
     }
 }

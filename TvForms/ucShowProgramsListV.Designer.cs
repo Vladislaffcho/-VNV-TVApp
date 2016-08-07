@@ -49,6 +49,7 @@
             this.lvShowPrograms.TabIndex = 0;
             this.lvShowPrograms.UseCompatibleStateImageBehavior = false;
             this.lvShowPrograms.View = System.Windows.Forms.View.Details;
+            
             // 
             // Number
             // 
@@ -64,12 +65,12 @@
             this.NameShows.Text = "Name";
             this.NameShows.Width = 290;
             // 
-            // ucShowPrograms
+            // ucShowProgramsListV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lvShowPrograms);
-            this.Name = "ucShowPrograms";
+            this.Name = "ucShowProgramsListV";
             this.Size = new System.Drawing.Size(406, 188);
             this.ResumeLayout(false);
 

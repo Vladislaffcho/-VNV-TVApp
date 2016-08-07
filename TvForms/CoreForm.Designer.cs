@@ -32,8 +32,8 @@
             this.bSaveCore = new System.Windows.Forms.Button();
             this.bCancelCore = new System.Windows.Forms.Button();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changeScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveYourListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openXmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openSavedScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,27 +71,26 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.changeScheduleToolStripMenuItem,
-            this.saveYourListToolStripMenuItem,
+            this.openXmlToolStripMenuItem,
+            this.openSavedScheduleToolStripMenuItem,
             this.toolStripSeparator1,
             this.closeToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // changeScheduleToolStripMenuItem
+            // openXmlToolStripMenuItem
             // 
-            this.changeScheduleToolStripMenuItem.Name = "changeScheduleToolStripMenuItem";
-            this.changeScheduleToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.changeScheduleToolStripMenuItem.Text = "Open xml File";
-            this.changeScheduleToolStripMenuItem.Click += new System.EventHandler(this.changeScheduleToolStripMenuItem_Click);
+            this.openXmlToolStripMenuItem.Name = "openXmlToolStripMenuItem";
+            this.openXmlToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.openXmlToolStripMenuItem.Text = "Open xml File";
+            this.openXmlToolStripMenuItem.Click += new System.EventHandler(this.openXmlToolStripMenuItem_Click);
             // 
-            // saveYourListToolStripMenuItem
+            // openSavedScheduleToolStripMenuItem
             // 
-            this.saveYourListToolStripMenuItem.Name = "saveYourListToolStripMenuItem";
-            this.saveYourListToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.saveYourListToolStripMenuItem.Text = "Open saved schedule";
-            this.saveYourListToolStripMenuItem.Click += new System.EventHandler(this.saveYourListToolStripMenuItem_Click);
+            this.openSavedScheduleToolStripMenuItem.Name = "openSavedScheduleToolStripMenuItem";
+            this.openSavedScheduleToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.openSavedScheduleToolStripMenuItem.Text = "Open saved schedule";
             // 
             // toolStripSeparator1
             // 
@@ -193,8 +192,8 @@
         private System.Windows.Forms.Button bSaveCore;
         private System.Windows.Forms.Button bCancelCore;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem changeScheduleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveYourListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openXmlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openSavedScheduleToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem actionsToolStripMenuItem;
