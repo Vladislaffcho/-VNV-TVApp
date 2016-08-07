@@ -423,6 +423,7 @@
             this.colUserSurname});
             this.lvUserList.FullRowSelect = true;
             this.lvUserList.GridLines = true;
+            this.lvUserList.HideSelection = false;
             this.lvUserList.Location = new System.Drawing.Point(6, 17);
             this.lvUserList.Name = "lvUserList";
             this.lvUserList.Size = new System.Drawing.Size(210, 296);

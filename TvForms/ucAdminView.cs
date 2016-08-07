@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
@@ -50,6 +51,8 @@ namespace TvForms
                     lvItem.SubItems.Add(i.LastName);
                     lvUserList.Items.Add(lvItem);
                 }
+
+                lvUserList.Items[0].Selected = true;
             }
         }
 
@@ -169,36 +172,21 @@ namespace TvForms
 
         private void cbAdultContent_CheckedChanged(object sender, EventArgs e)
         {
-            try
+            using (var context = new TvDBContext())
             {
-                using (var context = new TvDBContext())
+                var query = context.Users.First(x => x.Id == _selectedUser);
+                var type = query.UserType;
+                if (cbAdultContent.Checked)
                 {
-                    var query = context.Users.First(x => x.Id == _selectedUser);
-                    if (query.AllowAdultContent)
-                    {
-                        query.AllowAdultContent = false;
-                    }
-                    else
-                    {
-                        query.AllowAdultContent = true;
-                    }
-                    context.SaveChanges();
+                    query.AllowAdultContent = true;
+                    query.UserType = type;
                 }
-            }
-            catch (DbEntityValidationException ex)
-            {
-                StringBuilder sb = new StringBuilder();
-
-                foreach (var failure in ex.EntityValidationErrors)
+                else
                 {
-                    sb.AppendFormat("{0} failed validation\n", failure.Entry.Entity.GetType());
-                    foreach (var error in failure.ValidationErrors)
-                    {
-                        sb.AppendFormat("- {0} : {1}", error.PropertyName, error.ErrorMessage);
-                        sb.AppendLine();
-                    }
+                    query.AllowAdultContent = false;
+                    query.UserType = type;
                 }
-                throw new DbEntityValidationException("Entity Validation Failed - errors follow:\n" + sb.ToString(), ex);
+                context.SaveChanges();
             }
         }
 
