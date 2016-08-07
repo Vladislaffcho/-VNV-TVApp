@@ -5,7 +5,7 @@ namespace TVContext
 {
     public class TvDBContext : DbContext
     {
-        public TvDBContext() : base("TvDBase")
+        public TvDBContext() : base("name=TvDBase")
         {
             //set DB intializer for default value of dictionary on create bd
             Database.SetInitializer(new TvDBIntializer());
@@ -17,7 +17,7 @@ namespace TVContext
         //    modelBuilder.Entity<Company>().HasMany(company => company.Employees)
         //        .WithRequired(employee => employee.CompanyWhereIWork);
         //}
-        
+
 
         //list of tables in TV database
         public DbSet<User> Users { get; set; } // 1

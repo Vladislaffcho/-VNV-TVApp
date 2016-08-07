@@ -20,10 +20,10 @@ namespace TvForms
             this.tbEnForm_Pass.Select();
             this.tbEnForm_Pass.ScrollToCaret();
             CurrentUser = new User();
-            this.tbEnForm_Login.Text = "root"; //delete this string when program will be tested
-            this.tbEnForm_Pass.Text = "1111";  //delete this string when program will be tested
-            /*this.tbEnForm_Login.Text = "user"; //delete this string when program will be tested
-            this.tbEnForm_Pass.Text = "2222";  //delete this string when program will be tested*/
+            /*this.tbEnForm_Login.Text = "root"; //delete this string when program will be tested
+            this.tbEnForm_Pass.Text = "1111";  //delete this string when program will be tested*/
+            this.tbEnForm_Login.Text = "user"; //delete this string when program will be tested
+            this.tbEnForm_Pass.Text = "2222";  //delete this string when program will be tested
         }
 
         private User CurrentUser { get; set; }

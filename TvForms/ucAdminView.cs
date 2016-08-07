@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TVAppVNV;
 using TVContext;
 
 namespace TvForms
@@ -16,6 +17,7 @@ namespace TvForms
     public partial class ucAdminView : UserControl
     {
         private int _selectedUser;
+
         //private User _currentUser;
         public ucAdminView(User currentUser)
         {
@@ -30,11 +32,7 @@ namespace TvForms
             lvUserList.Items.Clear();
             cbStatus.Items.Add("Active");
             cbStatus.Items.Add("Inactive");
-            initForAdmin();
-        }
-
-        private void initForAdmin()
-        {
+            
             using (var context = new TvDBContext())
             {
                 // Filling the user list List View
@@ -64,7 +62,22 @@ namespace TvForms
         private void cbStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
             //DialogResult result = MessageBox.Show("Test", "Exit", MessageBoxButtons.YesNo);
-
+            using (var context = new TvDBContext())
+            {
+                var query = context.Users.First(x => x.Id == _selectedUser);
+                var type = query.UserType;
+                if (cbStatus.SelectedItem == "Active")
+                {
+                    query.Status = true;
+                    query.UserType = type;
+                }
+                else
+                {
+                    query.Status = false;
+                    query.UserType = type;
+                }
+                context.SaveChanges();
+            }
         }
 
         private void lvUserList_SelectedIndexChanged(object sender, EventArgs e)
@@ -74,7 +87,7 @@ namespace TvForms
             if (listView.SelectedItems.Count > 0)
             {
                 var listViewItem = listView.SelectedItems[0];
-                _selectedUser = GetInt(listViewItem.SubItems[0].Text);
+                _selectedUser = Helper.GetInt(listViewItem.SubItems[0].Text);
                 tbName.Text = listViewItem.SubItems[2].Text;
                 tbSurname.Text = listViewItem.SubItems[3].Text;
 
@@ -128,7 +141,16 @@ namespace TvForms
                     // Filling Money and status TB's
                     // uncomment when whole functionality has been provided
                     tbMoney.Text = "Change in ucAdminClass";
-                    cbStatus.SelectedIndex = 0;
+
+                    if (context.Users.First(x => x.Id == _selectedUser).Status)
+                    {
+                        cbStatus.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        cbStatus.SelectedIndex = 1;
+                    }
+                    
                     /*var moneyStatus = context.DepositAccounts.Where(s => s.User.Id == id);
                     if (moneyStatus.Any())
                     {
@@ -151,16 +173,6 @@ namespace TvForms
                     cbAdultContent.Checked = context.Users.First(l => l.Id == _selectedUser).AllowAdultContent;
                 }
             }
-        }
-
-        private int GetInt(string source)
-        {
-            int i;
-            if (int.TryParse(source, out i))
-            {
-                return i;
-            }
-            return -1;
         }
 
         private void SetItemsForChosenUser()
@@ -190,16 +202,5 @@ namespace TvForms
                 context.SaveChanges();
             }
         }
-
-        /*Will need these for User uc
-             * 
-             * if (_currentUser.DepositAccount.Status)
-                        {
-                            cbStatus.SelectedIndex = 0;
-                        }
-                        else
-                        {
-                            cbStatus.SelectedIndex = 1;
-                        }*/
     }
 }

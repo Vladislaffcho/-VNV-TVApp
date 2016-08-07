@@ -29,7 +29,8 @@ namespace TvForms
                     break;
                 case EUserType.CLIENT: //user
                     //pnCoreForm.Controls.Add(new ucAllChannels());
-                    pnCoreForm.Controls.Add(new ucTvShow());
+                    //pnCoreForm.Controls.Add(new ucTvShow());
+                    pnCoreForm.Controls.Add(new ucUserProfile(whoUser));
                     break;
             }
             
@@ -200,6 +201,11 @@ namespace TvForms
             {
                 return "0000-00-00 00:00:00";
             }
+        }
+
+        private void profileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
         }
 
 

@@ -66,6 +66,7 @@
     <Compile Include="CoreForm.Designer.cs">
       <DependentUpon>CoreForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="PassForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,11 +91,11 @@
     <Compile Include="ucAllChannels.Designer.cs">
       <DependentUpon>ucAllChannels.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucCustomerProfile.cs">
+    <Compile Include="ucUserProfile.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucCustomerProfile.Designer.cs">
-      <DependentUpon>ucCustomerProfile.cs</DependentUpon>
+    <Compile Include="ucUserProfile.Designer.cs">
+      <DependentUpon>ucUserProfile.cs</DependentUpon>
     </Compile>
     <Compile Include="ucUserView.cs">
       <SubType>UserControl</SubType>
@@ -140,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucTvShow.resx">
       <DependentUpon>ucTvShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucUserProfile.resx">
+      <DependentUpon>ucUserProfile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucUserView.resx">
       <DependentUpon>ucUserView.cs</DependentUpon>
