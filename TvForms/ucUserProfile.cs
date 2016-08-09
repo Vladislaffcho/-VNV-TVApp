@@ -107,8 +107,35 @@ namespace TvForms
         private void btAddAddress_Click(object sender, EventArgs e)
         {
             AddUserDataForm addAddress = new AddUserDataForm(_currentUser.Id, "Address");
-            addAddress.ShowDialog();
+            if (addAddress.ShowDialog() == DialogResult.OK)
+            {
+                UserAddress address = addAddress.GetAddress();
+                var item = new ListViewItem("111");
+                item.SubItems.Add(address.Address);
+                item.SubItems.Add(address.Comment);
+                lvUserAddress.Items.Add(item);
+            }
         }
+        
+        /*public Bike GetCreatedBike()
+                {
+                    var type = GetSelectedBikeType();
+
+                    switch (type)
+                    {
+                        case BikeType.Cross:
+                            return ucCross.GetCross();
+
+                        case BikeType.Hard:
+                            return ucHard.GetHardBike();
+
+                         case BikeType.HardTeil:
+                             return ucHardTeil.GetHardTeilBike();
+
+                        default:
+                            return null;
+                    }
+                }*/
 
         private void btUpdateAddress_Click(object sender, EventArgs e)
         {

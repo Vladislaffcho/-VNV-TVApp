@@ -52,18 +52,21 @@ namespace TvForms
             return true;
         }
 
-        public void SaveAddedDetails(int UserID)
+        public UserAddress SaveAddedDetails(int UserID)
         {
+            
             using (var context = new TvDBContext())
             {
-                context.UserAddresses.Add(new UserAddress
+                UserAddress address = new UserAddress
                 {
                     Address = _address,
                     Comment = _comment,
                     TypeConnect = context.TypeConnects.First(x => x.NameType == _type),
                     User = context.Users.First(l => l.Id == UserID)
-                });
+                };
+                context.UserAddresses.Add(address);
                 context.SaveChanges();
+                return address;
             }
         }
     }

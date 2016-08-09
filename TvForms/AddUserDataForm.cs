@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TVContext;
 
 namespace TvForms
 {
@@ -14,6 +15,7 @@ namespace TvForms
     {
         private int _userID;
         private ucAddAddress ucAddress = new ucAddAddress();
+        private UserAddress Address;
 
         private string _addConnectType;
         public AddUserDataForm(int UserID, string type)
@@ -44,7 +46,7 @@ namespace TvForms
                 }
                 else
                 {
-                    ucAddress.SaveAddedDetails(_userID);
+                    Address = ucAddress.SaveAddedDetails(_userID);
                 }
             }
         }
@@ -59,6 +61,11 @@ namespace TvForms
                 default:
                     return true; /* return false, change validation */
             }
+        }
+
+        public UserAddress GetAddress()
+        {
+            return Address;
         }
     }
 }
