@@ -8,15 +8,21 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using TVAppVNV;
 using TVContext;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace TvForms
 {
     public partial class ucAdminView : UserControl
     {
+        // Variable contains selected in users lv user's details
         private int _selectedUser;
+
+        // used this flag to show / not show dialog box after changing adultContent status on launch or manually
+        private bool _adultContentFlag = true;
 
         //private User _currentUser;
         public ucAdminView(User currentUser)
@@ -150,7 +156,7 @@ namespace TvForms
                     {
                         cbStatus.SelectedIndex = 1;
                     }
-                    
+
                     /*var moneyStatus = context.DepositAccounts.Where(s => s.User.Id == id);
                     if (moneyStatus.Any())
                     {
@@ -170,7 +176,9 @@ namespace TvForms
                         }
                     }*/
 
+                    _adultContentFlag = true;
                     cbAdultContent.Checked = context.Users.First(l => l.Id == _selectedUser).AllowAdultContent;
+                    _adultContentFlag = false;
                 }
             }
         }
@@ -185,21 +193,49 @@ namespace TvForms
 
         private void cbAdultContent_CheckedChanged(object sender, EventArgs e)
         {
-            using (var context = new TvDBContext())
+            if (!_adultContentFlag)
             {
-                var query = context.Users.First(x => x.Id == _selectedUser);
-                var type = query.UserType;
                 if (cbAdultContent.Checked)
                 {
-                    query.AllowAdultContent = true;
-                    query.UserType = type;
+                    if (MessageBox.Show("Do you want to allow adult content for this user?", "Allow adult content",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        using (var context = new TvDBContext())
+                        {
+                            var query = context.Users.First(x => x.Id == _selectedUser);
+                            var type = query.UserType;
+                            query.AllowAdultContent = true;
+                            query.UserType = type;
+                            context.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        _adultContentFlag = true;
+                        cbAdultContent.Checked = false;
+                    }
                 }
                 else
                 {
-                    query.AllowAdultContent = false;
-                    query.UserType = type;
+                    if (MessageBox.Show("Do you want to forbid adult content for this user?", "Allow adult content",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        using (var context = new TvDBContext())
+                        {
+                            var query = context.Users.First(x => x.Id == _selectedUser);
+                            var type = query.UserType;
+                            query.AllowAdultContent = false;
+                            query.UserType = type;
+                            context.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        _adultContentFlag = true;
+                        cbAdultContent.Checked = true;
+                    }
                 }
-                context.SaveChanges();
+                _adultContentFlag = false;
             }
         }
     }
