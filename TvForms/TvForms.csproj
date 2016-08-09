@@ -60,6 +60,12 @@
     <Compile Include="ActionForm.Designer.cs">
       <DependentUpon>ActionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddUserDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddUserDataForm.Designer.cs">
+      <DependentUpon>AddUserDataForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CoreForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ucAddAddress.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucAddAddress.Designer.cs">
+      <DependentUpon>ucAddAddress.cs</DependentUpon>
     </Compile>
     <Compile Include="ucAdminView.cs">
       <SubType>UserControl</SubType>
@@ -120,6 +132,9 @@
     <EmbeddedResource Include="ActionForm.resx">
       <DependentUpon>ActionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddUserDataForm.resx">
+      <DependentUpon>AddUserDataForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CoreForm.resx">
       <DependentUpon>CoreForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -129,6 +144,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucAddAddress.resx">
+      <DependentUpon>ucAddAddress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucAdminView.resx">
       <DependentUpon>ucAdminView.cs</DependentUpon>

@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             this.gbProfile = new System.Windows.Forms.GroupBox();
-            this.cbAdultContent = new System.Windows.Forms.CheckBox();
             this.btChangeDetails = new System.Windows.Forms.Button();
-            this.btDeactivateAccount = new System.Windows.Forms.Button();
             this.tcUserContacts = new System.Windows.Forms.TabControl();
             this.tpAddress = new System.Windows.Forms.TabPage();
             this.btAddAddress = new System.Windows.Forms.Button();
@@ -58,15 +56,14 @@
             this.colNameTelephone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCommentTelephone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btViewPayment = new System.Windows.Forms.Button();
-            this.btViewChannels = new System.Windows.Forms.Button();
             this.lbSurname = new System.Windows.Forms.Label();
             this.lbName = new System.Windows.Forms.Label();
             this.tbName = new System.Windows.Forms.TextBox();
             this.tbSurname = new System.Windows.Forms.TextBox();
-            this.btViewServices = new System.Windows.Forms.Button();
             this.btViewOrders = new System.Windows.Forms.Button();
             this.tbMoney = new System.Windows.Forms.TextBox();
             this.lbMoney = new System.Windows.Forms.Label();
+            this.btDeactivateAccount = new System.Windows.Forms.Button();
             this.gbProfile.SuspendLayout();
             this.tcUserContacts.SuspendLayout();
             this.tpAddress.SuspendLayout();
@@ -76,17 +73,14 @@
             // 
             // gbProfile
             // 
-            this.gbProfile.Controls.Add(this.cbAdultContent);
             this.gbProfile.Controls.Add(this.btChangeDetails);
             this.gbProfile.Controls.Add(this.btDeactivateAccount);
             this.gbProfile.Controls.Add(this.tcUserContacts);
             this.gbProfile.Controls.Add(this.btViewPayment);
-            this.gbProfile.Controls.Add(this.btViewChannels);
             this.gbProfile.Controls.Add(this.lbSurname);
             this.gbProfile.Controls.Add(this.lbName);
             this.gbProfile.Controls.Add(this.tbName);
             this.gbProfile.Controls.Add(this.tbSurname);
-            this.gbProfile.Controls.Add(this.btViewServices);
             this.gbProfile.Controls.Add(this.btViewOrders);
             this.gbProfile.Controls.Add(this.tbMoney);
             this.gbProfile.Controls.Add(this.lbMoney);
@@ -97,44 +91,24 @@
             this.gbProfile.TabStop = false;
             this.gbProfile.Text = "Profile";
             // 
-            // cbAdultContent
-            // 
-            this.cbAdultContent.AutoSize = true;
-            this.cbAdultContent.Location = new System.Drawing.Point(262, 105);
-            this.cbAdultContent.Name = "cbAdultContent";
-            this.cbAdultContent.Size = new System.Drawing.Size(90, 17);
-            this.cbAdultContent.TabIndex = 29;
-            this.cbAdultContent.Text = "Adult Content";
-            this.cbAdultContent.UseVisualStyleBackColor = true;
-            this.cbAdultContent.CheckedChanged += new System.EventHandler(this.cbAdultContent_CheckedChanged);
-            // 
             // btChangeDetails
             // 
-            this.btChangeDetails.Location = new System.Drawing.Point(262, 17);
+            this.btChangeDetails.Location = new System.Drawing.Point(298, 19);
             this.btChangeDetails.Name = "btChangeDetails";
             this.btChangeDetails.Size = new System.Drawing.Size(112, 23);
             this.btChangeDetails.TabIndex = 28;
             this.btChangeDetails.Text = "Update Details";
             this.btChangeDetails.UseVisualStyleBackColor = true;
             // 
-            // btDeactivateAccount
-            // 
-            this.btDeactivateAccount.Location = new System.Drawing.Point(262, 59);
-            this.btDeactivateAccount.Name = "btDeactivateAccount";
-            this.btDeactivateAccount.Size = new System.Drawing.Size(113, 23);
-            this.btDeactivateAccount.TabIndex = 27;
-            this.btDeactivateAccount.Text = "Deactivate Account";
-            this.btDeactivateAccount.UseVisualStyleBackColor = true;
-            // 
             // tcUserContacts
             // 
             this.tcUserContacts.Controls.Add(this.tpAddress);
             this.tcUserContacts.Controls.Add(this.tpEmail);
             this.tcUserContacts.Controls.Add(this.tpTelephone);
-            this.tcUserContacts.Location = new System.Drawing.Point(6, 146);
+            this.tcUserContacts.Location = new System.Drawing.Point(6, 132);
             this.tcUserContacts.Name = "tcUserContacts";
             this.tcUserContacts.SelectedIndex = 0;
-            this.tcUserContacts.Size = new System.Drawing.Size(610, 158);
+            this.tcUserContacts.Size = new System.Drawing.Size(610, 172);
             this.tcUserContacts.TabIndex = 26;
             // 
             // tpAddress
@@ -147,31 +121,33 @@
             this.tpAddress.Location = new System.Drawing.Point(4, 22);
             this.tpAddress.Name = "tpAddress";
             this.tpAddress.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAddress.Size = new System.Drawing.Size(602, 132);
+            this.tpAddress.Size = new System.Drawing.Size(602, 146);
             this.tpAddress.TabIndex = 0;
             this.tpAddress.Text = "Address";
             // 
             // btAddAddress
             // 
-            this.btAddAddress.Location = new System.Drawing.Point(252, 103);
+            this.btAddAddress.Location = new System.Drawing.Point(295, 116);
             this.btAddAddress.Name = "btAddAddress";
             this.btAddAddress.Size = new System.Drawing.Size(75, 23);
             this.btAddAddress.TabIndex = 7;
             this.btAddAddress.Text = "Add";
             this.btAddAddress.UseVisualStyleBackColor = true;
+            this.btAddAddress.Click += new System.EventHandler(this.btAddAddress_Click);
             // 
             // btUpdateAddress
             // 
-            this.btUpdateAddress.Location = new System.Drawing.Point(365, 103);
+            this.btUpdateAddress.Location = new System.Drawing.Point(408, 116);
             this.btUpdateAddress.Name = "btUpdateAddress";
             this.btUpdateAddress.Size = new System.Drawing.Size(75, 23);
             this.btUpdateAddress.TabIndex = 6;
             this.btUpdateAddress.Text = "Update";
             this.btUpdateAddress.UseVisualStyleBackColor = true;
+            this.btUpdateAddress.Click += new System.EventHandler(this.btUpdateAddress_Click);
             // 
             // btDeleteAddress
             // 
-            this.btDeleteAddress.Location = new System.Drawing.Point(478, 103);
+            this.btDeleteAddress.Location = new System.Drawing.Point(521, 116);
             this.btDeleteAddress.Name = "btDeleteAddress";
             this.btDeleteAddress.Size = new System.Drawing.Size(75, 23);
             this.btDeleteAddress.TabIndex = 5;
@@ -188,7 +164,7 @@
             this.lvUserAddress.GridLines = true;
             this.lvUserAddress.Location = new System.Drawing.Point(0, 0);
             this.lvUserAddress.Name = "lvUserAddress";
-            this.lvUserAddress.Size = new System.Drawing.Size(602, 95);
+            this.lvUserAddress.Size = new System.Drawing.Size(602, 110);
             this.lvUserAddress.TabIndex = 0;
             this.lvUserAddress.UseCompatibleStateImageBehavior = false;
             this.lvUserAddress.View = System.Windows.Forms.View.Details;
@@ -218,13 +194,13 @@
             this.tpEmail.Location = new System.Drawing.Point(4, 22);
             this.tpEmail.Name = "tpEmail";
             this.tpEmail.Padding = new System.Windows.Forms.Padding(3);
-            this.tpEmail.Size = new System.Drawing.Size(602, 132);
+            this.tpEmail.Size = new System.Drawing.Size(602, 146);
             this.tpEmail.TabIndex = 1;
             this.tpEmail.Text = "Email";
             // 
             // btAddEmail
             // 
-            this.btAddEmail.Location = new System.Drawing.Point(252, 103);
+            this.btAddEmail.Location = new System.Drawing.Point(295, 116);
             this.btAddEmail.Name = "btAddEmail";
             this.btAddEmail.Size = new System.Drawing.Size(75, 23);
             this.btAddEmail.TabIndex = 5;
@@ -234,7 +210,7 @@
             // btUpdateEmail
             // 
             this.btUpdateEmail.Enabled = false;
-            this.btUpdateEmail.Location = new System.Drawing.Point(365, 103);
+            this.btUpdateEmail.Location = new System.Drawing.Point(408, 116);
             this.btUpdateEmail.Name = "btUpdateEmail";
             this.btUpdateEmail.Size = new System.Drawing.Size(75, 23);
             this.btUpdateEmail.TabIndex = 4;
@@ -244,7 +220,7 @@
             // btDeleteEmail
             // 
             this.btDeleteEmail.Enabled = false;
-            this.btDeleteEmail.Location = new System.Drawing.Point(478, 103);
+            this.btDeleteEmail.Location = new System.Drawing.Point(521, 116);
             this.btDeleteEmail.Name = "btDeleteEmail";
             this.btDeleteEmail.Size = new System.Drawing.Size(75, 23);
             this.btDeleteEmail.TabIndex = 3;
@@ -261,7 +237,7 @@
             this.lvUserEmail.GridLines = true;
             this.lvUserEmail.Location = new System.Drawing.Point(0, 0);
             this.lvUserEmail.Name = "lvUserEmail";
-            this.lvUserEmail.Size = new System.Drawing.Size(602, 95);
+            this.lvUserEmail.Size = new System.Drawing.Size(602, 110);
             this.lvUserEmail.TabIndex = 0;
             this.lvUserEmail.UseCompatibleStateImageBehavior = false;
             this.lvUserEmail.View = System.Windows.Forms.View.Details;
@@ -291,13 +267,13 @@
             this.tpTelephone.Location = new System.Drawing.Point(4, 22);
             this.tpTelephone.Name = "tpTelephone";
             this.tpTelephone.Padding = new System.Windows.Forms.Padding(3);
-            this.tpTelephone.Size = new System.Drawing.Size(602, 132);
+            this.tpTelephone.Size = new System.Drawing.Size(602, 146);
             this.tpTelephone.TabIndex = 2;
             this.tpTelephone.Text = "Telephone";
             // 
             // btAddPhone
             // 
-            this.btAddPhone.Location = new System.Drawing.Point(252, 103);
+            this.btAddPhone.Location = new System.Drawing.Point(295, 116);
             this.btAddPhone.Name = "btAddPhone";
             this.btAddPhone.Size = new System.Drawing.Size(75, 23);
             this.btAddPhone.TabIndex = 3;
@@ -307,7 +283,7 @@
             // btUpdateTelephone
             // 
             this.btUpdateTelephone.Enabled = false;
-            this.btUpdateTelephone.Location = new System.Drawing.Point(365, 103);
+            this.btUpdateTelephone.Location = new System.Drawing.Point(408, 116);
             this.btUpdateTelephone.Name = "btUpdateTelephone";
             this.btUpdateTelephone.Size = new System.Drawing.Size(75, 23);
             this.btUpdateTelephone.TabIndex = 2;
@@ -317,7 +293,7 @@
             // btDeleteTelephone
             // 
             this.btDeleteTelephone.Enabled = false;
-            this.btDeleteTelephone.Location = new System.Drawing.Point(478, 103);
+            this.btDeleteTelephone.Location = new System.Drawing.Point(521, 116);
             this.btDeleteTelephone.Name = "btDeleteTelephone";
             this.btDeleteTelephone.Size = new System.Drawing.Size(75, 23);
             this.btDeleteTelephone.TabIndex = 1;
@@ -334,7 +310,7 @@
             this.lvUserTelephone.GridLines = true;
             this.lvUserTelephone.Location = new System.Drawing.Point(0, 0);
             this.lvUserTelephone.Name = "lvUserTelephone";
-            this.lvUserTelephone.Size = new System.Drawing.Size(602, 95);
+            this.lvUserTelephone.Size = new System.Drawing.Size(602, 110);
             this.lvUserTelephone.TabIndex = 0;
             this.lvUserTelephone.UseCompatibleStateImageBehavior = false;
             this.lvUserTelephone.View = System.Windows.Forms.View.Details;
@@ -356,26 +332,17 @@
             // 
             // btViewPayment
             // 
-            this.btViewPayment.Location = new System.Drawing.Point(524, 59);
+            this.btViewPayment.Location = new System.Drawing.Point(474, 56);
             this.btViewPayment.Name = "btViewPayment";
             this.btViewPayment.Size = new System.Drawing.Size(88, 23);
             this.btViewPayment.TabIndex = 24;
             this.btViewPayment.Text = "View Payment";
             this.btViewPayment.UseVisualStyleBackColor = true;
             // 
-            // btViewChannels
-            // 
-            this.btViewChannels.Location = new System.Drawing.Point(418, 59);
-            this.btViewChannels.Name = "btViewChannels";
-            this.btViewChannels.Size = new System.Drawing.Size(85, 23);
-            this.btViewChannels.TabIndex = 23;
-            this.btViewChannels.Text = "Channels";
-            this.btViewChannels.UseVisualStyleBackColor = true;
-            // 
             // lbSurname
             // 
             this.lbSurname.AutoSize = true;
-            this.lbSurname.Location = new System.Drawing.Point(49, 64);
+            this.lbSurname.Location = new System.Drawing.Point(49, 59);
             this.lbSurname.Name = "lbSurname";
             this.lbSurname.Size = new System.Drawing.Size(49, 13);
             this.lbSurname.TabIndex = 22;
@@ -400,24 +367,15 @@
             // 
             // tbSurname
             // 
-            this.tbSurname.Location = new System.Drawing.Point(107, 61);
+            this.tbSurname.Location = new System.Drawing.Point(107, 56);
             this.tbSurname.Name = "tbSurname";
             this.tbSurname.ReadOnly = true;
             this.tbSurname.Size = new System.Drawing.Size(121, 20);
             this.tbSurname.TabIndex = 19;
             // 
-            // btViewServices
-            // 
-            this.btViewServices.Location = new System.Drawing.Point(418, 17);
-            this.btViewServices.Name = "btViewServices";
-            this.btViewServices.Size = new System.Drawing.Size(85, 23);
-            this.btViewServices.TabIndex = 18;
-            this.btViewServices.Text = "View Services";
-            this.btViewServices.UseVisualStyleBackColor = true;
-            // 
             // btViewOrders
             // 
-            this.btViewOrders.Location = new System.Drawing.Point(524, 17);
+            this.btViewOrders.Location = new System.Drawing.Point(474, 19);
             this.btViewOrders.Name = "btViewOrders";
             this.btViewOrders.Size = new System.Drawing.Size(88, 23);
             this.btViewOrders.TabIndex = 17;
@@ -426,7 +384,7 @@
             // 
             // tbMoney
             // 
-            this.tbMoney.Location = new System.Drawing.Point(107, 103);
+            this.tbMoney.Location = new System.Drawing.Point(107, 93);
             this.tbMoney.Name = "tbMoney";
             this.tbMoney.ReadOnly = true;
             this.tbMoney.Size = new System.Drawing.Size(121, 20);
@@ -435,11 +393,21 @@
             // lbMoney
             // 
             this.lbMoney.AutoSize = true;
-            this.lbMoney.Location = new System.Drawing.Point(49, 106);
+            this.lbMoney.Location = new System.Drawing.Point(49, 96);
             this.lbMoney.Name = "lbMoney";
             this.lbMoney.Size = new System.Drawing.Size(39, 13);
             this.lbMoney.TabIndex = 15;
             this.lbMoney.Text = "Money";
+            // 
+            // btDeactivateAccount
+            // 
+            this.btDeactivateAccount.Location = new System.Drawing.Point(298, 56);
+            this.btDeactivateAccount.Name = "btDeactivateAccount";
+            this.btDeactivateAccount.Size = new System.Drawing.Size(113, 23);
+            this.btDeactivateAccount.TabIndex = 27;
+            this.btDeactivateAccount.Text = "Deactivate Account";
+            this.btDeactivateAccount.UseVisualStyleBackColor = true;
+            this.btDeactivateAccount.Click += new System.EventHandler(this.btDeactivateAccount_Click);
             // 
             // ucUserProfile
             // 
@@ -465,7 +433,6 @@
         private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.TextBox tbSurname;
-        private System.Windows.Forms.Button btViewServices;
         private System.Windows.Forms.Button btViewOrders;
         private System.Windows.Forms.TextBox tbMoney;
         private System.Windows.Forms.Label lbMoney;
@@ -495,9 +462,7 @@
         private System.Windows.Forms.ColumnHeader colTypeTelephone;
         private System.Windows.Forms.ColumnHeader colNameTelephone;
         private System.Windows.Forms.ColumnHeader colCommentTelephone;
-        private System.Windows.Forms.Button btDeactivateAccount;
         private System.Windows.Forms.Button btChangeDetails;
-        private System.Windows.Forms.Button btViewChannels;
-        private System.Windows.Forms.CheckBox cbAdultContent;
+        private System.Windows.Forms.Button btDeactivateAccount;
     }
 }

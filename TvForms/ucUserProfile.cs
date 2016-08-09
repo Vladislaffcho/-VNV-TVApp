@@ -96,29 +96,23 @@ namespace TvForms
                         }
                     }
                 }*/
-
-                cbAdultContent.Checked = context.Users.First(l => l.Id == _currentUser.Id).AllowAdultContent;
             }
         }
 
-        private void cbAdultContent_CheckedChanged(object sender, EventArgs e)
+        private void btDeactivateAccount_Click(object sender, EventArgs e)
         {
-            using (var context = new TvDBContext())
-            {
-                var query = context.Users.First(x => x.Id == _currentUser.Id);
-                var type = query.UserType;
-                if (cbAdultContent.Checked)
-                {
-                    query.AllowAdultContent = true;
-                    query.UserType = type;
-                }
-                else
-                {
-                    query.AllowAdultContent = false;
-                    query.UserType = type;
-                }
-                context.SaveChanges();
-            }
+
+        }
+
+        private void btAddAddress_Click(object sender, EventArgs e)
+        {
+            AddUserDataForm addAddress = new AddUserDataForm(_currentUser.Id, "Address");
+            addAddress.ShowDialog();
+        }
+
+        private void btUpdateAddress_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
