@@ -22,7 +22,9 @@ namespace TvForms
         private int _selectedUser;
 
         // used this flag to show / not show dialog box after changing adultContent status on launch or manually
-        private bool _adultContentFlag = true;
+        private bool _adultContentFlag;
+
+        private bool _activeUserFlag;
 
         //private User _currentUser;
         public ucAdminView(User currentUser)
@@ -63,27 +65,6 @@ namespace TvForms
         private void gbUsers_Enter(object sender, EventArgs e)
         {
 
-        }
-
-        private void cbStatus_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //DialogResult result = MessageBox.Show("Test", "Exit", MessageBoxButtons.YesNo);
-            using (var context = new TvDBContext())
-            {
-                var query = context.Users.First(x => x.Id == _selectedUser);
-                var type = query.UserType;
-                if (cbStatus.SelectedItem == "Active")
-                {
-                    query.Status = true;
-                    query.UserType = type;
-                }
-                else
-                {
-                    query.Status = false;
-                    query.UserType = type;
-                }
-                context.SaveChanges();
-            }
         }
 
         private void lvUserList_SelectedIndexChanged(object sender, EventArgs e)
@@ -148,6 +129,7 @@ namespace TvForms
                     // uncomment when whole functionality has been provided
                     tbMoney.Text = "Change in ucAdminClass";
 
+                    _activeUserFlag = true;
                     if (context.Users.First(x => x.Id == _selectedUser).Status)
                     {
                         cbStatus.SelectedIndex = 0;
@@ -156,6 +138,7 @@ namespace TvForms
                     {
                         cbStatus.SelectedIndex = 1;
                     }
+                    _activeUserFlag = false;
 
                     /*var moneyStatus = context.DepositAccounts.Where(s => s.User.Id == id);
                     if (moneyStatus.Any())
@@ -191,49 +174,87 @@ namespace TvForms
             lvUserEmail.Items.Clear();
         }
 
+        private void cbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!_activeUserFlag)
+            {
+                using (var context = new TvDBContext())
+                {
+                    var query = context.Users.First(x => x.Id == _selectedUser);
+                    var type = query.UserType;
+                    var currStatus = context.Users.First(x => x.Id == _selectedUser).Status;
+                    if (cbStatus.SelectedItem == "Active" && !currStatus)
+                    {
+                        if (MessageBox.Show("Do you want to activate this user?", "Activate user",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        {
+                            query.Status = true;
+                            query.UserType = type;
+                        }
+                        else
+                        {
+                            _activeUserFlag = true;
+                            cbStatus.SelectedIndex = 1;
+                        }
+                    }
+                    else if (cbStatus.SelectedItem == "Inactive" && currStatus)
+                    {
+                        if (MessageBox.Show("Do you want to deactivate this user?", "Deactivate user",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        {
+                            query.Status = false;
+                            query.UserType = type;
+                        }
+                        else
+                        {
+                            _activeUserFlag = true;
+                            cbStatus.SelectedIndex = 0;
+                        }
+                    }
+                    context.SaveChanges();
+                }
+                _activeUserFlag = false;
+            }
+        }
+
         private void cbAdultContent_CheckedChanged(object sender, EventArgs e)
         {
             if (!_adultContentFlag)
             {
-                if (cbAdultContent.Checked)
+                using (var context = new TvDBContext())
                 {
-                    if (MessageBox.Show("Do you want to allow adult content for this user?", "Allow adult content",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    var query = context.Users.First(x => x.Id == _selectedUser);
+                    var type = query.UserType;
+                    if (cbAdultContent.Checked)
                     {
-                        using (var context = new TvDBContext())
+                        if (MessageBox.Show("Do you want to allow adult content for this user?", "Allow adult content",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
-                            var query = context.Users.First(x => x.Id == _selectedUser);
-                            var type = query.UserType;
+
                             query.AllowAdultContent = true;
                             query.UserType = type;
-                            context.SaveChanges();
+                        }
+                        else
+                        {
+                            _adultContentFlag = true;
+                            cbAdultContent.Checked = false;
                         }
                     }
                     else
                     {
-                        _adultContentFlag = true;
-                        cbAdultContent.Checked = false;
-                    }
-                }
-                else
-                {
-                    if (MessageBox.Show("Do you want to forbid adult content for this user?", "Allow adult content",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                    {
-                        using (var context = new TvDBContext())
+                        if (MessageBox.Show("Do you want to forbid adult content for this user?", "Forbid adult content",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
-                            var query = context.Users.First(x => x.Id == _selectedUser);
-                            var type = query.UserType;
                             query.AllowAdultContent = false;
                             query.UserType = type;
-                            context.SaveChanges();
+                        }
+                        else
+                        {
+                            _adultContentFlag = true;
+                            cbAdultContent.Checked = true;
                         }
                     }
-                    else
-                    {
-                        _adultContentFlag = true;
-                        cbAdultContent.Checked = true;
-                    }
+                    context.SaveChanges();
                 }
                 _adultContentFlag = false;
             }

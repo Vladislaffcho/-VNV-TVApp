@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gbUsers = new System.Windows.Forms.GroupBox();
+            this.cbAccountStatus = new System.Windows.Forms.CheckBox();
             this.btViewPayment = new System.Windows.Forms.Button();
             this.lbSurname = new System.Windows.Forms.Label();
             this.lbName = new System.Windows.Forms.Label();
@@ -44,22 +45,16 @@
             this.lbMoney = new System.Windows.Forms.Label();
             this.tcUserContacts = new System.Windows.Forms.TabControl();
             this.tpAddress = new System.Windows.Forms.TabPage();
-            this.btUpdateAddress = new System.Windows.Forms.Button();
-            this.btDeleteAddress = new System.Windows.Forms.Button();
             this.lvUserAddress = new System.Windows.Forms.ListView();
             this.colTypeAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colNameAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCommentAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tpEmail = new System.Windows.Forms.TabPage();
-            this.btUpdateEmail = new System.Windows.Forms.Button();
-            this.btDeleteEmail = new System.Windows.Forms.Button();
             this.lvUserEmail = new System.Windows.Forms.ListView();
             this.colTypeEmail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colNameEmail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCommentEmail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tpTelephone = new System.Windows.Forms.TabPage();
-            this.btUpdateTelephone = new System.Windows.Forms.Button();
-            this.btDeleteTelephone = new System.Windows.Forms.Button();
             this.lvUserTelephone = new System.Windows.Forms.ListView();
             this.colTypeTelephone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colNameTelephone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -69,7 +64,6 @@
             this.colUserLogin = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUserName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUserSurname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.cbAccountStatus = new System.Windows.Forms.CheckBox();
             this.gbUsers.SuspendLayout();
             this.tcUserContacts.SuspendLayout();
             this.tpAddress.SuspendLayout();
@@ -102,6 +96,16 @@
             this.gbUsers.TabStop = false;
             this.gbUsers.Text = "Users";
             this.gbUsers.Enter += new System.EventHandler(this.gbUsers_Enter);
+            // 
+            // cbAccountStatus
+            // 
+            this.cbAccountStatus.AutoSize = true;
+            this.cbAccountStatus.Location = new System.Drawing.Point(422, 113);
+            this.cbAccountStatus.Name = "cbAccountStatus";
+            this.cbAccountStatus.Size = new System.Drawing.Size(129, 17);
+            this.cbAccountStatus.TabIndex = 16;
+            this.cbAccountStatus.Text = "Active Billing Account";
+            this.cbAccountStatus.UseVisualStyleBackColor = true;
             // 
             // btViewPayment
             // 
@@ -233,8 +237,6 @@
             // tpAddress
             // 
             this.tpAddress.BackColor = System.Drawing.SystemColors.Control;
-            this.tpAddress.Controls.Add(this.btUpdateAddress);
-            this.tpAddress.Controls.Add(this.btDeleteAddress);
             this.tpAddress.Controls.Add(this.lvUserAddress);
             this.tpAddress.Location = new System.Drawing.Point(4, 22);
             this.tpAddress.Name = "tpAddress";
@@ -242,26 +244,6 @@
             this.tpAddress.Size = new System.Drawing.Size(392, 132);
             this.tpAddress.TabIndex = 0;
             this.tpAddress.Text = "Address";
-            // 
-            // btUpdateAddress
-            // 
-            this.btUpdateAddress.Enabled = false;
-            this.btUpdateAddress.Location = new System.Drawing.Point(216, 103);
-            this.btUpdateAddress.Name = "btUpdateAddress";
-            this.btUpdateAddress.Size = new System.Drawing.Size(75, 23);
-            this.btUpdateAddress.TabIndex = 6;
-            this.btUpdateAddress.Text = "Update";
-            this.btUpdateAddress.UseVisualStyleBackColor = true;
-            // 
-            // btDeleteAddress
-            // 
-            this.btDeleteAddress.Enabled = false;
-            this.btDeleteAddress.Location = new System.Drawing.Point(311, 103);
-            this.btDeleteAddress.Name = "btDeleteAddress";
-            this.btDeleteAddress.Size = new System.Drawing.Size(75, 23);
-            this.btDeleteAddress.TabIndex = 5;
-            this.btDeleteAddress.Text = "Delete";
-            this.btDeleteAddress.UseVisualStyleBackColor = true;
             // 
             // lvUserAddress
             // 
@@ -272,7 +254,7 @@
             this.lvUserAddress.GridLines = true;
             this.lvUserAddress.Location = new System.Drawing.Point(0, 0);
             this.lvUserAddress.Name = "lvUserAddress";
-            this.lvUserAddress.Size = new System.Drawing.Size(392, 95);
+            this.lvUserAddress.Size = new System.Drawing.Size(392, 126);
             this.lvUserAddress.TabIndex = 0;
             this.lvUserAddress.UseCompatibleStateImageBehavior = false;
             this.lvUserAddress.View = System.Windows.Forms.View.Details;
@@ -295,8 +277,6 @@
             // tpEmail
             // 
             this.tpEmail.BackColor = System.Drawing.SystemColors.Control;
-            this.tpEmail.Controls.Add(this.btUpdateEmail);
-            this.tpEmail.Controls.Add(this.btDeleteEmail);
             this.tpEmail.Controls.Add(this.lvUserEmail);
             this.tpEmail.Location = new System.Drawing.Point(4, 22);
             this.tpEmail.Name = "tpEmail";
@@ -304,26 +284,6 @@
             this.tpEmail.Size = new System.Drawing.Size(392, 132);
             this.tpEmail.TabIndex = 1;
             this.tpEmail.Text = "Email";
-            // 
-            // btUpdateEmail
-            // 
-            this.btUpdateEmail.Enabled = false;
-            this.btUpdateEmail.Location = new System.Drawing.Point(216, 103);
-            this.btUpdateEmail.Name = "btUpdateEmail";
-            this.btUpdateEmail.Size = new System.Drawing.Size(75, 23);
-            this.btUpdateEmail.TabIndex = 4;
-            this.btUpdateEmail.Text = "Update";
-            this.btUpdateEmail.UseVisualStyleBackColor = true;
-            // 
-            // btDeleteEmail
-            // 
-            this.btDeleteEmail.Enabled = false;
-            this.btDeleteEmail.Location = new System.Drawing.Point(311, 103);
-            this.btDeleteEmail.Name = "btDeleteEmail";
-            this.btDeleteEmail.Size = new System.Drawing.Size(75, 23);
-            this.btDeleteEmail.TabIndex = 3;
-            this.btDeleteEmail.Text = "Delete";
-            this.btDeleteEmail.UseVisualStyleBackColor = true;
             // 
             // lvUserEmail
             // 
@@ -334,7 +294,7 @@
             this.lvUserEmail.GridLines = true;
             this.lvUserEmail.Location = new System.Drawing.Point(0, 0);
             this.lvUserEmail.Name = "lvUserEmail";
-            this.lvUserEmail.Size = new System.Drawing.Size(392, 95);
+            this.lvUserEmail.Size = new System.Drawing.Size(392, 126);
             this.lvUserEmail.TabIndex = 0;
             this.lvUserEmail.UseCompatibleStateImageBehavior = false;
             this.lvUserEmail.View = System.Windows.Forms.View.Details;
@@ -357,8 +317,6 @@
             // tpTelephone
             // 
             this.tpTelephone.BackColor = System.Drawing.SystemColors.Control;
-            this.tpTelephone.Controls.Add(this.btUpdateTelephone);
-            this.tpTelephone.Controls.Add(this.btDeleteTelephone);
             this.tpTelephone.Controls.Add(this.lvUserTelephone);
             this.tpTelephone.Location = new System.Drawing.Point(4, 22);
             this.tpTelephone.Name = "tpTelephone";
@@ -366,26 +324,6 @@
             this.tpTelephone.Size = new System.Drawing.Size(392, 132);
             this.tpTelephone.TabIndex = 2;
             this.tpTelephone.Text = "Telephone";
-            // 
-            // btUpdateTelephone
-            // 
-            this.btUpdateTelephone.Enabled = false;
-            this.btUpdateTelephone.Location = new System.Drawing.Point(216, 103);
-            this.btUpdateTelephone.Name = "btUpdateTelephone";
-            this.btUpdateTelephone.Size = new System.Drawing.Size(75, 23);
-            this.btUpdateTelephone.TabIndex = 2;
-            this.btUpdateTelephone.Text = "Update";
-            this.btUpdateTelephone.UseVisualStyleBackColor = true;
-            // 
-            // btDeleteTelephone
-            // 
-            this.btDeleteTelephone.Enabled = false;
-            this.btDeleteTelephone.Location = new System.Drawing.Point(311, 103);
-            this.btDeleteTelephone.Name = "btDeleteTelephone";
-            this.btDeleteTelephone.Size = new System.Drawing.Size(75, 23);
-            this.btDeleteTelephone.TabIndex = 1;
-            this.btDeleteTelephone.Text = "Delete";
-            this.btDeleteTelephone.UseVisualStyleBackColor = true;
             // 
             // lvUserTelephone
             // 
@@ -396,7 +334,7 @@
             this.lvUserTelephone.GridLines = true;
             this.lvUserTelephone.Location = new System.Drawing.Point(0, 0);
             this.lvUserTelephone.Name = "lvUserTelephone";
-            this.lvUserTelephone.Size = new System.Drawing.Size(392, 95);
+            this.lvUserTelephone.Size = new System.Drawing.Size(392, 126);
             this.lvUserTelephone.TabIndex = 0;
             this.lvUserTelephone.UseCompatibleStateImageBehavior = false;
             this.lvUserTelephone.View = System.Windows.Forms.View.Details;
@@ -454,16 +392,6 @@
             this.colUserSurname.Text = "Surname";
             this.colUserSurname.Width = 70;
             // 
-            // cbAccountStatus
-            // 
-            this.cbAccountStatus.AutoSize = true;
-            this.cbAccountStatus.Location = new System.Drawing.Point(422, 113);
-            this.cbAccountStatus.Name = "cbAccountStatus";
-            this.cbAccountStatus.Size = new System.Drawing.Size(99, 17);
-            this.cbAccountStatus.TabIndex = 16;
-            this.cbAccountStatus.Text = "Account Active";
-            this.cbAccountStatus.UseVisualStyleBackColor = true;
-            // 
             // ucAdminView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -518,12 +446,6 @@
         private System.Windows.Forms.Button btViewPayment;
         private System.Windows.Forms.ComboBox cbStatus;
         private System.Windows.Forms.ColumnHeader colUserSurname;
-        private System.Windows.Forms.Button btUpdateAddress;
-        private System.Windows.Forms.Button btDeleteAddress;
-        private System.Windows.Forms.Button btUpdateEmail;
-        private System.Windows.Forms.Button btDeleteEmail;
-        private System.Windows.Forms.Button btUpdateTelephone;
-        private System.Windows.Forms.Button btDeleteTelephone;
         private System.Windows.Forms.CheckBox cbAccountStatus;
     }
 }
