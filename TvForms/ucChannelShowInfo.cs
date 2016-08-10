@@ -51,11 +51,17 @@ namespace TvForms
         }
 
 
-        private void ShowAllChanAndShows()
+        public void ShowAllChanAndShows()
         {
             DownloadChannels();
             rtbAllCh_Description.Text = "This is description of channel zhanr!";
             lvChannelsList.CheckBoxes = true;
+
+            foreach (var ch in MyChannelsChoose)
+            {
+                //if()
+            }
+
             ShowsList = new ucShowProgramsListV(tabControl_Shows.SelectedIndex, _mainTabIndex);
             tabControl_Shows.SelectedTab.Controls.Add(ShowsList);
         }
@@ -78,12 +84,14 @@ namespace TvForms
             tabControl_Shows.SelectedTab.Controls.Add(ShowsList);
         }
 
-        private void ShowMyChanAndMyShows()
+        public void ShowMyChanAndMyShows()
         {
-            //MyChannelsChoose = GetCheckedChannels();
+            lvChannelsList.Items.Clear();
+            
             var number = 1;
-            //foreach (var i in MyChannelsChoose)
-            //    AddItemToListView(i, ref number);
+            foreach (var i in MyChannelsChoose)
+                AddItemToListView(i, ref number);
+
             rtbAllCh_Description.Text = "This is description of shows!";
             lvChannelsList.CheckBoxes = false;
             ShowsList = new ucShowProgramsListV(tabControl_Shows.SelectedIndex, _mainTabIndex);
@@ -221,7 +229,7 @@ namespace TvForms
                         
                         var listViewItem = (ListViewItem)ch;
 
-                        var idChannel = listViewItem.SubItems[2].Text.GetInt(); //listViewItem.SubItems[2].Text.GetInt();
+                        var idChannel = listViewItem.SubItems[2].Text.GetInt();
 
                         var channel = from p in context.Channels
                                       where (p.Id == idChannel)

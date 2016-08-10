@@ -56,8 +56,8 @@ namespace TvForms
             switch (GetIndexMainTab())
             {
                 case 0:
-                    TabInfo = _allChannelInfo;
                     ChosenChannels = TabInfo.MyChannelsChoose;
+                    TabInfo = _allChannelInfo;
                     break;
                 case 1:
                     //ChosenChannels = new List<Channel>();
@@ -67,7 +67,9 @@ namespace TvForms
                     TabInfo = _myChannelInfo;
                     break;
                 case 2:
-                    //TabInfo.GetCheckedChannels();
+                    ChosenChannels = TabInfo.MyChannelsChoose;
+                    _myShowsInfo.MyChannelsChoose = ChosenChannels;
+                    _myShowsInfo.ShowMyChanAndMyShows();
                     TabInfo = _myShowsInfo;
                     break;
             }
