@@ -69,25 +69,26 @@ namespace TvForms
         }
 
         // Filling user's phone list List View
+        /// ToDo Naming convention!!!
         private void FillPhonesLV()
         {
-            if (lvUserTelephone.Items.Count > 0)
-            {
+            //if (lvUserTelephone.Items.Count > 0)
+            //{
                 lvUserTelephone.Items.Clear();
-            }
+            //}
             using (var context = new TvDBContext())
             {
-                var phone = context.UserPhones.Where(c => c.User.Id == _currentUser.Id);
+                var phone = context.UserPhones.Where(c => c.User.Id == _currentUser.Id).ToList();
+                //ToDo remove unusage check
                 if (phone.Any())
                 {
-                    phone.ToList();
-
-                    foreach (var i in phone)
+                    foreach (var userPhone in phone)
                     {
-                        var lvItem = new ListViewItem(i.TypeConnect.NameType);
-                        lvItem.SubItems.Add(i.Number.ToString());
-                        lvItem.SubItems.Add(i.Comment);
-                        lvItem.SubItems.Add(i.Id.ToString());
+                        //ToDo Replace into new method
+                        var lvItem = new ListViewItem(userPhone.TypeConnect.NameType);
+                        lvItem.SubItems.Add(userPhone.Number.ToString());
+                        lvItem.SubItems.Add(userPhone.Comment);
+                        lvItem.SubItems.Add(userPhone.Id.ToString());
                         lvUserTelephone.Items.Add(lvItem);
                     }
                 }
@@ -106,6 +107,7 @@ namespace TvForms
                 var email = context.UserEmails.Where(c => c.User.Id == _currentUser.Id);
                 if (email.Any())
                 {
+                    //ToDO remove this
                     email.ToList();
 
                     foreach (var i in email)
@@ -152,7 +154,7 @@ namespace TvForms
         // once deactivated, user needs to contact administrator in order to reactivate an account
         private void btDeactivateAccount_Click(object sender, EventArgs e)
         {
-
+            throw new NotImplementedException();
         }
 
         // functionality to add address
@@ -170,8 +172,12 @@ namespace TvForms
         {
             if (lvUserAddress.SelectedItems.Count > 0)
             {
-                var listViewItem = lvUserAddress.SelectedItems[0]; 
-                UpdateUserDataForm updateAddress = new UpdateUserDataForm(Helper.GetInt(listViewItem.SubItems[3].Text), "Address");
+                var listViewItem = lvUserAddress.SelectedItems[0];
+                //ToDO See this!
+                //listViewItem.SubItems[3].Text.GetInt()
+                //Helper.GetInt(listViewItem.SubItems[3].Text)
+                //ToDo move "Address" to enum
+                UpdateUserDataForm updateAddress = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), "Address");
                 if (updateAddress.ShowDialog() == DialogResult.OK)
                 {
                     FillAddressLV();
@@ -188,6 +194,7 @@ namespace TvForms
         {
             if (lvUserAddress.SelectedItems.Count > 0)
             {
+                //ToDo Review it! Maybe need to use GENERIC
                 var listViewItem = lvUserAddress.SelectedItems[0];
                 DeleteUserData deleteUserData = new DeleteUserData(Helper.GetInt(listViewItem.SubItems[3].Text), "Address");
                 FillAddressLV();

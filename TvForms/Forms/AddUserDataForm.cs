@@ -16,12 +16,14 @@ namespace TvForms
         // variable contains id of a user for whom new data will be added
         private int _userID;
 
+        //ToDo Review need to store this in field
         // user control to add address
         private ucAddAddress ucAddress = new ucAddAddress();
 
         // variable contains information about data type to be added (address, email, telephone)
         private string _addConnectType;
 
+        //ToDo naming convention!!!
         // depending on data type, corresponding uc will be opened
         public AddUserDataForm(int UserID, string type)
         {
@@ -31,6 +33,7 @@ namespace TvForms
 
             switch (_addConnectType)
             {
+                //ToDo Move to enum
                 case "Address":
                     pnAddConnect.Controls.Add(ucAddress);
                     break;

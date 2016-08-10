@@ -13,6 +13,7 @@ namespace TvForms
 {
     public partial class ucAddAddress : UserControl
     {
+        //ToDo Remove this fields
         private string _comment;
         private string _address;
         private string _type;
@@ -29,6 +30,7 @@ namespace TvForms
             {
                 var types = from t in context.TypeConnects
                             select t;
+                //ToDo Why?))
                 types.ToList();
 
                 foreach (var typeConnect in types)
@@ -59,7 +61,7 @@ namespace TvForms
             {
                 UserAddress address = new UserAddress
                 {
-                    Address = _address,
+                    Address = tbUserAddress.Text,
                     Comment = _comment,
                     TypeConnect = context.TypeConnects.First(x => x.NameType == _type),
                     User = context.Users.First(l => l.Id == UserID)

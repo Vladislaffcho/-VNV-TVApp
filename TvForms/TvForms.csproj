@@ -58,37 +58,37 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddUserDataForm.cs">
+    <Compile Include="Forms\AddUserDataForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddUserDataForm.Designer.cs">
+    <Compile Include="Forms\AddUserDataForm.Designer.cs">
       <DependentUpon>AddUserDataForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CoreForm.cs">
+    <Compile Include="Forms\CoreForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CoreForm.Designer.cs">
+    <Compile Include="Forms\CoreForm.Designer.cs">
       <DependentUpon>CoreForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DeleteUserData.cs" />
-    <Compile Include="Helper.cs" />
-    <Compile Include="PassForm - Copy.cs">
+    <Compile Include="Helpers\Helper.cs" />
+    <Compile Include="Forms\PassForm - Copy.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PassForm - Copy.Designer.cs">
+    <Compile Include="Forms\PassForm - Copy.Designer.cs">
       <DependentUpon>PassForm - Copy.cs</DependentUpon>
     </Compile>
-    <Compile Include="PassForm.cs">
+    <Compile Include="Forms\PassForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PassForm.Designer.cs">
+    <Compile Include="Forms\PassForm.Designer.cs">
       <DependentUpon>PassForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="ProgressForm.cs">
+    <Compile Include="Forms\ProgressForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProgressForm.Designer.cs">
+    <Compile Include="Forms\ProgressForm.Designer.cs">
       <DependentUpon>ProgressForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,101 +100,101 @@
     <Compile Include="TabsForUser.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucAddAddress.cs">
+    <Compile Include="UserControls\ucAddAddress.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucAddAddress.Designer.cs">
+    <Compile Include="UserControls\ucAddAddress.Designer.cs">
       <DependentUpon>ucAddAddress.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucAdminView.cs">
+    <Compile Include="UserControls\ucAdminView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucAdminView.Designer.cs">
+    <Compile Include="UserControls\ucAdminView.Designer.cs">
       <DependentUpon>ucAdminView.cs</DependentUpon>
     </Compile>
     <Compile Include="TabsForUser.Designer.cs">
       <DependentUpon>TabsForUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucUpdateAddress.cs">
+    <Compile Include="UserControls\ucUpdateAddress.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucUpdateAddress.Designer.cs">
+    <Compile Include="UserControls\ucUpdateAddress.Designer.cs">
       <DependentUpon>ucUpdateAddress.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucUserAccount.cs">
+    <Compile Include="UserControls\ucUserAccount.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucUserAccount.Designer.cs">
+    <Compile Include="UserControls\ucUserAccount.Designer.cs">
       <DependentUpon>ucUserAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucUserProfile.cs">
+    <Compile Include="UserControls\ucUserProfile.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucUserProfile.Designer.cs">
+    <Compile Include="UserControls\ucUserProfile.Designer.cs">
       <DependentUpon>ucUserProfile.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucChannelShowInfo.cs">
+    <Compile Include="UserControls\ucChannelShowInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucChannels.Designer.cs">
+    <Compile Include="UserControls\ucChannels.Designer.cs">
       <DependentUpon>ucChannelShowInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucShowProgramsListV.cs">
+    <Compile Include="UserControls\ucShowProgramsListV.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucShowProgramsListV.Designer.cs">
+    <Compile Include="UserControls\ucShowProgramsListV.Designer.cs">
       <DependentUpon>ucShowProgramsListV.cs</DependentUpon>
     </Compile>
-    <Compile Include="UpdateUserDataForm.cs">
+    <Compile Include="Forms\UpdateUserDataForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UpdateUserDataForm.Designer.cs">
+    <Compile Include="Forms\UpdateUserDataForm.Designer.cs">
       <DependentUpon>UpdateUserDataForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="XmlFileHelper.cs" />
+    <Compile Include="Helpers\XmlFileHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AddUserDataForm.resx">
+    <EmbeddedResource Include="Forms\AddUserDataForm.resx">
       <DependentUpon>AddUserDataForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CoreForm.resx">
+    <EmbeddedResource Include="Forms\CoreForm.resx">
       <DependentUpon>CoreForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PassForm - Copy.resx">
+    <EmbeddedResource Include="Forms\PassForm - Copy.resx">
       <DependentUpon>PassForm - Copy.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PassForm.resx">
+    <EmbeddedResource Include="Forms\PassForm.resx">
       <DependentUpon>PassForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProgressForm.resx">
+    <EmbeddedResource Include="Forms\ProgressForm.resx">
       <DependentUpon>ProgressForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucAddAddress.resx">
+    <EmbeddedResource Include="UserControls\ucAddAddress.resx">
       <DependentUpon>ucAddAddress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TabsForUser.resx">
       <DependentUpon>TabsForUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucAdminView.resx">
+    <EmbeddedResource Include="UserControls\ucAdminView.resx">
       <DependentUpon>ucAdminView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucChannelShowInfo.resx">
+    <EmbeddedResource Include="UserControls\ucChannelShowInfo.resx">
       <DependentUpon>ucChannelShowInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucShowProgramsListV.resx">
+    <EmbeddedResource Include="UserControls\ucShowProgramsListV.resx">
       <DependentUpon>ucShowProgramsListV.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucUpdateAddress.resx">
+    <EmbeddedResource Include="UserControls\ucUpdateAddress.resx">
       <DependentUpon>ucUpdateAddress.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucUserProfile.resx">
+    <EmbeddedResource Include="UserControls\ucUserProfile.resx">
       <DependentUpon>ucUserProfile.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UpdateUserDataForm.resx">
+    <EmbeddedResource Include="Forms\UpdateUserDataForm.resx">
       <DependentUpon>UpdateUserDataForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
@@ -208,6 +208,7 @@
       <Name>TVContext</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
