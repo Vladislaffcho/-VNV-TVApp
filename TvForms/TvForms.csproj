@@ -103,6 +103,12 @@
     <Compile Include="ucAllChannels.Designer.cs">
       <DependentUpon>ucAllChannels.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucUpdateAddress.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucUpdateAddress.Designer.cs">
+      <DependentUpon>ucUpdateAddress.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucUserProfile.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -126,6 +132,12 @@
     </Compile>
     <Compile Include="ucTvShow.Designer.cs">
       <DependentUpon>ucTvShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateUserDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateUserDataForm.Designer.cs">
+      <DependentUpon>UpdateUserDataForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -160,11 +172,17 @@
     <EmbeddedResource Include="ucTvShow.resx">
       <DependentUpon>ucTvShow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ucUpdateAddress.resx">
+      <DependentUpon>ucUpdateAddress.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucUserProfile.resx">
       <DependentUpon>ucUserProfile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucUserView.resx">
       <DependentUpon>ucUserView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateUserDataForm.resx">
+      <DependentUpon>UpdateUserDataForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

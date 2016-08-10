@@ -52,7 +52,7 @@ namespace TvForms
             return true;
         }
 
-        public UserAddress SaveAddedDetails(int UserID)
+        public void SaveAddedDetails(int UserID)
         {
             
             using (var context = new TvDBContext())
@@ -66,7 +66,6 @@ namespace TvForms
                 };
                 context.UserAddresses.Add(address);
                 context.SaveChanges();
-                return address;
             }
         }
     }

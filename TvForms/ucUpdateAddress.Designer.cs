@@ -1,6 +1,6 @@
 ﻿namespace TvForms
 {
-    partial class ucAddAddress
+    partial class ucUpdateAddress
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,15 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.gbAddress = new System.Windows.Forms.GroupBox();
             this.tbUserAddress = new System.Windows.Forms.TextBox();
-            this.lbAddressComment = new System.Windows.Forms.Label();
-            this.lbAddressType = new System.Windows.Forms.Label();
+            this.tbComment = new System.Windows.Forms.TextBox();
             this.lbAddressName = new System.Windows.Forms.Label();
             this.cbAddressType = new System.Windows.Forms.ComboBox();
-            this.tbComment = new System.Windows.Forms.TextBox();
-            this.gbAddress = new System.Windows.Forms.GroupBox();
+            this.lbAddressType = new System.Windows.Forms.Label();
+            this.lbAddressComment = new System.Windows.Forms.Label();
             this.gbAddress.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // gbAddress
+            // 
+            this.gbAddress.Controls.Add(this.tbUserAddress);
+            this.gbAddress.Controls.Add(this.tbComment);
+            this.gbAddress.Controls.Add(this.lbAddressName);
+            this.gbAddress.Controls.Add(this.cbAddressType);
+            this.gbAddress.Controls.Add(this.lbAddressType);
+            this.gbAddress.Controls.Add(this.lbAddressComment);
+            this.gbAddress.Location = new System.Drawing.Point(3, 3);
+            this.gbAddress.Name = "gbAddress";
+            this.gbAddress.Size = new System.Drawing.Size(434, 129);
+            this.gbAddress.TabIndex = 13;
+            this.gbAddress.TabStop = false;
+            this.gbAddress.Text = "Address";
             // 
             // tbUserAddress
             // 
@@ -45,23 +60,12 @@
             this.tbUserAddress.Size = new System.Drawing.Size(337, 20);
             this.tbUserAddress.TabIndex = 9;
             // 
-            // lbAddressComment
+            // tbComment
             // 
-            this.lbAddressComment.AutoSize = true;
-            this.lbAddressComment.Location = new System.Drawing.Point(17, 61);
-            this.lbAddressComment.Name = "lbAddressComment";
-            this.lbAddressComment.Size = new System.Drawing.Size(54, 13);
-            this.lbAddressComment.TabIndex = 6;
-            this.lbAddressComment.Text = "Comment:";
-            // 
-            // lbAddressType
-            // 
-            this.lbAddressType.AutoSize = true;
-            this.lbAddressType.Location = new System.Drawing.Point(17, 98);
-            this.lbAddressType.Name = "lbAddressType";
-            this.lbAddressType.Size = new System.Drawing.Size(34, 13);
-            this.lbAddressType.TabIndex = 5;
-            this.lbAddressType.Text = "Type:";
+            this.tbComment.Location = new System.Drawing.Point(81, 58);
+            this.tbComment.Name = "tbComment";
+            this.tbComment.Size = new System.Drawing.Size(337, 20);
+            this.tbComment.TabIndex = 10;
             // 
             // lbAddressName
             // 
@@ -81,34 +85,30 @@
             this.cbAddressType.Size = new System.Drawing.Size(121, 21);
             this.cbAddressType.TabIndex = 11;
             // 
-            // tbComment
+            // lbAddressType
             // 
-            this.tbComment.Location = new System.Drawing.Point(81, 58);
-            this.tbComment.Name = "tbComment";
-            this.tbComment.Size = new System.Drawing.Size(337, 20);
-            this.tbComment.TabIndex = 10;
+            this.lbAddressType.AutoSize = true;
+            this.lbAddressType.Location = new System.Drawing.Point(17, 98);
+            this.lbAddressType.Name = "lbAddressType";
+            this.lbAddressType.Size = new System.Drawing.Size(34, 13);
+            this.lbAddressType.TabIndex = 5;
+            this.lbAddressType.Text = "Type:";
             // 
-            // gbAddress
+            // lbAddressComment
             // 
-            this.gbAddress.Controls.Add(this.tbUserAddress);
-            this.gbAddress.Controls.Add(this.tbComment);
-            this.gbAddress.Controls.Add(this.lbAddressName);
-            this.gbAddress.Controls.Add(this.cbAddressType);
-            this.gbAddress.Controls.Add(this.lbAddressType);
-            this.gbAddress.Controls.Add(this.lbAddressComment);
-            this.gbAddress.Location = new System.Drawing.Point(3, 3);
-            this.gbAddress.Name = "gbAddress";
-            this.gbAddress.Size = new System.Drawing.Size(434, 129);
-            this.gbAddress.TabIndex = 12;
-            this.gbAddress.TabStop = false;
-            this.gbAddress.Text = "Address";
+            this.lbAddressComment.AutoSize = true;
+            this.lbAddressComment.Location = new System.Drawing.Point(17, 61);
+            this.lbAddressComment.Name = "lbAddressComment";
+            this.lbAddressComment.Size = new System.Drawing.Size(54, 13);
+            this.lbAddressComment.TabIndex = 6;
+            this.lbAddressComment.Text = "Comment:";
             // 
-            // ucAddAddress
+            // ucUpdateAddress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gbAddress);
-            this.Name = "ucAddAddress";
+            this.Name = "ucUpdateAddress";
             this.Size = new System.Drawing.Size(440, 135);
             this.gbAddress.ResumeLayout(false);
             this.gbAddress.PerformLayout();
@@ -117,12 +117,13 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.GroupBox gbAddress;
         private System.Windows.Forms.TextBox tbUserAddress;
-        private System.Windows.Forms.Label lbAddressComment;
-        private System.Windows.Forms.Label lbAddressType;
+        private System.Windows.Forms.TextBox tbComment;
         private System.Windows.Forms.Label lbAddressName;
         private System.Windows.Forms.ComboBox cbAddressType;
-        private System.Windows.Forms.TextBox tbComment;
-        private System.Windows.Forms.GroupBox gbAddress;
+        private System.Windows.Forms.Label lbAddressType;
+        private System.Windows.Forms.Label lbAddressComment;
     }
 }

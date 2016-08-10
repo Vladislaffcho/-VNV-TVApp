@@ -7,31 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TVContext;
 
 namespace TvForms
 {
-    public partial class AddUserDataForm : Form
+    public partial class UpdateUserDataForm : Form
     {
-        private int _userID;
-        private ucAddAddress ucAddress = new ucAddAddress();
-
-        private string _addConnectType;
-        public AddUserDataForm(int UserID, string type)
+        private string _updateConnectType;
+        private ucUpdateAddress ucAddress = new ucUpdateAddress();
+        public UpdateUserDataForm(int addressID, string type)
         {
-            _userID = UserID;
-            _addConnectType = type;
+            _updateConnectType = type;
             InitializeComponent();
 
-            switch (_addConnectType)
+            switch (_updateConnectType)
             {
                 case "Address":
-                    pnAddConnect.Controls.Add(ucAddress);
+                    pnUpdateConnect.Controls.Add(ucAddress);
+                    ucAddress.UpdateAddress(addressID);
                     break;
             }
         }
 
-        private void AddUserDataForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void UpdateUserDataForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             var eventSource = (Form)sender;
             if (eventSource.DialogResult != DialogResult.Cancel)
@@ -43,14 +40,14 @@ namespace TvForms
                 }
                 else
                 {
-                    ucAddress.SaveAddedDetails(_userID);
+                    ucAddress.SaveAddedDetails();
                 }
             }
         }
 
         private bool ValidateControls()
         {
-            var type = _addConnectType;
+            var type = _updateConnectType;
             switch (type)
             {
                 case "Address":
