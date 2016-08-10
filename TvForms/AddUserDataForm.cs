@@ -13,10 +13,16 @@ namespace TvForms
 {
     public partial class AddUserDataForm : Form
     {
+        // variable contains id of a user for whom new data will be added
         private int _userID;
+
+        // user control to add address
         private ucAddAddress ucAddress = new ucAddAddress();
 
+        // variable contains information about data type to be added (address, email, telephone)
         private string _addConnectType;
+
+        // depending on data type, corresponding uc will be opened
         public AddUserDataForm(int UserID, string type)
         {
             _userID = UserID;
@@ -31,6 +37,7 @@ namespace TvForms
             }
         }
 
+        // action shows an error message in case some fields are empty or saves changed data
         private void AddUserDataForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             var eventSource = (Form)sender;
@@ -43,11 +50,17 @@ namespace TvForms
                 }
                 else
                 {
-                    ucAddress.SaveAddedDetails(_userID);
+                    switch (_addConnectType)
+                    {
+                        case "Address":
+                            ucAddress.SaveAddedDetails(_userID);
+                            break;
+                    }
                 }
             }
         }
 
+        // validator for the provided data
         private bool ValidateControls()
         {
             var type = _addConnectType;

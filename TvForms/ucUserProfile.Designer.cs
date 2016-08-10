@@ -30,6 +30,7 @@
         {
             this.gbProfile = new System.Windows.Forms.GroupBox();
             this.btChangeDetails = new System.Windows.Forms.Button();
+            this.btDeactivateAccount = new System.Windows.Forms.Button();
             this.tcUserContacts = new System.Windows.Forms.TabControl();
             this.tpAddress = new System.Windows.Forms.TabPage();
             this.btAddAddress = new System.Windows.Forms.Button();
@@ -63,7 +64,6 @@
             this.btViewOrders = new System.Windows.Forms.Button();
             this.tbMoney = new System.Windows.Forms.TextBox();
             this.lbMoney = new System.Windows.Forms.Label();
-            this.btDeactivateAccount = new System.Windows.Forms.Button();
             this.gbProfile.SuspendLayout();
             this.tcUserContacts.SuspendLayout();
             this.tpAddress.SuspendLayout();
@@ -99,6 +99,16 @@
             this.btChangeDetails.TabIndex = 28;
             this.btChangeDetails.Text = "Update Details";
             this.btChangeDetails.UseVisualStyleBackColor = true;
+            // 
+            // btDeactivateAccount
+            // 
+            this.btDeactivateAccount.Location = new System.Drawing.Point(298, 56);
+            this.btDeactivateAccount.Name = "btDeactivateAccount";
+            this.btDeactivateAccount.Size = new System.Drawing.Size(113, 23);
+            this.btDeactivateAccount.TabIndex = 27;
+            this.btDeactivateAccount.Text = "Deactivate Account";
+            this.btDeactivateAccount.UseVisualStyleBackColor = true;
+            this.btDeactivateAccount.Click += new System.EventHandler(this.btDeactivateAccount_Click);
             // 
             // tcUserContacts
             // 
@@ -153,6 +163,7 @@
             this.btDeleteAddress.TabIndex = 5;
             this.btDeleteAddress.Text = "Delete";
             this.btDeleteAddress.UseVisualStyleBackColor = true;
+            this.btDeleteAddress.Click += new System.EventHandler(this.btDeleteAddress_Click);
             // 
             // lvUserAddress
             // 
@@ -398,16 +409,6 @@
             this.lbMoney.Size = new System.Drawing.Size(39, 13);
             this.lbMoney.TabIndex = 15;
             this.lbMoney.Text = "Money";
-            // 
-            // btDeactivateAccount
-            // 
-            this.btDeactivateAccount.Location = new System.Drawing.Point(298, 56);
-            this.btDeactivateAccount.Name = "btDeactivateAccount";
-            this.btDeactivateAccount.Size = new System.Drawing.Size(113, 23);
-            this.btDeactivateAccount.TabIndex = 27;
-            this.btDeactivateAccount.Text = "Deactivate Account";
-            this.btDeactivateAccount.UseVisualStyleBackColor = true;
-            this.btDeactivateAccount.Click += new System.EventHandler(this.btDeactivateAccount_Click);
             // 
             // ucUserProfile
             // 
