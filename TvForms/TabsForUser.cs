@@ -13,7 +13,9 @@ namespace TvForms
 {
     public partial class TabsForUser : UserControl
     {
+        BaseRepository<Channel> _channelRepo = new BaseRepository<Channel>();
 
+        //ToDO Use only one UC
         private ucChannelShowInfo _allChannelInfo;
         private ucChannelShowInfo _myChannelInfo;
         private ucChannelShowInfo _myShowsInfo;
@@ -29,18 +31,19 @@ namespace TvForms
 
         public TabsForUser()
         {
+            //ToDo Load channels for put in into constructor of ucChannelShowInfo
             InitializeComponent();
 
             //_chosenChannels = new List<Channel>();
             ChosenChannels = new List<Channel>();
 
-            _allChannelInfo = new ucChannelShowInfo(0);
-            _myChannelInfo = new ucChannelShowInfo(1);
-            _myShowsInfo = new ucChannelShowInfo(2);
-            
-            TabInfo = _allChannelInfo;
-            tabForUsers.SelectedTab.Controls.Add(TabInfo);
-            //tabPan_AllChannels.Controls.Add(new ucChannelShowInfo(tab));
+            //_allChannelInfo = new ucChannelShowInfo(0);
+            //_myChannelInfo = new ucChannelShowInfo(1);
+            //_myShowsInfo = new ucChannelShowInfo(2);
+            ChosenChannels = _channelRepo.GetAll().ToList();
+            //TabInfo = _allChannelInfo;
+            //tabForUsers.SelectedTab.Controls.Add(TabInfo);
+            tabPan_AllChannels.Controls.Add(new ucChannelShowInfo(ChosenChannels));
             //tabPan_MyShow.Controls.Add(MyShowTab);
         }
         

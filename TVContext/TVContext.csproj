@@ -50,9 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionalService.cs" />
+    <Compile Include="BaseRepository.cs" />
     <Compile Include="Channel.cs" />
+    <Compile Include="CommentedEntity.cs" />
     <Compile Include="DepositAccount.cs" />
     <Compile Include="EUserType.cs" />
+    <Compile Include="IdentificableEntity.cs" />
     <Compile Include="Migrations\201608090958303_init.cs" />
     <Compile Include="Migrations\201608090958303_init.Designer.cs">
       <DependentUpon>201608090958303_init.cs</DependentUpon>

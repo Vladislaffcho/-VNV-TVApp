@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TVContext
 {
-    public class User
+    public class User : IdentificableEntity
     {
 
         public User()
         {
-           
+            //Add all collections
+            UserAddresses = new List<UserAddress>();
         } 
 
         // set user's unique identifier
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+       
 
         // set first name
         [MinLength(2, ErrorMessage = "Too short name (must be 2-30)")]

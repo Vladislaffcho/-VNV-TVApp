@@ -33,23 +33,30 @@ namespace TvForms
 
         public List<Channel> MyChannelsChoose { get; set; }// = new List<Channel>();
 
-        public ucChannelShowInfo(int selectedIndex)
+        //ToDo Why??
+        public ucChannelShowInfo(int selectedIndex = 0)
         {
             _mainTabIndex = selectedIndex;
             MyChannelsChoose = new List<Channel>();
 
             InitializeComponent();
 
-            switch (_mainTabIndex)
-            {
-                case 0: ShowAllChanAndShows(); break;
-                case 1: ShowMyChannelsAndAllShows(); break;
-                case 2: ShowMyChanAndMyShows(); break;
-                default: MessageBox.Show("Something went wrong during dowload ChannelShowInfo form"); break;
-            }
+            //switch (_mainTabIndex)
+            //{
+            //    case 0: ShowAllChanAndShows(); break;
+            //    case 1: ShowMyChannelsAndAllShows(); break;
+            //    case 2: ShowMyChanAndMyShows(); break;
+            //    default: MessageBox.Show("Something went wrong during dowload ChannelShowInfo form"); break;
+            //}
 
         }
 
+
+        public ucChannelShowInfo(List<Channel> channels)
+        {
+            //ToDo Load info from channels to channels list and to shows UC
+            InitializeComponent();
+        }
 
         public void ShowAllChanAndShows()
         {
@@ -137,6 +144,7 @@ namespace TvForms
         {
             try
             {
+                //ToDo Remove or do good progress bar
                 var pF = new ProgressForm();
                 pF.Visible = true;
                 
@@ -148,35 +156,37 @@ namespace TvForms
 
                 if (xmlNodeList != null)
                 {
-
-                    int progress = 0;
-                    var lenght = xmlNodeList.Count;
-
-                    foreach (XmlNode node in xmlNodeList)
+                    using (TvDBContext context = new TvDBContext())
                     {
-                      
-                        pF.ShowProgress(progress, lenght);
-                        progress++;
+                        int progress = 0;
+                        var lenght = xmlNodeList.Count;
 
-                        TvDBContext context = new TvDBContext();
-                        var clientEntity = new Channel()
+                        foreach (XmlNode node in xmlNodeList)
                         {
-                            Name = node.FirstChild.InnerText,
-                            Price = 0,
-                            AgeLimit = false
-                        };
-                        context.Channels.Add(clientEntity);
-                        context.SaveChanges();
-                        
-                        //
-                        //Parse needs correct
-                        //
-                        ShowsList.ParseProgramm(filename, clientEntity.Id);
-                    }
 
-                    DownloadChannels();
-                    pF.Visible = false;
-                  
+                            pF.ShowProgress(progress, lenght);
+                            progress++;
+
+
+                            var clientEntity = new Channel()
+                            {
+                                Name = node.SelectSingleNode("/name").InnerText, // FirstChild.InnerText,
+                                Price = 0,
+                                AgeLimit = false
+                            };
+                            context.Channels.Add(clientEntity);
+
+
+                            //
+                            //Parse needs correct
+                            //
+                            ShowsList.ParseProgramm(filename, clientEntity.Id);
+                        }
+
+                        DownloadChannels();
+                        pF.Visible = false;
+                        context.SaveChanges();
+                    }
                     MessageBox.Show("Файл успешно импорторировался");
                 }
                 else

@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8177BFBE-E63B-4314-AE1D-5A492EF5B008}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TvForms</RootNamespace>
     <AssemblyName>TvForms</AssemblyName>
@@ -28,6 +28,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -62,12 +65,19 @@
       <DependentUpon>CoreForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper.cs" />
+    <Compile Include="PassForm - Copy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PassForm - Copy.Designer.cs">
+      <DependentUpon>PassForm - Copy.cs</DependentUpon>
+    </Compile>
     <Compile Include="PassForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PassForm.Designer.cs">
       <DependentUpon>PassForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="ProgressForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,10 +114,14 @@
     <Compile Include="ucShowProgramsListV.Designer.cs">
       <DependentUpon>ucShowProgramsListV.cs</DependentUpon>
     </Compile>
+    <Compile Include="XmlFileHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CoreForm.resx">
       <DependentUpon>CoreForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PassForm - Copy.resx">
+      <DependentUpon>PassForm - Copy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PassForm.resx">
       <DependentUpon>PassForm.cs</DependentUpon>

@@ -18,6 +18,7 @@ namespace TVContext
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         
+        //ToDo Rename to DueDate
         // date when schedule expires
         [Column(TypeName = "datetime2")]
         [Required]
@@ -27,6 +28,7 @@ namespace TVContext
         [Required]
         public virtual User User { get; set; }
 
+        //ToDo Naming convention !!!! TvShows
         // set show ID from TVShow table
         [Required]
         public virtual ICollection<TVShow> TVShows { get; set; }

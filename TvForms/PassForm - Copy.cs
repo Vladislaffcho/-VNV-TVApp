@@ -13,12 +13,12 @@ using TVContext;
 
 namespace TvForms
 {
-    public partial class PassForm : Form
+    public partial class PassFormCopy : Form
     {
 
         public User CurrentUser { get; set; }
 
-        public PassForm()
+        public PassFormCopy()
         {
             InitializeComponent();
             //set cursor in password textBox field by default
@@ -89,19 +89,19 @@ namespace TvForms
             return CurrentUser;
         }
 
-        private void PassForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            var eventSource = (Form) sender;
-            if (eventSource.DialogResult == DialogResult.OK)
-            {
-                CurrentUser = UserDetect();
-                if (CurrentUser == null)
-                {
-                    DisplayError("Incorrect login or password", "Access denied");
-                    e.Cancel = true;
-                }
-            }
-        }
+        //private void PassForm_FormClosing(object sender, FormClosingEventArgs e)
+        //{
+        //    var eventSource = (Form) sender;
+        //    if (eventSource.DialogResult == DialogResult.OK)
+        //    {
+        //        CurrentUser = UserDetect();
+        //        if (CurrentUser == null)
+        //        {
+        //            DisplayError("Incorrect login or password", "Access denied");
+        //            e.Cancel = true;
+        //        }
+        //    }
+        //}
 
         private static void DisplayError(string text, string caption)
         {
@@ -114,8 +114,18 @@ namespace TvForms
             tbPassForm_Pass.UseSystemPasswordChar = !chBPassForm_ShowPass.Checked;
         }
 
-
-
-
+        private void PassForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var eventSource = (Form)sender;
+            if (eventSource.DialogResult == DialogResult.OK)
+            {
+                CurrentUser = UserDetect();
+                if (CurrentUser == null)
+                {
+                    DisplayError("Incorrect login or password", "Access denied");
+                    e.Cancel = true;
+                }
+            }
+        }
     }
 }

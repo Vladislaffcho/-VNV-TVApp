@@ -15,17 +15,37 @@ namespace TvForms
 {
     public partial class CoreForm : Form
     {
+        //ToDo Review need to store all user data
         private User CurrentUser { get; set; }
 
+        //ToDo Review WTF? Naming convention!!!
         private TabsForUser UserWindow { get; set; }
         private ucAdminView AdminWindow { get; set; }
 
         
-        public CoreForm(User whoUser)
-        {
+        //public CoreForm(User whoUser)
+        //{
         
+        //    InitializeComponent();
+        //    CurrentUser = whoUser;
+
+        //    switch (CurrentUser.UserType.Id)
+        //    {
+        //        case EUserType.ADMIN: //admin
+        //            panelCore.Controls.Add(new ucAdminView(CurrentUser));
+        //            break;
+        //        case EUserType.CLIENT: //user
+        //            panelCore.Controls.Add(new TabsForUser());
+        //            break;
+        //    }
+            
+        //}
+
+        public CoreForm()
+        {
+
             InitializeComponent();
-            CurrentUser = whoUser;
+            ShowLoginForm();
 
             switch (CurrentUser.UserType.Id)
             {
@@ -36,9 +56,23 @@ namespace TvForms
                     panelCore.Controls.Add(new TabsForUser());
                     break;
             }
-            
+
         }
-        
+
+        private void ShowLoginForm()
+        {
+            PassFormCopy lg = new PassFormCopy();
+            if (lg.ShowDialog() == DialogResult.OK)
+            {
+                CurrentUser = lg.CurrentUser;
+            }
+            else
+            {
+                Close();
+            }
+        }
+
+
         private void bCancelCore_Click(object sender, EventArgs e)
         {
             Close();
@@ -57,6 +91,7 @@ namespace TvForms
 
         private void openXmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //ToDo Naming convention!
             OpenFileDialog OpenXml = new OpenFileDialog();
 
             //String savePath = @"c:\temp\uploads\";
@@ -70,7 +105,8 @@ namespace TvForms
                 //
                 //Parse needs correct
                 //
-                UserWindow.TabInfo.ParseChannel(OpenXml.FileName);
+                XmlFileHelper.ParseChannel(OpenXml.FileName);
+                //UserWindow.TabInfo.ParseChannel(OpenXml.FileName);
             }
         }
 

@@ -49,8 +49,8 @@ namespace TvForms
         {
             using (var context = new TvDBContext())
             {
-                var sh = from s in context.TvShows
-                         select s;
+                var sh = (from s in context.TvShows
+                         select s).ToList();
 
                 int number = 1;
                 foreach (var item in sh)

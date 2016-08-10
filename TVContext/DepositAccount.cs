@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TVContext
 {
+    //TODO Rename to Account
     public class DepositAccount
     {
         public DepositAccount()
