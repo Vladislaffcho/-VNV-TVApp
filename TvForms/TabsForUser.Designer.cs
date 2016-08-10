@@ -47,6 +47,8 @@
             this.tabForUsers.SelectedIndex = 0;
             this.tabForUsers.Size = new System.Drawing.Size(641, 352);
             this.tabForUsers.TabIndex = 4;
+            //this.tabForUsers.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabForUsers_Selecting);
+            this.tabForUsers.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabForUsers_Selected);
             // 
             // tabPan_AllChannels
             // 

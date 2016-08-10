@@ -7,27 +7,72 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TVContext;
 
 namespace TvForms
 {
     public partial class TabsForUser : UserControl
     {
 
-        public ucChannelShowInfo AllChannelTab { get; set; }
-        public ucChannelShowInfo MyChannelTab { get; set; }
-        public ucChannelShowInfo MyShowTab { get; set; }
+        private ucChannelShowInfo _allChannelInfo;
+        private ucChannelShowInfo _myChannelInfo;
+        private ucChannelShowInfo _myShowsInfo;
+
+        public ucChannelShowInfo TabInfo { get; set; }
+
+        //private List<Channel> _chosenChannels;
+
+        public List<Channel> ChosenChannels { get; set; }
+
+        //public ucChannelShowInfo MyChannelTab = new ucChannelShowInfo(true, true);
+        //public ucChannelShowInfo MyShowTab = new ucChannelShowInfo(false, true);
 
         public TabsForUser()
         {
             InitializeComponent();
 
-            AllChannelTab = new ucChannelShowInfo(true, false);
-            MyChannelTab = new ucChannelShowInfo(true, true);
-            MyShowTab = new ucChannelShowInfo(false, true);
+            //_chosenChannels = new List<Channel>();
+            ChosenChannels = new List<Channel>();
 
-            tabPan_AllChannels.Controls.Add(AllChannelTab);
-            tabPan_MyChannels.Controls.Add(MyChannelTab);
-            tabPan_MyShow.Controls.Add(MyShowTab);
+            _allChannelInfo = new ucChannelShowInfo(0);
+            _myChannelInfo = new ucChannelShowInfo(1);
+            _myShowsInfo = new ucChannelShowInfo(2);
+            
+            TabInfo = _allChannelInfo;
+            tabForUsers.SelectedTab.Controls.Add(TabInfo);
+            //tabPan_AllChannels.Controls.Add(new ucChannelShowInfo(tab));
+            //tabPan_MyShow.Controls.Add(MyShowTab);
+        }
+        
+        public int GetIndexMainTab()
+        {
+            return tabForUsers.SelectedIndex;
+        }
+
+        private void tabForUsers_Selected(object sender, TabControlEventArgs e)
+        {
+            //ChosenChannels = TabInfo.MyChannelsChoose;
+
+            switch (GetIndexMainTab())
+            {
+                case 0:
+                    TabInfo = _allChannelInfo;
+                    ChosenChannels = TabInfo.MyChannelsChoose;
+                    break;
+                case 1:
+                    //ChosenChannels = new List<Channel>();
+                    ChosenChannels = TabInfo.MyChannelsChoose;
+                    _myChannelInfo.MyChannelsChoose = ChosenChannels;
+                    _myChannelInfo.ShowMyChannelsAndAllShows();
+                    TabInfo = _myChannelInfo;
+                    break;
+                case 2:
+                    //TabInfo.GetCheckedChannels();
+                    TabInfo = _myShowsInfo;
+                    break;
+            }
+
+            tabForUsers.SelectedTab.Controls.Add(TabInfo);
         }
     }
 }

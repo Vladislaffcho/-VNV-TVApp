@@ -14,6 +14,9 @@ namespace TvForms
 {
     public partial class PassForm : Form
     {
+
+        public User CurrentUser { get; set; }
+
         public PassForm()
         {
             InitializeComponent();
@@ -33,8 +36,7 @@ namespace TvForms
             this.tbPassForm_Login.Text = "user"; //delete this string when program will be tested
             this.tbPassForm_Pass.Text = "2222";  //delete this string when program will be tested
         }
-
-        public User CurrentUser { get; set; }
+        
 
         public User UserDetect()
         {
@@ -46,7 +48,7 @@ namespace TvForms
                     string loginEntered = tbPassForm_Login.Text;
                     string passEntered = tbPassForm_Pass.Text;
 
-                    var user =from p in context.Users
+                    var user = from p in context.Users
                         where (p.Login == loginEntered &&
                                p.Password == passEntered)
                         select p;
@@ -66,7 +68,7 @@ namespace TvForms
                         //CurrentUser.DepositAccount = user.First().DepositAccount;
                         CurrentUser.FirstName = user.First().FirstName;
                         CurrentUser.LastName = user.First().LastName;                        
-                     }
+                    }
                 }
             }
             else

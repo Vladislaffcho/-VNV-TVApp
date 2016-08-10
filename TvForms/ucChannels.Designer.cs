@@ -29,14 +29,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabAllCh_Shows = new System.Windows.Forms.TabControl();
-            this.tabAllCh_Sunday = new System.Windows.Forms.TabPage();
-            this.tabAllCh_Monday = new System.Windows.Forms.TabPage();
-            this.tabAllCh_Tuesday = new System.Windows.Forms.TabPage();
-            this.tabAllCh_Wednesday = new System.Windows.Forms.TabPage();
-            this.tabAllCh_Thursday = new System.Windows.Forms.TabPage();
-            this.tabAllCh_Friday = new System.Windows.Forms.TabPage();
-            this.tabAllCh_Saturday = new System.Windows.Forms.TabPage();
+            this.tabControl_Shows = new System.Windows.Forms.TabControl();
+            this.tabShows_Sunday = new System.Windows.Forms.TabPage();
+            this.tabShows_Monday = new System.Windows.Forms.TabPage();
+            this.tabShows_Tuesday = new System.Windows.Forms.TabPage();
+            this.tabShows_Wednesday = new System.Windows.Forms.TabPage();
+            this.tabShows_Thursday = new System.Windows.Forms.TabPage();
+            this.tabShows_Friday = new System.Windows.Forms.TabPage();
+            this.tabShows_Saturday = new System.Windows.Forms.TabPage();
             this.lbAllCh_Price = new System.Windows.Forms.Label();
             this.maskTbAllCh_Price = new System.Windows.Forms.MaskedTextBox();
             this.lbAllCh_UAH = new System.Windows.Forms.Label();
@@ -48,96 +48,96 @@
             this.lvChannelsList = new System.Windows.Forms.ListView();
             this.lvChNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvChName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tabAllCh_Shows.SuspendLayout();
+            this.tabControl_Shows.SuspendLayout();
             this.gbAllCh_Description.SuspendLayout();
             this.gbUcAllChannel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabAllCh_Shows
+            // tabControl_Shows
             // 
-            this.tabAllCh_Shows.Controls.Add(this.tabAllCh_Sunday);
-            this.tabAllCh_Shows.Controls.Add(this.tabAllCh_Monday);
-            this.tabAllCh_Shows.Controls.Add(this.tabAllCh_Tuesday);
-            this.tabAllCh_Shows.Controls.Add(this.tabAllCh_Wednesday);
-            this.tabAllCh_Shows.Controls.Add(this.tabAllCh_Thursday);
-            this.tabAllCh_Shows.Controls.Add(this.tabAllCh_Friday);
-            this.tabAllCh_Shows.Controls.Add(this.tabAllCh_Saturday);
-            this.tabAllCh_Shows.Location = new System.Drawing.Point(217, 14);
-            this.tabAllCh_Shows.Name = "tabAllCh_Shows";
-            this.tabAllCh_Shows.SelectedIndex = 0;
-            this.tabAllCh_Shows.Size = new System.Drawing.Size(414, 214);
-            this.tabAllCh_Shows.TabIndex = 2;
-            this.tabAllCh_Shows.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabAllCh_Shows_Selecting);
+            this.tabControl_Shows.Controls.Add(this.tabShows_Sunday);
+            this.tabControl_Shows.Controls.Add(this.tabShows_Monday);
+            this.tabControl_Shows.Controls.Add(this.tabShows_Tuesday);
+            this.tabControl_Shows.Controls.Add(this.tabShows_Wednesday);
+            this.tabControl_Shows.Controls.Add(this.tabShows_Thursday);
+            this.tabControl_Shows.Controls.Add(this.tabShows_Friday);
+            this.tabControl_Shows.Controls.Add(this.tabShows_Saturday);
+            this.tabControl_Shows.Location = new System.Drawing.Point(217, 14);
+            this.tabControl_Shows.Name = "tabControl_Shows";
+            this.tabControl_Shows.SelectedIndex = 0;
+            this.tabControl_Shows.Size = new System.Drawing.Size(414, 214);
+            this.tabControl_Shows.TabIndex = 2;
+            this.tabControl_Shows.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabAllCh_Shows_Selecting);
             // 
-            // tabAllCh_Sunday
+            // tabShows_Sunday
             // 
-            this.tabAllCh_Sunday.Location = new System.Drawing.Point(4, 22);
-            this.tabAllCh_Sunday.Name = "tabAllCh_Sunday";
-            this.tabAllCh_Sunday.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAllCh_Sunday.Size = new System.Drawing.Size(406, 188);
-            this.tabAllCh_Sunday.TabIndex = 8;
-            this.tabAllCh_Sunday.Text = "Sunday";
-            this.tabAllCh_Sunday.UseVisualStyleBackColor = true;
+            this.tabShows_Sunday.Location = new System.Drawing.Point(4, 22);
+            this.tabShows_Sunday.Name = "tabShows_Sunday";
+            this.tabShows_Sunday.Padding = new System.Windows.Forms.Padding(3);
+            this.tabShows_Sunday.Size = new System.Drawing.Size(406, 188);
+            this.tabShows_Sunday.TabIndex = 8;
+            this.tabShows_Sunday.Text = "Sunday";
+            this.tabShows_Sunday.UseVisualStyleBackColor = true;
             // 
-            // tabAllCh_Monday
+            // tabShows_Monday
             // 
-            this.tabAllCh_Monday.Location = new System.Drawing.Point(4, 22);
-            this.tabAllCh_Monday.Name = "tabAllCh_Monday";
-            this.tabAllCh_Monday.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAllCh_Monday.Size = new System.Drawing.Size(406, 188);
-            this.tabAllCh_Monday.TabIndex = 1;
-            this.tabAllCh_Monday.Text = "Monday";
-            this.tabAllCh_Monday.UseVisualStyleBackColor = true;
+            this.tabShows_Monday.Location = new System.Drawing.Point(4, 22);
+            this.tabShows_Monday.Name = "tabShows_Monday";
+            this.tabShows_Monday.Padding = new System.Windows.Forms.Padding(3);
+            this.tabShows_Monday.Size = new System.Drawing.Size(406, 188);
+            this.tabShows_Monday.TabIndex = 1;
+            this.tabShows_Monday.Text = "Monday";
+            this.tabShows_Monday.UseVisualStyleBackColor = true;
             // 
-            // tabAllCh_Tuesday
+            // tabShows_Tuesday
             // 
-            this.tabAllCh_Tuesday.Location = new System.Drawing.Point(4, 22);
-            this.tabAllCh_Tuesday.Name = "tabAllCh_Tuesday";
-            this.tabAllCh_Tuesday.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAllCh_Tuesday.Size = new System.Drawing.Size(406, 188);
-            this.tabAllCh_Tuesday.TabIndex = 7;
-            this.tabAllCh_Tuesday.Text = "Tuesday";
-            this.tabAllCh_Tuesday.UseVisualStyleBackColor = true;
+            this.tabShows_Tuesday.Location = new System.Drawing.Point(4, 22);
+            this.tabShows_Tuesday.Name = "tabShows_Tuesday";
+            this.tabShows_Tuesday.Padding = new System.Windows.Forms.Padding(3);
+            this.tabShows_Tuesday.Size = new System.Drawing.Size(406, 188);
+            this.tabShows_Tuesday.TabIndex = 7;
+            this.tabShows_Tuesday.Text = "Tuesday";
+            this.tabShows_Tuesday.UseVisualStyleBackColor = true;
             // 
-            // tabAllCh_Wednesday
+            // tabShows_Wednesday
             // 
-            this.tabAllCh_Wednesday.Location = new System.Drawing.Point(4, 22);
-            this.tabAllCh_Wednesday.Name = "tabAllCh_Wednesday";
-            this.tabAllCh_Wednesday.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAllCh_Wednesday.Size = new System.Drawing.Size(406, 188);
-            this.tabAllCh_Wednesday.TabIndex = 3;
-            this.tabAllCh_Wednesday.Text = "Wednesday";
-            this.tabAllCh_Wednesday.UseVisualStyleBackColor = true;
+            this.tabShows_Wednesday.Location = new System.Drawing.Point(4, 22);
+            this.tabShows_Wednesday.Name = "tabShows_Wednesday";
+            this.tabShows_Wednesday.Padding = new System.Windows.Forms.Padding(3);
+            this.tabShows_Wednesday.Size = new System.Drawing.Size(406, 188);
+            this.tabShows_Wednesday.TabIndex = 3;
+            this.tabShows_Wednesday.Text = "Wednesday";
+            this.tabShows_Wednesday.UseVisualStyleBackColor = true;
             // 
-            // tabAllCh_Thursday
+            // tabShows_Thursday
             // 
-            this.tabAllCh_Thursday.Location = new System.Drawing.Point(4, 22);
-            this.tabAllCh_Thursday.Name = "tabAllCh_Thursday";
-            this.tabAllCh_Thursday.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAllCh_Thursday.Size = new System.Drawing.Size(406, 188);
-            this.tabAllCh_Thursday.TabIndex = 4;
-            this.tabAllCh_Thursday.Text = "Thursday";
-            this.tabAllCh_Thursday.UseVisualStyleBackColor = true;
+            this.tabShows_Thursday.Location = new System.Drawing.Point(4, 22);
+            this.tabShows_Thursday.Name = "tabShows_Thursday";
+            this.tabShows_Thursday.Padding = new System.Windows.Forms.Padding(3);
+            this.tabShows_Thursday.Size = new System.Drawing.Size(406, 188);
+            this.tabShows_Thursday.TabIndex = 4;
+            this.tabShows_Thursday.Text = "Thursday";
+            this.tabShows_Thursday.UseVisualStyleBackColor = true;
             // 
-            // tabAllCh_Friday
+            // tabShows_Friday
             // 
-            this.tabAllCh_Friday.Location = new System.Drawing.Point(4, 22);
-            this.tabAllCh_Friday.Name = "tabAllCh_Friday";
-            this.tabAllCh_Friday.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAllCh_Friday.Size = new System.Drawing.Size(406, 188);
-            this.tabAllCh_Friday.TabIndex = 5;
-            this.tabAllCh_Friday.Text = "Friday";
-            this.tabAllCh_Friday.UseVisualStyleBackColor = true;
+            this.tabShows_Friday.Location = new System.Drawing.Point(4, 22);
+            this.tabShows_Friday.Name = "tabShows_Friday";
+            this.tabShows_Friday.Padding = new System.Windows.Forms.Padding(3);
+            this.tabShows_Friday.Size = new System.Drawing.Size(406, 188);
+            this.tabShows_Friday.TabIndex = 5;
+            this.tabShows_Friday.Text = "Friday";
+            this.tabShows_Friday.UseVisualStyleBackColor = true;
             // 
-            // tabAllCh_Saturday
+            // tabShows_Saturday
             // 
-            this.tabAllCh_Saturday.Location = new System.Drawing.Point(4, 22);
-            this.tabAllCh_Saturday.Name = "tabAllCh_Saturday";
-            this.tabAllCh_Saturday.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAllCh_Saturday.Size = new System.Drawing.Size(406, 188);
-            this.tabAllCh_Saturday.TabIndex = 6;
-            this.tabAllCh_Saturday.Text = "Saturday";
-            this.tabAllCh_Saturday.UseVisualStyleBackColor = true;
+            this.tabShows_Saturday.Location = new System.Drawing.Point(4, 22);
+            this.tabShows_Saturday.Name = "tabShows_Saturday";
+            this.tabShows_Saturday.Padding = new System.Windows.Forms.Padding(3);
+            this.tabShows_Saturday.Size = new System.Drawing.Size(406, 188);
+            this.tabShows_Saturday.TabIndex = 6;
+            this.tabShows_Saturday.Text = "Saturday";
+            this.tabShows_Saturday.UseVisualStyleBackColor = true;
             // 
             // lbAllCh_Price
             // 
@@ -210,7 +210,7 @@
             this.gbUcAllChannel.Controls.Add(this.lbAllCh_UAH);
             this.gbUcAllChannel.Controls.Add(this.maskTbAllCh_Price);
             this.gbUcAllChannel.Controls.Add(this.lbAllCh_Price);
-            this.gbUcAllChannel.Controls.Add(this.tabAllCh_Shows);
+            this.gbUcAllChannel.Controls.Add(this.tabControl_Shows);
             this.gbUcAllChannel.Location = new System.Drawing.Point(0, 0);
             this.gbUcAllChannel.Name = "gbUcAllChannel";
             this.gbUcAllChannel.Size = new System.Drawing.Size(631, 324);
@@ -237,7 +237,8 @@
             this.lvChannelsList.TabIndex = 9;
             this.lvChannelsList.UseCompatibleStateImageBehavior = false;
             this.lvChannelsList.View = System.Windows.Forms.View.Details;
-            
+            this.lvChannelsList.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lvChannelsList_ItemChecked);
+
             // 
             // lvChNumber
             // 
@@ -257,7 +258,7 @@
             this.Controls.Add(this.gbUcAllChannel);
             this.Name = "ucChannelShowInfo";
             this.Size = new System.Drawing.Size(634, 327);
-            this.tabAllCh_Shows.ResumeLayout(false);
+            this.tabControl_Shows.ResumeLayout(false);
             this.gbAllCh_Description.ResumeLayout(false);
             this.gbUcAllChannel.ResumeLayout(false);
             this.gbUcAllChannel.PerformLayout();
@@ -266,12 +267,12 @@
         }
 
         #endregion
-        private System.Windows.Forms.TabControl tabAllCh_Shows;
-        private System.Windows.Forms.TabPage tabAllCh_Monday;
-        private System.Windows.Forms.TabPage tabAllCh_Wednesday;
-        private System.Windows.Forms.TabPage tabAllCh_Thursday;
-        private System.Windows.Forms.TabPage tabAllCh_Friday;
-        private System.Windows.Forms.TabPage tabAllCh_Saturday;
+        private System.Windows.Forms.TabControl tabControl_Shows;
+        private System.Windows.Forms.TabPage tabShows_Monday;
+        private System.Windows.Forms.TabPage tabShows_Wednesday;
+        private System.Windows.Forms.TabPage tabShows_Thursday;
+        private System.Windows.Forms.TabPage tabShows_Friday;
+        private System.Windows.Forms.TabPage tabShows_Saturday;
         private System.Windows.Forms.Label lbAllCh_Price;
         private System.Windows.Forms.MaskedTextBox maskTbAllCh_Price;
         private System.Windows.Forms.Label lbAllCh_UAH;
@@ -283,7 +284,7 @@
         private System.Windows.Forms.ListView lvChannelsList;
         private System.Windows.Forms.ColumnHeader lvChNumber;
         private System.Windows.Forms.ColumnHeader lvChName;
-        private System.Windows.Forms.TabPage tabAllCh_Tuesday;
-        private System.Windows.Forms.TabPage tabAllCh_Sunday;
+        private System.Windows.Forms.TabPage tabShows_Tuesday;
+        private System.Windows.Forms.TabPage tabShows_Sunday;
     }
 }

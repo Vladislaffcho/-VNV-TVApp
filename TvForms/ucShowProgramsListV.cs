@@ -25,12 +25,24 @@ namespace TvForms
         }
 
 
-        public ucShowProgramsListV(int day, bool isCheckBox)
+        public ucShowProgramsListV(int tabDay, int mainTabIndex)
         {
             InitializeComponent();
-            lvShowPrograms.CheckBoxes = isCheckBox;
-            _downloadDay = day;
+            _downloadDay = tabDay;
             DownloadShows();
+
+            switch (mainTabIndex)
+            {
+                case 0:
+                    lvShowPrograms.CheckBoxes = false;
+                    break;
+                case 1:
+                    lvShowPrograms.CheckBoxes = true;
+                    break;
+                case 2:
+                    lvShowPrograms.CheckBoxes = true;
+                    break;
+            }
         }
 
         private void DownloadShows()
@@ -39,10 +51,18 @@ namespace TvForms
             {
                 var sh = from s in context.TvShows
                          select s;
+
                 int number = 1;
                 foreach (var item in sh)
-                    if ((int)item.Date.DayOfWeek == _downloadDay)
+                {
+                    int progDay = (int) item.Date.DayOfWeek;
+                    int dayOfMonth = (int)item.Date.Day;
+                    int difference = Math.Abs(dayOfMonth - (int)sh.First().Date.Day) ;
+                    if (progDay == _downloadDay && difference < 7)
+                    {
                         AddItemToListView(item, ref number);
+                    }
+                }
             }
         }
 
@@ -62,7 +82,7 @@ namespace TvForms
             try
             {
                 TvDBContext context = new TvDBContext();
-                List<TVShow> tvshows = new List<TVShow>();
+                //List<TVShow> tvshows = new List<TVShow>();
 
                 //XmlNode searched = null;
                 XmlDocument doc = new XmlDocument();

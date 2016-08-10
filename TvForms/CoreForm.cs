@@ -30,12 +30,10 @@ namespace TvForms
             switch (CurrentUser.UserType.Id)
             {
                 case EUserType.ADMIN: //admin
-                    AdminWindow = new ucAdminView(CurrentUser);
-                    panelCore.Controls.Add(AdminWindow);
+                    panelCore.Controls.Add(new ucAdminView(CurrentUser));
                     break;
                 case EUserType.CLIENT: //user
-                    UserWindow = new TabsForUser();
-                    panelCore.Controls.Add(UserWindow);
+                    panelCore.Controls.Add(new TabsForUser());
                     break;
             }
             
@@ -72,7 +70,7 @@ namespace TvForms
                 //
                 //Parse needs correct
                 //
-                UserWindow.AllChannelTab.ParseChannel(OpenXml.FileName);
+                UserWindow.TabInfo.ParseChannel(OpenXml.FileName);
             }
         }
 
@@ -83,11 +81,6 @@ namespace TvForms
         }
 
         
-
-
-
-
-
         //Uncomment when bookmarks will be ready end specify appropriate one!!!!
         //private void tVShowsToolStripMenuItem_Click(object sender, EventArgs e)
         //{
