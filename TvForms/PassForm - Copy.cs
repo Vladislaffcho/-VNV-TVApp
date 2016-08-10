@@ -13,23 +13,29 @@ using TVContext;
 
 namespace TvForms
 {
-    public partial class PassForm : Form
+    public partial class PassFormCopy : Form
     {
 
         public User CurrentUser { get; set; }
 
-        public PassForm()
+        public PassFormCopy()
         {
             InitializeComponent();
-
+            //set cursor in password textBox field by default
             this.tbPassForm_Pass.Select();
             this.tbPassForm_Pass.ScrollToCaret();
-            CurrentUser = new User();
-            /*this.tbEnForm_Login.Text = "root"; //delete this string when program will be tested
-            this.tbEnForm_Pass.Text = "1111";  //delete this string when program will be tested*/
+            //hide characters in pass field by default
+            tbPassForm_Pass.UseSystemPasswordChar = !chBPassForm_ShowPass.Checked;
+
+            //
+            //
+            //will be deleted after finish program
+            //
+            //
+            //this.tbPassForm_Login.Text = "root"; //delete this string when program will be tested
+            //this.tbPassForm_Pass.Text = "1111";  //delete this string when program will be tested
             this.tbPassForm_Login.Text = "user"; //delete this string when program will be tested
             this.tbPassForm_Pass.Text = "2222";  //delete this string when program will be tested
-            tbPassForm_Pass.UseSystemPasswordChar = !chBPassForm_ShowPass.Checked;
         }
         
 
@@ -83,19 +89,19 @@ namespace TvForms
             return CurrentUser;
         }
 
-        private void PassForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            var eventSource = (Form) sender;
-            if (eventSource.DialogResult == DialogResult.OK)
-            {
-                CurrentUser = UserDetect();
-                if (CurrentUser == null)
-                {
-                    DisplayError("Incorrect login or password", "Access denied");
-                    e.Cancel = true;
-                }
-            }
-        }
+        //private void PassForm_FormClosing(object sender, FormClosingEventArgs e)
+        //{
+        //    var eventSource = (Form) sender;
+        //    if (eventSource.DialogResult == DialogResult.OK)
+        //    {
+        //        CurrentUser = UserDetect();
+        //        if (CurrentUser == null)
+        //        {
+        //            DisplayError("Incorrect login or password", "Access denied");
+        //            e.Cancel = true;
+        //        }
+        //    }
+        //}
 
         private static void DisplayError(string text, string caption)
         {
@@ -106,6 +112,20 @@ namespace TvForms
         private void chBPassForm_ShowPass_CheckStateChanged(object sender, EventArgs e)
         {
             tbPassForm_Pass.UseSystemPasswordChar = !chBPassForm_ShowPass.Checked;
+        }
+
+        private void PassForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var eventSource = (Form)sender;
+            if (eventSource.DialogResult == DialogResult.OK)
+            {
+                CurrentUser = UserDetect();
+                if (CurrentUser == null)
+                {
+                    DisplayError("Incorrect login or password", "Access denied");
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }

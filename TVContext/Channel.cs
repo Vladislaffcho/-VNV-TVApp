@@ -6,20 +6,13 @@ using System.Data;
 
 namespace TVContext
 {
-    public class Channel
+    public class Channel : IdentificableEntity
     {
         public Channel()
         {
 
         }
 
-        //primary key
-        //autoincrement
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
-       
         //channel name
         [Required]
         public string Name { get; set; }
@@ -27,7 +20,8 @@ namespace TVContext
         //channel price per week
         [Required]
         public double Price { get; set; }
-     
+
+        //ToDo Naming convention !!!! IsAgeLimit
         // if ageLimit 18+ - true
         [Required]
         [DefaultValue(false)]

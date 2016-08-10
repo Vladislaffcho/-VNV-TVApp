@@ -58,19 +58,31 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+    <Compile Include="ActionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActionForm.Designer.cs">
+      <DependentUpon>ActionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddUserDataForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AddUserDataForm.Designer.cs">
       <DependentUpon>AddUserDataForm.cs</DependentUpon>
     </Compile>
+=======
+>>>>>>> ucChannelShowInfo
     <Compile Include="CoreForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CoreForm.Designer.cs">
       <DependentUpon>CoreForm.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="DeleteUserData.cs" />
+    <Compile Include="Helper.cs" />
+=======
     <Compile Include="Helper.cs" />
     <Compile Include="PassForm - Copy.cs">
       <SubType>Form</SubType>
@@ -78,6 +90,7 @@
     <Compile Include="PassForm - Copy.Designer.cs">
       <DependentUpon>PassForm - Copy.cs</DependentUpon>
     </Compile>
+>>>>>>> ucChannelShowInfo
     <Compile Include="PassForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,9 +110,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="TabsForUser.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+<<<<<<< HEAD
     <Compile Include="ucAddAddress.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -112,26 +123,36 @@
     <Compile Include="ucAdminView.Designer.cs">
       <DependentUpon>ucAdminView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucAllChannels.cs">
+=======
+    <Compile Include="TabsForUser.cs">
+>>>>>>> ucChannelShowInfo
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="TabsForUser.Designer.cs">
       <DependentUpon>TabsForUser.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="ucUpdateAddress.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ucUpdateAddress.Designer.cs">
       <DependentUpon>ucUpdateAddress.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucUserAccount.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ucUserAccount.Designer.cs">
-      <DependentUpon>ucUserAccount.cs</DependentUpon>
-    </Compile>
     <Compile Include="ucUserProfile.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ucUserProfile.Designer.cs">
       <DependentUpon>ucUserProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucUserView.cs">
+=======
+    <Compile Include="ucAdminView.cs">
+>>>>>>> ucChannelShowInfo
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucAdminView.Designer.cs">
+      <DependentUpon>ucAdminView.cs</DependentUpon>
     </Compile>
     <Compile Include="ucChannelShowInfo.cs">
       <SubType>UserControl</SubType>
@@ -145,18 +166,26 @@
     <Compile Include="ucShowProgramsListV.Designer.cs">
       <DependentUpon>ucShowProgramsListV.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="UpdateUserDataForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UpdateUserDataForm.Designer.cs">
       <DependentUpon>UpdateUserDataForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="XmlFileHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ActionForm.resx">
+      <DependentUpon>ActionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddUserDataForm.resx">
       <DependentUpon>AddUserDataForm.cs</DependentUpon>
     </EmbeddedResource>
+=======
+    <Compile Include="XmlFileHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+>>>>>>> ucChannelShowInfo
     <EmbeddedResource Include="CoreForm.resx">
       <DependentUpon>CoreForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -173,11 +202,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="ucAddAddress.resx">
       <DependentUpon>ucAddAddress.cs</DependentUpon>
-    </EmbeddedResource>
+=======
     <EmbeddedResource Include="TabsForUser.resx">
       <DependentUpon>TabsForUser.cs</DependentUpon>
+>>>>>>> ucChannelShowInfo
     </EmbeddedResource>
     <EmbeddedResource Include="ucAdminView.resx">
       <DependentUpon>ucAdminView.cs</DependentUpon>
@@ -185,14 +216,19 @@
     <EmbeddedResource Include="ucChannelShowInfo.resx">
       <DependentUpon>ucChannelShowInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucShowProgramsListV.resx">
-      <DependentUpon>ucShowProgramsListV.cs</DependentUpon>
-    </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="ucUpdateAddress.resx">
       <DependentUpon>ucUpdateAddress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucUserProfile.resx">
       <DependentUpon>ucUserProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucUserView.resx">
+      <DependentUpon>ucUserView.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="ucShowProgramsListV.resx">
+      <DependentUpon>ucShowProgramsListV.cs</DependentUpon>
+>>>>>>> ucChannelShowInfo
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateUserDataForm.resx">
       <DependentUpon>UpdateUserDataForm.cs</DependentUpon>

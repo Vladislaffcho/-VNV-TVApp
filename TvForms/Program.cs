@@ -8,7 +8,7 @@ using TvForms;
 using TVContext;
 
 
-namespace TVAppVNV
+namespace TvForms
 {
     static class Program
     {
@@ -21,12 +21,14 @@ namespace TVAppVNV
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            PassForm access = new PassForm();
-            access.ShowDialog();
-            User whoUser = access.CurrentUser;
+            //PassForm access = new PassForm();
+            //access.ShowDialog();
+            ////User whoUser = access.CurrentUser;
 
-            if(whoUser?.UserType != null)
-                Application.Run(new CoreForm(whoUser));
+            //if(access.CurrentUser != null)
+            //    Application.Run(new CoreForm(access.CurrentUser));
+
+            Application.Run(new CoreForm());
         }
     }
 }

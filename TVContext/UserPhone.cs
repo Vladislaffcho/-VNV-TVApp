@@ -4,12 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TVContext
 {
-    public class UserPhone
+    public class UserPhone : CommentedEntity
     {
-        public UserPhone()
-        {
-            
-        }
         //Mark this field as primary key
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -20,10 +16,6 @@ namespace TVContext
         [Required]
         public int Number { get; set; }
 
-        //comment for different situations
-        [MaxLength(100, ErrorMessage = "Too long comment (must be less than 100 symbols)")]
-        public string Comment { get; set; }
-        
         //Make linked entity as virtual for lazy loading work
         [Required]
         public virtual User User { get; set; }

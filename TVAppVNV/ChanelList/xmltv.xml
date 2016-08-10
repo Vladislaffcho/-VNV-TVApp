@@ -13,7 +13,7 @@
     <icon src="H:\TRASH\Kit 1.31\Providers\vsetv.com\Icons\24 (Телеканал новостей 24).gif" />
   </channel>
   <channel id="4">
-    <name lang="ru">24Док</name>
+    <name lang="ru">24 Док</name>
     <icon src="H:\TRASH\Kit 1.31\Providers\vsetv.com\Icons\24Док.gif" />
   </channel>
   <programme start="20160725060500 +0300" stop="20160725070000 +0300" channel="1">

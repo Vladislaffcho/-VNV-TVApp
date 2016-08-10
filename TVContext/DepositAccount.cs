@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TVContext
 {
+    //TODO Rename to Account
     public class DepositAccount
     {
         public DepositAccount()
@@ -26,6 +27,7 @@ namespace TVContext
         //comment for different situations
         [MaxLength(100, ErrorMessage = "Too long comment (up 100 symbols)")]
         public string Comment { get; set; }
+
 
         //Make linked entity as virtual for lazy loading workS
         public virtual User User { get; set; }

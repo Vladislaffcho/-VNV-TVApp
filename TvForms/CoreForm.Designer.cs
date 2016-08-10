@@ -31,10 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CoreForm));
             this.bSaveCore = new System.Windows.Forms.Button();
             this.bCancelCore = new System.Windows.Forms.Button();
-            this.pnCoreForm = new System.Windows.Forms.Panel();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changeScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveYourListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openXmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openSavedScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,6 +43,7 @@
             this.profileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain = new System.Windows.Forms.MenuStrip();
+            this.panelCore = new System.Windows.Forms.Panel();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,37 +68,29 @@
             this.bCancelCore.UseVisualStyleBackColor = true;
             this.bCancelCore.Click += new System.EventHandler(this.bCancelCore_Click);
             // 
-            // pnCoreForm
-            // 
-            this.pnCoreForm.Location = new System.Drawing.Point(12, 27);
-            this.pnCoreForm.Name = "pnCoreForm";
-            this.pnCoreForm.Size = new System.Drawing.Size(642, 353);
-            this.pnCoreForm.TabIndex = 3;
-            // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.changeScheduleToolStripMenuItem,
-            this.saveYourListToolStripMenuItem,
+            this.openXmlToolStripMenuItem,
+            this.openSavedScheduleToolStripMenuItem,
             this.toolStripSeparator1,
             this.closeToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // changeScheduleToolStripMenuItem
+            // openXmlToolStripMenuItem
             // 
-            this.changeScheduleToolStripMenuItem.Name = "changeScheduleToolStripMenuItem";
-            this.changeScheduleToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.changeScheduleToolStripMenuItem.Text = "Open xml File";
-            this.changeScheduleToolStripMenuItem.Click += new System.EventHandler(this.changeScheduleToolStripMenuItem_Click);
+            this.openXmlToolStripMenuItem.Name = "openXmlToolStripMenuItem";
+            this.openXmlToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.openXmlToolStripMenuItem.Text = "Open xml File";
+            this.openXmlToolStripMenuItem.Click += new System.EventHandler(this.openXmlToolStripMenuItem_Click);
             // 
-            // saveYourListToolStripMenuItem
+            // openSavedScheduleToolStripMenuItem
             // 
-            this.saveYourListToolStripMenuItem.Name = "saveYourListToolStripMenuItem";
-            this.saveYourListToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.saveYourListToolStripMenuItem.Text = "Open saved schedule";
-            this.saveYourListToolStripMenuItem.Click += new System.EventHandler(this.saveYourListToolStripMenuItem_Click);
+            this.openSavedScheduleToolStripMenuItem.Name = "openSavedScheduleToolStripMenuItem";
+            this.openSavedScheduleToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.openSavedScheduleToolStripMenuItem.Text = "Open saved schedule";
             // 
             // toolStripSeparator1
             // 
@@ -128,7 +120,6 @@
             this.additionalServiceToolStripMenuItem.Name = "additionalServiceToolStripMenuItem";
             this.additionalServiceToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.additionalServiceToolStripMenuItem.Text = "Additional service";
-            this.additionalServiceToolStripMenuItem.Click += new System.EventHandler(this.additionalServiceToolStripMenuItem_Click);
             // 
             // ordersToolStripMenuItem
             // 
@@ -167,6 +158,14 @@
             this.msMain.TabIndex = 0;
             this.msMain.Text = "MainMenu";
             // 
+            // panelCore
+            // 
+            this.panelCore.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelCore.Location = new System.Drawing.Point(0, 24);
+            this.panelCore.Name = "panelCore";
+            this.panelCore.Size = new System.Drawing.Size(666, 352);
+            this.panelCore.TabIndex = 3;
+            // 
             // CoreForm
             // 
             this.AcceptButton = this.bSaveCore;
@@ -174,7 +173,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bCancelCore;
             this.ClientSize = new System.Drawing.Size(666, 421);
-            this.Controls.Add(this.pnCoreForm);
+            this.Controls.Add(this.panelCore);
             this.Controls.Add(this.bCancelCore);
             this.Controls.Add(this.bSaveCore);
             this.Controls.Add(this.msMain);
@@ -193,10 +192,9 @@
         #endregion
         private System.Windows.Forms.Button bSaveCore;
         private System.Windows.Forms.Button bCancelCore;
-        private System.Windows.Forms.Panel pnCoreForm;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem changeScheduleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveYourListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openXmlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openSavedScheduleToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem actionsToolStripMenuItem;
@@ -206,6 +204,7 @@
         private System.Windows.Forms.ToolStripMenuItem profileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.MenuStrip msMain;
+        private System.Windows.Forms.Panel panelCore;
     }
 }
 
