@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,9 +34,9 @@ namespace TvForms
             tbName.Text = _currentUser.FirstName;
             tbSurname.Text = _currentUser.LastName;
 
-            FillAddressLV();
-            FillEmailLV();
-            FillPhonesLV();
+            FillAddressLv();
+            FillEmailLv();
+            FillPhonesLv();
             FillUserData();
         }
 
@@ -69,34 +70,24 @@ namespace TvForms
         }
 
         // Filling user's phone list List View
-        /// ToDo Naming convention!!!
-        private void FillPhonesLV()
+        private void FillPhonesLv()
         {
-            //if (lvUserTelephone.Items.Count > 0)
-            //{
-                lvUserTelephone.Items.Clear();
-            //}
-            using (var context = new TvDBContext())
+            lvUserTelephone.Items.Clear();
+            var phoneRepo = new BaseRepository<UserPhone>();
+            var phoneExists = phoneRepo.Get(x => x.User.Id == _currentUser.Id)
+                .Include(x => x.TypeConnect);
+            foreach (var userPhone in phoneExists)
             {
-                var phone = context.UserPhones.Where(c => c.User.Id == _currentUser.Id).ToList();
-                //ToDo remove unusage check
-                if (phone.Any())
-                {
-                    foreach (var userPhone in phone)
-                    {
-                        //ToDo Replace into new method
-                        var lvItem = new ListViewItem(userPhone.TypeConnect.NameType);
-                        lvItem.SubItems.Add(userPhone.Number.ToString());
-                        lvItem.SubItems.Add(userPhone.Comment);
-                        lvItem.SubItems.Add(userPhone.Id.ToString());
-                        lvUserTelephone.Items.Add(lvItem);
-                    }
-                }
+                var lvItem = new ListViewItem(userPhone.TypeConnect.NameType);
+                lvItem.SubItems.Add(userPhone.Number.ToString());
+                lvItem.SubItems.Add(userPhone.Comment);
+                lvItem.SubItems.Add(userPhone.Id.ToString());
+                lvUserTelephone.Items.Add(lvItem);
             }
         }
 
         // Filling user's email list List View
-        private void FillEmailLV()
+        private void FillEmailLv()
         {
             if (lvUserEmail.Items.Count > 0)
             {
@@ -123,7 +114,7 @@ namespace TvForms
         }
 
         // Filling user's address list List View
-        private void FillAddressLV()
+        private void FillAddressLv()
         {
             if (lvUserAddress.Items.Count > 0)
             {
@@ -163,7 +154,7 @@ namespace TvForms
             AddUserDataForm addAddress = new AddUserDataForm(_currentUser.Id, "Address");
             if (addAddress.ShowDialog() == DialogResult.OK)
             {
-                FillAddressLV();
+                FillAddressLv();
             }
         }
 
@@ -180,7 +171,7 @@ namespace TvForms
                 UpdateUserDataForm updateAddress = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), "Address");
                 if (updateAddress.ShowDialog() == DialogResult.OK)
                 {
-                    FillAddressLV();
+                    FillAddressLv();
                 }
             }
             else
@@ -197,7 +188,7 @@ namespace TvForms
                 //ToDo Review it! Maybe need to use GENERIC
                 var listViewItem = lvUserAddress.SelectedItems[0];
                 DeleteUserData deleteUserData = new DeleteUserData(Helper.GetInt(listViewItem.SubItems[3].Text), "Address");
-                FillAddressLV();
+                FillAddressLv();
             }
             else
             {

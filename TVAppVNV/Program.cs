@@ -26,7 +26,7 @@ namespace TVAppVNV
             User whoUser = access.CurrentUser;
 
             if(whoUser?.UserType != null)
-                Application.Run(new CoreForm(whoUser));
+                Application.Run(new CoreForm());
         }
     }
 }
