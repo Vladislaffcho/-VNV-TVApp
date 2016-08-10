@@ -50,31 +50,6 @@ namespace TvForms
 
         }
 
-        //public ucChannelShowInfo(int selectedIndex, List<Channel> chosenChannels) //: this(selectedIndex)
-        //{
-        //    _mainTabIndex = selectedIndex;
-        //    MyChannelsChoose = new List<Channel>();
-
-        //    InitializeComponent();
-
-        //    switch (_mainTabIndex)
-        //    {
-        //        case 0:
-        //            ShowAllChanAndShows();
-        //            break;
-        //        case 1:
-        //            ShowMyChannelsAndAllShows();
-        //            break;
-        //        case 2:
-        //            ShowMyChanAndMyShows();
-        //            break;
-        //        default:
-        //            MessageBox.Show("Something went wrong during dowload ChannelShowInfo form");
-        //            break;
-        //    }
-
-        //    this.MyChannelsChoose = chosenChannels;
-        //}
 
         private void ShowAllChanAndShows()
         {
@@ -234,6 +209,7 @@ namespace TvForms
         private void lvChannelsList_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             var listView = (ListView)sender;
+            
             if (listView.CheckedItems.Count > 0)
             {
                 MyChannelsChoose.Clear();
@@ -245,7 +221,7 @@ namespace TvForms
                         
                         var listViewItem = (ListViewItem)ch;
 
-                        var idChannel = listViewItem.Text.GetInt(); //listViewItem.SubItems[2].Text.GetInt();
+                        var idChannel = listViewItem.SubItems[2].Text.GetInt(); //listViewItem.SubItems[2].Text.GetInt();
 
                         var channel = from p in context.Channels
                                       where (p.Id == idChannel)
