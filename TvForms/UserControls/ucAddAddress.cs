@@ -62,7 +62,7 @@ namespace TvForms
                 UserAddress address = new UserAddress
                 {
                     Address = tbUserAddress.Text,
-                    Comment = _comment,
+                    Comment = tbComment.Text,
                     TypeConnect = context.TypeConnects.First(x => x.NameType == _type),
                     User = context.Users.First(l => l.Id == UserID)
                 };

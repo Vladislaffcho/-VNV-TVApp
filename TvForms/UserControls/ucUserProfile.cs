@@ -15,14 +15,14 @@ namespace TvForms
     public partial class ucUserProfile : UserControl
     {
         // variable contains information about the logged user
-        private User _currentUser;
+        private int _currentUserId;
 
         // constructor receives information about the logged user
         // SetPageView method fills user names text boxes
         // and calls methods to extract user data (phone, address, email) from the db
-        public ucUserProfile(User currentUser)
+        public ucUserProfile(int userIdId)
         {
-            _currentUser = currentUser;
+            _currentUserId = userIdId;
             InitializeComponent();
             SetPageView();
         }
@@ -30,10 +30,12 @@ namespace TvForms
         // filling items on the page
         private void SetPageView()
         {
-            // clear the list view in case user's opened it previously during a session
-            tbName.Text = _currentUser.FirstName;
-            tbSurname.Text = _currentUser.LastName;
+            // fill user names from db
+            var userRepo = new BaseRepository<User>();
+            tbName.Text = userRepo.Get(x => x.Id == _currentUserId).First().FirstName;
+            tbSurname.Text = userRepo.Get(x => x.Id == _currentUserId).First().LastName;
 
+            // fill user details list views ant text boxes
             FillAddressLv();
             FillEmailLv();
             FillPhonesLv();
@@ -74,69 +76,50 @@ namespace TvForms
         {
             lvUserTelephone.Items.Clear();
             var phoneRepo = new BaseRepository<UserPhone>();
-            var phoneExists = phoneRepo.Get(x => x.User.Id == _currentUser.Id)
+            var phoneExists = phoneRepo.Get(x => x.User.Id == _currentUserId)
                 .Include(x => x.TypeConnect);
             foreach (var userPhone in phoneExists)
             {
-                var lvItem = new ListViewItem(userPhone.TypeConnect.NameType);
-                lvItem.SubItems.Add(userPhone.Number.ToString());
-                lvItem.SubItems.Add(userPhone.Comment);
-                lvItem.SubItems.Add(userPhone.Id.ToString());
-                lvUserTelephone.Items.Add(lvItem);
+                lvUserTelephone.Items.Add(AddItemsToLv(userPhone.TypeConnect.NameType, userPhone.Number.ToString(),
+                    userPhone.Comment, userPhone.Id.ToString()));
             }
         }
 
         // Filling user's email list List View
         private void FillEmailLv()
         {
-            if (lvUserEmail.Items.Count > 0)
+            lvUserEmail.Items.Clear();
+            var emailRepo = new BaseRepository<UserEmail>();
+            var emailExists = emailRepo.Get(x => x.User.Id == _currentUserId)
+                .Include(x => x.TypeConnect);
+            foreach (var userMail in emailExists)
             {
-                lvUserEmail.Items.Clear();
-            }
-            using (var context = new TvDBContext())
-            {
-                var email = context.UserEmails.Where(c => c.User.Id == _currentUser.Id);
-                if (email.Any())
-                {
-                    //ToDO remove this
-                    email.ToList();
-
-                    foreach (var i in email)
-                    {
-                        var lvItem = new ListViewItem(i.TypeConnect.NameType);
-                        lvItem.SubItems.Add(i.EmailName);
-                        lvItem.SubItems.Add(i.Comment);
-                        lvItem.SubItems.Add(i.Id.ToString());
-                        lvUserEmail.Items.Add(lvItem);
-                    }
-                }
+                lvUserEmail.Items.Add(AddItemsToLv(userMail.TypeConnect.NameType, userMail.EmailName,
+                    userMail.Comment, userMail.Id.ToString()));
             }
         }
 
         // Filling user's address list List View
         private void FillAddressLv()
         {
-            if (lvUserAddress.Items.Count > 0)
+            lvUserAddress.Items.Clear();
+            var addressRepo = new BaseRepository<UserAddress>();
+            var addressExists = addressRepo.Get(x => x.User.Id == _currentUserId)
+                .Include(x => x.TypeConnect);
+            foreach (var userAddress in addressExists)
             {
-                lvUserAddress.Items.Clear();
+                lvUserAddress.Items.Add(AddItemsToLv(userAddress.TypeConnect.NameType, userAddress.Address,
+                    userAddress.Comment, userAddress.Id.ToString()));
             }
-            using (var context = new TvDBContext())
-            {
-                var address = context.UserAddresses.Where(c => c.User.Id == _currentUser.Id);
-                if (address.Any())
-                {
-                    address.ToList();
+        }
 
-                    foreach (var i in address)
-                    {
-                        var lvItem = new ListViewItem(i.TypeConnect.NameType);
-                        lvItem.SubItems.Add(i.Address);
-                        lvItem.SubItems.Add(i.Comment);
-                        lvItem.SubItems.Add(i.Id.ToString());
-                        lvUserAddress.Items.Add(lvItem);
-                    }
-                }
-            }
+        private ListViewItem AddItemsToLv(string type, string name, string comment, string id)
+        {
+            var lvItem = new ListViewItem(type);
+            lvItem.SubItems.Add(name);
+            lvItem.SubItems.Add(comment);
+            lvItem.SubItems.Add(id);
+            return lvItem;
         }
 
         // Here will be functionality to deactivate account
@@ -151,7 +134,7 @@ namespace TvForms
         // functionality to add address
         private void btAddAddress_Click(object sender, EventArgs e)
         {
-            AddUserDataForm addAddress = new AddUserDataForm(_currentUser.Id, "Address");
+            AddUserDataForm addAddress = new AddUserDataForm(_currentUserId, "Address");
             if (addAddress.ShowDialog() == DialogResult.OK)
             {
                 FillAddressLv();
