@@ -19,7 +19,7 @@ namespace TvForms
         private User CurrentUser { get; set; }
 
         //ToDo Review WTF? Naming convention!!!
-        private TabsForUser UserWindow { get; set; }
+        private UcTabsForUser UserWindow { get; set; }
         private ucAdminView AdminWindow { get; set; }
 
         
@@ -53,7 +53,7 @@ namespace TvForms
                     panelCore.Controls.Add(new ucAdminView(CurrentUser));
                     break;
                 case EUserType.CLIENT: //user
-                    panelCore.Controls.Add(new TabsForUser());
+                    panelCore.Controls.Add(new UcTabsForUser());
                     break;
             }
 

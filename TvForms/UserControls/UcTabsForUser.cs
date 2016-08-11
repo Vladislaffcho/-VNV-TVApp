@@ -11,7 +11,7 @@ using TVContext;
 
 namespace TvForms
 {
-    public partial class TabsForUser : UserControl
+    public partial class UcTabsForUser : UserControl
     {
         BaseRepository<Channel> _channelRepo = new BaseRepository<Channel>();
 
@@ -29,7 +29,7 @@ namespace TvForms
         //public ucChannelShowInfo MyChannelTab = new ucChannelShowInfo(true, true);
         //public ucChannelShowInfo MyShowTab = new ucChannelShowInfo(false, true);
 
-        public TabsForUser()
+        public UcTabsForUser()
         {
             //ToDo Load channels for put in into constructor of ucChannelShowInfo
             InitializeComponent();
