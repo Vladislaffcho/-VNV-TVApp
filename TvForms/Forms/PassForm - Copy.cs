@@ -21,15 +21,17 @@ namespace TvForms
         public PassFormCopy()
         {
             InitializeComponent();
+
             //set cursor in password textBox field by default
-            this.tbPassForm_Pass.Select();
-            this.tbPassForm_Pass.ScrollToCaret();
+            this.tbPassForm_Login.Select();
+            this.tbPassForm_Login.ScrollToCaret();
+
             //hide characters in pass field by default
             tbPassForm_Pass.UseSystemPasswordChar = !chBPassForm_ShowPass.Checked;
 
             //
             //
-            //will be deleted after finish program
+            //will be deleted after program complete
             //
             //
             //this.tbPassForm_Login.Text = "root"; //delete this string when program will be tested

@@ -11,16 +11,16 @@ using TVContext;
 
 namespace TvForms
 {
-    public partial class TabsForUser : UserControl
+    public partial class UcTabsForUser : UserControl
     {
         BaseRepository<Channel> _channelRepo = new BaseRepository<Channel>();
 
         //ToDO Use only one UC
-        private ucChannelShowInfo _allChannelInfo;
-        private ucChannelShowInfo _myChannelInfo;
-        private ucChannelShowInfo _myShowsInfo;
+        private UcChannelShowInfo _allChannelInfo;
+        private UcChannelShowInfo _myChannelInfo;
+        private UcChannelShowInfo _myShowsInfo;
 
-        public ucChannelShowInfo TabInfo { get; set; }
+        public UcChannelShowInfo TabInfo { get; set; }
 
         //private List<Channel> _chosenChannels;
 
@@ -29,7 +29,7 @@ namespace TvForms
         //public ucChannelShowInfo MyChannelTab = new ucChannelShowInfo(true, true);
         //public ucChannelShowInfo MyShowTab = new ucChannelShowInfo(false, true);
 
-        public TabsForUser()
+        public UcTabsForUser()
         {
             //ToDo Load channels for put in into constructor of ucChannelShowInfo
             InitializeComponent();
@@ -43,7 +43,7 @@ namespace TvForms
             ChosenChannels = _channelRepo.GetAll().ToList();
             //TabInfo = _allChannelInfo;
             //tabForUsers.SelectedTab.Controls.Add(TabInfo);
-            tabPan_AllChannels.Controls.Add(new ucChannelShowInfo(ChosenChannels));
+            tabPan_AllChannels.Controls.Add(new UcChannelShowInfo(ChosenChannels));
             //tabPan_MyShow.Controls.Add(MyShowTab);
         }
         

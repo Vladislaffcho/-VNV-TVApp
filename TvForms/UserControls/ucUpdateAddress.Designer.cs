@@ -1,6 +1,6 @@
 ﻿namespace TvForms
 {
-    partial class ucUpdateAddress
+    partial class UcUpdateAddress
     {
         /// <summary> 
         /// Required designer variable.
@@ -108,7 +108,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gbAddress);
-            this.Name = "ucUpdateAddress";
+            this.Name = "UcUpdateAddress";
             this.Size = new System.Drawing.Size(440, 135);
             this.gbAddress.ResumeLayout(false);
             this.gbAddress.PerformLayout();

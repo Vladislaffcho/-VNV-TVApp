@@ -5,17 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TVContext
 {
-    public class OrderChannel
+    public class OrderChannel : IdentificableEntity
     {
         public OrderChannel()
         {
-
+            Channels = new List<Channel>();
         }
-
-        //Mark this field as primary key
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
 
         //Make linked entity as virtual for lazy loading work
         [Required]

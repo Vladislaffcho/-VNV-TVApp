@@ -11,14 +11,14 @@ using TVContext;
 
 namespace TvForms
 {
-    public partial class ucAddAddress : UserControl
+    public partial class UcAddAddress : UserControl
     {
         //ToDo Remove this fields
         private string _comment;
         private string _address;
         private string _type;
 
-        public ucAddAddress()
+        public UcAddAddress()
         {
             InitializeComponent();
             SetControlView();

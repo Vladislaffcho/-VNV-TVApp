@@ -1,6 +1,6 @@
 ﻿namespace TvForms
 {
-    partial class ucAdminView
+    partial class UcAdminView
     {
         /// <summary> 
         /// Required designer variable.
@@ -397,7 +397,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gbUsers);
-            this.Name = "ucAdminView";
+            this.Name = "UcAdminView";
             this.Size = new System.Drawing.Size(628, 321);
             this.gbUsers.ResumeLayout(false);
             this.gbUsers.PerformLayout();

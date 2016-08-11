@@ -1,6 +1,6 @@
 ﻿namespace TvForms
 {
-    partial class TabsForUser
+    partial class UcTabsForUser
     {
         /// <summary> 
         /// Required designer variable.

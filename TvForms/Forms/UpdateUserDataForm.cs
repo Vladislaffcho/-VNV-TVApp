@@ -16,7 +16,7 @@ namespace TvForms
         private string _updateConnectType;
 
         // create new uc in case address will be updated
-        private ucUpdateAddress ucAddress = new ucUpdateAddress();
+        private UcUpdateAddress ucAddress = new UcUpdateAddress();
 
         // constructor receives all the information about data type to be updated
         public UpdateUserDataForm(int addressID, string type)

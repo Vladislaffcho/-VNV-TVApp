@@ -6,16 +6,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TVContext
 {
-    public class TVShow
+    public class TvShow : CommentedEntity
     {
-        public TVShow()
+        public TvShow()
         {
-
+            UserSchedules = new List<UserSchedule>();
         }
-        // set Primary Key
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
 
         // set show name
         [MinLength(2, ErrorMessage = "Too short name (must be 2-255)")]
@@ -28,16 +24,10 @@ namespace TVContext
         [Required]
         public DateTime Date { get; set; }
 
-        // set show name
-        [MaxLength(100)]
-        [DefaultValue(null)]
-        public string Description { get; set; }
-
         // false if a show does not have age limitations
         [DefaultValue(false)]
-        public bool AgeLimit { get; set; }
+        public bool IsAgeLimit { get; set; }
        
-
         // link with table Channel
         [Required]
         public virtual Channel Channel { get; set; }

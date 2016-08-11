@@ -5,7 +5,7 @@ namespace TVContext
     public class CommentedEntity : IdentificableEntity
     {
         //comment for different situations
-        [MaxLength(100, ErrorMessage = "Too long comment (must be less than 100 symbols)")]
+        [MaxLength(500, ErrorMessage = "Too long comment (must be less than 500 symbols)")]
         public string Comment { get; set; }
     }
 }

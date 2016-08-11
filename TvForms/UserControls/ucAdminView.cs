@@ -15,7 +15,7 @@ using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace TvForms
 {
-    public partial class ucAdminView : UserControl
+    public partial class UcAdminView : UserControl
     {
         // Variable contains selected in users lv user's details
         private int _selectedUser;
@@ -26,7 +26,7 @@ namespace TvForms
         private bool _activeUserFlag;
 
         //private User _currentUser;
-        public ucAdminView(User currentUser)
+        public UcAdminView(User currentUser)
         {
             //_currentUser = currentUser;
             InitializeComponent();
@@ -129,7 +129,7 @@ namespace TvForms
                     tbMoney.Text = "Change in ucAdminClass";
 
                     _activeUserFlag = true;
-                    if (context.Users.First(x => x.Id == _selectedUser).Status)
+                    if (context.Users.First(x => x.Id == _selectedUser).IsActiveStatus)
                     {
                         cbStatus.SelectedIndex = 0;
                     }
@@ -159,7 +159,7 @@ namespace TvForms
                     }*/
 
                     _adultContentFlag = true;
-                    cbAdultContent.Checked = context.Users.First(l => l.Id == _selectedUser).AllowAdultContent;
+                    cbAdultContent.Checked = context.Users.First(l => l.Id == _selectedUser).IsAllowAdultContent;
                     _adultContentFlag = false;
                 }
             }
@@ -181,13 +181,13 @@ namespace TvForms
                 {
                     var query = context.Users.First(x => x.Id == _selectedUser);
                     var type = query.UserType;
-                    var currStatus = context.Users.First(x => x.Id == _selectedUser).Status;
+                    var currStatus = context.Users.First(x => x.Id == _selectedUser).IsActiveStatus;
                     if (cbStatus.SelectedItem == "Active" && !currStatus)
                     {
                         if (MessageBox.Show("Do you want to activate this user?", "Activate user",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
-                            query.Status = true;
+                            query.IsActiveStatus = true;
                             query.UserType = type;
                         }
                         else
@@ -201,7 +201,7 @@ namespace TvForms
                         if (MessageBox.Show("Do you want to deactivate this user?", "Deactivate user",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
-                            query.Status = false;
+                            query.IsActiveStatus = false;
                             query.UserType = type;
                         }
                         else
@@ -230,7 +230,7 @@ namespace TvForms
                             MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
 
-                            query.AllowAdultContent = true;
+                            query.IsAllowAdultContent = true;
                             query.UserType = type;
                         }
                         else
@@ -244,7 +244,7 @@ namespace TvForms
                         if (MessageBox.Show("Do you want to forbid adult content for this user?", "Forbid adult content",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
-                            query.AllowAdultContent = false;
+                            query.IsAllowAdultContent = false;
                             query.UserType = type;
                         }
                         else

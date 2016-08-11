@@ -1,6 +1,6 @@
 ﻿namespace TvForms
 {
-    partial class ucShowProgramsListV
+    partial class UcShowProgramsListV
     {
         /// <summary> 
         /// Required designer variable.
@@ -70,7 +70,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lvShowPrograms);
-            this.Name = "ucShowProgramsListV";
+            this.Name = "UcShowProgramsListV";
             this.Size = new System.Drawing.Size(406, 188);
             this.ResumeLayout(false);
 

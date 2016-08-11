@@ -55,16 +55,10 @@
     <Compile Include="CommentedEntity.cs" />
     <Compile Include="DepositAccount.cs" />
     <Compile Include="EUserType.cs" />
-<<<<<<< HEAD
-    <Compile Include="Migrations\201608100907413_Init.cs" />
-    <Compile Include="Migrations\201608100907413_Init.Designer.cs">
-      <DependentUpon>201608100907413_Init.cs</DependentUpon>
-=======
     <Compile Include="IdentificableEntity.cs" />
-    <Compile Include="Migrations\201608090958303_init.cs" />
-    <Compile Include="Migrations\201608090958303_init.Designer.cs">
-      <DependentUpon>201608090958303_init.cs</DependentUpon>
->>>>>>> ucChannelShowInfo
+    <Compile Include="Migrations\201608102016463_Init.cs" />
+    <Compile Include="Migrations\201608102016463_Init.Designer.cs">
+      <DependentUpon>201608102016463_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Order.cs" />
@@ -88,13 +82,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <EmbeddedResource Include="Migrations\201608100907413_Init.resx">
-      <DependentUpon>201608100907413_Init.cs</DependentUpon>
-=======
-    <EmbeddedResource Include="Migrations\201608090958303_init.resx">
-      <DependentUpon>201608090958303_init.cs</DependentUpon>
->>>>>>> ucChannelShowInfo
+    <EmbeddedResource Include="Migrations\201608102016463_Init.resx">
+      <DependentUpon>201608102016463_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

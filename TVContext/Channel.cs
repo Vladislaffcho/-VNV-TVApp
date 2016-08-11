@@ -1,16 +1,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data;
 
 namespace TVContext
 {
-    public class Channel : IdentificableEntity
+    public class Channel : CommentedEntity
     {
         public Channel()
         {
-
+            TvShows = new List<TvShow>();
         }
 
         //channel name
@@ -25,16 +23,12 @@ namespace TVContext
         // if ageLimit 18+ - true
         [Required]
         [DefaultValue(false)]
-        public bool AgeLimit { get; set; }
-
-        //description of channel
-        [MaxLength(500, ErrorMessage = "Not more 500 symbols")]
-        public string Description { get; set; }
+        public bool IsAgeLimit { get; set; }
 
         //info about orders
         public virtual OrderChannel OrderChannel { get; set; }
 
-        public virtual ICollection<TVShow> TvShows { get; set; }
+        public virtual ICollection<TvShow> TvShows { get; set; }
 
     }
 }

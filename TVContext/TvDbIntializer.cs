@@ -63,9 +63,9 @@ namespace TVContext
                         LastName = "LastN Admin",
                         Login = "root",
                         Password = "1111",
-                        AllowAdultContent = true,
-                        UserType = context.UserTypes.First(x => x.Id == EUserType.ADMIN),
-                        Status = true
+                        IsAllowAdultContent = true,
+                        UserType = context.UserTypes.First(x => x.Id == (int)EUserType.ADMIN),
+                        IsActiveStatus = true
                     },
 
                     new User()
@@ -74,9 +74,9 @@ namespace TVContext
                         LastName = "UserLast",
                         Login = "user",
                         Password = "2222",
-                        AllowAdultContent = false,
-                        UserType = context.UserTypes.First(x => x.Id == EUserType.CLIENT),
-                        Status = true
+                        IsAllowAdultContent = false,
+                        UserType = context.UserTypes.First(x => x.Id == (int)EUserType.CLIENT),
+                        IsActiveStatus = true
                     }
                 };
 

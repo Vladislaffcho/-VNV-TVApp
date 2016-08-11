@@ -97,53 +97,53 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="TabsForUser.cs">
+    <Compile Include="UserControls\UcTabsForUser.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\ucAddAddress.cs">
+    <Compile Include="UserControls\UcAddAddress.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\ucAddAddress.Designer.cs">
-      <DependentUpon>ucAddAddress.cs</DependentUpon>
+    <Compile Include="UserControls\UcAddAddress.Designer.cs">
+      <DependentUpon>UcAddAddress.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ucAdminView.cs">
+    <Compile Include="UserControls\UcAdminView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\ucAdminView.Designer.cs">
-      <DependentUpon>ucAdminView.cs</DependentUpon>
+    <Compile Include="UserControls\UcAdminView.Designer.cs">
+      <DependentUpon>UcAdminView.cs</DependentUpon>
     </Compile>
-    <Compile Include="TabsForUser.Designer.cs">
-      <DependentUpon>TabsForUser.cs</DependentUpon>
+    <Compile Include="UserControls\UcTabsForUser.Designer.cs">
+      <DependentUpon>UcTabsForUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ucUpdateAddress.cs">
+    <Compile Include="UserControls\UcUpdateAddress.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\ucUpdateAddress.Designer.cs">
-      <DependentUpon>ucUpdateAddress.cs</DependentUpon>
+    <Compile Include="UserControls\UcUpdateAddress.Designer.cs">
+      <DependentUpon>UcUpdateAddress.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ucUserAccount.cs">
+    <Compile Include="UserControls\UcUserAccount.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\ucUserAccount.Designer.cs">
-      <DependentUpon>ucUserAccount.cs</DependentUpon>
+    <Compile Include="UserControls\UcUserAccount.Designer.cs">
+      <DependentUpon>UcUserAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ucUserProfile.cs">
+    <Compile Include="UserControls\UcUserProfile.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\ucUserProfile.Designer.cs">
-      <DependentUpon>ucUserProfile.cs</DependentUpon>
+    <Compile Include="UserControls\UcUserProfile.Designer.cs">
+      <DependentUpon>UcUserProfile.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ucChannelShowInfo.cs">
+    <Compile Include="UserControls\UcChannelShowInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\ucChannels.Designer.cs">
-      <DependentUpon>ucChannelShowInfo.cs</DependentUpon>
+    <Compile Include="UserControls\UcChannelShowInfo.Designer.cs">
+      <DependentUpon>UcChannelShowInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ucShowProgramsListV.cs">
+    <Compile Include="UserControls\UcShowProgramsListV.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\ucShowProgramsListV.Designer.cs">
-      <DependentUpon>ucShowProgramsListV.cs</DependentUpon>
+    <Compile Include="UserControls\UcShowProgramsListV.Designer.cs">
+      <DependentUpon>UcShowProgramsListV.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\UpdateUserDataForm.cs">
       <SubType>Form</SubType>
@@ -173,26 +173,26 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ucAddAddress.resx">
-      <DependentUpon>ucAddAddress.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\UcAddAddress.resx">
+      <DependentUpon>UcAddAddress.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TabsForUser.resx">
-      <DependentUpon>TabsForUser.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\UcTabsForUser.resx">
+      <DependentUpon>UcTabsForUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ucAdminView.resx">
-      <DependentUpon>ucAdminView.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\UcAdminView.resx">
+      <DependentUpon>UcAdminView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ucChannelShowInfo.resx">
-      <DependentUpon>ucChannelShowInfo.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\UcChannelShowInfo.resx">
+      <DependentUpon>UcChannelShowInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ucShowProgramsListV.resx">
-      <DependentUpon>ucShowProgramsListV.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\UcShowProgramsListV.resx">
+      <DependentUpon>UcShowProgramsListV.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ucUpdateAddress.resx">
-      <DependentUpon>ucUpdateAddress.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\UcUpdateAddress.resx">
+      <DependentUpon>UcUpdateAddress.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ucUserProfile.resx">
-      <DependentUpon>ucUserProfile.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\UcUserProfile.resx">
+      <DependentUpon>UcUserProfile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UpdateUserDataForm.resx">
       <DependentUpon>UpdateUserDataForm.cs</DependentUpon>

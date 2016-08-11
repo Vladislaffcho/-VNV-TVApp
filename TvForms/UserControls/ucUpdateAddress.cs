@@ -11,11 +11,11 @@ using TVContext;
 
 namespace TvForms
 {
-    public partial class ucUpdateAddress : UserControl
+    public partial class UcUpdateAddress : UserControl
     {
         private int _addressID;
         UserAddress _address = new UserAddress();
-        public ucUpdateAddress()
+        public UcUpdateAddress()
         {
             InitializeComponent();
         }

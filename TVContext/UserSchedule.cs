@@ -5,12 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TVContext
 {
-    public class UserSchedule
+    public class UserSchedule : IdentificableEntity
     {
 
         public UserSchedule()
         {
-
+            TvShows = new List<TvShow>();
         }
 
         // set Primary Key
@@ -22,15 +22,15 @@ namespace TVContext
         // date when schedule expires
         [Column(TypeName = "datetime2")]
         [Required]
-        public DateTime DateDue { get; set; }
+        public DateTime DueDate { get; set; }
 
         // set user ID from Users table
         [Required]
         public virtual User User { get; set; }
 
         //ToDo Naming convention !!!! TvShows
-        // set show ID from TVShow table
+        // set show ID from TvShow table
         [Required]
-        public virtual ICollection<TVShow> TVShows { get; set; }
+        public virtual ICollection<TvShow> TvShows { get; set; }
     }
 }

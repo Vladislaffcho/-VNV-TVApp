@@ -11,6 +11,10 @@ namespace TVContext
         {
             //Add all collections
             UserAddresses = new List<UserAddress>();
+            UserPhones = new List<UserPhone>();
+            UserEmails = new List<UserEmail>();
+            Orders = new List<Order>();
+            UserSchedules = new List<UserSchedule>();
         } 
 
         // set user's unique identifier
@@ -45,7 +49,7 @@ namespace TVContext
 
         // if content for adults is allowed
         [DefaultValue(false)]
-        public bool AllowAdultContent { get; set; }
+        public bool IsAllowAdultContent { get; set; }
 
         //set type of a user from UserType table
 
@@ -53,7 +57,7 @@ namespace TVContext
         public virtual UserType UserType { get; set; }
 
         [DefaultValue(true)]
-        public bool Status { get; set; }
+        public bool IsActiveStatus { get; set; }
 
 
         //FK for UserAddress table
