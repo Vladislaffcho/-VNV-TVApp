@@ -1,49 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using TVContext;
 
 namespace TvForms
 {
-    public partial class UcShowProgramsListV : UserControl
+    public partial class UcShowsList : UserControl
     {
-        /// <summary>
-        /// the day what will be shown after DayTab click
-        /// </summary>
-        private readonly int _downloadDay;
-        public UcShowProgramsListV()
+        private List<TvShow> AllShows { get; set; }
+
+        public UcShowsList(List<TvShow> allShows)
         {
             InitializeComponent();
+            AllShows = allShows;
+            LoadCurrentDayShows(false);
         }
 
 
-        public UcShowProgramsListV(int tabDay, int mainTabIndex)
+        private void LoadCurrentDayShows(bool isCheckedList)
         {
-            InitializeComponent();
-            _downloadDay = tabDay;
-            DownloadShows();
-
-            switch (mainTabIndex)
+            var number = 1;
+            foreach (var sh in AllShows)
             {
-                case 0:
-                    lvShowPrograms.CheckBoxes = false;
-                    break;
-                case 1:
-                    lvShowPrograms.CheckBoxes = true;
-                    break;
-                case 2:
-                    lvShowPrograms.CheckBoxes = true;
-                    break;
+                if (/*DateTime.Now.DayOfWeek*/2 == /*int*/(int)sh.Date.DayOfWeek &&
+                        Math.Abs(sh.Date.Day - (int)sh.Date.Day) < 7)
+                {
+                    var item = new ListViewItem(number.ToString());
+                    var time = sh.Date.Hour <= 9 ? "0" + sh.Date.ToShortTimeString() : sh.Date.ToShortTimeString();
+                    item.SubItems.Add(time);
+                    item.SubItems.Add(sh.Name);
+                    item.SubItems.Add(sh.Id.ToString());
+                    lvShowPrograms.Items.Add(item);
+                    lvShowPrograms.CheckBoxes = isCheckedList;
+                    number++;
+                }
+                
             }
+            
         }
+
+
+
+        //public UcShowsList(int tabDay, int mainTabIndex)
+        //{
+        //    InitializeComponent();
+        //    _downloadDay = tabDay;
+        //    DownloadShows();
+
+        //    switch (mainTabIndex)
+        //    {
+        //        case 0:
+        //            lvShowPrograms.CheckBoxes = false;
+        //            break;
+        //        case 1:
+        //            lvShowPrograms.CheckBoxes = true;
+        //            break;
+        //        case 2:
+        //            lvShowPrograms.CheckBoxes = true;
+        //            break;
+        //    }
+        //}
 
         private void DownloadShows()
         {
@@ -58,7 +78,7 @@ namespace TvForms
                     int progDay = (int) item.Date.DayOfWeek;
                     int dayOfMonth = (int)item.Date.Day;
                     int difference = Math.Abs(dayOfMonth - (int)sh.First().Date.Day) ;
-                    if (progDay == _downloadDay && difference < 7)
+                    if (progDay == (int)DateTime.Now.DayOfWeek && difference < 7)
                     {
                         AddItemToListView(item, ref number);
                     }
@@ -68,13 +88,7 @@ namespace TvForms
 
         public void AddItemToListView(TvShow shows, ref int number)
         {
-            var item = new ListViewItem(number.ToString());
-            var time = shows.Date.Hour <= 9 ? "0" + shows.Date.ToShortTimeString() : shows.Date.ToShortTimeString();
-            item.SubItems.Add(time);
-            item.SubItems.Add(shows.Name);
-
-            lvShowPrograms.Items.Add(item);
-            number++;
+ 
         }
 
         public void ParseProgramm(string filename, int channelId)

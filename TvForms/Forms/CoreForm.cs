@@ -20,6 +20,7 @@ namespace TvForms
 
         //ToDo Review WTF? Naming convention!!!
         private UcTabsForUser UserWindow { get; set; }
+
         private UcAdminView AdminWindow { get; set; }
 
         
@@ -113,21 +114,18 @@ namespace TvForms
       
         private static void ValidationCallBack(object sender, ValidationEventArgs e)
         {
-            
-        
-
+            throw new NotImplementedException();
         }
 
         private void profileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-        
-        //Uncomment when bookmarks will be ready end specify appropriate one!!!!
-        //private void tVShowsToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    ActionForm action = new ActionForm(new ucTvShow());
-        //    action.Show();
-        //    this.Enabled = false;
+
+
+            //Uncomment when bookmarks will be ready end specify appropriate one!!!!
+
+            ActionForm actions = new ActionForm(CurrentUser.Id);
+            actions.Show();
+            //this.Enabled = false;
 
         }
     }

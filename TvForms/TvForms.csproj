@@ -58,6 +58,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\ActionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ActionForm.Designer.cs">
+      <DependentUpon>ActionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddUserDataForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,17 +139,17 @@
     <Compile Include="UserControls\UcUserProfile.Designer.cs">
       <DependentUpon>UcUserProfile.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UcChannelShowInfo.cs">
+    <Compile Include="UserControls\UcAllChannels.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\UcChannelShowInfo.Designer.cs">
-      <DependentUpon>UcChannelShowInfo.cs</DependentUpon>
+    <Compile Include="UserControls\UcAllChannels.Designer.cs">
+      <DependentUpon>UcAllChannels.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UcShowProgramsListV.cs">
+    <Compile Include="UserControls\UcShowsList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\UcShowProgramsListV.Designer.cs">
-      <DependentUpon>UcShowProgramsListV.cs</DependentUpon>
+    <Compile Include="UserControls\UcShowsList.Designer.cs">
+      <DependentUpon>UcShowsList.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\UpdateUserDataForm.cs">
       <SubType>Form</SubType>
@@ -154,6 +160,9 @@
     <Compile Include="Helpers\XmlFileHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\ActionForm.resx">
+      <DependentUpon>ActionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddUserDataForm.resx">
       <DependentUpon>AddUserDataForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -182,11 +191,11 @@
     <EmbeddedResource Include="UserControls\UcAdminView.resx">
       <DependentUpon>UcAdminView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UcChannelShowInfo.resx">
-      <DependentUpon>UcChannelShowInfo.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\UcAllChannels.resx">
+      <DependentUpon>UcAllChannels.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UcShowProgramsListV.resx">
-      <DependentUpon>UcShowProgramsListV.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\UcShowsList.resx">
+      <DependentUpon>UcShowsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcUpdateAddress.resx">
       <DependentUpon>UcUpdateAddress.cs</DependentUpon>

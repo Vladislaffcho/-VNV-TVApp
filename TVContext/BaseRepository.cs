@@ -6,18 +6,18 @@ namespace TVContext
 {
     public class BaseRepository<TEntity> where TEntity : IdentificableEntity
     {
-        private TvDBContext Context = new TvDBContext();
+        private readonly TvDBContext _context = new TvDBContext();
 
         public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
         {
             var type = typeof(TEntity);
-            return Context.Set<TEntity>().Where(predicate);
+            return _context.Set<TEntity>().Where(predicate);
         }
 
         public IQueryable<TEntity> GetAll()
         {
             var type = typeof(TEntity);
-            return Context.Set<TEntity>();
+            return _context.Set<TEntity>();
         }
     }
 }

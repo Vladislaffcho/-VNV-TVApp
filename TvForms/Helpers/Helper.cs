@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
+using TVContext;
 
 namespace TvForms
 {
@@ -14,17 +13,16 @@ namespace TvForms
         /// </summary>
         /// <param name="source"></param>
         /// <returns>
-        /// If unable parse to int or double returns 0
+        /// If unable parse to int or double returns -1
         /// </returns>
         public static int GetInt(this string source)
         {
             int i;
-            if (Int32.TryParse(source, out i))
+            if (int.TryParse(source, out i))
             {
                 return i;
             }
             return -1;
-
         }
     }
 }

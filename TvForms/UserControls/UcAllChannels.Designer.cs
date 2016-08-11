@@ -1,12 +1,18 @@
-﻿namespace TvForms
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
+using TVContext;
+
+namespace TvForms
 {
     
-    partial class UcChannelShowInfo
+    partial class UcAllChannels
     {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary> 
         /// Clean up any resources being used.
@@ -67,7 +73,7 @@
             this.tabControl_Shows.SelectedIndex = 0;
             this.tabControl_Shows.Size = new System.Drawing.Size(414, 214);
             this.tabControl_Shows.TabIndex = 2;
-            this.tabControl_Shows.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabAllCh_Shows_Selecting);
+            
             // 
             // tabShows_Sunday
             // 
@@ -237,8 +243,6 @@
             this.lvChannelsList.TabIndex = 9;
             this.lvChannelsList.UseCompatibleStateImageBehavior = false;
             this.lvChannelsList.View = System.Windows.Forms.View.Details;
-            this.lvChannelsList.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lvChannelsList_ItemChecked);
-
             // 
             // lvChNumber
             // 
@@ -250,13 +254,13 @@
             this.lvChName.Text = "Channel";
             this.lvChName.Width = 149;
             // 
-            // ucChannelShowInfo
+            // UcAllChannels
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.Controls.Add(this.gbUcAllChannel);
-            this.Name = "UcChannelShowInfo";
+            this.Name = "UcAllChannels";
             this.Size = new System.Drawing.Size(634, 327);
             this.tabControl_Shows.ResumeLayout(false);
             this.gbAllCh_Description.ResumeLayout(false);
@@ -267,24 +271,24 @@
         }
 
         #endregion
-        private System.Windows.Forms.TabControl tabControl_Shows;
-        private System.Windows.Forms.TabPage tabShows_Monday;
-        private System.Windows.Forms.TabPage tabShows_Wednesday;
-        private System.Windows.Forms.TabPage tabShows_Thursday;
-        private System.Windows.Forms.TabPage tabShows_Friday;
-        private System.Windows.Forms.TabPage tabShows_Saturday;
-        private System.Windows.Forms.Label lbAllCh_Price;
-        private System.Windows.Forms.MaskedTextBox maskTbAllCh_Price;
-        private System.Windows.Forms.Label lbAllCh_UAH;
-        private System.Windows.Forms.Label lbAllCh_Adult;
-        private System.Windows.Forms.TextBox tbAllCh_Adult;
-        private System.Windows.Forms.GroupBox gbAllCh_Description;
-        private System.Windows.Forms.RichTextBox rtbAllCh_Description;
-        private System.Windows.Forms.GroupBox gbUcAllChannel;
-        private System.Windows.Forms.ListView lvChannelsList;
-        private System.Windows.Forms.ColumnHeader lvChNumber;
-        private System.Windows.Forms.ColumnHeader lvChName;
-        private System.Windows.Forms.TabPage tabShows_Tuesday;
-        private System.Windows.Forms.TabPage tabShows_Sunday;
+        private TabControl tabControl_Shows;
+        private TabPage tabShows_Monday;
+        private TabPage tabShows_Wednesday;
+        private TabPage tabShows_Thursday;
+        private TabPage tabShows_Friday;
+        private TabPage tabShows_Saturday;
+        private Label lbAllCh_Price;
+        private MaskedTextBox maskTbAllCh_Price;
+        private Label lbAllCh_UAH;
+        private Label lbAllCh_Adult;
+        private TextBox tbAllCh_Adult;
+        private GroupBox gbAllCh_Description;
+        private RichTextBox rtbAllCh_Description;
+        private GroupBox gbUcAllChannel;
+        private ListView lvChannelsList;
+        private ColumnHeader lvChNumber;
+        private ColumnHeader lvChName;
+        private TabPage tabShows_Tuesday;
+        private TabPage tabShows_Sunday;
     }
 }

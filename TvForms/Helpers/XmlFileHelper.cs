@@ -14,8 +14,9 @@ namespace TvForms
             try
             {
                 //ToDo Remove or do good progress bar
-                var pF = new ProgressForm();
-                pF.Visible = true;
+                //for progress bar
+                //var pF = new ProgressForm();
+                //pF.Visible = true;
 
                 //XmlNode searched = null;
                 XmlDocument doc = new XmlDocument();
@@ -27,14 +28,15 @@ namespace TvForms
                 {
                     using (TvDBContext context = new TvDBContext())
                     {
-                        int progress = 0;
-                        var lenght = xmlNodeList.Count;
+                        //for progress bar
+                        //int progress = 0;
+                        //var lenght = xmlNodeList.Count;
 
                         foreach (XmlNode node in xmlNodeList)
                         {
-
-                            pF.ShowProgress(progress, lenght);
-                            progress++;
+                            //for progress bar
+                            //pF.ShowProgress(progress, lenght);
+                            //progress++;
 
                             var clientEntity = new Channel()
                             {
@@ -44,8 +46,8 @@ namespace TvForms
                             };
                             context.Channels.Add(clientEntity);
                         }
-
-                        pF.Visible = false;
+                        //for progress bar
+                        //pF.Visible = false;
                         context.SaveChanges();
                     }
                     MessageBox.Show("Файл успешно импорторировался");
