@@ -33,6 +33,7 @@ namespace TVContext
         public int CodeOriginalChannel { get; set; }
        
         // link with table Channel
+        [Required]
         public virtual Channel Channel { get; set; }
 
         //info about all UserShedule which ordered this show

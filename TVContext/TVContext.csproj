@@ -56,15 +56,6 @@
     <Compile Include="Account.cs" />
     <Compile Include="EUserType.cs" />
     <Compile Include="IdentificableEntity.cs" />
-    <Compile Include="Migrations\201608111421103_init.cs" />
-    <Compile Include="Migrations\201608111421103_init.Designer.cs">
-      <DependentUpon>201608111421103_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201608111520064_second.cs" />
-    <Compile Include="Migrations\201608111520064_second.Designer.cs">
-      <DependentUpon>201608111520064_second.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderChannel.cs" />
     <Compile Include="OrderService.cs" />
@@ -84,14 +75,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608111421103_init.resx">
-      <DependentUpon>201608111421103_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608111520064_second.resx">
-      <DependentUpon>201608111520064_second.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

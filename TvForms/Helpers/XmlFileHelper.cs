@@ -9,7 +9,7 @@ using TVContext;
 
 namespace TvForms
 {
-    public class XmlFileHelper
+    public static class XmlFileHelper
     {
         public static void ParseChannel(string filename)
         {
@@ -55,7 +55,8 @@ namespace TvForms
                         //pF.Visible = false;
                         context.SaveChanges();
                     }
-                    MessageBox.Show("Файл успешно импорторировался");
+                    MessageBox.Show("Каналы успешно импорторировались", "Ok", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                     MessageBox.Show("Что-то пошло не так при импорте файла!!!");
@@ -98,6 +99,10 @@ namespace TvForms
                 {
                     using (TvDBContext context = new TvDBContext())
                     {
+
+                        var progressBar = new ProgressForm();
+                        progressBar.Show();
+
                         int id = 1;
                         foreach (XmlNode node in xmlNodeList)
                         {
@@ -106,8 +111,8 @@ namespace TvForms
                             var startProgramm = Convert.ToDateTime(mySqlTimestamp);
                             var originId = node.Attributes["channel"].Value.GetInt();
                             Channel chan = (from c in context.Channels
-                                        where (c.OriginalId == originId)
-                                        select c).ToList().FirstOrDefault();
+                                            where (c.OriginalId == originId)
+                                            select c).ToList().FirstOrDefault();
                             var shows = new TvShow
                             {
                                 Id = id++,
@@ -116,20 +121,20 @@ namespace TvForms
                                 IsAgeLimit = false,
                                 CodeOriginalChannel = originId,
                                 Channel = chan
-
-                               //(from p in context.Users
-                               // where (p.Login == loginEntered &&
-                               //        p.Password == passEntered)
-                               // select p).Include(x => x.UserType).Include(x => x.Orders).FirstOrDefault() ;
-
                             };
 
                             context.TvShows.Add(shows);
+
+                            progressBar.ShowProgress(id, xmlNodeList.Count);
+                           
                         }
 
                         context.SaveChanges();
+                        progressBar.Close();
                     }
-                    MessageBox.Show("Файл успешно импорторировался");
+                    
+                    MessageBox.Show("Программы успешно импорторировались", "Ok",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                     MessageBox.Show("Что-то пошло не так при импорте файла!!!");

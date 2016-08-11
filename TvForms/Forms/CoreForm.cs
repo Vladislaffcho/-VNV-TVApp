@@ -1,15 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Xml;
 using System.Xml.Schema;
-using System.IO;
-using System.Text;
-using System.Collections.Generic;
-using System.Data.Entity.Validation;
-using System.Linq;
-using System.Xml.Linq;
 using TVContext;
-using System.Xml.Serialization;
 
 namespace TvForms
 {
@@ -108,7 +100,7 @@ namespace TvForms
                 //
                 //XmlFileHelper.ParseChannel(openXmlFile.FileName);
                 XmlFileHelper.ParseProgramm(openXmlFile.FileName);
-              
+
             }
         }
 
