@@ -40,7 +40,7 @@ namespace TvForms
                             {
                                 Name = node.FirstChild.InnerText,
                                 Price = 0,
-                                AgeLimit = false
+                                IsAgeLimit = false
                             };
                             context.Channels.Add(clientEntity);
                         }

@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TVContext
 {
-    public class OrderService
+    public class OrderService : IdentificableEntity
     {
         public OrderService()
         {
-
+            AdditionalServices = new List<AdditionalService>();
         }
-
-        //Mark this field as primary key
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
 
         //Make linked entity as virtual for lazy loading work
         [Required]

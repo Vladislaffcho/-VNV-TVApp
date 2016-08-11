@@ -1,6 +1,6 @@
 ﻿namespace TvForms
 {
-    partial class ucUserAccount
+    partial class UcUserAccount
     {
         /// <summary> 
         /// Required designer variable.

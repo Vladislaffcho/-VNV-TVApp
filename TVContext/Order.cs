@@ -6,17 +6,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TVContext
 {
-    public class Order
+    public class Order : IdentificableEntity
     {
         public Order()
         {
-
+            OrderChannels = new List<OrderChannel>();
+            OrderServices = new List<OrderService>();
         }
-
-        //Mark this field as primary key
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
 
         //Oreder date
         [Required]
@@ -26,12 +22,12 @@ namespace TVContext
         //Oreder's begin date
         [Required]
         [Column(TypeName = "datetime2")]
-        public DateTime DateFrom { get; set; }
+        public DateTime FromDate { get; set; }
 
         //Oreder's finish date
         [Required]
         [Column(TypeName = "datetime2")]
-        public DateTime DateDue { get; set; }
+        public DateTime DueDate { get; set; }
 
         //order price per week
         [Required]
@@ -41,7 +37,7 @@ namespace TVContext
         //true - paid, false - not paid
         [Required]
         [DefaultValue(false)]
-        public bool Paid { get; set; }
+        public bool IsPaid { get; set; }
         
         //order finished - true, not finished - false
         [Required]

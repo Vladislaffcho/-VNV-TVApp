@@ -13,19 +13,19 @@ using TVContext;
 
 namespace TvForms
 {
-    public partial class ucShowProgramsListV : UserControl
+    public partial class UcShowProgramsListV : UserControl
     {
         /// <summary>
         /// the day what will be shown after DayTab click
         /// </summary>
         private readonly int _downloadDay;
-        public ucShowProgramsListV()
+        public UcShowProgramsListV()
         {
             InitializeComponent();
         }
 
 
-        public ucShowProgramsListV(int tabDay, int mainTabIndex)
+        public UcShowProgramsListV(int tabDay, int mainTabIndex)
         {
             InitializeComponent();
             _downloadDay = tabDay;
@@ -66,7 +66,7 @@ namespace TvForms
             }
         }
 
-        public void AddItemToListView(TVShow shows, ref int number)
+        public void AddItemToListView(TvShow shows, ref int number)
         {
             var item = new ListViewItem(number.ToString());
             var time = shows.Date.Hour <= 9 ? "0" + shows.Date.ToShortTimeString() : shows.Date.ToShortTimeString();
@@ -97,7 +97,7 @@ namespace TvForms
                     DateTime stt = Convert.ToDateTime(mySqlTimestamp);
                     //int index = doc.SelectNodes("/tv/programme").Cast<XmlNode>().ToList().IndexOf(node);
 
-                    context.TvShows.Add(new TVShow()
+                    context.TvShows.Add(new TvShow()
                     {
                         Name = title,
                         Date = stt,

@@ -16,11 +16,11 @@ namespace TvForms
         BaseRepository<Channel> _channelRepo = new BaseRepository<Channel>();
 
         //ToDO Use only one UC
-        private ucChannelShowInfo _allChannelInfo;
-        private ucChannelShowInfo _myChannelInfo;
-        private ucChannelShowInfo _myShowsInfo;
+        private UcChannelShowInfo _allChannelInfo;
+        private UcChannelShowInfo _myChannelInfo;
+        private UcChannelShowInfo _myShowsInfo;
 
-        public ucChannelShowInfo TabInfo { get; set; }
+        public UcChannelShowInfo TabInfo { get; set; }
 
         //private List<Channel> _chosenChannels;
 
@@ -43,7 +43,7 @@ namespace TvForms
             ChosenChannels = _channelRepo.GetAll().ToList();
             //TabInfo = _allChannelInfo;
             //tabForUsers.SelectedTab.Controls.Add(TabInfo);
-            tabPan_AllChannels.Controls.Add(new ucChannelShowInfo(ChosenChannels));
+            tabPan_AllChannels.Controls.Add(new UcChannelShowInfo(ChosenChannels));
             //tabPan_MyShow.Controls.Add(MyShowTab);
         }
         

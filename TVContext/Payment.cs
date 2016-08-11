@@ -4,18 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TVContext
 {
-    public class Payment
+    public class Payment : IdentificableEntity
     {
-        public Payment()
-        {
-
-        }
-
-        //Mark this field as primary key
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
         //Payment date
         [Required]
         [Column(TypeName = "datetime2")]

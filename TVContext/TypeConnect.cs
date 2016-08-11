@@ -4,16 +4,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TVContext
 {
-    public class TypeConnect
+    public class TypeConnect : IdentificableEntity
     {
         public TypeConnect()
         {
-
+            UserPhones = new List<UserPhone>();
+            UserAddresses = new List<UserAddress>();
+            UserEmails = new List<UserEmail>();
         }
-        // set Primary Key
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
 
         // set contact type name
         [MinLength(3, ErrorMessage = "Too short contact type name (must be 3-30)")]

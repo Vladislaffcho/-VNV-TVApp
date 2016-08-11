@@ -18,7 +18,7 @@ namespace TvForms
 
         //ToDo Review need to store this in field
         // user control to add address
-        private ucAddAddress ucAddress = new ucAddAddress();
+        private UcAddAddress ucAddress = new UcAddAddress();
 
         // variable contains information about data type to be added (address, email, telephone)
         private string _addConnectType;

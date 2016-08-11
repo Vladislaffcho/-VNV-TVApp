@@ -1,6 +1,6 @@
 ﻿namespace TvForms
 {
-    partial class ucUserProfile
+    partial class UcUserProfile
     {
         /// <summary> 
         /// Required designer variable.
@@ -415,7 +415,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gbProfile);
-            this.Name = "ucUserProfile";
+            this.Name = "UcUserProfile";
             this.Size = new System.Drawing.Size(628, 321);
             this.gbProfile.ResumeLayout(false);
             this.gbProfile.PerformLayout();

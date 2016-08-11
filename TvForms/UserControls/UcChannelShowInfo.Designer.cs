@@ -1,7 +1,7 @@
 ﻿namespace TvForms
 {
     
-    partial class ucChannelShowInfo
+    partial class UcChannelShowInfo
     {
         /// <summary> 
         /// Required designer variable.
@@ -256,7 +256,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.Controls.Add(this.gbUcAllChannel);
-            this.Name = "ucChannelShowInfo";
+            this.Name = "UcChannelShowInfo";
             this.Size = new System.Drawing.Size(634, 327);
             this.tabControl_Shows.ResumeLayout(false);
             this.gbAllCh_Description.ResumeLayout(false);

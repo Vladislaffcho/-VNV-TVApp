@@ -53,14 +53,9 @@
     <Compile Include="BaseRepository.cs" />
     <Compile Include="Channel.cs" />
     <Compile Include="CommentedEntity.cs" />
-    <Compile Include="DepositAccount.cs" />
+    <Compile Include="Account.cs" />
     <Compile Include="EUserType.cs" />
     <Compile Include="IdentificableEntity.cs" />
-    <Compile Include="Migrations\201608101812076_Init.cs" />
-    <Compile Include="Migrations\201608101812076_Init.Designer.cs">
-      <DependentUpon>201608101812076_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderChannel.cs" />
     <Compile Include="OrderService.cs" />
@@ -68,7 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TvDBContext.cs" />
     <Compile Include="TvDBIntializer.cs" />
-    <Compile Include="TVShow.cs" />
+    <Compile Include="TvShow.cs" />
     <Compile Include="TypeConnect.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserAddress.cs" />
@@ -80,11 +75,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608101812076_Init.resx">
-      <DependentUpon>201608101812076_Init.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

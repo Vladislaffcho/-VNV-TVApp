@@ -5,17 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace TVContext
 {
     
-    public class UserType
+    public class UserType : CommentedEntity
     {
-        public UserType()
-        {
-            //this.Users = new List<User>();
-        }
-
-        //Mark this field as primary key
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public EUserType Id { get; set; }
 
         //create unique field for type of users
         //[Index(IsUnique = true)]
@@ -30,13 +21,9 @@ namespace TVContext
         [Required]
         public string AccessToData { get; set; }
 
-        //comment for different situations
-        [MaxLength(100, ErrorMessage = "Too long comment (must be less than 100 symbols)")]
-        public string Comment { get; set; }
 
         //list of users who have specified access
         //public virtual ICollection<User> Users { get; set; }
-        
         
     }
 }

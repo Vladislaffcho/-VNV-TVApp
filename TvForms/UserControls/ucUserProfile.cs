@@ -11,7 +11,7 @@ using TVContext;
 
 namespace TvForms
 {
-    public partial class ucUserProfile : UserControl
+    public partial class UcUserProfile : UserControl
     {
         // variable contains information about the logged user
         private User _currentUser;
@@ -19,7 +19,7 @@ namespace TvForms
         // constructor receives information about the logged user
         // SetPageView method fills user names text boxes
         // and calls methods to extract user data (phone, address, email) from the db
-        public ucUserProfile(User currentUser)
+        public UcUserProfile(User currentUser)
         {
             _currentUser = currentUser;
             InitializeComponent();

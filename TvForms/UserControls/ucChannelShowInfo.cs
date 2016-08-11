@@ -17,7 +17,7 @@ using TVContext;
 
 namespace TvForms
 {
-    public partial class ucChannelShowInfo : UserControl
+    public partial class UcChannelShowInfo : UserControl
     {
         /// <summary>
         /// variable for get of core tab index
@@ -29,12 +29,12 @@ namespace TvForms
 
         //private List<Channel> chosenChannels;
 
-        public ucShowProgramsListV ShowsList { get; set; }
+        public UcShowProgramsListV ShowsList { get; set; }
 
         public List<Channel> MyChannelsChoose { get; set; }// = new List<Channel>();
 
         //ToDo Why??
-        public ucChannelShowInfo(int selectedIndex = 0)
+        public UcChannelShowInfo(int selectedIndex = 0)
         {
             _mainTabIndex = selectedIndex;
             MyChannelsChoose = new List<Channel>();
@@ -52,7 +52,7 @@ namespace TvForms
         }
 
 
-        public ucChannelShowInfo(List<Channel> channels)
+        public UcChannelShowInfo(List<Channel> channels)
         {
             //ToDo Load info from channels to channels list and to shows UC
             InitializeComponent();
@@ -69,7 +69,7 @@ namespace TvForms
                 //if()
             }
 
-            ShowsList = new ucShowProgramsListV(tabControl_Shows.SelectedIndex, _mainTabIndex);
+            ShowsList = new UcShowProgramsListV(tabControl_Shows.SelectedIndex, _mainTabIndex);
             tabControl_Shows.SelectedTab.Controls.Add(ShowsList);
         }
 
@@ -87,7 +87,7 @@ namespace TvForms
             rtbAllCh_Description.Text = "This is description of channel!";
             lvChannelsList.CheckBoxes = true;
             
-            ShowsList = new ucShowProgramsListV(tabControl_Shows.SelectedIndex, _mainTabIndex);
+            ShowsList = new UcShowProgramsListV(tabControl_Shows.SelectedIndex, _mainTabIndex);
             tabControl_Shows.SelectedTab.Controls.Add(ShowsList);
         }
 
@@ -101,7 +101,7 @@ namespace TvForms
 
             rtbAllCh_Description.Text = "This is description of shows!";
             lvChannelsList.CheckBoxes = false;
-            ShowsList = new ucShowProgramsListV(tabControl_Shows.SelectedIndex, _mainTabIndex);
+            ShowsList = new UcShowProgramsListV(tabControl_Shows.SelectedIndex, _mainTabIndex);
             tabControl_Shows.SelectedTab.Controls.Add(ShowsList);
         }
 
@@ -109,7 +109,7 @@ namespace TvForms
         {
             
             var tabDay = tabControl_Shows.SelectedIndex;
-            ucShowProgramsListV dayProgram = new ucShowProgramsListV(tabDay, _mainTabIndex);
+            UcShowProgramsListV dayProgram = new UcShowProgramsListV(tabDay, _mainTabIndex);
             tabControl_Shows.SelectedTab.Controls.Add(dayProgram);
 
         }
@@ -172,7 +172,7 @@ namespace TvForms
                             {
                                 Name = node.SelectSingleNode("/name").InnerText, // FirstChild.InnerText,
                                 Price = 0,
-                                AgeLimit = false
+                                IsAgeLimit = false
                             };
                             context.Channels.Add(clientEntity);
 

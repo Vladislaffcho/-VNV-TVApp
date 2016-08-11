@@ -20,7 +20,7 @@ namespace TvForms
 
         //ToDo Review WTF? Naming convention!!!
         private UcTabsForUser UserWindow { get; set; }
-        private ucAdminView AdminWindow { get; set; }
+        private UcAdminView AdminWindow { get; set; }
 
         
         //public CoreForm(User whoUser)
@@ -49,10 +49,10 @@ namespace TvForms
 
             switch (CurrentUser.UserType.Id)
             {
-                case EUserType.ADMIN: //admin
-                    panelCore.Controls.Add(new ucAdminView(CurrentUser));
+                case (int)EUserType.ADMIN: //admin
+                    panelCore.Controls.Add(new UcAdminView(CurrentUser));
                     break;
-                case EUserType.CLIENT: //user
+                case (int)EUserType.CLIENT: //user
                     panelCore.Controls.Add(new UcTabsForUser());
                     break;
             }
