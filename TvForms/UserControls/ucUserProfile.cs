@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TVContext;
 
 namespace TvForms
 {
-    public partial class ucUserProfile : UserControl
+    public partial class UcUserProfile : UserControl
     {
         // variable contains information about the logged user
         private int _currentUserId;
@@ -20,7 +14,7 @@ namespace TvForms
         // constructor receives information about the logged user
         // SetPageView method fills user names text boxes
         // and calls methods to extract user data (phone, address, email) from the db
-        public ucUserProfile(int userIdId)
+        public UcUserProfile(int userIdId)
         {
             _currentUserId = userIdId;
             InitializeComponent();
