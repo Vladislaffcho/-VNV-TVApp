@@ -20,14 +20,6 @@ namespace TvForms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            //PassForm access = new PassForm();
-            //access.ShowDialog();
-            ////User whoUser = access.CurrentUser;
-
-            //if(access.CurrentUser != null)
-            //    Application.Run(new CoreForm(access.CurrentUser));
-
             Application.Run(new CoreForm());
         }
     }

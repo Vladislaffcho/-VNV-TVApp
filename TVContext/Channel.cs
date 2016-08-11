@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TVContext
 {
@@ -24,6 +25,11 @@ namespace TVContext
         [Required]
         [DefaultValue(false)]
         public bool IsAgeLimit { get; set; }
+
+        //original id of channel which gets from xml incoming data file
+        [Required]
+        //[ForeignKey("TvShow")]
+        public int OriginalId { get; set; }
 
         //info about orders
         public virtual OrderChannel OrderChannel { get; set; }

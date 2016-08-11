@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE tv SYSTEM "http://www.teleguide.info/download/xmltv.dtd">
+<tv generator-info-name="TVH_W/0.751l" generator-info-url="http://www.teleguide.info/">
+	<programme start="20160731044000 +0300" stop="20160731050500 +0300" channel="1617">
+		<title lang="ru">Сасквач: Охота в горах (412-я серия) (12+)</title>
+		<category lang="ru">Познавательные</category>
+	</programme>
+    <channel id="777">
+        <display-name lang="ru">Первый канал</display-name>
+        <icon src="http://img.teleguide.info/channel/1.gif" />
+    </channel>
+    <channel id="888">
+        <display-name lang="ru">Россия 1</display-name>
+        <icon src="http://img.teleguide.info/channel/2.gif" />
+    </channel>
+    <channel id="999">
+        <display-name lang="ru">ТВЦ</display-name>
+        <icon src="http://img.teleguide.info/channel/3.gif" />
+    </channel>
+</tv>

@@ -27,9 +27,12 @@ namespace TVContext
         // false if a show does not have age limitations
         [DefaultValue(false)]
         public bool IsAgeLimit { get; set; }
+
+        //original id channel of tvProgramms which gets from xml incoming data file
+        [Required]
+        public int CodeOriginalChannel { get; set; }
        
         // link with table Channel
-        [Required]
         public virtual Channel Channel { get; set; }
 
         //info about all UserShedule which ordered this show

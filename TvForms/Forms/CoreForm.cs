@@ -93,21 +93,22 @@ namespace TvForms
         private void openXmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //ToDo Naming convention!
-            OpenFileDialog OpenXml = new OpenFileDialog();
+            OpenFileDialog openXmlFile = new OpenFileDialog();
 
             //String savePath = @"c:\temp\uploads\";
 
-            OpenXml.DefaultExt = "*.xml";
-            OpenXml.Filter = "XML Files|*.xml";
+            openXmlFile.DefaultExt = "*.xml";
+            openXmlFile.Filter = "XML Files|*.xml";
 
-            if (OpenXml.ShowDialog() == DialogResult.OK &&
-               OpenXml.FileName.Length > 0)
+            if (openXmlFile.ShowDialog() == DialogResult.OK &&
+               openXmlFile.FileName.Length > 0)
             {
                 //
                 //Parse needs correct
                 //
-                XmlFileHelper.ParseChannel(OpenXml.FileName);
-                //UserWindow.TabInfo.ParseChannel(OpenXml.FileName);
+                //XmlFileHelper.ParseChannel(openXmlFile.FileName);
+                XmlFileHelper.ParseProgramm(openXmlFile.FileName);
+              
             }
         }
 
@@ -119,14 +120,10 @@ namespace TvForms
 
         private void profileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-
             //Uncomment when bookmarks will be ready end specify appropriate one!!!!
-
             ActionForm actions = new ActionForm(CurrentUser.Id);
             actions.Show();
             //this.Enabled = false;
-
         }
     }
 }

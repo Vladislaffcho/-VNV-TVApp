@@ -88,78 +88,10 @@ namespace TvForms
 
         public void AddItemToListView(TvShow shows, ref int number)
         {
- 
-        }
-
-        public void ParseProgramm(string filename, int channelId)
-        {
-            try
-            {
-                TvDBContext context = new TvDBContext();
-                //List<TVShow> tvshows = new List<TVShow>();
-
-                //XmlNode searched = null;
-                XmlDocument doc = new XmlDocument();
-                doc.Load(filename);
-                Channel ivan = context.Channels.Find(channelId);
-                foreach (XmlNode node in doc.SelectNodes("/tv/programme"))
-                {
-
-                    string title = node.FirstChild.InnerText;
-                    string mySqlTimestamp = toDatetime2(node.Attributes["start"].Value);
-                    //DateTime time = DateTime.Parse(mySqlTimestamp);
-                    DateTime stt = Convert.ToDateTime(mySqlTimestamp);
-                    //int index = doc.SelectNodes("/tv/programme").Cast<XmlNode>().ToList().IndexOf(node);
-
-                    context.TvShows.Add(new TvShow()
-                    {
-                        Name = title,
-                        Date = stt,
-                        Channel = ivan
-                    });
-
-                }
-                context.SaveChanges();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                StringBuilder sb = new StringBuilder();
-
-                foreach (var failure in ex.EntityValidationErrors)
-                {
-                    sb.AppendFormat("{0} failed validation\n", failure.Entry.Entity.GetType());
-                    foreach (var error in failure.ValidationErrors)
-                    {
-                        sb.AppendFormat("- {0} : {1}", error.PropertyName, error.ErrorMessage);
-                        sb.AppendLine();
-                    }
-                }
-                throw new DbEntityValidationException(
-                    "Entity Validation Failed - errors follow:\n" +
-                    sb.ToString(), ex
-                    );
-            }
+            throw new NotImplementedException();
         }
 
 
-        private string toDatetime2(string date)
-        {
-            if (date.Length != 0)
-            {
-                string year = date.Substring(0, 4);
-                string month = date.Substring(4, 2);
-                string day = date.Substring(6, 2);
-                string hour = date.Substring(8, 2);
-                string minute = date.Substring(10, 2);
-                string second = date.Substring(12, 2);
-
-                return day + "-" + month + "-" + year + " " + hour + ":" + minute + ":" + second;
-            }
-            else
-            {
-                return "0000-00-00 00:00:00";
-            }
-        }
 
 
     }
