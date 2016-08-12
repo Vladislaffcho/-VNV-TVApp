@@ -58,11 +58,17 @@ namespace TvForms
         {
 
             var userAddressRepo = new BaseRepository<UserAddress>();
+            var typeConnectRepo = new BaseRepository<TypeConnect>();
             var addressToUpdate = userAddressRepo.Get(x => x.Id == _addressID)
                 .Include(x => x.TypeConnect)
                 .Include(x => x.User).First();
             addressToUpdate.Address = tbUserAddress.Text;
             addressToUpdate.Comment = tbComment.Text;
+            
+            /*Problematic field*/
+            addressToUpdate.TypeConnect = typeConnectRepo.Get(x => x.NameType == cbAddressType.Text).First();
+            /*End of the problematic field*/
+
             userAddressRepo.Update(addressToUpdate);
         }
     }

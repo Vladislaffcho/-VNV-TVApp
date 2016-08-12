@@ -27,7 +27,18 @@ namespace TVContext
 
         public void Update(TEntity entity)
         {
+            /* Get an error when try to modify _context using the below method*/
             _context.Entry(entity).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
+
+        public void Insert(TEntity entity)
+        {
+            /* Get an error when try to add entity to the _context using any of the below methods*/
+            _context.Entry(entity).State = EntityState.Added;
+            /*_context.Set<TEntity>().Add(entity);*/
+
+
             _context.SaveChanges();
         }
     }

@@ -54,7 +54,8 @@ namespace TvForms
                     panelCore.Controls.Add(new UcAdminView(CurrentUser));
                     break;
                 case (int)EUserType.CLIENT: //user
-                    panelCore.Controls.Add(new UcTabsForUser());
+                    panelCore.Controls.Add(new UcUserProfile(CurrentUser.Id));
+                    /*panelCore.Controls.Add(new UcTabsForUser());*/
                     break;
             }
 
