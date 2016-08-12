@@ -23,19 +23,16 @@ namespace TvForms
             var number = 1;
             foreach (var sh in AllShows)
             {
-                if (DateTime.Now.DayOfWeek == sh.Date.DayOfWeek &&
-                        Math.Abs(sh.Date.Day - (int)sh.Date.Day) < 7)
-                {
-                    var item = new ListViewItem(number.ToString());
-                    var time = sh.Date.Hour <= 9 ? "0" + sh.Date.ToShortTimeString() : sh.Date.ToShortTimeString();
-                    item.SubItems.Add(time);
-                    item.SubItems.Add(sh.Name);
-                    item.SubItems.Add(sh.Id.ToString());
-                    lvShowPrograms.Items.Add(item);
-                    lvShowPrograms.CheckBoxes = isCheckedList;
-                    number++;
-                }
-                
+                if (DateTime.Now.DayOfWeek != sh.Date.DayOfWeek || Math.Abs(sh.Date.Day - (int) sh.Date.Day) >= 7)
+                    continue;
+                var item = new ListViewItem(number.ToString());
+                var time = sh.Date.Hour <= 9 ? "0" + sh.Date.ToShortTimeString() : sh.Date.ToShortTimeString();
+                item.SubItems.Add(time);
+                item.SubItems.Add(sh.Name);
+                item.SubItems.Add(sh.Id.ToString());
+                lvShowPrograms.Items.Add(item);
+                lvShowPrograms.CheckBoxes = isCheckedList;
+                number++;
             }
             
         }

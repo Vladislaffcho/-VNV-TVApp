@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Validation;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Xml;
 using TVContext;
 
 namespace TvForms
 {
     public partial class UcAllChannels : UserControl
     {
-        BaseRepository<TvShow> _showRepo = new BaseRepository<TvShow>();
+        readonly BaseRepository<TvShow> _showRepo = new BaseRepository<TvShow>();
         
         private List<Channel> AllChannels { get; set; }
 
