@@ -13,11 +13,6 @@ namespace TVContext
             TvShows = new List<TvShow>();
         }
 
-        // set Primary Key
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        
         //ToDo Rename to DueDate
         // date when schedule expires
         [Column(TypeName = "datetime2")]

@@ -153,6 +153,12 @@
       <DependentUpon>UpdateUserDataForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\XmlFileHelper.cs" />
+    <Compile Include="UserControls\UcFavourite.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcFavourite.Designer.cs">
+      <DependentUpon>UcFavourite.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\ActionForm.resx">
@@ -197,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UpdateUserDataForm.resx">
       <DependentUpon>UpdateUserDataForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcFavourite.resx">
+      <DependentUpon>UcFavourite.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using TvForms;
 using TVContext;
 
 namespace TvForms
@@ -17,11 +19,10 @@ namespace TvForms
             
             //ToDo Load channels for put in into constructor of ucChannelShowInfo
             InitializeComponent();
-
-            //CurrentWeekChannel = new List<Channel>();
             CurrentWeekChannel = _channelRepo.GetAll().ToList();
             tabPan_AllChannels.Controls.Add(new UcAllChannels(CurrentWeekChannel));
-            
+            tabPan_MyFavourite.Controls.Add(new UcFavoirute(CurrentWeekChannel));
+
         }
         
         public int GetIndexTabForUsers()
@@ -29,32 +30,12 @@ namespace TvForms
             return tabForUsers.SelectedIndex;
         }
 
-        private void tabForUsers_Selected(object sender, TabControlEventArgs e)
+
+        private void tabForUsers_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            //ChosenChannels = TabInfo.MyChannelsChoose;
+            //0 - AllChannels tab, 1 - MyFavourite tab
+            //throw new NotImplementedException();
 
-            //switch (GetIndexMainTab())
-            //{
-            //    case 0:
-            //        ChosenChannels = TabInfo.MyChannelsChoose;
-            //        TabInfo = _allChannelInfo;
-            //        break;
-            //    case 1:
-            //        //ChosenChannels = new List<Channel>();
-            //        ChosenChannels = TabInfo.MyChannelsChoose;
-            //        _myChannelInfo.MyChannelsChoose = ChosenChannels;
-            //        _myChannelInfo.ShowMyChannelsAndAllShows();
-            //        TabInfo = _myChannelInfo;
-            //        break;
-            //    case 2:
-            //        ChosenChannels = TabInfo.MyChannelsChoose;
-            //        _myShowsInfo.MyChannelsChoose = ChosenChannels;
-            //        _myShowsInfo.ShowMyChanAndMyShows();
-            //        TabInfo = _myShowsInfo;
-            //        break;
-            //}
-
-            //tabForUsers.SelectedTab.Controls.Add(TabInfo);
         }
     }
 }

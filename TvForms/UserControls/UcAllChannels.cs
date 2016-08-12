@@ -32,24 +32,24 @@ namespace TvForms
         private void LoadControls(List<Channel> channels)
         {
             AllChannels = channels;
-            LoadAllChannelsList(true);
+            LoadAllChannelsList();
             AllShows = _showRepo.GetAll().ToList();
             tabControl_Shows.SelectedIndex = (int) DateTime.Now.DayOfWeek;
             CurrentDayShows = GetCurrentDayShows((int) DateTime.Now.DayOfWeek);
             ControlForShows = new UcShowsList();
-            ControlForShows.LoadCurrentDayShows(CurrentDayShows, false);
+            ControlForShows.LoadCurrentDayShows(CurrentDayShows);
             tabControl_Shows.SelectedTab.Controls.Add(ControlForShows);
             this.rtbAllCh_Description.Text = "THIS IS ALL CHANNELS TAB";
         }
 
 
-        private void LoadAllChannelsList(bool isCheckedList)
+        private void LoadAllChannelsList()
         {
             var number = 1;
             foreach (var ch in AllChannels)
             {
                 ChannelsToListView(number, ch);
-                lvChannelsList.CheckBoxes = isCheckedList;
+                lvChannelsList.CheckBoxes = true;
                 number++;
             }
         }
@@ -94,10 +94,7 @@ namespace TvForms
 
         private void tabControl_Shows_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CurrentDayShows.Clear();
-            CurrentDayShows = GetCurrentDayShows(GetSelectedDay());
-            ControlForShows.LoadCurrentDayShows(CurrentDayShows, false);
-            tabControl_Shows.SelectedTab.Controls.Add(ControlForShows);
+            LoadProgForCheckAndSelectChannels();
         }
 
         private void cbMyChosenShows_CheckedChanged(object sender, EventArgs e)
@@ -127,7 +124,7 @@ namespace TvForms
         }
         
 
-        private void LoadProgForCheckAndSelChannels()
+        private void LoadProgForCheckAndSelectChannels()
         {
             var listOfcheckedId = new List<int>();
             if (lvChannelsList.CheckedItems.Count > 0)
@@ -143,7 +140,7 @@ namespace TvForms
             CurrentDayShows.Clear();
             CurrentDayShows = GetCurrentDayShows(GetSelectedDay());
             CurrentDayShows = GetChosenChannelShows(uniqueId);
-            ControlForShows.LoadCurrentDayShows(CurrentDayShows, false);
+            ControlForShows.LoadCurrentDayShows(CurrentDayShows);
             tabControl_Shows.SelectedTab.Controls.Add(ControlForShows);
         }
 
@@ -160,11 +157,11 @@ namespace TvForms
                     lvChannelsList.Items[i].Checked = false;
                     lvChannelsList.Items.Clear();
                 }
-                LoadAllChannelsList(true);
+                LoadAllChannelsList();
             }
 
             CurrentDayShows = GetCurrentDayShows(GetSelectedDay());
-            ControlForShows.LoadCurrentDayShows(CurrentDayShows, false);
+            ControlForShows.LoadCurrentDayShows(CurrentDayShows);
             tabControl_Shows.SelectedTab.Controls.Add(ControlForShows);
 
         }
@@ -176,7 +173,7 @@ namespace TvForms
             {
                 if (lvChannelsList.SelectedItems[0].Checked)
                     return;
-                LoadProgForCheckAndSelChannels();
+                LoadProgForCheckAndSelectChannels();
             }
             catch (Exception)
             {
@@ -186,10 +183,10 @@ namespace TvForms
         }
 
 
-        private void lvChannelsList_ItemCheck(object sender, ItemCheckEventArgs e)
+        private void lvChannelsList_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             if (!cbCheckAll.Checked)
-                LoadProgForCheckAndSelChannels();
+                LoadProgForCheckAndSelectChannels();
         }
     }
 }

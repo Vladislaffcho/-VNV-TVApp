@@ -58,7 +58,7 @@
             // Number
             // 
             this.Number.Text = "№";
-            this.Number.Width = 38;
+            this.Number.Width = 57;
             // 
             // TimeShows
             // 
@@ -78,7 +78,7 @@
             // ChannelName
             // 
             this.ChannelName.Text = "Channel";
-            this.ChannelName.Width = 116;
+            this.ChannelName.Width = 96;
             // 
             // UcShowsList
             // 

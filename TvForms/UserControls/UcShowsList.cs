@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using TVContext;
 
@@ -15,7 +13,7 @@ namespace TvForms
         }
         
 
-        public void LoadCurrentDayShows(IEnumerable<TvShow> shows, bool isCheckedList)
+        public void LoadCurrentDayShows(IEnumerable<TvShow> shows)
         {
             lvShowPrograms.Items.Clear();
             var number = 1;
@@ -30,7 +28,7 @@ namespace TvForms
                 item.SubItems.Add(sh.Id.ToString());
 
                 lvShowPrograms.Items.Add(item);
-                lvShowPrograms.CheckBoxes = isCheckedList;
+                lvShowPrograms.CheckBoxes = true;
 
                 number++;
             }
