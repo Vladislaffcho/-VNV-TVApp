@@ -46,6 +46,7 @@ namespace TvForms
             this.gbAllCh_Description = new System.Windows.Forms.GroupBox();
             this.rtbAllCh_Description = new System.Windows.Forms.RichTextBox();
             this.gbUcAllChannel = new System.Windows.Forms.GroupBox();
+            this.cbCheckAll = new System.Windows.Forms.CheckBox();
             this.cbMyChosenShows = new System.Windows.Forms.CheckBox();
             this.lvChannelsList = new System.Windows.Forms.ListView();
             this.lvChNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -164,6 +165,7 @@ namespace TvForms
             // 
             // gbUcAllChannel
             // 
+            this.gbUcAllChannel.Controls.Add(this.cbCheckAll);
             this.gbUcAllChannel.Controls.Add(this.cbMyChosenShows);
             this.gbUcAllChannel.Controls.Add(this.lvChannelsList);
             this.gbUcAllChannel.Controls.Add(this.gbAllCh_Description);
@@ -175,6 +177,17 @@ namespace TvForms
             this.gbUcAllChannel.TabStop = false;
             this.gbUcAllChannel.Text = "Channel choose";
             // 
+            // cbCheckAll
+            // 
+            this.cbCheckAll.AutoSize = true;
+            this.cbCheckAll.Location = new System.Drawing.Point(674, 354);
+            this.cbCheckAll.Name = "cbCheckAll";
+            this.cbCheckAll.Size = new System.Drawing.Size(70, 17);
+            this.cbCheckAll.TabIndex = 10;
+            this.cbCheckAll.Text = "Check all";
+            this.cbCheckAll.UseVisualStyleBackColor = true;
+            this.cbCheckAll.CheckedChanged += new System.EventHandler(this.cbCheckAll_CheckedChanged);
+            // 
             // cbMyChosenShows
             // 
             this.cbMyChosenShows.AutoSize = true;
@@ -184,6 +197,7 @@ namespace TvForms
             this.cbMyChosenShows.TabIndex = 0;
             this.cbMyChosenShows.Text = "Only chosen";
             this.cbMyChosenShows.UseVisualStyleBackColor = true;
+            this.cbMyChosenShows.CheckedChanged += new System.EventHandler(this.cbMyChosenShows_CheckedChanged);
             // 
             // lvChannelsList
             // 
@@ -197,15 +211,16 @@ namespace TvForms
             this.lvChannelsList.Dock = System.Windows.Forms.DockStyle.Left;
             this.lvChannelsList.FullRowSelect = true;
             this.lvChannelsList.GridLines = true;
-            this.lvChannelsList.LabelEdit = true;
+            this.lvChannelsList.LabelWrap = false;
             this.lvChannelsList.Location = new System.Drawing.Point(3, 16);
             this.lvChannelsList.Name = "lvChannelsList";
             this.lvChannelsList.ShowItemToolTips = true;
             this.lvChannelsList.Size = new System.Drawing.Size(341, 407);
-            this.lvChannelsList.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvChannelsList.TabIndex = 9;
             this.lvChannelsList.UseCompatibleStateImageBehavior = false;
             this.lvChannelsList.View = System.Windows.Forms.View.Details;
+            this.lvChannelsList.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lvChannelsList_ItemChecked);
+            this.lvChannelsList.SelectedIndexChanged += new System.EventHandler(this.lvChannelsList_SelectedIndexChanged);
             // 
             // lvChNumber
             // 
@@ -261,5 +276,6 @@ namespace TvForms
         private ColumnHeader lvPriceChannel;
         private ColumnHeader lvIsAdultChannel;
         private CheckBox cbMyChosenShows;
+        private CheckBox cbCheckAll;
     }
 }

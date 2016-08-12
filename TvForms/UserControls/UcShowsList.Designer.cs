@@ -33,7 +33,7 @@
             this.TimeShows = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DateShows = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.NameShows = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.AgeLimitShows = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ChannelName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lvShowPrograms
@@ -43,12 +43,13 @@
             this.TimeShows,
             this.DateShows,
             this.NameShows,
-            this.AgeLimitShows});
+            this.ChannelName});
             this.lvShowPrograms.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvShowPrograms.FullRowSelect = true;
             this.lvShowPrograms.GridLines = true;
             this.lvShowPrograms.Location = new System.Drawing.Point(0, 0);
             this.lvShowPrograms.Name = "lvShowPrograms";
+            this.lvShowPrograms.ShowItemToolTips = true;
             this.lvShowPrograms.Size = new System.Drawing.Size(477, 308);
             this.lvShowPrograms.TabIndex = 0;
             this.lvShowPrograms.UseCompatibleStateImageBehavior = false;
@@ -72,12 +73,12 @@
             // NameShows
             // 
             this.NameShows.Text = "Name";
-            this.NameShows.Width = 275;
+            this.NameShows.Width = 197;
             // 
-            // AgeLimitShows
+            // ChannelName
             // 
-            this.AgeLimitShows.Text = "Adult";
-            this.AgeLimitShows.Width = 36;
+            this.ChannelName.Text = "Channel";
+            this.ChannelName.Width = 116;
             // 
             // UcShowsList
             // 
@@ -97,6 +98,6 @@
         private System.Windows.Forms.ColumnHeader Number;
         private System.Windows.Forms.ColumnHeader NameShows;
         private System.Windows.Forms.ColumnHeader DateShows;
-        private System.Windows.Forms.ColumnHeader AgeLimitShows;
+        private System.Windows.Forms.ColumnHeader ChannelName;
     }
 }
