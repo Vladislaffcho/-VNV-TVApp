@@ -17,7 +17,7 @@ namespace TvForms
         private bool _activeUserFlag;
 
         //private User _currentUser;
-        public UcAdminView(User currentUser)
+        public UcAdminView(int currentUser)
         {
             //_currentUser = currentUser;
             InitializeComponent();
@@ -36,8 +36,6 @@ namespace TvForms
                 // Filling the user list List View
                 var usr = from u in context.Users
                     select u;
-
-                usr.ToList();
 
                 foreach (var i in usr)
                 {

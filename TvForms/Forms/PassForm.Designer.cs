@@ -1,6 +1,6 @@
 ﻿namespace TvForms
 {
-    partial class PassFormCopy
+    partial class PassForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PassFormCopy));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PassForm));
             this.bPassForm_Cancel = new System.Windows.Forms.Button();
             this.bPassForm_Enter = new System.Windows.Forms.Button();
             this.tbPassForm_Login = new System.Windows.Forms.TextBox();
@@ -170,7 +170,7 @@
             this.MaximumSize = new System.Drawing.Size(430, 203);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(430, 203);
-            this.Name = "PassFormCopy";
+            this.Name = "PassForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Autorization";

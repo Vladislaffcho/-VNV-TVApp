@@ -32,5 +32,12 @@ namespace TvForms
             MessageBox.Show("Что-то пошло не так при импорте каналов!!!\n" + ex.Message);
         }
 
+        public static void DisplayError(string text, string caption)
+        {
+            MessageBox.Show(text, caption,
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+
     }
 }
