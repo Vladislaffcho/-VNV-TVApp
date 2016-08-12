@@ -127,18 +127,6 @@ namespace TvForms
         }
         
 
-        private void lvChannelsList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadProgForCheckAndSelChannels();
-        }
-
-
-        private void lvChannelsList_ItemChecked(object sender, ItemCheckedEventArgs e)
-        {
-            //LoadProgForCheckAndSelChannels();
-        }
-
-
         private void LoadProgForCheckAndSelChannels()
         {
             var listOfcheckedId = new List<int>();
@@ -165,11 +153,43 @@ namespace TvForms
             if (cbCheckAll.Checked)
                 for (var i = 0; i < lvChannelsList.Items.Count; i++)
                     lvChannelsList.Items[i].Checked = true;
-            else if(!cbCheckAll.Checked)
+            else if (!cbCheckAll.Checked)
+            {
                 for (var i = 0; i < lvChannelsList.Items.Count; i++)
+                {
                     lvChannelsList.Items[i].Checked = false;
+                    lvChannelsList.Items.Clear();
+                }
+                LoadAllChannelsList(true);
+            }
+
+            CurrentDayShows = GetCurrentDayShows(GetSelectedDay());
+            ControlForShows.LoadCurrentDayShows(CurrentDayShows, false);
+            tabControl_Shows.SelectedTab.Controls.Add(ControlForShows);
+
         }
 
 
+        private void lvChannelsList_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (lvChannelsList.SelectedItems[0].Checked)
+                    return;
+                LoadProgForCheckAndSelChannels();
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            
+        }
+
+
+        private void lvChannelsList_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (!cbCheckAll.Checked)
+                LoadProgForCheckAndSelChannels();
+        }
     }
 }

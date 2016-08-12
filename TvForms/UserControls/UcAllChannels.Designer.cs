@@ -219,8 +219,8 @@ namespace TvForms
             this.lvChannelsList.TabIndex = 9;
             this.lvChannelsList.UseCompatibleStateImageBehavior = false;
             this.lvChannelsList.View = System.Windows.Forms.View.Details;
-            this.lvChannelsList.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lvChannelsList_ItemChecked);
-            this.lvChannelsList.SelectedIndexChanged += new System.EventHandler(this.lvChannelsList_SelectedIndexChanged);
+            this.lvChannelsList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.lvChannelsList_ItemCheck);
+            this.lvChannelsList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvChannelsList_MouseClick);
             // 
             // lvChNumber
             // 
