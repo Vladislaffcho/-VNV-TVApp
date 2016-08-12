@@ -98,7 +98,7 @@ namespace TvForms
                 //
                 //Parse needs correct
                 //
-                //XmlFileHelper.ParseChannel(openXmlFile.FileName);
+                XmlFileHelper.ParseChannel(openXmlFile.FileName);
                 XmlFileHelper.ParseProgramm(openXmlFile.FileName);
 
             }

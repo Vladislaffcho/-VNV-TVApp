@@ -34,7 +34,6 @@ namespace TvForms
                 lvShowPrograms.CheckBoxes = isCheckedList;
                 number++;
             }
-            
         }
 
 
