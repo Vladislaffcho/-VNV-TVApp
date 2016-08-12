@@ -3,7 +3,7 @@ namespace TvDbContext.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class init : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
@@ -92,10 +92,10 @@ namespace TvDbContext.Migrations
                         IsAgeLimit = c.Boolean(nullable: false),
                         CodeOriginalChannel = c.Int(nullable: false),
                         Comment = c.String(maxLength: 500),
-                        Channel_Id = c.Int(nullable: false),
+                        Channel_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Channels", t => t.Channel_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Channels", t => t.Channel_Id)
                 .Index(t => t.Channel_Id);
             
             CreateTable(

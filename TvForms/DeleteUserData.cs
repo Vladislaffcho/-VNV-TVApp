@@ -26,13 +26,9 @@ namespace TvForms
             DialogResult result = MessageBox.Show("Do you want to remove selected address?", "Remove address", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
-                using (var context = new TvDBContext())
-                {
-
-                    var address = context.UserAddresses.First(c => c.Id == addressID);
-                    context.UserAddresses.Remove(address);
-                    context.SaveChanges();
-                }
+                var userAddressRepo = new BaseRepository<UserAddress>();
+                var addressToRemove = userAddressRepo.Get(x => x.Id == addressID).First();
+                userAddressRepo.Remove(addressToRemove);
             }
         }
     }
