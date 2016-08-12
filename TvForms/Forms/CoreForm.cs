@@ -73,17 +73,7 @@ namespace TvForms
         }
 
 
-        private void bCancelCore_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void bSaveCore_Click(object sender, EventArgs e)
         {
             Close();
         }

@@ -8,39 +8,32 @@ namespace TvForms
 {
     public partial class UcShowsList : UserControl
     {
-        private List<TvShow> AllShows { get; set; }
-
-        public UcShowsList(List<TvShow> allShows)
+        public UcShowsList()
         {
             InitializeComponent();
-            AllShows = allShows;
-            LoadCurrentDayShows(false);
         }
+        
 
-
-        private void LoadCurrentDayShows(bool isCheckedList)
+        public void LoadCurrentDayShows(IEnumerable<TvShow> shows, bool isCheckedList)
         {
+            lvShowPrograms.Items.Clear();
             var number = 1;
-            foreach (var sh in AllShows)
+            foreach (var sh in shows)
             {
-                if (DateTime.Now.DayOfWeek != sh.Date.DayOfWeek || Math.Abs(sh.Date.Day - (int) sh.Date.Day) >= 7)
-                    continue;
                 var item = new ListViewItem(number.ToString());
-                var time = sh.Date.Hour <= 9 ? "0" + sh.Date.ToShortTimeString() : sh.Date.ToShortTimeString();
-                item.SubItems.Add(time);
+                
+                item.SubItems.Add($"{sh.Date.Hour:00}:{sh.Date.Minute:00}");
+                item.SubItems.Add($"{sh.Date.Day:00}/{sh.Date.Month:00}");
                 item.SubItems.Add(sh.Name);
+                item.SubItems.Add(sh.IsAgeLimit ? "+" : string.Empty);
                 item.SubItems.Add(sh.Id.ToString());
+
                 lvShowPrograms.Items.Add(item);
                 lvShowPrograms.CheckBoxes = isCheckedList;
+
                 number++;
             }
         }
-
-
-
-
-
-
-
+        
     }
 }

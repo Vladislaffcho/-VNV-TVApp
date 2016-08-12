@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CoreForm));
-            this.bSaveCore = new System.Windows.Forms.Button();
-            this.bCancelCore = new System.Windows.Forms.Button();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openXmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSavedScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,27 +44,6 @@
             this.panelCore = new System.Windows.Forms.Panel();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // bSaveCore
-            // 
-            this.bSaveCore.Location = new System.Drawing.Point(498, 386);
-            this.bSaveCore.Name = "bSaveCore";
-            this.bSaveCore.Size = new System.Drawing.Size(75, 23);
-            this.bSaveCore.TabIndex = 1;
-            this.bSaveCore.Text = "Save";
-            this.bSaveCore.UseVisualStyleBackColor = true;
-            this.bSaveCore.Click += new System.EventHandler(this.bSaveCore_Click);
-            // 
-            // bCancelCore
-            // 
-            this.bCancelCore.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.bCancelCore.Location = new System.Drawing.Point(579, 386);
-            this.bCancelCore.Name = "bCancelCore";
-            this.bCancelCore.Size = new System.Drawing.Size(75, 23);
-            this.bCancelCore.TabIndex = 2;
-            this.bCancelCore.Text = "Cancel";
-            this.bCancelCore.UseVisualStyleBackColor = true;
-            this.bCancelCore.Click += new System.EventHandler(this.bCancelCore_Click);
             // 
             // fileToolStripMenuItem
             // 
@@ -154,28 +131,25 @@
             this.aboutToolStripMenuItem});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
-            this.msMain.Size = new System.Drawing.Size(666, 24);
+            this.msMain.Size = new System.Drawing.Size(852, 24);
             this.msMain.TabIndex = 0;
             this.msMain.Text = "MainMenu";
             // 
             // panelCore
             // 
-            this.panelCore.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelCore.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panelCore.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelCore.Location = new System.Drawing.Point(0, 24);
             this.panelCore.Name = "panelCore";
-            this.panelCore.Size = new System.Drawing.Size(666, 352);
+            this.panelCore.Size = new System.Drawing.Size(852, 455);
             this.panelCore.TabIndex = 3;
             // 
             // CoreForm
             // 
-            this.AcceptButton = this.bSaveCore;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.bCancelCore;
-            this.ClientSize = new System.Drawing.Size(666, 421);
+            this.ClientSize = new System.Drawing.Size(852, 479);
             this.Controls.Add(this.panelCore);
-            this.Controls.Add(this.bCancelCore);
-            this.Controls.Add(this.bSaveCore);
             this.Controls.Add(this.msMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.msMain;
@@ -190,8 +164,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button bSaveCore;
-        private System.Windows.Forms.Button bCancelCore;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openXmlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openSavedScheduleToolStripMenuItem;
