@@ -54,6 +54,7 @@
             this.lvShowPrograms.TabIndex = 0;
             this.lvShowPrograms.UseCompatibleStateImageBehavior = false;
             this.lvShowPrograms.View = System.Windows.Forms.View.Details;
+            //this.lvShowPrograms.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.lvShowPrograms_ItemCheck);
             // 
             // Number
             // 

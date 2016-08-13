@@ -14,14 +14,20 @@ namespace TvForms
         //ToDO Use only one UC
         private List<Channel> CurrentWeekChannel { get; set; }
 
+        private UcAllChannels AllChannelControl { get; set; }
+
+        private UcFavoirute MyFavouriteControl { get; set; }
+
         public UcTabsForUser()
         {
             
             //ToDo Load channels for put in into constructor of ucChannelShowInfo
             InitializeComponent();
             CurrentWeekChannel = _channelRepo.GetAll().ToList();
-            tabPan_AllChannels.Controls.Add(new UcAllChannels(CurrentWeekChannel));
-            tabPan_MyFavourite.Controls.Add(new UcFavoirute(CurrentWeekChannel));
+            AllChannelControl = new UcAllChannels(CurrentWeekChannel);
+            MyFavouriteControl = new UcFavoirute();
+            tabPan_AllChannels.Controls.Add(AllChannelControl);
+            tabPan_MyFavourite.Controls.Add(MyFavouriteControl);
 
         }
         
@@ -35,6 +41,9 @@ namespace TvForms
         {
             //0 - AllChannels tab, 1 - MyFavourite tab
             //throw new NotImplementedException();
+           
+
+            //AllChannelControl.GetFavouriteMedia(ref chanId, ref tvShowsId);
 
         }
     }

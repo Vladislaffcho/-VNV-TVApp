@@ -7,7 +7,7 @@ namespace TvForms
     public partial class UcFavoirute : UserControl
     {
 
-        public UcFavoirute(List<Channel> channels)
+        public UcFavoirute()
         {
             InitializeComponent();
         }

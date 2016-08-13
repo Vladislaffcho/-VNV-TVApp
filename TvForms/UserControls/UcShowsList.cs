@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using TVContext;
 
@@ -7,13 +8,16 @@ namespace TvForms
     public partial class UcShowsList : UserControl
     {
 
+        public List<int> CheckedShowsId { get; set; }
+
         public UcShowsList()
         {
             InitializeComponent();
+            CheckedShowsId = new List<int>();
         }
         
 
-        public void LoadCurrentDayShows(IEnumerable<TvShow> shows)
+        public void LoadCurrentDayShows(IEnumerable<TvShow> shows, List<int> favouriteShowsId)
         {
             lvShowPrograms.Items.Clear();
             var number = 1;
@@ -30,9 +34,23 @@ namespace TvForms
                 lvShowPrograms.Items.Add(item);
                 lvShowPrograms.CheckBoxes = true;
 
+                if (favouriteShowsId?.IndexOf(sh.Id) >= 0)
+                    lvShowPrograms.Items[number-1].Checked = true;
+
                 number++;
             }
         }
-        
+
+
+        public List<int> ListCheckedProgramsId()
+        {
+            var listOfcheckedId = new List<int>();
+            if (lvShowPrograms.CheckedItems.Count > 0)
+                for (var i = 0; i < lvShowPrograms.CheckedItems.Count; i++)
+                    listOfcheckedId.Add(lvShowPrograms.CheckedItems[i].SubItems[5].Text.GetInt());
+            return listOfcheckedId;
+        }
+
+
     }
 }

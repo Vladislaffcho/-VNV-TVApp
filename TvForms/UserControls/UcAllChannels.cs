@@ -10,7 +10,7 @@ namespace TvForms
 {
     public partial class UcAllChannels : UserControl
     {
-        readonly BaseRepository<TvShow> _showRepo = new BaseRepository<TvShow>();
+        private readonly BaseRepository<TvShow> _showRepo = new BaseRepository<TvShow>();
 
         private List<Channel> AllChannels { get; set; }
 
@@ -19,6 +19,10 @@ namespace TvForms
         private List<TvShow> CurrentDayShows { get; set; }
 
         private UcShowsList ControlForShows { get; set; }
+
+        public List<int> FavouriteChannelsId { get; private set; }
+
+        public List<int> FavouriteShowsId { get; private set; }
 
 
         public UcAllChannels(List<Channel> channels)
@@ -37,7 +41,8 @@ namespace TvForms
             tabControl_Shows.SelectedIndex = (int) DateTime.Now.DayOfWeek;
             CurrentDayShows = GetCurrentDayShows((int) DateTime.Now.DayOfWeek);
             ControlForShows = new UcShowsList();
-            ControlForShows.LoadCurrentDayShows(CurrentDayShows);
+            FavouriteShowsId = new List<int>();
+            ControlForShows.LoadCurrentDayShows(CurrentDayShows, FavouriteShowsId);
             tabControl_Shows.SelectedTab.Controls.Add(ControlForShows);
             this.rtbAllCh_Description.Text = "THIS IS ALL CHANNELS TAB";
         }
@@ -77,6 +82,7 @@ namespace TvForms
             // <7 - for old shows, which we filtering only for current week
             var showsList = AllShows.FindAll(x => (int) x.Date.DayOfWeek == dayOfWeek
                                 /*&& Math.Abs(x.Date.Day - DateTime.Now.Day) < 7*/).ToList();
+            LoadFavouriteShows();
             return showsList;
         }
 
@@ -86,8 +92,9 @@ namespace TvForms
         /// </summary>
         /// <param name="channelIdList"></param>
         /// <returns></returns>
-        private List<TvShow> GetChosenChannelShows(IEnumerable<int> channelIdList)
+        private List<TvShow> GetShowsFromChosenChannel(IEnumerable<int> channelIdList)
         {
+            LoadFavouriteShows();
             return channelIdList.SelectMany(id => CurrentDayShows.FindAll(x => x.Channel.Id == id).ToList()).ToList();
         }
 
@@ -97,9 +104,21 @@ namespace TvForms
             LoadProgForCheckAndSelectChannels();
         }
 
+        private void LoadFavouriteShows()
+        {
+            var tmp = ControlForShows?.ListCheckedProgramsId();
+            if (tmp != null)
+            {
+                tmp.AddRange(FavouriteShowsId);
+                FavouriteShowsId.Clear();
+                FavouriteShowsId.AddRange(tmp.Distinct());
+            }
+        }
+
         private void cbMyChosenShows_CheckedChanged(object sender, EventArgs e)
         {
             var listOfcheckedId = new List<int>();
+            LoadFavouriteShows();
 
             if (lvChannelsList.CheckedItems.Count > 0)
                 for (var i = 0; i < lvChannelsList.CheckedItems.Count; i++)
@@ -126,10 +145,7 @@ namespace TvForms
 
         private void LoadProgForCheckAndSelectChannels()
         {
-            var listOfcheckedId = new List<int>();
-            if (lvChannelsList.CheckedItems.Count > 0)
-                for (var i = 0; i < lvChannelsList.CheckedItems.Count; i++)
-                    listOfcheckedId.Add(lvChannelsList.CheckedItems[i].SubItems[4].Text.GetInt());
+            var listOfcheckedId = ListCheckedChannelId();
 
             if (lvChannelsList.SelectedItems.Count > 0)
                 for (var i = 0; i < lvChannelsList.SelectedItems.Count; i++)
@@ -137,14 +153,26 @@ namespace TvForms
 
             var uniqueId = listOfcheckedId.Distinct();
 
+            LoadFavouriteShows();
+
             CurrentDayShows.Clear();
             CurrentDayShows = GetCurrentDayShows(GetSelectedDay());
-            CurrentDayShows = GetChosenChannelShows(uniqueId);
-            ControlForShows.LoadCurrentDayShows(CurrentDayShows);
+            CurrentDayShows = GetShowsFromChosenChannel(uniqueId);
+            ControlForShows.LoadCurrentDayShows(CurrentDayShows, FavouriteShowsId);
             tabControl_Shows.SelectedTab.Controls.Add(ControlForShows);
         }
 
 
+        private List<int> ListCheckedChannelId()
+        {
+            var listOfcheckedId = new List<int>();
+            if (lvChannelsList.CheckedItems.Count > 0)
+                for (var i = 0; i < lvChannelsList.CheckedItems.Count; i++)
+                    listOfcheckedId.Add(lvChannelsList.CheckedItems[i].SubItems[4].Text.GetInt());
+            return listOfcheckedId;
+        }
+
+        
         private void cbCheckAll_CheckedChanged(object sender, EventArgs e)
         {
             if (cbCheckAll.Checked)
@@ -160,8 +188,10 @@ namespace TvForms
                 LoadAllChannelsList();
             }
 
+            LoadFavouriteShows();
+
             CurrentDayShows = GetCurrentDayShows(GetSelectedDay());
-            ControlForShows.LoadCurrentDayShows(CurrentDayShows);
+            ControlForShows.LoadCurrentDayShows(CurrentDayShows, FavouriteShowsId);
             tabControl_Shows.SelectedTab.Controls.Add(ControlForShows);
 
         }
@@ -186,7 +216,12 @@ namespace TvForms
         private void lvChannelsList_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             if (!cbCheckAll.Checked)
+            {
                 LoadProgForCheckAndSelectChannels();
+                FavouriteChannelsId = ListCheckedChannelId();
+            }
         }
-    }
+
+        
+     }
 }
