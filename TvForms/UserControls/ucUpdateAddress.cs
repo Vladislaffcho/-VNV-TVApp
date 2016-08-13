@@ -57,7 +57,21 @@ namespace TvForms
         public void SaveAddedDetails()
         {
 
-            var userAddressRepo = new BaseRepository<UserAddress>();
+            /*This way works perfectly*/
+           /*{
+               using (var context = new TvDBContext())
+               {
+                   var addressToChange = context.UserAddresses.First(l => l.Id == _addressID);
+                   addressToChange.Address = tbUserAddress.Text;
+                   addressToChange.Comment = tbComment.Text;
+                   addressToChange.TypeConnect = context.TypeConnects.First(l => l.NameType == cbAddressType.SelectedItem.ToString());
+                   addressToChange.User = context.Users.First(u => u.Id == addressToChange.User.Id);
+                   context.SaveChanges();
+                   MessageBox.Show("Results saved correctly", "Success", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+               }
+           }*/
+
+           var userAddressRepo = new BaseRepository<UserAddress>();
             var typeConnectRepo = new BaseRepository<TypeConnect>();
             var addressToUpdate = userAddressRepo.Get(x => x.Id == _addressID)
                 .Include(x => x.TypeConnect)
