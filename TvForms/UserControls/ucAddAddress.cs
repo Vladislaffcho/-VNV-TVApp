@@ -67,9 +67,10 @@ namespace TvForms
 
 
             /* Attempt 1. Get error in Insert method */
-            var userAddressRepo = new BaseRepository<UserAddress>();
-            var typeConnectRepo = new BaseRepository<TypeConnect>();
-            var userRepo = new BaseRepository<User>();
+            TvDBContext context = new TvDBContext();
+            var userAddressRepo = new BaseRepository<UserAddress>(context);
+            var typeConnectRepo = new BaseRepository<TypeConnect>(context);
+            var userRepo = new BaseRepository<User>(context);
             UserAddress address = new UserAddress
             {
                 Address = tbUserAddress.Text,
