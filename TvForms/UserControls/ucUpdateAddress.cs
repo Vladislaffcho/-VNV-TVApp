@@ -56,14 +56,18 @@ namespace TvForms
 
         public void SaveAddedDetails()
         {
-
-            var userAddressRepo = new BaseRepository<UserAddress>();
-            var addressToUpdate = userAddressRepo.Get(x => x.Id == _addressID)
-                .Include(x => x.TypeConnect)
-                .Include(x => x.User).First();
-            addressToUpdate.Address = tbUserAddress.Text;
-            addressToUpdate.Comment = tbComment.Text;
-            userAddressRepo.Update(addressToUpdate);
+            using (var context = new TvDBContext())
+            {
+                var userAddressRepo = new BaseRepository<UserAddress>(context);
+                var typeConnectRepo = new BaseRepository<TypeConnect>(context);
+                var addressToUpdate = userAddressRepo.Get(x => x.Id == _addressID)
+                    .Include(x => x.TypeConnect)
+                    .Include(x => x.User).First();
+                addressToUpdate.Address = tbUserAddress.Text;
+                addressToUpdate.Comment = tbComment.Text;
+                addressToUpdate.TypeConnect = typeConnectRepo.Get(l => l.NameType == cbAddressType.SelectedItem.ToString()).First();
+                userAddressRepo.Update(addressToUpdate);
+            }
         }
     }
 }
