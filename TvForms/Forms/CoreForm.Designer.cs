@@ -32,6 +32,9 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openXmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSavedScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFavouriteToXmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,6 +42,7 @@
             this.ordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountRechargeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.profileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.paymentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.panelCore = new System.Windows.Forms.Panel();
@@ -50,6 +54,7 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openXmlToolStripMenuItem,
             this.openSavedScheduleToolStripMenuItem,
+            this.saveFavouriteToXmlToolStripMenuItem,
             this.toolStripSeparator1,
             this.closeToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -69,6 +74,28 @@
             this.openSavedScheduleToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.openSavedScheduleToolStripMenuItem.Text = "Open saved schedule";
             // 
+            // saveFavouriteToXmlToolStripMenuItem
+            // 
+            this.saveFavouriteToXmlToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xmlToolStripMenuItem,
+            this.zipToolStripMenuItem});
+            this.saveFavouriteToXmlToolStripMenuItem.Name = "saveFavouriteToXmlToolStripMenuItem";
+            this.saveFavouriteToXmlToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.saveFavouriteToXmlToolStripMenuItem.Text = "Save favourite to...";
+            // 
+            // xmlToolStripMenuItem
+            // 
+            this.xmlToolStripMenuItem.Name = "xmlToolStripMenuItem";
+            this.xmlToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xmlToolStripMenuItem.Text = "*.xml";
+            this.xmlToolStripMenuItem.Click += new System.EventHandler(this.xmlToolStripMenuItem_Click);
+            // 
+            // zipToolStripMenuItem
+            // 
+            this.zipToolStripMenuItem.Name = "zipToolStripMenuItem";
+            this.zipToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.zipToolStripMenuItem.Text = "*.zip";
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -87,7 +114,8 @@
             this.additionalServiceToolStripMenuItem,
             this.ordersToolStripMenuItem,
             this.accountRechargeToolStripMenuItem,
-            this.profileToolStripMenuItem});
+            this.profileToolStripMenuItem,
+            this.paymentsToolStripMenuItem});
             this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
             this.actionsToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
             this.actionsToolStripMenuItem.Text = "User actions";
@@ -117,6 +145,13 @@
             this.profileToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.profileToolStripMenuItem.Text = "Profile";
             this.profileToolStripMenuItem.Click += new System.EventHandler(this.profileToolStripMenuItem_Click);
+            // 
+            // paymentsToolStripMenuItem
+            // 
+            this.paymentsToolStripMenuItem.Name = "paymentsToolStripMenuItem";
+            this.paymentsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.paymentsToolStripMenuItem.Text = "Payments";
+            this.paymentsToolStripMenuItem.Click += new System.EventHandler(this.paymentsToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -179,6 +214,10 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.MenuStrip msMain;
         private System.Windows.Forms.Panel panelCore;
+        private System.Windows.Forms.ToolStripMenuItem paymentsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveFavouriteToXmlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xmlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem zipToolStripMenuItem;
     }
 }
 

@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Schema;
-using TvForms.UserControls;
+using UserControls;
 using TVContext;
 
 namespace TvForms
@@ -25,21 +25,6 @@ namespace TvForms
             InitializeComponent();
             LoadMainControl();
 
-            //if (CurrentUserId != 0)
-            //{
-            //    var user = new BaseRepository<User>();
-            //    var userType = user.Get(x => x.Id == CurrentUserId).FirstOrDefault().UserType.Id;
-
-            //    switch (userType)
-            //    {
-            //        case (int)EUserType.ADMIN: //admin
-            //            panelCore.Controls.Add(new UcAdminView(CurrentUserId));
-            //            break;
-            //        case (int)EUserType.CLIENT: //user
-            //            panelCore.Controls.Add(new UcTabsForUser());
-            //            break;
-            //    }
-            //}
         }
 
         private void LoadMainControl()
@@ -110,18 +95,50 @@ namespace TvForms
         private void profileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Uncomment when bookmarks will be ready end specify appropriate one!!!!
-            var actions = new ActionForm(new UcUserProfile(CurrentUserId));
-            actions.Text = "User profile";
-            actions.Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\j01_9602.ico");
+            var actions = new ActionForm(new UcUserProfile(CurrentUserId))
+            {
+                Text = "User profile",
+                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\j01_9602.ico")
+            };
             actions.Show();
         }
 
         private void ordersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var actions = new ActionForm(new UсOrdersView(CurrentUserId));
-            actions.Text = "User orders history";
-            actions.Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\dollar.ico");
+            var actions = new ActionForm(new UсOrdersView(CurrentUserId))
+            {
+                Text = "User orders history",
+                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\wallet.ico")
+            };
             actions.Show();
+        }
+
+        private void paymentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var actions = new ActionForm(new UcPayments(CurrentUserId))
+            {
+                Text = "PAYMENTS",
+                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\dollar.ico")
+            };
+            actions.Show();
+        }
+
+        private void xmlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var saveFile = new SaveFileDialog()
+            {
+                DefaultExt = "*.xml",
+                Filter = "XML Files(*.xml)|*.xml|All files(*.*)|*.*"
+            };
+
+            if (saveFile.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            XmlFileHelper.XmlFavouriteWriter(saveFile.FileName, CurrentUserId);
+
+            MessageBox.Show("Файл сохранен", "Save", 
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
     }
 }

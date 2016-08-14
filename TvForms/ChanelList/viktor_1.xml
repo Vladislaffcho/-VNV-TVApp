@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tv>
+	<channel>
+		<ID>82</ID>
+		<Name>1+1</Name>
+		<DueDate>21.08.2016</DueDate>
+		<originalIdChannel>1</originalIdChannel>
+	</channel>
+	<channel>
+		<ID>83</ID>
+		<Name>112 Украина</Name>
+		<DueDate>21.08.2016</DueDate>
+		<originalIdChannel>2</originalIdChannel>
+	</channel>
+	<channel>
+		<ID>84</ID>
+		<Name>24 (Телеканал новостей 24)</Name>
+		<DueDate>21.08.2016</DueDate>
+		<originalIdChannel>3</originalIdChannel>
+	</channel>
+	<channel>
+		<ID>85</ID>
+		<Name>1+1</Name>
+		<DueDate>21.08.2016</DueDate>
+		<originalIdChannel>1</originalIdChannel>
+	</channel>
+	<channel>
+		<ID>86</ID>
+		<Name>1+1</Name>
+		<DueDate>21.08.2016</DueDate>
+		<originalIdChannel>1</originalIdChannel>
+	</channel>
+	<channel>
+		<ID>87</ID>
+		<Name>1+1</Name>
+		<DueDate>21.08.2016</DueDate>
+		<originalIdChannel>1</originalIdChannel>
+	</channel>
+	<channel>
+		<ID>88</ID>
+		<Name>24 Док</Name>
+		<DueDate>21.08.2016</DueDate>
+		<originalIdChannel>4</originalIdChannel>
+	</channel>
+	<channel>
+		<ID>89</ID>
+		<Name>24 Док</Name>
+		<DueDate>21.08.2016</DueDate>
+		<originalIdChannel>4</originalIdChannel>
+	</channel>
+	<channel>
+		<ID>90</ID>
+		<Name>24 Док</Name>
+		<DueDate>21.08.2016</DueDate>
+		<originalIdChannel>4</originalIdChannel>
+	</channel>
+	<channel>
+		<ID>91</ID>
+		<Name>24 Док</Name>
+		<DueDate>21.08.2016</DueDate>
+		<originalIdChannel>4</originalIdChannel>
+	</channel>
+	<channel>
+		<ID>92</ID>
+		<Name>24 Док</Name>
+		<DueDate>21.08.2016</DueDate>
+		<originalIdChannel>4</originalIdChannel>
+	</channel>
+</tv>

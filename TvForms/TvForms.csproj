@@ -98,6 +98,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcPayments.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcPayments.Designer.cs">
+      <DependentUpon>UcPayments.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcTabsForUser.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -188,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcAddAddress.resx">
       <DependentUpon>UcAddAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcPayments.resx">
+      <DependentUpon>UcPayments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcTabsForUser.resx">
       <DependentUpon>UcTabsForUser.cs</DependentUpon>

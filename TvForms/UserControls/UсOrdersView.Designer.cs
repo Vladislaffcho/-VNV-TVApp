@@ -1,4 +1,4 @@
-﻿namespace TvForms.UserControls
+﻿namespace UserControls
 {
     partial class UсOrdersView
     {

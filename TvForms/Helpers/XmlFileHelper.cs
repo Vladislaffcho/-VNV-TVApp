@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity.Validation;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Xml;
@@ -155,6 +156,51 @@ namespace TvForms
             else
             {
                 return "0000-00-00 00:00:00";
+            }
+        }
+
+
+        public static void XmlFavouriteWriter(string fileName, int userId)
+        {
+            var chOrderRepo = new BaseRepository<OrderChannel>();
+            var tvShowsRepo = new BaseRepository<UserSchedule>();
+
+
+            using (var writer = XmlWriter.Create(fileName))
+            {
+                writer.WriteStartDocument();
+                writer.WriteStartElement("tv");
+
+                foreach (var ordChannel in chOrderRepo.Get(x => x.Order.User.Id == userId).ToList())
+                {
+                    writer.WriteStartElement("channel");
+
+                    writer.WriteElementString("id", ordChannel.Channel.OriginalId.ToString());
+                    writer.WriteElementString("display-name", ordChannel.Channel.Name);
+                    writer.WriteElementString("due-date", ordChannel.Order.DueDate.ToShortDateString());
+                    writer.WriteElementString("user-id", userId.ToString());
+                    writer.WriteElementString("price", ordChannel.Channel.Price.ToString(CultureInfo.CurrentCulture));
+
+                    writer.WriteEndElement();
+                }
+
+                foreach (var prog in tvShowsRepo.Get(x => x.User.Id == userId).ToList())
+                {
+                    writer.WriteStartElement("programme");
+
+                    writer.WriteElementString("id", prog.Id.ToString());
+                    writer.WriteElementString("channel-id", prog.TvShow.Channel.OriginalId.ToString());
+                    writer.WriteElementString("channel", prog.TvShow.Channel.Name);
+                    writer.WriteElementString("title", prog.TvShow.Name);
+                    writer.WriteElementString("start", prog.TvShow.Date.Year.ToString() +
+                        prog.TvShow.Date.Month + prog.TvShow.Date.Day +
+                        prog.TvShow.Date.Hour + prog.TvShow.Date.Minute + "00 +0200");
+                    
+                    writer.WriteEndElement();
+                }
+
+                writer.WriteEndElement();
+                writer.WriteEndDocument();
             }
         }
     }

@@ -10,17 +10,14 @@ using System.Windows.Forms;
 
 namespace UserControls
 {
-    public partial class UсOrdersView : UserControl
+    public partial class UcPayments : UserControl
     {
-        private int CurrenUserId { get; set; }
+        private int CurrentUserId { get; set; }
 
-        public UсOrdersView(int currentUserId)
+        public UcPayments(int currentUserId)
         {
             InitializeComponent();
-            CurrenUserId = currentUserId;
-
+            CurrentUserId = currentUserId;
         }
-
-
     }
 }
