@@ -103,6 +103,7 @@
             this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
             this.ordersToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.ordersToolStripMenuItem.Text = "Orders history";
+            this.ordersToolStripMenuItem.Click += new System.EventHandler(this.ordersToolStripMenuItem_Click);
             // 
             // accountRechargeToolStripMenuItem
             // 

@@ -28,23 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panUserActions = new System.Windows.Forms.Panel();
+            this.panActionForm = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // panUserActions
+            // panActionForm
             // 
-            this.panUserActions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panUserActions.Location = new System.Drawing.Point(0, 0);
-            this.panUserActions.Name = "panUserActions";
-            this.panUserActions.Size = new System.Drawing.Size(630, 323);
-            this.panUserActions.TabIndex = 0;
+            this.panActionForm.Location = new System.Drawing.Point(0, 0);
+            this.panActionForm.Name = "panActionForm";
+            this.panActionForm.Size = new System.Drawing.Size(630, 323);
+            this.panActionForm.TabIndex = 0;
             // 
             // ActionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(630, 323);
-            this.Controls.Add(this.panUserActions);
+            this.Controls.Add(this.panActionForm);
             this.Name = "ActionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "User actions";
@@ -54,6 +53,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panUserActions;
+        private System.Windows.Forms.Panel panActionForm;
     }
 }

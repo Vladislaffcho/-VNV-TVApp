@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.scContainerFav = new System.Windows.Forms.SplitContainer();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lvFavouriteProgs = new System.Windows.Forms.ListView();
             this.Number = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ChannelName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Adult = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -58,7 +58,7 @@
             // 
             // scContainerFav.Panel1
             // 
-            this.scContainerFav.Panel1.Controls.Add(this.listView1);
+            this.scContainerFav.Panel1.Controls.Add(this.lvFavouriteProgs);
             // 
             // scContainerFav.Panel2
             // 
@@ -73,9 +73,9 @@
             this.scContainerFav.SplitterDistance = 643;
             this.scContainerFav.TabIndex = 0;
             // 
-            // listView1
+            // lvFavouriteProgs
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvFavouriteProgs.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Number,
             this.ChannelName,
             this.Adult,
@@ -83,14 +83,15 @@
             this.Date,
             this.Time,
             this.Programm});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(643, 429);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.lvFavouriteProgs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvFavouriteProgs.FullRowSelect = true;
+            this.lvFavouriteProgs.GridLines = true;
+            this.lvFavouriteProgs.Location = new System.Drawing.Point(0, 0);
+            this.lvFavouriteProgs.Name = "lvFavouriteProgs";
+            this.lvFavouriteProgs.Size = new System.Drawing.Size(643, 429);
+            this.lvFavouriteProgs.TabIndex = 0;
+            this.lvFavouriteProgs.UseCompatibleStateImageBehavior = false;
+            this.lvFavouriteProgs.View = System.Windows.Forms.View.Details;
             // 
             // Number
             // 
@@ -152,6 +153,7 @@
             this.tbAccountBalance.Name = "tbAccountBalance";
             this.tbAccountBalance.Size = new System.Drawing.Size(85, 20);
             this.tbAccountBalance.TabIndex = 4;
+            this.tbAccountBalance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lbAccountBalance
             // 
@@ -178,6 +180,7 @@
             this.tbTotalPrice.Name = "tbTotalPrice";
             this.tbTotalPrice.Size = new System.Drawing.Size(85, 20);
             this.tbTotalPrice.TabIndex = 1;
+            this.tbTotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lbTotalPrice
             // 
@@ -208,7 +211,7 @@
 
         private System.Windows.Forms.SplitContainer scContainerFav;
         private System.Windows.Forms.Label lbTotalPrice;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lvFavouriteProgs;
         private System.Windows.Forms.ColumnHeader Number;
         private System.Windows.Forms.ColumnHeader ChannelName;
         private System.Windows.Forms.ColumnHeader Adult;

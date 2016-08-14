@@ -159,6 +159,12 @@
     <Compile Include="UserControls\UcFavourite.Designer.cs">
       <DependentUpon>UcFavourite.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UсOrdersView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UсOrdersView.Designer.cs">
+      <DependentUpon>UсOrdersView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\ActionForm.resx">
@@ -206,6 +212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcFavourite.resx">
       <DependentUpon>UcFavourite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UсOrdersView.resx">
+      <DependentUpon>UсOrdersView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

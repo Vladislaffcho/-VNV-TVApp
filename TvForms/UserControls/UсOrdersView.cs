@@ -1,21 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TvForms
+namespace TvForms.UserControls
 {
-    public partial class ActionForm : Form
+    public partial class UсOrdersView : UserControl
     {
-        public ActionForm(Control con)
+        private int CurrenUserId { get; set; }
+
+        public UсOrdersView(int currentUserId)
         {
             InitializeComponent();
-            panActionForm.Controls.Add(con);
+            CurrenUserId = currentUserId;
+
         }
 
 

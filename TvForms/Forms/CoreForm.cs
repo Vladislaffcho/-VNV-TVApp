@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Schema;
+using TvForms.UserControls;
 using TVContext;
 
 namespace TvForms
@@ -108,7 +110,17 @@ namespace TvForms
         private void profileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Uncomment when bookmarks will be ready end specify appropriate one!!!!
-            var actions = new ActionForm(CurrentUserId);
+            var actions = new ActionForm(new UcUserProfile(CurrentUserId));
+            actions.Text = "User profile";
+            actions.Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\j01_9602.ico");
+            actions.Show();
+        }
+
+        private void ordersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var actions = new ActionForm(new UсOrdersView(CurrentUserId));
+            actions.Text = "User orders history";
+            actions.Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\dollar.ico");
             actions.Show();
         }
     }

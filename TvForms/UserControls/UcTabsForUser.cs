@@ -37,9 +37,7 @@ namespace TvForms
         {
             CurrentWeekChannel = _channelRepo.GetAll().ToList();
             AllChannelControl = new UcAllChannels(CurrentWeekChannel);
-            MyFavouriteControl = new UcFavoirute(AllChannelControl.FavouriteChannelsId);
             tabPan_AllChannels.Controls.Add(AllChannelControl);
-            tabPan_MyFavourite.Controls.Add(MyFavouriteControl);
         }
 
 
@@ -47,6 +45,11 @@ namespace TvForms
         {
             //0 - AllChannels tab, 1 - MyFavourite tab
             SaveToDbFavouriteMedia();
+            MyFavouriteControl = new UcFavoirute(CurrentUserId);
+            tabPan_MyFavourite.Controls.Add(MyFavouriteControl);
+            //MyFavouriteControl.SetTotalPriceToTextBox();
+
+
         }
 
         private void SaveToDbFavouriteMedia()
