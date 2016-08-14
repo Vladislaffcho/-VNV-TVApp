@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Schema;
@@ -82,15 +84,10 @@ namespace TvForms
             
             if (openXmlFile.ShowDialog() != DialogResult.OK || openXmlFile.FileName.Length <= 0) return;
          
-            XmlFileHelper.ParseChannel(openXmlFile.FileName);
+            //XmlFileHelper.ParseChannel(openXmlFile.FileName);
             XmlFileHelper.ParseProgramm(openXmlFile.FileName);
         }
 
-      
-        private static void ValidationCallBack(object sender, ValidationEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         private void profileToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -113,6 +110,7 @@ namespace TvForms
             actions.Show();
         }
 
+
         private void paymentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var actions = new ActionForm(new UcPayments(CurrentUserId))
@@ -122,6 +120,7 @@ namespace TvForms
             };
             actions.Show();
         }
+
 
         private void xmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -136,9 +135,30 @@ namespace TvForms
 
             XmlFileHelper.XmlFavouriteWriter(saveFile.FileName, CurrentUserId);
 
-            MessageBox.Show("Файл сохранен", "Save", 
+            MessageBox.Show("Файл XML сохранен", "Save",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 
+
+
+        private void zipToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            var saveFile = new SaveFileDialog()
+            {
+                DefaultExt = "*.zip",
+                Filter = "ZIP Files(*.zip)|*.zip"
+            };
+
+            if (saveFile.ShowDialog() == DialogResult.Cancel)
+                return;
+
+            XmlFileHelper.XmlFavouriteWriter(saveFile.FileName.Split('.')[0] + ".xml", CurrentUserId);
+            XmlFileHelper.CreateZipFile(saveFile.FileName, saveFile.FileName.Split('.')[0] + ".xml");
+            XmlFileHelper.DeleteFileIfExist(saveFile.FileName.Split('.')[0] + ".xml");
+
+            MessageBox.Show("Файл ZIP сохранен", "Save",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

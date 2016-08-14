@@ -95,6 +95,7 @@
             this.zipToolStripMenuItem.Name = "zipToolStripMenuItem";
             this.zipToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.zipToolStripMenuItem.Text = "*.zip";
+            this.zipToolStripMenuItem.Click += new System.EventHandler(this.zipToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
