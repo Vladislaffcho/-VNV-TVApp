@@ -104,7 +104,7 @@ namespace TvForms
             LoadProgForCheckAndSelectChannels();
         }
 
-        private void LoadFavouriteShows()
+        public void LoadFavouriteShows()
         {
             var tmp = ControlForShows?.ListCheckedProgramsId();
             if (tmp != null)

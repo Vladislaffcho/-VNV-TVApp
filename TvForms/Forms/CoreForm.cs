@@ -18,9 +18,9 @@ namespace TvForms
 
         public CoreForm()
         {
+            ShowLoginForm();
 
             InitializeComponent();
-            ShowLoginForm();
             LoadMainControl();
 
             //if (CurrentUserId != 0)
@@ -45,16 +45,20 @@ namespace TvForms
             if (CurrentUserId != 0)
             {
                 var user = new BaseRepository<User>();
-                var userType = user.Get(x => x.Id == CurrentUserId).FirstOrDefault().UserType.Id;
-
-                switch (userType)
+                var firstOrDefault = user.Get(x => x.Id == CurrentUserId).FirstOrDefault();
+                if (firstOrDefault != null)
                 {
-                    case (int) EUserType.ADMIN: //admin
-                        panelCore.Controls.Add(new UcAdminView(CurrentUserId));
-                        break;
-                    case (int) EUserType.CLIENT: //user
-                        panelCore.Controls.Add(new UcTabsForUser());
-                        break;
+                    var userType = firstOrDefault.UserType.Id;
+
+                    switch (userType)
+                    {
+                        case (int) EUserType.ADMIN: //admin
+                            panelCore.Controls.Add(new UcAdminView(CurrentUserId));
+                            break;
+                        case (int) EUserType.CLIENT: //user
+                            panelCore.Controls.Add(new UcTabsForUser(CurrentUserId));
+                            break;
+                    }
                 }
             }
         }
@@ -68,7 +72,8 @@ namespace TvForms
             }
             else
             {
-                Close();
+                Application.Exit();
+                //Close();
             }
         }
 

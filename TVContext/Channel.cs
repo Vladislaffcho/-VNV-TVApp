@@ -10,6 +10,7 @@ namespace TVContext
         public Channel()
         {
             TvShows = new List<TvShow>();
+            OrderChannel = new List<OrderChannel>();
         }
 
         //channel name
@@ -32,7 +33,7 @@ namespace TVContext
         public int OriginalId { get; set; }
 
         //info about orders
-        public virtual OrderChannel OrderChannel { get; set; }
+        public virtual ICollection<OrderChannel> OrderChannel { get; set; }
 
         public virtual ICollection<TvShow> TvShows { get; set; }
 

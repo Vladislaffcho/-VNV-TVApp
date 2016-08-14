@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 using TVContext;
 
@@ -7,11 +9,13 @@ namespace TvForms
     public partial class UcFavoirute : UserControl
     {
 
-        public UcFavoirute()
+        public UcFavoirute(List<int> favChannelsId)
         {
             InitializeComponent();
+
         }
 
+       
 
     }
 }

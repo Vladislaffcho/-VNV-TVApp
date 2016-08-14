@@ -10,7 +10,7 @@ namespace TVContext
 
         public UserSchedule()
         {
-            TvShows = new List<TvShow>();
+            //TvShows = new List<TvShow>();
         }
 
         //ToDo Rename to DueDate
@@ -19,13 +19,18 @@ namespace TVContext
         [Required]
         public DateTime DueDate { get; set; }
 
+        [Required]
+        //[ForeignKey("TvShow")]
+        public virtual TvShow TvShow { get; set; }
+
         // set user ID from Users table
         [Required]
         public virtual User User { get; set; }
 
+     
         //ToDo Naming convention !!!! TvShows
         // set show ID from TvShow table
-        [Required]
-        public virtual ICollection<TvShow> TvShows { get; set; }
+        //[Required]
+        //public virtual ICollection<TvShow> TvShows { get; set; }
     }
 }

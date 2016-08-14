@@ -8,7 +8,7 @@ namespace TvForms
     public partial class UcShowsList : UserControl
     {
 
-        public List<int> CheckedShowsId { get; set; }
+        private List<int> CheckedShowsId { get; set; } 
 
         public UcShowsList()
         {
@@ -52,5 +52,9 @@ namespace TvForms
         }
 
 
+        private void lvShowPrograms_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            CheckedShowsId = ListCheckedProgramsId();
+        }
     }
 }
