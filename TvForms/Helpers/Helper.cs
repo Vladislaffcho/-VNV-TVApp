@@ -1,4 +1,6 @@
 
+using System.IO;
+
 namespace TvForms
 {
     public static class Helper
@@ -20,5 +22,16 @@ namespace TvForms
             }
             return -1;
         }
+
+
+        public static void DeleteFileIfExist(string fileName)
+        {
+            if (File.Exists(fileName))
+            {
+                File.Delete(fileName);
+            }
+        }
+
+
     }
 }

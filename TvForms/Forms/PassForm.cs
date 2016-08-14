@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 using TVContext;
 
@@ -43,14 +44,31 @@ namespace TvForms
             {
                 using (var context = new TvDBContext())
                 {
-                    var loginEntered = tbPassForm_Login.Text;
-                    var passEntered = tbPassForm_Pass.Text;
+                    using (var md5Hash = MD5.Create())
+                    {
+                        var loginEntered = tbPassForm_Login.Text;
+                        var passEntered = tbPassForm_Pass.Text;
 
-                    //ToDo read to CurrentUser
-                    CurrentUserId = (from p in context.Users
-                        where (p.Login == loginEntered &&
-                               p.Password == passEntered)
-                        select p.Id).FirstOrDefault() ;
+                        var pssCoded = Md5Helper.GetMd5Hash(md5Hash, passEntered);
+                        var comparer = StringComparer.OrdinalIgnoreCase;
+
+                        var savedPass = (from p in context.Users
+                                            where p.Login == loginEntered
+                                            select p.Password).FirstOrDefault();
+
+                        if (0 == comparer.Compare(pssCoded, savedPass))
+                        {
+                            //ToDo read to CurrentUser
+                            CurrentUserId = (from p in context.Users
+                                             where p.Login == loginEntered
+                                             select p.Id).FirstOrDefault();
+                        }
+                        else
+                        {
+                            CurrentUserId = 0;
+                        }
+                           
+                    }
                 }
             }
             else

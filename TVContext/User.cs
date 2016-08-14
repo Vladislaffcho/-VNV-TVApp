@@ -42,8 +42,8 @@ namespace TVContext
 
         // user's password
         // Think about making it not obligatory
-        [MinLength(2, ErrorMessage = "Password should be 2 to 20 symbols")]
-        [MaxLength(20, ErrorMessage = "Password should be 2 to 20 symbols")]
+        [MinLength(0, ErrorMessage = "Password should be 0 to 20 symbols")]
+        [MaxLength(200, ErrorMessage = "Password should be 0 to 200 symbols")]
         [Required]
         public string Password { get; set; }
 

@@ -154,8 +154,8 @@ namespace TvForms
                 return;
 
             XmlFileHelper.XmlFavouriteWriter(saveFile.FileName.Split('.')[0] + ".xml", CurrentUserId);
-            XmlFileHelper.CreateZipFile(saveFile.FileName, saveFile.FileName.Split('.')[0] + ".xml");
-            XmlFileHelper.DeleteFileIfExist(saveFile.FileName.Split('.')[0] + ".xml");
+            ZipHelper.CreateZipFile(saveFile.FileName, saveFile.FileName.Split('.')[0] + ".xml");
+            Helper.DeleteFileIfExist(saveFile.FileName.Split('.')[0] + ".xml");
 
             MessageBox.Show("Файл ZIP сохранен", "Save",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);

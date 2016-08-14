@@ -4,10 +4,11 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
+using System.Security.Cryptography;
 
 namespace TVContext
 {
-    public class TvDBIntializer : CreateDatabaseIfNotExists<TvDBContext> // this class used only when database is creating
+    public class TvDbIntializer : CreateDatabaseIfNotExists<TvDBContext> // this class used only when database is creating
     {
         protected override void Seed(TvDBContext context)
         {
@@ -55,37 +56,41 @@ namespace TVContext
 
                 context.SaveChanges();
 
-                var defaultUser = new List<User>
+                using (var md5Hash = MD5.Create())
                 {
-                    new User()
+                    var defaultUser = new List<User>
                     {
-                        FirstName = "Name Admin",
-                        LastName = "LastN Admin",
-                        Login = "root",
-                        Password = "1111",
-                        IsAllowAdultContent = true,
-                        UserType = context.UserTypes.First(x => x.Id == (int)EUserType.ADMIN),
-                        IsActiveStatus = true
-                    },
+                        new User()
+                        {
+                            FirstName = "Name Admin",
+                            LastName = "LastN Admin",
+                            Login = "root",
+                            Password = Md5Helper.GetMd5Hash(md5Hash, "1111"),
+                            IsAllowAdultContent = true,
+                            UserType = context.UserTypes.First(x => x.Id == (int) EUserType.ADMIN),
+                            IsActiveStatus = true
+                        },
 
-                    new User()
+                        new User()
+                        {
+                            FirstName = "userName",
+                            LastName = "UserLast",
+                            Login = "user",
+                            Password = Md5Helper.GetMd5Hash(md5Hash, "2222"),
+                            IsAllowAdultContent = false,
+                            UserType = context.UserTypes.First(x => x.Id == (int) EUserType.CLIENT),
+                            IsActiveStatus = true
+                        }
+                    };
+                    
+
+                    foreach (var item in defaultUser)
                     {
-                        FirstName = "userName",
-                        LastName = "UserLast",
-                        Login = "user",
-                        Password = "2222",
-                        IsAllowAdultContent = false,
-                        UserType = context.UserTypes.First(x => x.Id == (int)EUserType.CLIENT),
-                        IsActiveStatus = true
+                        context.Users.Add(item);
                     }
-                };
 
-                foreach (var item in defaultUser)
-                {
-                    context.Users.Add(item);
+                    context.SaveChanges();
                 }
-
-                context.SaveChanges();
 
                 var defaultEmail = new List<UserEmail> {
                     new UserEmail {

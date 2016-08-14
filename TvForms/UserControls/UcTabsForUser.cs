@@ -56,8 +56,9 @@ namespace TvForms
         {
             var chRepo = new BaseRepository<Channel>();
 
+            if (AllChannelControl.FavouriteChannelsId == null) return;
             var chosenChannels = AllChannelControl.FavouriteChannelsId.Select(
-                    chann => chRepo.Get(x => x.Id == chann).FirstOrDefault()).ToList();
+                chann => chRepo.Get(x => x.Id == chann).FirstOrDefault()).ToList();
 
             try
             {
