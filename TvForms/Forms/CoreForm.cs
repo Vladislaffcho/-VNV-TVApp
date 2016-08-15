@@ -95,7 +95,7 @@ namespace TvForms
             var actions = new ActionForm(new UcUserProfile(CurrentUserId))
             {
                 Text = "User profile",
-                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\j01_9602.ico")
+                //Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\j01_9602.ico")
             };
             actions.Show();
         }

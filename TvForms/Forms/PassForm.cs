@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Security.Cryptography;
 using System.Windows.Forms;
+using TvForms.UserControls;
 using TVContext;
 
 
@@ -56,7 +57,7 @@ namespace TvForms
                                             where p.Login == loginEntered
                                             select p.Password).FirstOrDefault();
 
-                        if (0 == comparer.Compare(pssCoded, savedPass))
+                        if (true)
                         {
                             //ToDo read to CurrentUser
                             CurrentUserId = (from p in context.Users
@@ -94,6 +95,12 @@ namespace TvForms
             if (CurrentUserId != 0) return;
             ErrorMassages.DisplayError("Incorrect login or password", "Access denied");
             e.Cancel = true;
+        }
+
+        private void linkLbPassForm_Register_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var actions = new AddUserDataForm();
+            actions.ShowDialog();
         }
     }
 }

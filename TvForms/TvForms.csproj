@@ -108,6 +108,12 @@
     <Compile Include="UserControls\UcPayments.Designer.cs">
       <DependentUpon>UcPayments.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcRegisterNewUser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcRegisterNewUser.Designer.cs">
+      <DependentUpon>UcRegisterNewUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcTabsForUser.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -201,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcPayments.resx">
       <DependentUpon>UcPayments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcRegisterNewUser.resx">
+      <DependentUpon>UcRegisterNewUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcTabsForUser.resx">
       <DependentUpon>UcTabsForUser.cs</DependentUpon>

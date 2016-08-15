@@ -145,8 +145,9 @@
             this.linkLbPassForm_Register.TabIndex = 10;
             this.linkLbPassForm_Register.TabStop = true;
             this.linkLbPassForm_Register.Text = "Register";
+            this.linkLbPassForm_Register.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLbPassForm_Register_LinkClicked);
             // 
-            // PassFormCopy
+            // PassForm
             // 
             this.AcceptButton = this.bPassForm_Enter;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
