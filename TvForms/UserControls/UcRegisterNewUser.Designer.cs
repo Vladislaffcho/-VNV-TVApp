@@ -40,22 +40,22 @@
             // 
             // tbFirstName
             // 
-            this.tbFirstName.Location = new System.Drawing.Point(73, 25);
+            this.tbFirstName.Location = new System.Drawing.Point(77, 35);
             this.tbFirstName.Name = "tbFirstName";
             this.tbFirstName.Size = new System.Drawing.Size(100, 20);
-            this.tbFirstName.TabIndex = 0;
+            this.tbFirstName.TabIndex = 1;
             // 
             // tbLastName
             // 
-            this.tbLastName.Location = new System.Drawing.Point(73, 71);
+            this.tbLastName.Location = new System.Drawing.Point(77, 80);
             this.tbLastName.Name = "tbLastName";
             this.tbLastName.Size = new System.Drawing.Size(100, 20);
-            this.tbLastName.TabIndex = 0;
+            this.tbLastName.TabIndex = 2;
             // 
             // lbFirstName
             // 
             this.lbFirstName.AutoSize = true;
-            this.lbFirstName.Location = new System.Drawing.Point(16, 28);
+            this.lbFirstName.Location = new System.Drawing.Point(20, 38);
             this.lbFirstName.Name = "lbFirstName";
             this.lbFirstName.Size = new System.Drawing.Size(35, 13);
             this.lbFirstName.TabIndex = 1;
@@ -64,7 +64,7 @@
             // lbLastName
             // 
             this.lbLastName.AutoSize = true;
-            this.lbLastName.Location = new System.Drawing.Point(16, 71);
+            this.lbLastName.Location = new System.Drawing.Point(20, 83);
             this.lbLastName.Name = "lbLastName";
             this.lbLastName.Size = new System.Drawing.Size(49, 13);
             this.lbLastName.TabIndex = 1;
@@ -72,22 +72,22 @@
             // 
             // tbLogin
             // 
-            this.tbLogin.Location = new System.Drawing.Point(298, 25);
+            this.tbLogin.Location = new System.Drawing.Point(320, 35);
             this.tbLogin.Name = "tbLogin";
             this.tbLogin.Size = new System.Drawing.Size(100, 20);
-            this.tbLogin.TabIndex = 0;
+            this.tbLogin.TabIndex = 3;
             // 
             // tbPassword
             // 
-            this.tbPassword.Location = new System.Drawing.Point(298, 71);
+            this.tbPassword.Location = new System.Drawing.Point(320, 80);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(100, 20);
-            this.tbPassword.TabIndex = 0;
+            this.tbPassword.TabIndex = 4;
             // 
             // lbLogin
             // 
             this.lbLogin.AutoSize = true;
-            this.lbLogin.Location = new System.Drawing.Point(199, 28);
+            this.lbLogin.Location = new System.Drawing.Point(229, 38);
             this.lbLogin.Name = "lbLogin";
             this.lbLogin.Size = new System.Drawing.Size(79, 13);
             this.lbLogin.TabIndex = 1;
@@ -96,7 +96,7 @@
             // lbPassword
             // 
             this.lbPassword.AutoSize = true;
-            this.lbPassword.Location = new System.Drawing.Point(199, 74);
+            this.lbPassword.Location = new System.Drawing.Point(229, 83);
             this.lbPassword.Name = "lbPassword";
             this.lbPassword.Size = new System.Drawing.Size(53, 13);
             this.lbPassword.TabIndex = 1;

@@ -68,7 +68,12 @@
             this.Controls.Add(this.btOK);
             this.Controls.Add(this.btCancel);
             this.Controls.Add(this.pnAddConnect);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(460, 230);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(460, 230);
             this.Name = "AddUserDataForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Data";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddUserDataForm_FormClosing);
             this.ResumeLayout(false);
