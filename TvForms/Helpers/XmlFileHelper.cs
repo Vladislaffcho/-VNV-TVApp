@@ -103,6 +103,7 @@ namespace TvForms
                             };
 
                             context.TvShows.Add(shows);
+                            id++;
                             progressBar.ShowProgress(id, xmlNodeList.Count);
                         }
 
