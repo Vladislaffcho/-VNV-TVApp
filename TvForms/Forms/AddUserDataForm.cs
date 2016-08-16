@@ -44,7 +44,7 @@ namespace TvForms
                 //ToDo Move to enum
                 case "Address":
 
-                    pnAddConnect.Controls.Add(_ucNewUser);
+                    pnAddConnect.Controls.Add(ucAddress);
                     break;
             }
         }
@@ -66,11 +66,11 @@ namespace TvForms
         private bool ValidateControls()
         {
             var type = _addConnectType;
-            type = "User";
+            type = "Address";
             switch (type)
             {
                 case "Address":
-                    return ucAddress.ValidateControls();
+                    return ucAddress.ValidateControls(_userID);
                 case "User":
                     return _ucNewUser.ValidateControls();
                 default:

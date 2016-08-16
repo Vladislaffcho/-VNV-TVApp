@@ -27,16 +27,17 @@ namespace TvForms
         }
 
 
-        public bool ValidateControls()
+        public bool ValidateControls(int UserId)
         {
             if (tbUserAddress.Text.Trim() == String.Empty)
             {
                 return false;
             }
+            SaveAddedDetails(UserId);
             return true;
         }
 
-        public void SaveAddedDetails(int UserID)
+        public void SaveAddedDetails(int UserId)
         {
             TvDBContext context = new TvDBContext();
             var userAddressRepo = new BaseRepository<UserAddress>(context);
@@ -47,7 +48,7 @@ namespace TvForms
                 Address = tbUserAddress.Text,
                 Comment = tbComment.Text,
                 TypeConnect = typeConnectRepo.Get(x => x.NameType == cbAddressType.Text).First(),
-                User = userRepo.Get(l => l.Id == UserID).First()
+                User = userRepo.Get(l => l.Id == UserId).First()
             };
             userAddressRepo.Insert(address);
         }
