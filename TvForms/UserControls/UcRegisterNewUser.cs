@@ -18,8 +18,10 @@ namespace TvForms.UserControls
         public UcRegisterNewUser()
         {
             InitializeComponent();
+            tbPassword.UseSystemPasswordChar = true;
         }
 
+        // method checks all controls on the form once OK button has been pressed
         public bool ValidateControls()
         {
             var isValid = true;
@@ -55,8 +57,8 @@ namespace TvForms.UserControls
                 }
             }
 
-
-            if (tbLogin.Text.Trim() == string.Empty | IsValidLoginAndPassword(tbLogin.Text.Trim()))
+            // validate login
+            if (tbLogin.Text.Trim() == string.Empty | !IsValidLoginAndPassword(tbLogin.Text.Trim()))
             {
                 errorMessage += "\nLogin should consist of 2 to 20 of A-Z/a-z/0-9 characters.";
                 isValid = false;
@@ -70,25 +72,28 @@ namespace TvForms.UserControls
                 }
             }
 
-            
-            if (tbPassword.Text.Trim() == string.Empty)
+            //validate password
+            if (tbPassword.Text.Trim() == string.Empty | !IsValidLoginAndPassword(tbPassword.Text.Trim()))
             {
-                tbPassword.Clear();
                 errorMessage += "\nPassword should be 2 to 20 of A-Z/a-z/0-9 symbols.";
                 isValid = false;
             }
+
+            // show error message in case something is wrong with validation
+            //otherwise, save new user details to the db
             if (isValid)
             {
                 SaveAddedDetails();
             }
             else
             {
-                ErrorMassages.DisplayError(errorMessage, "test");
+                tbPassword.Clear();
+                ErrorMassages.DisplayError(errorMessage, "User has not been created");
             }
-            
             return isValid;
         }
 
+        // the method saves newly-created user
         private void SaveAddedDetails()
         {
             using (var context = new TvDBContext())
@@ -111,6 +116,7 @@ namespace TvForms.UserControls
             }
         }
 
+        // method to validate first and last names
         private bool IsValidName(string name)
         {
             Regex r = new Regex("^[a-zA-Z ]*$");
@@ -121,6 +127,7 @@ namespace TvForms.UserControls
             return false;
         }
 
+        // method to validate user's login and password
         private bool IsValidLoginAndPassword(string name)
         {
             Regex r = new Regex("^[a-zA-Z0-9]*$");
@@ -131,6 +138,7 @@ namespace TvForms.UserControls
             return false;
         }
 
+        // method which checks login uniqness
         private bool IsUniqueLogin(string login)
         {
             var userRepo = new BaseRepository<User>();

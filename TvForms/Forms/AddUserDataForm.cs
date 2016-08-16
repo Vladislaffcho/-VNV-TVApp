@@ -43,6 +43,7 @@ namespace TvForms
             {
                 //ToDo Move to enum
                 case "Address":
+
                     pnAddConnect.Controls.Add(_ucNewUser);
                     break;
             }
