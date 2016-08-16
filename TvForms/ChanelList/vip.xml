@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <tv>
   <channel id="17">
-    <	 lang="ru">2x2</display-name>
+    <display-name lang="ru">2x2</display-name>
   </channel>
   <channel id="67">
     <display-name lang="ru">Первый Альтернативный</display-name>

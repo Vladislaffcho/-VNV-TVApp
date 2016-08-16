@@ -61,7 +61,7 @@ namespace TvForms
             }
             else
             {
-                Application.Exit();
+                Environment.Exit(0);
                 //Close();
             }
         }
