@@ -30,42 +30,37 @@ namespace TvForms.UserControls
             //validate first name
             if (tbFirstName.Text.Trim() == string.Empty)
             {
-                errorMessage += "\nFirst name should consist of at least 2 symbols.";
+                errorMessage += "\nFirst name field is empty.";
                 isValid = false;
             }
-            else
+            else if (!tbFirstName.Text.Trim().IsValidName())
             {
-                if (!IsValidName(tbFirstName.Text.Trim()))
-                {
-                    errorMessage += "\nFirst name should consist of 2+ characters of English alphabet.";
-                    isValid = false;
-                }
+                errorMessage += "\nFirst name should consist of 2+ characters of English alphabet.";
+                isValid = false;
             }
 
             //validate last name
             if (tbLastName.Text.Trim() == string.Empty)
             {
-                errorMessage += "\nLast name should consist of at least 2 symbols.";
+                errorMessage += "\nLast name field is empty.";
                 isValid = false;
             }
-            else
+            else if (!tbLastName.Text.Trim().IsValidName())
             {
-                if (!IsValidName(tbLastName.Text.Trim()))
-                {
-                    errorMessage += "\nLast name should consist of 2+ characters of English alphabet.";
-                    isValid = false;
-                }
+                errorMessage += "\nLast name should consist of 2+ characters of English alphabet.";
+                isValid = false;
             }
 
             // validate login
-            if (tbLogin.Text.Trim() == string.Empty | !IsValidLoginAndPassword(tbLogin.Text.Trim()))
+            if (tbLogin.Text.Trim() == string.Empty |
+                !tbLogin.Text.Trim().IsValidLoginAndPassword())
             {
                 errorMessage += "\nLogin should consist of 2 to 20 of A-Z/a-z/0-9 characters.";
                 isValid = false;
             }
             else
             {
-                if (IsUniqueLogin(tbLogin.Text.Trim()))
+                if (tbLogin.Text.Trim().IsUniqueLogin())
                 {
                     errorMessage += "\nUser already exists. Please, choose another login.";
                     isValid = false;
@@ -73,7 +68,7 @@ namespace TvForms.UserControls
             }
 
             //validate password
-            if (tbPassword.Text.Trim() == string.Empty | !IsValidLoginAndPassword(tbPassword.Text.Trim()))
+            if (tbPassword.Text.Trim() == string.Empty | !(tbPassword.Text.Trim()).IsValidLoginAndPassword())
             {
                 errorMessage += "\nPassword should be 2 to 20 of A-Z/a-z/0-9 symbols.";
                 isValid = false;
@@ -114,35 +109,6 @@ namespace TvForms.UserControls
                 ErrorMassages.DisplayInfo("Created new user successfully.\nYou may log in with new credentials.",
                     "New user has been created");
             }
-        }
-
-        // method to validate first and last names
-        private bool IsValidName(string name)
-        {
-            Regex r = new Regex("^[a-zA-Z ]*$");
-            if (r.IsMatch(name))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        // method to validate user's login and password
-        private bool IsValidLoginAndPassword(string name)
-        {
-            Regex r = new Regex("^[a-zA-Z0-9]*$");
-            if (r.IsMatch(name))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        // method which checks login uniqness
-        private bool IsUniqueLogin(string login)
-        {
-            var userRepo = new BaseRepository<User>();
-            return userRepo.Get(x => x.Login == login).Any();
         }
     }
 }
