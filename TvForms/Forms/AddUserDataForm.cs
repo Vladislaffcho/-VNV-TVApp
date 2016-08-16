@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TvForms.UserControls;
 using TVContext;
 
 namespace TvForms
@@ -19,9 +20,16 @@ namespace TvForms
         //ToDo Review need to store this in field
         // user control to add address
         private UcAddAddress ucAddress = new UcAddAddress();
-
+        private UcRegisterNewUser _ucNewUser = new UcRegisterNewUser();
         // variable contains information about data type to be added (address, email, telephone)
         private string _addConnectType;
+
+        public AddUserDataForm()
+        {
+            InitializeComponent();
+            pnAddConnect.Controls.Add(_ucNewUser);
+        }
+
 
         //ToDo naming convention!!!
         // depending on data type, corresponding uc will be opened
@@ -35,7 +43,7 @@ namespace TvForms
             {
                 //ToDo Move to enum
                 case "Address":
-                    pnAddConnect.Controls.Add(ucAddress);
+                    pnAddConnect.Controls.Add(_ucNewUser);
                     break;
             }
         }
@@ -48,17 +56,7 @@ namespace TvForms
             {
                 if (!ValidateControls())
                 {
-                    MessageBox.Show("Please input correct value!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     e.Cancel = true;
-                }
-                else
-                {
-                    switch (_addConnectType)
-                    {
-                        case "Address":
-                            ucAddress.SaveAddedDetails(_userID);
-                            break;
-                    }
                 }
             }
         }
@@ -67,10 +65,13 @@ namespace TvForms
         private bool ValidateControls()
         {
             var type = _addConnectType;
+            type = "User";
             switch (type)
             {
                 case "Address":
                     return ucAddress.ValidateControls();
+                case "User":
+                    return _ucNewUser.ValidateControls();
                 default:
                     return true; /* return false, change validation */
             }

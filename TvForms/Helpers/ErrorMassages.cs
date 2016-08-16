@@ -38,6 +38,10 @@ namespace TvForms
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-
+        public static void DisplayInfo(string text, string caption)
+        {
+            MessageBox.Show(text, caption,
+                MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+        }
     }
 }

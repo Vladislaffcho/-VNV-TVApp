@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
 using TVContext;
@@ -7,11 +8,6 @@ namespace TvForms
 {
     public partial class UcAddAddress : UserControl
     {
-        //ToDo Remove this fields
-        private string _comment;
-        private string _address;
-        private string _type;
-
         public UcAddAddress()
         {
             InitializeComponent();
@@ -20,17 +16,12 @@ namespace TvForms
 
         private void SetControlView()
         {
-            using (var context = new TvDBContext())
-            {
-                var types = from t in context.TypeConnects
-                            select t;
-                //ToDo Why?))
-                types.ToList();
+            var typeConnectRepo = new BaseRepository<TypeConnect>();
+            var types = typeConnectRepo.GetAll();
 
-                foreach (var typeConnect in types)
-                {
-                    cbAddressType.Items.Add(typeConnect.NameType);
-                }
+            foreach (var typeConnect in types)
+            {
+                cbAddressType.Items.Add(typeConnect.NameType);
             }
             cbAddressType.SelectedIndex = 0;
         }
@@ -42,27 +33,23 @@ namespace TvForms
             {
                 return false;
             }
-            _address = tbUserAddress.Text;
-            _comment = tbComment.Text;
-            _type = cbAddressType.SelectedItem.ToString();
             return true;
         }
 
         public void SaveAddedDetails(int UserID)
         {
-            
-            using (var context = new TvDBContext())
+            TvDBContext context = new TvDBContext();
+            var userAddressRepo = new BaseRepository<UserAddress>(context);
+            var typeConnectRepo = new BaseRepository<TypeConnect>(context);
+            var userRepo = new BaseRepository<User>(context);
+            UserAddress address = new UserAddress
             {
-                UserAddress address = new UserAddress
-                {
-                    Address = tbUserAddress.Text,
-                    Comment = tbComment.Text,
-                    TypeConnect = context.TypeConnects.First(x => x.NameType == _type),
-                    User = context.Users.First(l => l.Id == UserID)
-                };
-                context.UserAddresses.Add(address);
-                context.SaveChanges();
-            }
+                Address = tbUserAddress.Text,
+                Comment = tbComment.Text,
+                TypeConnect = typeConnectRepo.Get(x => x.NameType == cbAddressType.Text).First(),
+                User = userRepo.Get(l => l.Id == UserID).First()
+            };
+            userAddressRepo.Insert(address);
         }
     }
 }
