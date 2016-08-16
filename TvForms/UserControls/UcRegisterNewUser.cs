@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TVContext;
@@ -23,23 +24,53 @@ namespace TvForms.UserControls
         {
             var isValid = true;
             var errorMessage = "Invalid input:";
+
+            //validate first name
             if (tbFirstName.Text.Trim() == string.Empty)
             {
                 errorMessage += "\nFirst name should consist of at least 2 symbols.";
                 isValid = false;
             }
+            else
+            {
+                if (!IsValidName(tbFirstName.Text.Trim()))
+                {
+                    errorMessage += "\nFirst name should consist of 2+ characters of English alphabet.";
+                    isValid = false;
+                }
+            }
 
+            //validate last name
             if (tbLastName.Text.Trim() == string.Empty)
             {
-                errorMessage += "\nSurname should consist at least 2 symbols.";
+                errorMessage += "\nLast name should consist of at least 2 symbols.";
                 isValid = false;
+            }
+            else
+            {
+                if (!IsValidName(tbLastName.Text.Trim()))
+                {
+                    errorMessage += "\nLast name should consist of 2+ characters of English alphabet.";
+                    isValid = false;
+                }
             }
 
-            if (tbLogin.Text.Trim() == string.Empty)
+
+            if (tbLogin.Text.Trim() == string.Empty | IsValidLoginAndPassword(tbLogin.Text.Trim()))
             {
-                errorMessage += "\nLogin should be 2 to 20 of A-Z/a-z/0-9 symbols.";
+                errorMessage += "\nLogin should consist of 2 to 20 of A-Z/a-z/0-9 characters.";
                 isValid = false;
             }
+            else
+            {
+                if (IsUniqueLogin(tbLogin.Text.Trim()))
+                {
+                    errorMessage += "\nUser already exists. Please, choose another login.";
+                    isValid = false;
+                }
+            }
+
+            
             if (tbPassword.Text.Trim() == string.Empty)
             {
                 tbPassword.Clear();
@@ -78,6 +109,32 @@ namespace TvForms.UserControls
                 ErrorMassages.DisplayInfo("Created new user successfully.\nYou may log in with new credentials.",
                     "New user has been created");
             }
+        }
+
+        private bool IsValidName(string name)
+        {
+            Regex r = new Regex("^[a-zA-Z ]*$");
+            if (r.IsMatch(name))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool IsValidLoginAndPassword(string name)
+        {
+            Regex r = new Regex("^[a-zA-Z0-9]*$");
+            if (r.IsMatch(name))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool IsUniqueLogin(string login)
+        {
+            var userRepo = new BaseRepository<User>();
+            return userRepo.Get(x => x.Login == login).Any();
         }
     }
 }
