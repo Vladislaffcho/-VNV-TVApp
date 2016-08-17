@@ -110,6 +110,12 @@
     <Compile Include="UserControls\UcAddEmail.Designer.cs">
       <DependentUpon>UcAddEmail.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcAddTelephone.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcAddTelephone.Designer.cs">
+      <DependentUpon>UcAddTelephone.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcPayments.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -215,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcAddEmail.resx">
       <DependentUpon>UcAddEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcAddTelephone.resx">
+      <DependentUpon>UcAddTelephone.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcPayments.resx">
       <DependentUpon>UcPayments.cs</DependentUpon>

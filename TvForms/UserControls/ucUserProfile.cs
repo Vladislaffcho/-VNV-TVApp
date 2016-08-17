@@ -177,5 +177,14 @@ namespace TvForms
                 FillEmailLv();
             }
         }
+
+        private void btAddPhone_Click(object sender, EventArgs e)
+        {
+            AddUserDataForm addPhone = new AddUserDataForm(_currentUserId, EUserDetailType.Telephone);
+            if (addPhone.ShowDialog() == DialogResult.OK)
+            {
+                FillPhonesLv();
+            }
+        }
     }
 }

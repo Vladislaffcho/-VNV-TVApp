@@ -11,9 +11,9 @@ using TVContext;
 
 namespace TvForms.UserControls
 {
-    public partial class UcAddEmail : UserControl
+    public partial class UcAddTelephone : UserControl
     {
-        public UcAddEmail()
+        public UcAddTelephone()
         {
             InitializeComponent();
             SetControlView();
@@ -27,42 +27,42 @@ namespace TvForms.UserControls
 
             foreach (var typeConnect in types)
             {
-                cbEmailType.Items.Add(typeConnect.NameType);
+                cbNumberType.Items.Add(typeConnect.NameType);
             }
-            cbEmailType.SelectedIndex = 0;
+            cbNumberType.SelectedIndex = 0;
         }
 
-        // validate email input
+        // validate number input
         public bool ValidateControls(int UserId)
         {
             string errorMessage = "Error:";
-            bool isValidEmail = true;
-            if (tbUserEmail.Text.Trim() != String.Empty)
+            bool isValidNumber = true;
+            if (tbNumber.Text.Trim() != String.Empty)
             {
-                if (!tbUserEmail.Text.Trim().IsValidEmail())
+                if (!tbNumber.Text.Trim().IsValidPhone())
                 {
-                    errorMessage += "\nPlease enter email in valid format";
-                    isValidEmail = false;
+                    errorMessage += "\nPlease enter 5 to 9 phone number digits";
+                    isValidNumber = false;
                 }
-                else if (tbUserEmail.Text.Trim().IsUniqueEmail())
+                else if (tbNumber.Text.Trim().GetInt().IsUniqueNumber())
                 {
-                    errorMessage += "\nEmail already exists. Please enter another one";
-                    isValidEmail = false;
+                    errorMessage += "\nNumber already exists. Please enter another one";
+                    isValidNumber = false;
                 }
             }
             else
             {
-                errorMessage += "\nEmail field cannot be empty";
-                isValidEmail = false;
+                errorMessage += "\nNumber field cannot be empty";
+                isValidNumber = false;
             }
 
             if (!tbComment.Text.Trim().IsValidComment())
             {
                 errorMessage += "\nComment cannot be longer than 500 characters";
-                isValidEmail = false;
+                isValidNumber = false;
             }
 
-            if (isValidEmail)
+            if (isValidNumber)
             {
                 SaveAddedDetails(UserId);
             }
@@ -70,24 +70,24 @@ namespace TvForms.UserControls
             {
                 ErrorMassages.DisplayError(errorMessage, "Invalid input");
             }
-            return isValidEmail;
+            return isValidNumber;
         }
 
-        // save in case of valid email
+        // save in case of valid number
         public void SaveAddedDetails(int UserId)
         {
             TvDBContext context = new TvDBContext();
-            var userAddressRepo = new BaseRepository<UserEmail>(context);
+            var userPhoneRepo = new BaseRepository<UserPhone>(context);
             var typeConnectRepo = new BaseRepository<TypeConnect>(context);
             var userRepo = new BaseRepository<User>(context);
-            UserEmail address = new UserEmail
+            UserPhone number = new UserPhone
             {
-                EmailName = tbUserEmail.Text,
+                Number = tbNumber.Text.GetInt(),
                 Comment = tbComment.Text,
-                TypeConnect = typeConnectRepo.Get(x => x.NameType == cbEmailType.Text).First(),
+                TypeConnect = typeConnectRepo.Get(x => x.NameType == cbNumberType.Text).First(),
                 User = userRepo.Get(l => l.Id == UserId).First()
             };
-            userAddressRepo.Insert(address);
+            userPhoneRepo.Insert(number);
         }
     }
 }

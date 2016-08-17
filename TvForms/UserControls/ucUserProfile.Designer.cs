@@ -291,6 +291,7 @@
             this.btAddPhone.TabIndex = 3;
             this.btAddPhone.Text = "Add";
             this.btAddPhone.UseVisualStyleBackColor = true;
+            this.btAddPhone.Click += new System.EventHandler(this.btAddPhone_Click);
             // 
             // btUpdateTelephone
             // 

@@ -22,6 +22,7 @@ namespace TvForms
         private UcAddAddress ucAddress = new UcAddAddress();
         private UcRegisterNewUser _ucNewUser = new UcRegisterNewUser();
         private UcAddEmail ucEmail = new UcAddEmail();
+        private UcAddTelephone ucPhone = new UcAddTelephone();
         // variable contains information about data type to be added (address, email, telephone)
         private EUserDetailType _addConnectType;
 
@@ -42,12 +43,14 @@ namespace TvForms
 
             switch (_addConnectType)
             {
-                //ToDo Move to enum
                 case EUserDetailType.Address:
                     pnAddConnect.Controls.Add(ucAddress);
                     break;
                 case EUserDetailType.Email:
                     pnAddConnect.Controls.Add(ucEmail);
+                    break;
+                case EUserDetailType.Telephone:
+                    pnAddConnect.Controls.Add(ucPhone);
                     break;
             }
         }
@@ -74,6 +77,8 @@ namespace TvForms
                     return ucAddress.ValidateControls(_userID);
                 case EUserDetailType.Email:
                     return ucEmail.ValidateControls(_userID);
+                case EUserDetailType.Telephone:
+                    return ucPhone.ValidateControls(_userID);
                 case EUserDetailType.User:
                     return _ucNewUser.ValidateControls();
             }

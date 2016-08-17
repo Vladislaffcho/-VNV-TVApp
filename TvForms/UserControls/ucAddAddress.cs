@@ -38,6 +38,12 @@ namespace TvForms
                 isValidAddress = false;
             }
 
+            if (!tbComment.Text.Trim().IsValidComment())
+            {
+                errorMessage += "\nComment cannot be longer than 500 characters";
+                isValidAddress = false;
+            }
+
             if (isValidAddress)
             {
                 SaveAddedDetails(UserId);
