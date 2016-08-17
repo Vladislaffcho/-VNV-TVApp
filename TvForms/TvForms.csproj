@@ -104,6 +104,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcAddEmail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcAddEmail.Designer.cs">
+      <DependentUpon>UcAddEmail.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcPayments.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -206,6 +212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcAddAddress.resx">
       <DependentUpon>UcAddAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcAddEmail.resx">
+      <DependentUpon>UcAddEmail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcPayments.resx">
       <DependentUpon>UcPayments.cs</DependentUpon>

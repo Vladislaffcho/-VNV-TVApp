@@ -21,9 +21,11 @@ namespace TvForms
         // user control to add address
         private UcAddAddress ucAddress = new UcAddAddress();
         private UcRegisterNewUser _ucNewUser = new UcRegisterNewUser();
+        private UcAddEmail ucEmail = new UcAddEmail();
         // variable contains information about data type to be added (address, email, telephone)
         private EUserDetailType _addConnectType;
 
+        // for the add new user functionality
         public AddUserDataForm(EUserDetailType type)
         {
             _addConnectType = type;
@@ -45,7 +47,7 @@ namespace TvForms
                     pnAddConnect.Controls.Add(ucAddress);
                     break;
                 case EUserDetailType.Email:
-                    pnAddConnect.Controls.Add(_ucNewUser);
+                    pnAddConnect.Controls.Add(ucEmail);
                     break;
             }
         }
@@ -70,6 +72,8 @@ namespace TvForms
             {
                 case EUserDetailType.Address:
                     return ucAddress.ValidateControls(_userID);
+                case EUserDetailType.Email:
+                    return ucEmail.ValidateControls(_userID);
                 case EUserDetailType.User:
                     return _ucNewUser.ValidateControls();
             }

@@ -160,12 +160,21 @@ namespace TvForms
             {
                 //ToDo Review it! Maybe need to use GENERIC
                 var listViewItem = lvUserAddress.SelectedItems[0];
-                DeleteUserData deleteUserData = new DeleteUserData(Helper.GetInt(listViewItem.SubItems[3].Text), EUserDetailType.Address);
+                DeleteUserData deleteUserData = new DeleteUserData(listViewItem.SubItems[3].Text.GetInt(), EUserDetailType.Address);
                 FillAddressLv();
             }
             else
             {
                 ErrorMassages.DisplayError("Select address to delete", "Error");
+            }
+        }
+
+        private void btAddEmail_Click(object sender, EventArgs e)
+        {
+            AddUserDataForm addEmail = new AddUserDataForm(_currentUserId, EUserDetailType.Email);
+            if (addEmail.ShowDialog() == DialogResult.OK)
+            {
+                FillEmailLv();
             }
         }
     }

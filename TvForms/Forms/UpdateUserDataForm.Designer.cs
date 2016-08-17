@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateUserDataForm));
             this.btOK = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
             this.pnUpdateConnect = new System.Windows.Forms.Panel();
@@ -68,8 +69,9 @@
             this.Controls.Add(this.btOK);
             this.Controls.Add(this.btCancel);
             this.Controls.Add(this.pnUpdateConnect);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UpdateUserDataForm";
-            this.Text = "UpdateUserDataForm";
+            this.Text = "Update Data";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UpdateUserDataForm_FormClosing);
             this.ResumeLayout(false);
 

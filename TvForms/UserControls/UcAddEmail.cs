@@ -1,20 +1,25 @@
 ﻿using System;
-using System.Data.Entity;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using TVContext;
 
-namespace TvForms
+namespace TvForms.UserControls
 {
-    public partial class UcAddAddress : UserControl
+    public partial class UcAddEmail : UserControl
     {
-        public UcAddAddress()
+        public UcAddEmail()
         {
             InitializeComponent();
             SetControlView();
         }
 
-        // set control view on loading
+        // set user control on loading
         private void SetControlView()
         {
             var typeConnectRepo = new BaseRepository<TypeConnect>();
@@ -22,23 +27,28 @@ namespace TvForms
 
             foreach (var typeConnect in types)
             {
-                cbAddressType.Items.Add(typeConnect.NameType);
+                cbEmailType.Items.Add(typeConnect.NameType);
             }
-            cbAddressType.SelectedIndex = 0;
+            cbEmailType.SelectedIndex = 0;
         }
 
-        // validate entered data
+        // validate email input
         public bool ValidateControls(int UserId)
         {
             string errorMessage = "Error:";
-            bool isValidAddress = true;
-            if (tbUserAddress.Text.Trim() == String.Empty || tbUserAddress.Text.Trim().Length < 5)
+            bool isValidEmail = true;
+            if (tbUserEmail.Text.Trim() == String.Empty)
             {
-                errorMessage += "\nAddress cannot be empty or shorter than 5 characters";
-                isValidAddress = false;
+                errorMessage += "\nEmail field cannot be empty";
+                isValidEmail = false;
+            }
+            else if (!tbUserEmail.Text.Trim().IsValidEmail())
+            {
+                errorMessage += "\nPlease enter email in valid format";
+                isValidEmail = false;
             }
 
-            if (isValidAddress)
+            if (isValidEmail)
             {
                 SaveAddedDetails(UserId);
             }
@@ -46,21 +56,21 @@ namespace TvForms
             {
                 ErrorMassages.DisplayError(errorMessage, "Invalid input");
             }
-            return isValidAddress;
+            return isValidEmail;
         }
 
-        // save to the db in case of valid input
+        // save in case of valid email
         public void SaveAddedDetails(int UserId)
         {
             TvDBContext context = new TvDBContext();
-            var userAddressRepo = new BaseRepository<UserAddress>(context);
+            var userAddressRepo = new BaseRepository<UserEmail>(context);
             var typeConnectRepo = new BaseRepository<TypeConnect>(context);
             var userRepo = new BaseRepository<User>(context);
-            UserAddress address = new UserAddress
+            UserEmail address = new UserEmail
             {
-                Address = tbUserAddress.Text,
+                EmailName = tbUserEmail.Text,
                 Comment = tbComment.Text,
-                TypeConnect = typeConnectRepo.Get(x => x.NameType == cbAddressType.Text).First(),
+                TypeConnect = typeConnectRepo.Get(x => x.NameType == cbEmailType.Text).First(),
                 User = userRepo.Get(l => l.Id == UserId).First()
             };
             userAddressRepo.Insert(address);

@@ -217,6 +217,7 @@
             this.btAddEmail.TabIndex = 5;
             this.btAddEmail.Text = "Add";
             this.btAddEmail.UseVisualStyleBackColor = true;
+            this.btAddEmail.Click += new System.EventHandler(this.btAddEmail_Click);
             // 
             // btUpdateEmail
             // 
@@ -410,7 +411,7 @@
             this.lbMoney.TabIndex = 15;
             this.lbMoney.Text = "Money";
             // 
-            // ucUserProfile
+            // UcUserProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
