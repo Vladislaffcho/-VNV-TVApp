@@ -221,13 +221,13 @@
             // 
             // btUpdateEmail
             // 
-            this.btUpdateEmail.Enabled = false;
             this.btUpdateEmail.Location = new System.Drawing.Point(408, 116);
             this.btUpdateEmail.Name = "btUpdateEmail";
             this.btUpdateEmail.Size = new System.Drawing.Size(75, 23);
             this.btUpdateEmail.TabIndex = 4;
             this.btUpdateEmail.Text = "Update";
             this.btUpdateEmail.UseVisualStyleBackColor = true;
+            this.btUpdateEmail.Click += new System.EventHandler(this.btUpdateEmail_Click);
             // 
             // btDeleteEmail
             // 
@@ -295,13 +295,13 @@
             // 
             // btUpdateTelephone
             // 
-            this.btUpdateTelephone.Enabled = false;
             this.btUpdateTelephone.Location = new System.Drawing.Point(408, 116);
             this.btUpdateTelephone.Name = "btUpdateTelephone";
             this.btUpdateTelephone.Size = new System.Drawing.Size(75, 23);
             this.btUpdateTelephone.TabIndex = 2;
             this.btUpdateTelephone.Text = "Update";
             this.btUpdateTelephone.UseVisualStyleBackColor = true;
+            this.btUpdateTelephone.Click += new System.EventHandler(this.btUpdateTelephone_Click);
             // 
             // btDeleteTelephone
             // 

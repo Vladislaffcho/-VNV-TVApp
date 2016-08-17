@@ -20,7 +20,7 @@ namespace TvForms
             _addressID = addressID;
             SetControlView();
         }
-        
+
         private void SetControlView()
         {
             int i = 0;
@@ -45,13 +45,32 @@ namespace TvForms
             }
         }
 
+        // validate entered data
         public bool ValidateControls()
         {
-            if (tbUserAddress.Text.Trim() == String.Empty)
+            string errorMessage = "Error:";
+            bool isValidAddress = true;
+            if (tbUserAddress.Text.Trim() == String.Empty || tbUserAddress.Text.Trim().Length < 5)
             {
-                return false;
+                errorMessage += "\nAddress cannot be empty or shorter than 5 characters";
+                isValidAddress = false;
             }
-            return true;
+
+            if (!tbComment.Text.Trim().IsValidComment())
+            {
+                errorMessage += "\nComment cannot be longer than 500 characters";
+                isValidAddress = false;
+            }
+
+            if (isValidAddress)
+            {
+                SaveAddedDetails();
+            }
+            else
+            {
+                ErrorMassages.DisplayError(errorMessage, "Invalid input");
+            }
+            return isValidAddress;
         }
 
         public void SaveAddedDetails()

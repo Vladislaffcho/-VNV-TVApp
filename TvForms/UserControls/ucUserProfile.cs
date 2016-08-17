@@ -186,5 +186,39 @@ namespace TvForms
                 FillPhonesLv();
             }
         }
+
+        private void btUpdateEmail_Click(object sender, EventArgs e)
+        {
+            if (lvUserEmail.SelectedItems.Count > 0)
+            {
+                var listViewItem = lvUserEmail.SelectedItems[0];
+                UpdateUserDataForm updateEmail = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), EUserDetailType.Email);
+                if (updateEmail.ShowDialog() == DialogResult.OK)
+                {
+                    FillEmailLv();
+                }
+            }
+            else
+            {
+                ErrorMassages.DisplayError("Select address to update", "Error");
+            }
+        }
+
+        private void btUpdateTelephone_Click(object sender, EventArgs e)
+        {
+            if (lvUserTelephone.SelectedItems.Count > 0)
+            {
+                var listViewItem = lvUserTelephone.SelectedItems[0];
+                UpdateUserDataForm updateEmail = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), EUserDetailType.Telephone);
+                if (updateEmail.ShowDialog() == DialogResult.OK)
+                {
+                    FillPhonesLv();
+                }
+            }
+            else
+            {
+                ErrorMassages.DisplayError("Select address to update", "Error");
+            }
+        }
     }
 }
