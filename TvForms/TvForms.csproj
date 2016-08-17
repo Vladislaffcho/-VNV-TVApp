@@ -158,6 +158,12 @@
     <Compile Include="UserControls\UcUpdateEmail.Designer.cs">
       <DependentUpon>UcUpdateEmail.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcUpdateNames.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcUpdateNames.Designer.cs">
+      <DependentUpon>UcUpdateNames.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcUpdateTelephone.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -260,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcUpdateEmail.resx">
       <DependentUpon>UcUpdateEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcUpdateNames.resx">
+      <DependentUpon>UcUpdateNames.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcUpdateTelephone.resx">
       <DependentUpon>UcUpdateTelephone.cs</DependentUpon>

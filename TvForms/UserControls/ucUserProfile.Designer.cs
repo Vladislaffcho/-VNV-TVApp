@@ -99,6 +99,7 @@
             this.btChangeDetails.TabIndex = 28;
             this.btChangeDetails.Text = "Update Details";
             this.btChangeDetails.UseVisualStyleBackColor = true;
+            this.btChangeDetails.Click += new System.EventHandler(this.btChangeDetails_Click);
             // 
             // btDeactivateAccount
             // 

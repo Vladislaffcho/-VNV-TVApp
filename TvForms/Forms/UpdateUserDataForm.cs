@@ -20,6 +20,7 @@ namespace TvForms
         private UcUpdateAddress ucAddress = new UcUpdateAddress();
         private UcUpdateEmail ucEmail = new UcUpdateEmail();
         private UcUpdateTelephone ucTelephone = new UcUpdateTelephone();
+        private UcUpdateNames ucUserNames = new UcUpdateNames();
 
         // constructor receives all the information about data type to be updated
         public UpdateUserDataForm(int recordingId, EUserDetailType type)
@@ -40,6 +41,10 @@ namespace TvForms
                 case EUserDetailType.Telephone:
                     pnUpdateConnect.Controls.Add(ucTelephone);
                     ucTelephone.UpdateTelephone(recordingId);
+                    break;
+                case EUserDetailType.User:
+                    pnUpdateConnect.Controls.Add(ucUserNames);
+                    ucUserNames.UpdateNames(recordingId);
                     break;
             }
         }
@@ -69,6 +74,8 @@ namespace TvForms
                     return ucEmail.ValidateControls();
                 case EUserDetailType.Telephone:
                     return ucTelephone.ValidateControls();
+                case EUserDetailType.User:
+                    return ucUserNames.ValidateControls();
                 default:
                     return true; /* return false, change validation */
             }

@@ -24,11 +24,6 @@ namespace TvForms
         // filling items on the page
         private void SetPageView()
         {
-            // fill user names from db
-            var userRepo = new BaseRepository<User>();
-            tbName.Text = userRepo.Get(x => x.Id == _currentUserId).First().FirstName;
-            tbSurname.Text = userRepo.Get(x => x.Id == _currentUserId).First().LastName;
-
             // fill user details list views ant text boxes
             FillAddressLv();
             FillEmailLv();
@@ -41,6 +36,12 @@ namespace TvForms
         // Think about other data to be added to the control
         private void FillUserData()
         {
+            tbName.Clear();
+            tbSurname.Clear();
+            // fill user names from db
+            var userRepo = new BaseRepository<User>();
+            tbName.Text = userRepo.Get(x => x.Id == _currentUserId).First().FirstName;
+            tbSurname.Text = userRepo.Get(x => x.Id == _currentUserId).First().LastName;
             // Filling Money and status TB's
             // uncomment when whole functionality has been provided
             tbMoney.Text = "Add money from db";
@@ -208,8 +209,8 @@ namespace TvForms
             if (lvUserTelephone.SelectedItems.Count > 0)
             {
                 var listViewItem = lvUserTelephone.SelectedItems[0];
-                UpdateUserDataForm updateEmail = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), EUserDetailType.Telephone);
-                if (updateEmail.ShowDialog() == DialogResult.OK)
+                UpdateUserDataForm updatePhone = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), EUserDetailType.Telephone);
+                if (updatePhone.ShowDialog() == DialogResult.OK)
                 {
                     FillPhonesLv();
                 }
@@ -245,6 +246,15 @@ namespace TvForms
             else
             {
                 ErrorMassages.DisplayError("Select telephone to delete", "Error");
+            }
+        }
+
+        private void btChangeDetails_Click(object sender, EventArgs e)
+        {
+            UpdateUserDataForm updateDetails = new UpdateUserDataForm(_currentUserId, EUserDetailType.User);
+            if (updateDetails.ShowDialog() == DialogResult.OK)
+            {
+                FillUserData();
             }
         }
     }
