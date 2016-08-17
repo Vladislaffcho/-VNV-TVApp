@@ -80,6 +80,8 @@
     </Compile>
     <Compile Include="DeleteUserData.cs" />
     <Compile Include="Helpers\ErrorMassages.cs" />
+    <Compile Include="Helpers\EUserDetailType.cs" />
+    <Compile Include="Helpers\TextFieldsValidator.cs" />
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Forms\PassForm.cs">
       <SubType>Form</SubType>
@@ -101,6 +103,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcAddEmail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcAddEmail.Designer.cs">
+      <DependentUpon>UcAddEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcAddTelephone.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcAddTelephone.Designer.cs">
+      <DependentUpon>UcAddTelephone.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UcPayments.cs">
       <SubType>UserControl</SubType>
@@ -137,6 +151,24 @@
     </Compile>
     <Compile Include="UserControls\UcUpdateAddress.Designer.cs">
       <DependentUpon>UcUpdateAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcUpdateEmail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcUpdateEmail.Designer.cs">
+      <DependentUpon>UcUpdateEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcUpdateNames.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcUpdateNames.Designer.cs">
+      <DependentUpon>UcUpdateNames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcUpdateTelephone.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcUpdateTelephone.Designer.cs">
+      <DependentUpon>UcUpdateTelephone.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UcUserAccount.cs">
       <SubType>UserControl</SubType>
@@ -205,6 +237,12 @@
     <EmbeddedResource Include="UserControls\UcAddAddress.resx">
       <DependentUpon>UcAddAddress.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcAddEmail.resx">
+      <DependentUpon>UcAddEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcAddTelephone.resx">
+      <DependentUpon>UcAddTelephone.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcPayments.resx">
       <DependentUpon>UcPayments.cs</DependentUpon>
     </EmbeddedResource>
@@ -225,6 +263,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcUpdateAddress.resx">
       <DependentUpon>UcUpdateAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcUpdateEmail.resx">
+      <DependentUpon>UcUpdateEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcUpdateNames.resx">
+      <DependentUpon>UcUpdateNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcUpdateTelephone.resx">
+      <DependentUpon>UcUpdateTelephone.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcUserProfile.resx">
       <DependentUpon>UcUserProfile.cs</DependentUpon>

@@ -103,7 +103,7 @@
             this.lbAddressComment.TabIndex = 6;
             this.lbAddressComment.Text = "Comment:";
             // 
-            // ucUpdateAddress
+            // UcUpdateAddress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

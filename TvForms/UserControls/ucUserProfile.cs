@@ -24,11 +24,6 @@ namespace TvForms
         // filling items on the page
         private void SetPageView()
         {
-            // fill user names from db
-            var userRepo = new BaseRepository<User>();
-            tbName.Text = userRepo.Get(x => x.Id == _currentUserId).First().FirstName;
-            tbSurname.Text = userRepo.Get(x => x.Id == _currentUserId).First().LastName;
-
             // fill user details list views ant text boxes
             FillAddressLv();
             FillEmailLv();
@@ -41,6 +36,12 @@ namespace TvForms
         // Think about other data to be added to the control
         private void FillUserData()
         {
+            tbName.Clear();
+            tbSurname.Clear();
+            // fill user names from db
+            var userRepo = new BaseRepository<User>();
+            tbName.Text = userRepo.Get(x => x.Id == _currentUserId).First().FirstName;
+            tbSurname.Text = userRepo.Get(x => x.Id == _currentUserId).First().LastName;
             // Filling Money and status TB's
             // uncomment when whole functionality has been provided
             tbMoney.Text = "Add money from db";
@@ -128,7 +129,7 @@ namespace TvForms
         // functionality to add address
         private void btAddAddress_Click(object sender, EventArgs e)
         {
-            AddUserDataForm addAddress = new AddUserDataForm(_currentUserId, "Address");
+            AddUserDataForm addAddress = new AddUserDataForm(_currentUserId, EUserDetailType.Address);
             if (addAddress.ShowDialog() == DialogResult.OK)
             {
                 FillAddressLv();
@@ -141,11 +142,7 @@ namespace TvForms
             if (lvUserAddress.SelectedItems.Count > 0)
             {
                 var listViewItem = lvUserAddress.SelectedItems[0];
-                //ToDO See this!
-                //listViewItem.SubItems[3].Text.GetInt()
-                //Helper.GetInt(listViewItem.SubItems[3].Text)
-                //ToDo move "Address" to enum
-                UpdateUserDataForm updateAddress = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), "Address");
+                UpdateUserDataForm updateAddress = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), EUserDetailType.Address);
                 if (updateAddress.ShowDialog() == DialogResult.OK)
                 {
                     FillAddressLv();
@@ -153,7 +150,7 @@ namespace TvForms
             }
             else
             {
-                MessageBox.Show("Select address to update", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorMassages.DisplayError("Select address to update", "Error");
             }
         }
 
@@ -162,14 +159,102 @@ namespace TvForms
         {
             if (lvUserAddress.SelectedItems.Count > 0)
             {
-                //ToDo Review it! Maybe need to use GENERIC
                 var listViewItem = lvUserAddress.SelectedItems[0];
-                DeleteUserData deleteUserData = new DeleteUserData(Helper.GetInt(listViewItem.SubItems[3].Text), "Address");
+                DeleteUserData.DeleteAddress(listViewItem.SubItems[3].Text.GetInt());
                 FillAddressLv();
             }
             else
             {
-                MessageBox.Show("Select address to delete", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorMassages.DisplayError("Select address to delete", "Error");
+            }
+        }
+
+        private void btAddEmail_Click(object sender, EventArgs e)
+        {
+            AddUserDataForm addEmail = new AddUserDataForm(_currentUserId, EUserDetailType.Email);
+            if (addEmail.ShowDialog() == DialogResult.OK)
+            {
+                FillEmailLv();
+            }
+        }
+
+        private void btAddPhone_Click(object sender, EventArgs e)
+        {
+            AddUserDataForm addPhone = new AddUserDataForm(_currentUserId, EUserDetailType.Telephone);
+            if (addPhone.ShowDialog() == DialogResult.OK)
+            {
+                FillPhonesLv();
+            }
+        }
+
+        private void btUpdateEmail_Click(object sender, EventArgs e)
+        {
+            if (lvUserEmail.SelectedItems.Count > 0)
+            {
+                var listViewItem = lvUserEmail.SelectedItems[0];
+                UpdateUserDataForm updateEmail = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), EUserDetailType.Email);
+                if (updateEmail.ShowDialog() == DialogResult.OK)
+                {
+                    FillEmailLv();
+                }
+            }
+            else
+            {
+                ErrorMassages.DisplayError("Select address to update", "Error");
+            }
+        }
+
+        private void btUpdateTelephone_Click(object sender, EventArgs e)
+        {
+            if (lvUserTelephone.SelectedItems.Count > 0)
+            {
+                var listViewItem = lvUserTelephone.SelectedItems[0];
+                UpdateUserDataForm updatePhone = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), EUserDetailType.Telephone);
+                if (updatePhone.ShowDialog() == DialogResult.OK)
+                {
+                    FillPhonesLv();
+                }
+            }
+            else
+            {
+                ErrorMassages.DisplayError("Select address to update", "Error");
+            }
+        }
+
+        private void btDeleteEmail_Click(object sender, EventArgs e)
+        {
+            if (lvUserEmail.SelectedItems.Count > 0)
+            {
+                var listViewItem = lvUserEmail.SelectedItems[0];
+                DeleteUserData.DeleteEmail(listViewItem.SubItems[3].Text.GetInt());
+                FillEmailLv();
+            }
+            else
+            {
+                ErrorMassages.DisplayError("Select email to delete", "Error");
+            }
+        }
+
+        private void btDeleteTelephone_Click(object sender, EventArgs e)
+        {
+            if (lvUserTelephone.SelectedItems.Count > 0)
+            {
+                var listViewItem = lvUserTelephone.SelectedItems[0];
+                DeleteUserData.DeleteTelephone(listViewItem.SubItems[3].Text.GetInt());
+                FillPhonesLv();
+            }
+            else
+            {
+                ErrorMassages.DisplayError("Select telephone to delete", "Error");
+            }
+        }
+
+        private void btChangeDetails_Click(object sender, EventArgs e)
+        {
+            UpdateUserDataForm updateDetails = new UpdateUserDataForm(_currentUserId, EUserDetailType.User);
+            if (updateDetails.ShowDialog() == DialogResult.OK)
+            {
+                FillUserData();
             }
         }
     }

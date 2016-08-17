@@ -7,28 +7,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TvForms.UserControls;
 
 namespace TvForms
 {
     public partial class UpdateUserDataForm : Form
     {
         // variable contains info about the type to be updated
-        private string _updateConnectType;
+        private EUserDetailType _updateConnectType;
 
         // create new uc in case address will be updated
         private UcUpdateAddress ucAddress = new UcUpdateAddress();
+        private UcUpdateEmail ucEmail = new UcUpdateEmail();
+        private UcUpdateTelephone ucTelephone = new UcUpdateTelephone();
+        private UcUpdateNames ucUserNames = new UcUpdateNames();
 
         // constructor receives all the information about data type to be updated
-        public UpdateUserDataForm(int addressID, string type)
+        public UpdateUserDataForm(int recordingId, EUserDetailType type)
         {
             _updateConnectType = type;
             InitializeComponent();
 
             switch (_updateConnectType)
             {
-                case "Address":
+                case EUserDetailType.Address:
                     pnUpdateConnect.Controls.Add(ucAddress);
-                    ucAddress.UpdateAddress(addressID);
+                    ucAddress.UpdateAddress(recordingId);
+                    break;
+                case EUserDetailType.Email:
+                    pnUpdateConnect.Controls.Add(ucEmail);
+                    ucEmail.UpdateEmail(recordingId);
+                    break;
+                case EUserDetailType.Telephone:
+                    pnUpdateConnect.Controls.Add(ucTelephone);
+                    ucTelephone.UpdateTelephone(recordingId);
+                    break;
+                case EUserDetailType.User:
+                    pnUpdateConnect.Controls.Add(ucUserNames);
+                    ucUserNames.UpdateNames(recordingId);
                     break;
             }
         }
@@ -41,17 +57,7 @@ namespace TvForms
             {
                 if (!ValidateControls())
                 {
-                    MessageBox.Show("Please input correct value!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     e.Cancel = true;
-                }
-                else
-                {
-                    switch (_updateConnectType)
-                    {
-                        case "Address":
-                            ucAddress.SaveAddedDetails();
-                            break;
-                    }
                 }
             }
         }
@@ -62,8 +68,14 @@ namespace TvForms
             var type = _updateConnectType;
             switch (type)
             {
-                case "Address":
+                case EUserDetailType.Address:
                     return ucAddress.ValidateControls();
+                case EUserDetailType.Email:
+                    return ucEmail.ValidateControls();
+                case EUserDetailType.Telephone:
+                    return ucTelephone.ValidateControls();
+                case EUserDetailType.User:
+                    return ucUserNames.ValidateControls();
                 default:
                     return true; /* return false, change validation */
             }

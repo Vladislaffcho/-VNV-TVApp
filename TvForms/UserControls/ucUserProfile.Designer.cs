@@ -99,6 +99,7 @@
             this.btChangeDetails.TabIndex = 28;
             this.btChangeDetails.Text = "Update Details";
             this.btChangeDetails.UseVisualStyleBackColor = true;
+            this.btChangeDetails.Click += new System.EventHandler(this.btChangeDetails_Click);
             // 
             // btDeactivateAccount
             // 
@@ -217,26 +218,27 @@
             this.btAddEmail.TabIndex = 5;
             this.btAddEmail.Text = "Add";
             this.btAddEmail.UseVisualStyleBackColor = true;
+            this.btAddEmail.Click += new System.EventHandler(this.btAddEmail_Click);
             // 
             // btUpdateEmail
             // 
-            this.btUpdateEmail.Enabled = false;
             this.btUpdateEmail.Location = new System.Drawing.Point(408, 116);
             this.btUpdateEmail.Name = "btUpdateEmail";
             this.btUpdateEmail.Size = new System.Drawing.Size(75, 23);
             this.btUpdateEmail.TabIndex = 4;
             this.btUpdateEmail.Text = "Update";
             this.btUpdateEmail.UseVisualStyleBackColor = true;
+            this.btUpdateEmail.Click += new System.EventHandler(this.btUpdateEmail_Click);
             // 
             // btDeleteEmail
             // 
-            this.btDeleteEmail.Enabled = false;
             this.btDeleteEmail.Location = new System.Drawing.Point(521, 116);
             this.btDeleteEmail.Name = "btDeleteEmail";
             this.btDeleteEmail.Size = new System.Drawing.Size(75, 23);
             this.btDeleteEmail.TabIndex = 3;
             this.btDeleteEmail.Text = "Delete";
             this.btDeleteEmail.UseVisualStyleBackColor = true;
+            this.btDeleteEmail.Click += new System.EventHandler(this.btDeleteEmail_Click);
             // 
             // lvUserEmail
             // 
@@ -290,26 +292,27 @@
             this.btAddPhone.TabIndex = 3;
             this.btAddPhone.Text = "Add";
             this.btAddPhone.UseVisualStyleBackColor = true;
+            this.btAddPhone.Click += new System.EventHandler(this.btAddPhone_Click);
             // 
             // btUpdateTelephone
             // 
-            this.btUpdateTelephone.Enabled = false;
             this.btUpdateTelephone.Location = new System.Drawing.Point(408, 116);
             this.btUpdateTelephone.Name = "btUpdateTelephone";
             this.btUpdateTelephone.Size = new System.Drawing.Size(75, 23);
             this.btUpdateTelephone.TabIndex = 2;
             this.btUpdateTelephone.Text = "Update";
             this.btUpdateTelephone.UseVisualStyleBackColor = true;
+            this.btUpdateTelephone.Click += new System.EventHandler(this.btUpdateTelephone_Click);
             // 
             // btDeleteTelephone
             // 
-            this.btDeleteTelephone.Enabled = false;
             this.btDeleteTelephone.Location = new System.Drawing.Point(521, 116);
             this.btDeleteTelephone.Name = "btDeleteTelephone";
             this.btDeleteTelephone.Size = new System.Drawing.Size(75, 23);
             this.btDeleteTelephone.TabIndex = 1;
             this.btDeleteTelephone.Text = "Delete";
             this.btDeleteTelephone.UseVisualStyleBackColor = true;
+            this.btDeleteTelephone.Click += new System.EventHandler(this.btDeleteTelephone_Click);
             // 
             // lvUserTelephone
             // 
@@ -410,7 +413,7 @@
             this.lbMoney.TabIndex = 15;
             this.lbMoney.Text = "Money";
             // 
-            // ucUserProfile
+            // UcUserProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

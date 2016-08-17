@@ -14,6 +14,7 @@ namespace TvForms
             SetControlView();
         }
 
+        // set control view on loading
         private void SetControlView()
         {
             var typeConnectRepo = new BaseRepository<TypeConnect>();
@@ -26,17 +27,36 @@ namespace TvForms
             cbAddressType.SelectedIndex = 0;
         }
 
-
-        public bool ValidateControls()
+        // validate entered data
+        public bool ValidateControls(int UserId)
         {
-            if (tbUserAddress.Text.Trim() == String.Empty)
+            string errorMessage = "Error:";
+            bool isValidAddress = true;
+            if (tbUserAddress.Text.Trim() == String.Empty || tbUserAddress.Text.Trim().Length < 5)
             {
-                return false;
+                errorMessage += "\nAddress cannot be empty or shorter than 5 characters";
+                isValidAddress = false;
             }
-            return true;
+
+            if (!tbComment.Text.Trim().IsValidComment())
+            {
+                errorMessage += "\nComment cannot be longer than 500 characters";
+                isValidAddress = false;
+            }
+
+            if (isValidAddress)
+            {
+                SaveAddedDetails(UserId);
+            }
+            else
+            {
+                ErrorMassages.DisplayError(errorMessage, "Invalid input");
+            }
+            return isValidAddress;
         }
 
-        public void SaveAddedDetails(int UserID)
+        // save to the db in case of valid input
+        public void SaveAddedDetails(int UserId)
         {
             TvDBContext context = new TvDBContext();
             var userAddressRepo = new BaseRepository<UserAddress>(context);
@@ -47,7 +67,7 @@ namespace TvForms
                 Address = tbUserAddress.Text,
                 Comment = tbComment.Text,
                 TypeConnect = typeConnectRepo.Get(x => x.NameType == cbAddressType.Text).First(),
-                User = userRepo.Get(l => l.Id == UserID).First()
+                User = userRepo.Get(l => l.Id == UserId).First()
             };
             userAddressRepo.Insert(address);
         }
