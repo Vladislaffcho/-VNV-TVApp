@@ -158,9 +158,8 @@ namespace TvForms
         {
             if (lvUserAddress.SelectedItems.Count > 0)
             {
-                //ToDo Review it! Maybe need to use GENERIC
                 var listViewItem = lvUserAddress.SelectedItems[0];
-                DeleteUserData deleteUserData = new DeleteUserData(listViewItem.SubItems[3].Text.GetInt(), EUserDetailType.Address);
+                DeleteUserData.DeleteAddress(listViewItem.SubItems[3].Text.GetInt());
                 FillAddressLv();
             }
             else
@@ -218,6 +217,34 @@ namespace TvForms
             else
             {
                 ErrorMassages.DisplayError("Select address to update", "Error");
+            }
+        }
+
+        private void btDeleteEmail_Click(object sender, EventArgs e)
+        {
+            if (lvUserEmail.SelectedItems.Count > 0)
+            {
+                var listViewItem = lvUserEmail.SelectedItems[0];
+                DeleteUserData.DeleteEmail(listViewItem.SubItems[3].Text.GetInt());
+                FillEmailLv();
+            }
+            else
+            {
+                ErrorMassages.DisplayError("Select email to delete", "Error");
+            }
+        }
+
+        private void btDeleteTelephone_Click(object sender, EventArgs e)
+        {
+            if (lvUserTelephone.SelectedItems.Count > 0)
+            {
+                var listViewItem = lvUserTelephone.SelectedItems[0];
+                DeleteUserData.DeleteTelephone(listViewItem.SubItems[3].Text.GetInt());
+                FillPhonesLv();
+            }
+            else
+            {
+                ErrorMassages.DisplayError("Select telephone to delete", "Error");
             }
         }
     }

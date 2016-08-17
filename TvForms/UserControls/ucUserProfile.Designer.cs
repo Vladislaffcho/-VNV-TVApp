@@ -231,13 +231,13 @@
             // 
             // btDeleteEmail
             // 
-            this.btDeleteEmail.Enabled = false;
             this.btDeleteEmail.Location = new System.Drawing.Point(521, 116);
             this.btDeleteEmail.Name = "btDeleteEmail";
             this.btDeleteEmail.Size = new System.Drawing.Size(75, 23);
             this.btDeleteEmail.TabIndex = 3;
             this.btDeleteEmail.Text = "Delete";
             this.btDeleteEmail.UseVisualStyleBackColor = true;
+            this.btDeleteEmail.Click += new System.EventHandler(this.btDeleteEmail_Click);
             // 
             // lvUserEmail
             // 
@@ -305,13 +305,13 @@
             // 
             // btDeleteTelephone
             // 
-            this.btDeleteTelephone.Enabled = false;
             this.btDeleteTelephone.Location = new System.Drawing.Point(521, 116);
             this.btDeleteTelephone.Name = "btDeleteTelephone";
             this.btDeleteTelephone.Size = new System.Drawing.Size(75, 23);
             this.btDeleteTelephone.TabIndex = 1;
             this.btDeleteTelephone.Text = "Delete";
             this.btDeleteTelephone.UseVisualStyleBackColor = true;
+            this.btDeleteTelephone.Click += new System.EventHandler(this.btDeleteTelephone_Click);
             // 
             // lvUserTelephone
             // 

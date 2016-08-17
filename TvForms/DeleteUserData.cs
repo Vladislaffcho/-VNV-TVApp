@@ -1,26 +1,41 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using TVContext;
 
 namespace TvForms
 {
-    public class DeleteUserData
+    public static class DeleteUserData
     {
-        // based on which user data type has been passed to the class, corresponding method will be called
-        public DeleteUserData(int deleteRecordId, EUserDetailType type)
+        // Remove phone functionality
+        public static void DeleteTelephone(int phoneId)
         {
-            switch (type)
+            int i = 0;
+            DialogResult result = MessageBox.Show("Do you want to remove selected telephone?", "Remove email", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
             {
-                case EUserDetailType.Address:
-                    DeleteAddress(deleteRecordId);
-                    break;
+                var userPhonesRepo = new BaseRepository<UserPhone>();
+                var phoneToRemove = userPhonesRepo.Get(x => x.Id == phoneId).First();
+                userPhonesRepo.Remove(phoneToRemove);
+            }
+        }
+
+        // Remove email functionality
+        public static void DeleteEmail(int emailId)
+        {
+            int i = 0;
+            DialogResult result = MessageBox.Show("Do you want to remove selected email?", "Remove email", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                var userEmailsRepo = new BaseRepository<UserEmail>();
+                var emailToRemove = userEmailsRepo.Get(x => x.Id == emailId).First();
+                userEmailsRepo.Remove(emailToRemove);
             }
         }
 
 
-        // Waiting for user's confirmation
-        // If user confirms, selected address gets deleted from the db
-        private void DeleteAddress(int addressID)
+        // Remove address functionality
+        public static void DeleteAddress(int addressID)
         {
             int i = 0;
             DialogResult result = MessageBox.Show("Do you want to remove selected address?", "Remove address", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
