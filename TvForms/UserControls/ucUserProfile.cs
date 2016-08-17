@@ -128,7 +128,7 @@ namespace TvForms
         // functionality to add address
         private void btAddAddress_Click(object sender, EventArgs e)
         {
-            AddUserDataForm addAddress = new AddUserDataForm(_currentUserId, "Address");
+            AddUserDataForm addAddress = new AddUserDataForm(_currentUserId, EUserDetailType.Address);
             if (addAddress.ShowDialog() == DialogResult.OK)
             {
                 FillAddressLv();
@@ -141,11 +141,7 @@ namespace TvForms
             if (lvUserAddress.SelectedItems.Count > 0)
             {
                 var listViewItem = lvUserAddress.SelectedItems[0];
-                //ToDO See this!
-                //listViewItem.SubItems[3].Text.GetInt()
-                //Helper.GetInt(listViewItem.SubItems[3].Text)
-                //ToDo move "Address" to enum
-                UpdateUserDataForm updateAddress = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), "Address");
+                UpdateUserDataForm updateAddress = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), EUserDetailType.Address);
                 if (updateAddress.ShowDialog() == DialogResult.OK)
                 {
                     FillAddressLv();
@@ -153,7 +149,7 @@ namespace TvForms
             }
             else
             {
-                MessageBox.Show("Select address to update", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorMassages.DisplayError("Select address to update", "Error");
             }
         }
 
@@ -164,12 +160,12 @@ namespace TvForms
             {
                 //ToDo Review it! Maybe need to use GENERIC
                 var listViewItem = lvUserAddress.SelectedItems[0];
-                DeleteUserData deleteUserData = new DeleteUserData(Helper.GetInt(listViewItem.SubItems[3].Text), "Address");
+                DeleteUserData deleteUserData = new DeleteUserData(Helper.GetInt(listViewItem.SubItems[3].Text), EUserDetailType.Address);
                 FillAddressLv();
             }
             else
             {
-                MessageBox.Show("Select address to delete", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ErrorMassages.DisplayError("Select address to delete", "Error");
             }
         }
     }

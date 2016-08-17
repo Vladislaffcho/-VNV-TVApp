@@ -99,7 +99,7 @@ namespace TvForms
 
         private void linkLbPassForm_Register_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var actions = new AddUserDataForm();
+            var actions = new AddUserDataForm(EUserDetailType.User);
             actions.ShowDialog();
         }
     }

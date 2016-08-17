@@ -7,11 +7,11 @@ namespace TvForms
     public class DeleteUserData
     {
         // based on which user data type has been passed to the class, corresponding method will be called
-        public DeleteUserData(int deleteRecordId, string type)
+        public DeleteUserData(int deleteRecordId, EUserDetailType type)
         {
             switch (type)
             {
-                case "Address":
+                case EUserDetailType.Address:
                     DeleteAddress(deleteRecordId);
                     break;
             }

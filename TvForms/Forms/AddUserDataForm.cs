@@ -22,29 +22,30 @@ namespace TvForms
         private UcAddAddress ucAddress = new UcAddAddress();
         private UcRegisterNewUser _ucNewUser = new UcRegisterNewUser();
         // variable contains information about data type to be added (address, email, telephone)
-        private string _addConnectType;
+        private EUserDetailType _addConnectType;
 
-        public AddUserDataForm()
+        public AddUserDataForm(EUserDetailType type)
         {
+            _addConnectType = type;
             InitializeComponent();
             pnAddConnect.Controls.Add(_ucNewUser);
         }
 
-
-        //ToDo naming convention!!!
         // depending on data type, corresponding uc will be opened
-        public AddUserDataForm(int UserID, string type)
+        public AddUserDataForm(int UserId, EUserDetailType type)
         {
-            _userID = UserID;
+            _userID = UserId;
             _addConnectType = type;
             InitializeComponent();
 
             switch (_addConnectType)
             {
                 //ToDo Move to enum
-                case "Address":
-
+                case EUserDetailType.Address:
                     pnAddConnect.Controls.Add(ucAddress);
+                    break;
+                case EUserDetailType.Email:
+                    pnAddConnect.Controls.Add(_ucNewUser);
                     break;
             }
         }
@@ -65,17 +66,14 @@ namespace TvForms
         // validator for the provided data
         private bool ValidateControls()
         {
-            var type = _addConnectType;
-            type = "Address";
-            switch (type)
+            switch (_addConnectType)
             {
-                case "Address":
+                case EUserDetailType.Address:
                     return ucAddress.ValidateControls(_userID);
-                case "User":
+                case EUserDetailType.User:
                     return _ucNewUser.ValidateControls();
-                default:
-                    return true; /* return false, change validation */
             }
+            return false;
         }
     }
 }

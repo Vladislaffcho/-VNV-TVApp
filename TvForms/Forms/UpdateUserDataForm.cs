@@ -13,20 +13,20 @@ namespace TvForms
     public partial class UpdateUserDataForm : Form
     {
         // variable contains info about the type to be updated
-        private string _updateConnectType;
+        private EUserDetailType _updateConnectType;
 
         // create new uc in case address will be updated
         private UcUpdateAddress ucAddress = new UcUpdateAddress();
 
         // constructor receives all the information about data type to be updated
-        public UpdateUserDataForm(int addressID, string type)
+        public UpdateUserDataForm(int addressID, EUserDetailType type)
         {
             _updateConnectType = type;
             InitializeComponent();
 
             switch (_updateConnectType)
             {
-                case "Address":
+                case EUserDetailType.Address:
                     pnUpdateConnect.Controls.Add(ucAddress);
                     ucAddress.UpdateAddress(addressID);
                     break;
@@ -48,7 +48,7 @@ namespace TvForms
                 {
                     switch (_updateConnectType)
                     {
-                        case "Address":
+                        case EUserDetailType.Address:
                             ucAddress.SaveAddedDetails();
                             break;
                     }
@@ -62,7 +62,7 @@ namespace TvForms
             var type = _updateConnectType;
             switch (type)
             {
-                case "Address":
+                case EUserDetailType.Address:
                     return ucAddress.ValidateControls();
                 default:
                     return true; /* return false, change validation */
