@@ -5,7 +5,6 @@ namespace TVContext
 {
     public class UserPhone : CommentedEntity
     {
-
         //create unique field of user phone
         [Index(IsUnique = true)]
         [Required]
