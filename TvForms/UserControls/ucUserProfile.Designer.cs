@@ -96,7 +96,7 @@
             this.btChangeDetails.Location = new System.Drawing.Point(298, 19);
             this.btChangeDetails.Name = "btChangeDetails";
             this.btChangeDetails.Size = new System.Drawing.Size(112, 23);
-            this.btChangeDetails.TabIndex = 28;
+            this.btChangeDetails.TabIndex = 7;
             this.btChangeDetails.Text = "Update Details";
             this.btChangeDetails.UseVisualStyleBackColor = true;
             this.btChangeDetails.Click += new System.EventHandler(this.btChangeDetails_Click);
@@ -106,7 +106,7 @@
             this.btDeactivateAccount.Location = new System.Drawing.Point(298, 56);
             this.btDeactivateAccount.Name = "btDeactivateAccount";
             this.btDeactivateAccount.Size = new System.Drawing.Size(113, 23);
-            this.btDeactivateAccount.TabIndex = 27;
+            this.btDeactivateAccount.TabIndex = 8;
             this.btDeactivateAccount.Text = "Deactivate Account";
             this.btDeactivateAccount.UseVisualStyleBackColor = true;
             this.btDeactivateAccount.Click += new System.EventHandler(this.btDeactivateAccount_Click);
@@ -141,7 +141,7 @@
             this.btAddAddress.Location = new System.Drawing.Point(295, 116);
             this.btAddAddress.Name = "btAddAddress";
             this.btAddAddress.Size = new System.Drawing.Size(75, 23);
-            this.btAddAddress.TabIndex = 7;
+            this.btAddAddress.TabIndex = 1;
             this.btAddAddress.Text = "Add";
             this.btAddAddress.UseVisualStyleBackColor = true;
             this.btAddAddress.Click += new System.EventHandler(this.btAddAddress_Click);
@@ -151,7 +151,7 @@
             this.btUpdateAddress.Location = new System.Drawing.Point(408, 116);
             this.btUpdateAddress.Name = "btUpdateAddress";
             this.btUpdateAddress.Size = new System.Drawing.Size(75, 23);
-            this.btUpdateAddress.TabIndex = 6;
+            this.btUpdateAddress.TabIndex = 2;
             this.btUpdateAddress.Text = "Update";
             this.btUpdateAddress.UseVisualStyleBackColor = true;
             this.btUpdateAddress.Click += new System.EventHandler(this.btUpdateAddress_Click);
@@ -161,7 +161,7 @@
             this.btDeleteAddress.Location = new System.Drawing.Point(521, 116);
             this.btDeleteAddress.Name = "btDeleteAddress";
             this.btDeleteAddress.Size = new System.Drawing.Size(75, 23);
-            this.btDeleteAddress.TabIndex = 5;
+            this.btDeleteAddress.TabIndex = 3;
             this.btDeleteAddress.Text = "Delete";
             this.btDeleteAddress.UseVisualStyleBackColor = true;
             this.btDeleteAddress.Click += new System.EventHandler(this.btDeleteAddress_Click);
@@ -215,7 +215,7 @@
             this.btAddEmail.Location = new System.Drawing.Point(295, 116);
             this.btAddEmail.Name = "btAddEmail";
             this.btAddEmail.Size = new System.Drawing.Size(75, 23);
-            this.btAddEmail.TabIndex = 5;
+            this.btAddEmail.TabIndex = 1;
             this.btAddEmail.Text = "Add";
             this.btAddEmail.UseVisualStyleBackColor = true;
             this.btAddEmail.Click += new System.EventHandler(this.btAddEmail_Click);
@@ -225,7 +225,7 @@
             this.btUpdateEmail.Location = new System.Drawing.Point(408, 116);
             this.btUpdateEmail.Name = "btUpdateEmail";
             this.btUpdateEmail.Size = new System.Drawing.Size(75, 23);
-            this.btUpdateEmail.TabIndex = 4;
+            this.btUpdateEmail.TabIndex = 2;
             this.btUpdateEmail.Text = "Update";
             this.btUpdateEmail.UseVisualStyleBackColor = true;
             this.btUpdateEmail.Click += new System.EventHandler(this.btUpdateEmail_Click);
@@ -289,7 +289,7 @@
             this.btAddPhone.Location = new System.Drawing.Point(295, 116);
             this.btAddPhone.Name = "btAddPhone";
             this.btAddPhone.Size = new System.Drawing.Size(75, 23);
-            this.btAddPhone.TabIndex = 3;
+            this.btAddPhone.TabIndex = 1;
             this.btAddPhone.Text = "Add";
             this.btAddPhone.UseVisualStyleBackColor = true;
             this.btAddPhone.Click += new System.EventHandler(this.btAddPhone_Click);
@@ -309,7 +309,7 @@
             this.btDeleteTelephone.Location = new System.Drawing.Point(521, 116);
             this.btDeleteTelephone.Name = "btDeleteTelephone";
             this.btDeleteTelephone.Size = new System.Drawing.Size(75, 23);
-            this.btDeleteTelephone.TabIndex = 1;
+            this.btDeleteTelephone.TabIndex = 3;
             this.btDeleteTelephone.Text = "Delete";
             this.btDeleteTelephone.UseVisualStyleBackColor = true;
             this.btDeleteTelephone.Click += new System.EventHandler(this.btDeleteTelephone_Click);
@@ -349,7 +349,7 @@
             this.btViewPayment.Location = new System.Drawing.Point(474, 56);
             this.btViewPayment.Name = "btViewPayment";
             this.btViewPayment.Size = new System.Drawing.Size(88, 23);
-            this.btViewPayment.TabIndex = 24;
+            this.btViewPayment.TabIndex = 10;
             this.btViewPayment.Text = "View Payment";
             this.btViewPayment.UseVisualStyleBackColor = true;
             // 
@@ -377,7 +377,7 @@
             this.tbName.Name = "tbName";
             this.tbName.ReadOnly = true;
             this.tbName.Size = new System.Drawing.Size(121, 20);
-            this.tbName.TabIndex = 20;
+            this.tbName.TabIndex = 4;
             // 
             // tbSurname
             // 
@@ -385,14 +385,14 @@
             this.tbSurname.Name = "tbSurname";
             this.tbSurname.ReadOnly = true;
             this.tbSurname.Size = new System.Drawing.Size(121, 20);
-            this.tbSurname.TabIndex = 19;
+            this.tbSurname.TabIndex = 5;
             // 
             // btViewOrders
             // 
             this.btViewOrders.Location = new System.Drawing.Point(474, 19);
             this.btViewOrders.Name = "btViewOrders";
             this.btViewOrders.Size = new System.Drawing.Size(88, 23);
-            this.btViewOrders.TabIndex = 17;
+            this.btViewOrders.TabIndex = 9;
             this.btViewOrders.Text = "View Orders";
             this.btViewOrders.UseVisualStyleBackColor = true;
             // 
@@ -402,7 +402,7 @@
             this.tbMoney.Name = "tbMoney";
             this.tbMoney.ReadOnly = true;
             this.tbMoney.Size = new System.Drawing.Size(121, 20);
-            this.tbMoney.TabIndex = 16;
+            this.tbMoney.TabIndex = 6;
             // 
             // lbMoney
             // 

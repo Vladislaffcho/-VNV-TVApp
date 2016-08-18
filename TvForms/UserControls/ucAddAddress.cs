@@ -39,6 +39,11 @@ namespace TvForms
                 errorMessage += "\nAddress should consist of 5 to 100 characters";
                 isValidAddress = false;
             }
+            else if (tbUserAddress.Text.Trim().IsUniqueAddress())
+            {
+                errorMessage += "\nAddress already exists. Please enter another one";
+                isValidAddress = false;
+            }
 
             if (!tbComment.Text.Trim().IsValidComment())
             {

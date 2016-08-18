@@ -91,24 +91,18 @@ namespace TvForms.UserControls
         // the method saves newly-created user
         private void SaveAddedDetails()
         {
-            using (var context = new TvDBContext())
+            var md5Hash = MD5.Create();
+            var userRepo = new BaseRepository<User>();
+            userRepo.Insert(new User()
             {
-                var md5Hash = MD5.Create();
-                var userRepo = new BaseRepository<User>(context);
-                var userTypeRepo = new BaseRepository<UserType>(context);
-                var newUser = new User()
-                {
-                    FirstName = tbFirstName.Text,
-                    LastName = tbLastName.Text,
-                    Login = tbLogin.Text,
-                    Password = Md5Helper.GetMd5Hash(md5Hash, tbPassword.Text),
-                    UserType = userTypeRepo.Get(x => x.TypeName == "Client").First()
-                };
-
-                userRepo.Insert(newUser);
-                ErrorMassages.DisplayInfo("Created new user successfully.\nYou may log in with new credentials.",
-                    "New user has been created");
-            }
+                FirstName = tbFirstName.Text,
+                LastName = tbLastName.Text,
+                Login = tbLogin.Text,
+                Password = Md5Helper.GetMd5Hash(md5Hash, tbPassword.Text),
+                UserType = userRepo.Context.UserTypes.Where(x => x.TypeName == "Client").First()
+            });
+            ErrorMassages.DisplayInfo("Created new user successfully.\nYou may log in with new credentials.",
+                "New user has been created");
         }
     }
 }

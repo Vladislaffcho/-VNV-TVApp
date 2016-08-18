@@ -170,12 +170,6 @@
     <Compile Include="UserControls\UcUpdateTelephone.Designer.cs">
       <DependentUpon>UcUpdateTelephone.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UcUserAccount.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\UcUserAccount.Designer.cs">
-      <DependentUpon>UcUserAccount.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\UcUserProfile.cs">
       <SubType>UserControl</SubType>
     </Compile>

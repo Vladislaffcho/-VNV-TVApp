@@ -117,13 +117,39 @@ namespace TvForms
             return lvItem;
         }
 
-        // Here will be functionality to deactivate account
-        // for now, deactivated user is able to log in, but unable to make orders
-        // deactivated user can replenish his account
-        // once deactivated, user needs to contact administrator in order to reactivate an account
+        // functionality to deactivate user's account
         private void btDeactivateAccount_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var userRepo = new BaseRepository<User>();
+            var currentUser = userRepo.Get(x => x.Id == _currentUserId)
+                .Include(x => x.Orders)
+                .Include(x => x.UserAddresses)
+                .Include(x => x.UserEmails)
+                .Include(x => x.UserPhones)
+                .Include(x => x.UserSchedules)
+                .Include(x => x.UserType)
+                .First();
+            if (currentUser.IsActiveStatus)
+            {
+                DialogResult result = MessageBox.Show("Do you want to deactivate your account?\n" +
+                                                      "You will need to contact our customer survice to reactivate it",
+                                                      "Deactivate account",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    currentUser.IsActiveStatus = false;
+                    userRepo.Update(currentUser);
+                    ErrorMassages.DisplayInfo("Your account has been deactivated\n" +
+                                              "You should contact our managers to reactivate it in the future",
+                        "Success");
+                }
+            }
+            else
+            {
+                ErrorMassages.DisplayInfo("Your account is already deactivated\n" +
+                                              "You should contact our managers to reactivate it",
+                        "Account status");
+            }
         }
 
         // functionality to add address

@@ -16,7 +16,6 @@ namespace TvForms.UserControls
 {
     public partial class UcUpdateNames : UserControl
     {
-        private int _userId;
         public UcUpdateNames()
         {
             InitializeComponent();
@@ -24,20 +23,14 @@ namespace TvForms.UserControls
 
         public void UpdateNames(int userId)
         {
-            _userId = userId;
-            SetControlView();
-        }
-
-        private void SetControlView()
-        {
             var usersRepo = new BaseRepository<User>();
-            var userToUpdate = usersRepo.Get(x => x.Id == _userId)
+            var userToUpdate = usersRepo.Get(x => x.Id == userId)
                 .First();
             tbFirstName.Text = userToUpdate.FirstName;
             tbLastName.Text = userToUpdate.LastName;
         }
 
-        public bool ValidateControls()
+        public bool ValidateControls(int userId)
         {
             string errorMessage = "Error:";
             bool isValidName = true;
@@ -72,7 +65,7 @@ namespace TvForms.UserControls
 
             if (isValidName)
             {
-                SaveUpdatedDetails();
+                SaveUpdatedDetails(userId);
             }
             else
             {
@@ -82,10 +75,10 @@ namespace TvForms.UserControls
         }
 
         // method saves updated user data
-        private void SaveUpdatedDetails()
+        private void SaveUpdatedDetails(int userId)
         {
             var usersRepo = new BaseRepository<User>();
-            var userToUpdate = usersRepo.Get(x => x.Id == _userId)
+            var userToUpdate = usersRepo.Get(x => x.Id == userId)
                 .Include(x => x.Orders)
                 .Include(x => x.UserAddresses)
                 .Include(x => x.UserEmails)

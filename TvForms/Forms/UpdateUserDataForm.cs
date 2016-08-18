@@ -17,10 +17,10 @@ namespace TvForms
         private EUserDetailType _updateConnectType;
         private int _recordingId;
         // create new uc in case address will be updated
-        private UcUpdateAddress ucAddress = new UcUpdateAddress();
-        private UcUpdateEmail ucEmail = new UcUpdateEmail();
-        private UcUpdateTelephone ucTelephone = new UcUpdateTelephone();
-        private UcUpdateNames ucUserNames = new UcUpdateNames();
+        private UcUpdateAddress _ucAddress = new UcUpdateAddress();
+        private UcUpdateEmail _ucEmail = new UcUpdateEmail();
+        private UcUpdateTelephone _ucTelephone = new UcUpdateTelephone();
+        private UcUpdateNames _ucUserNames = new UcUpdateNames();
 
         // constructor receives all the information about data type to be updated
         public UpdateUserDataForm(int recordingId, EUserDetailType type)
@@ -32,20 +32,20 @@ namespace TvForms
             switch (_updateConnectType)
             {
                 case EUserDetailType.Address:
-                    pnUpdateConnect.Controls.Add(ucAddress);
-                    ucAddress.UpdateAddress(recordingId);
+                    pnUpdateConnect.Controls.Add(_ucAddress);
+                    _ucAddress.UpdateAddress(_recordingId);
                     break;
                 case EUserDetailType.Email:
-                    pnUpdateConnect.Controls.Add(ucEmail);
-                    ucEmail.UpdateEmail(recordingId);
+                    pnUpdateConnect.Controls.Add(_ucEmail);
+                    _ucEmail.UpdateEmail(_recordingId);
                     break;
                 case EUserDetailType.Telephone:
-                    pnUpdateConnect.Controls.Add(ucTelephone);
-                    ucTelephone.UpdateTelephone(recordingId);
+                    pnUpdateConnect.Controls.Add(_ucTelephone);
+                    _ucTelephone.UpdateTelephone(_recordingId);
                     break;
                 case EUserDetailType.User:
-                    pnUpdateConnect.Controls.Add(ucUserNames);
-                    ucUserNames.UpdateNames(recordingId);
+                    pnUpdateConnect.Controls.Add(_ucUserNames);
+                    _ucUserNames.UpdateNames(_recordingId);
                     break;
             }
         }
@@ -69,13 +69,13 @@ namespace TvForms
             switch (_updateConnectType)
             {
                 case EUserDetailType.Address:
-                    return ucAddress.ValidateControls(_recordingId);
+                    return _ucAddress.ValidateControls(_recordingId);
                 case EUserDetailType.Email:
-                    return ucEmail.ValidateControls(_recordingId);
+                    return _ucEmail.ValidateControls(_recordingId);
                 case EUserDetailType.Telephone:
-                    return ucTelephone.ValidateControls(_recordingId);
+                    return _ucTelephone.ValidateControls(_recordingId);
                 case EUserDetailType.User:
-                    return ucUserNames.ValidateControls();
+                    return _ucUserNames.ValidateControls(_recordingId);
                 default:
                     return true; /* return false, change validation */
             }

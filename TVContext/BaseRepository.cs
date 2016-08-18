@@ -9,16 +9,6 @@ namespace TVContext
     {
         public readonly TvDBContext Context = new TvDBContext();
 
-        public BaseRepository()
-        {
-            
-        }
-
-        public BaseRepository(TvDBContext context)
-        {
-            Context = context;
-        }
-
         public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
         {
             return Context.Set<TEntity>().Where(predicate);

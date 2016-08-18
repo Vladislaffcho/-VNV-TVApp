@@ -14,6 +14,7 @@ namespace TvForms.UserControls
 {
     public partial class UcUpdateEmail : UserControl
     {
+        // variable for further validation
         private string _email;
         public UcUpdateEmail()
         {
@@ -22,6 +23,7 @@ namespace TvForms.UserControls
 
         public void UpdateEmail(int emailId)
         {
+            // set control view
             int i = 0;
             var phoneRepo = new BaseRepository<UserEmail>();
             var emailToUpdate = phoneRepo.Get(c => c.Id == emailId).First();
