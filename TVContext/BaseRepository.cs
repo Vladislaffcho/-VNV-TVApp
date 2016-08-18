@@ -7,7 +7,7 @@ namespace TVContext
 {
     public class BaseRepository<TEntity> where TEntity : IdentificableEntity
     {
-        private readonly TvDBContext _context = new TvDBContext();
+        public readonly TvDBContext Context = new TvDBContext();
 
         public BaseRepository()
         {
@@ -16,35 +16,35 @@ namespace TVContext
 
         public BaseRepository(TvDBContext context)
         {
-            _context = context;
+            Context = context;
         }
 
         public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
         {
-            return _context.Set<TEntity>().Where(predicate);
+            return Context.Set<TEntity>().Where(predicate);
         }
 
         public IQueryable<TEntity> GetAll()
         {
-            return _context.Set<TEntity>();
+            return Context.Set<TEntity>();
         }
 
         public void Remove(TEntity entity)
         {
-            _context.Set<TEntity>().Remove(entity);
-            _context.SaveChanges();
+            Context.Set<TEntity>().Remove(entity);
+            Context.SaveChanges();
         }
 
         public void Update(TEntity entity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
-            _context.SaveChanges();
+            Context.Entry(entity).State = EntityState.Modified;
+            Context.SaveChanges();
         }
 
         public void Insert(TEntity entity)
         {
-            _context.Entry(entity).State = EntityState.Added;
-            _context.SaveChanges();
+            Context.Entry(entity).State = EntityState.Added;
+            Context.SaveChanges();
         }
     }
 }

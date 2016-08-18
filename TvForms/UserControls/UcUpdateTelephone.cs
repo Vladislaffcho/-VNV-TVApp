@@ -93,7 +93,15 @@ namespace TvForms.UserControls
         // save in case of valid number
         public void SaveAddedDetails()
         {
-            using (var context = new TvDBContext())
+            var userPhoneRepo = new BaseRepository<UserPhone>();
+            var numberToUpdate = userPhoneRepo.Get(x => x.Id == _phoneId)
+                .Include(x => x.TypeConnect)
+                .Include(x => x.User).First();
+            numberToUpdate.Number = tbNumber.Text.GetInt();
+            numberToUpdate.Comment = tbComment.Text;
+            numberToUpdate.TypeConnect = userPhoneRepo.Context.TypeConnects.Where(l => l.NameType == cbPhoneType.SelectedItem.ToString()).First();
+            userPhoneRepo.Update(numberToUpdate);
+            /*using (var context = new TvDBContext())
             {
                 var userPhoneRepo = new BaseRepository<UserPhone>(context);
                 var typeConnectRepo = new BaseRepository<TypeConnect>(context);
@@ -104,7 +112,7 @@ namespace TvForms.UserControls
                 numberToUpdate.Comment = tbComment.Text;
                 numberToUpdate.TypeConnect = typeConnectRepo.Get(l => l.NameType == cbPhoneType.SelectedItem.ToString()).First();
                 userPhoneRepo.Update(numberToUpdate);
-            }
+            }*/
         }
     }
 }
