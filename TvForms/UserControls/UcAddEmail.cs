@@ -37,7 +37,7 @@ namespace TvForms.UserControls
         {
             string errorMessage = "Error:";
             bool isValidEmail = true;
-            if (tbUserEmail.Text.Trim() != String.Empty)
+            if (tbUserEmail.Text.Trim() != String.Empty && tbUserEmail.Text.Trim().Length < 50)
             {
                 if (!tbUserEmail.Text.Trim().IsValidEmail())
                 {
@@ -52,7 +52,7 @@ namespace TvForms.UserControls
             }
             else
             {
-                errorMessage += "\nEmail field cannot be empty";
+                errorMessage += "\nEmail field cannot be empty or longer than 50 symbols";
                 isValidEmail = false;
             }
 
@@ -76,18 +76,14 @@ namespace TvForms.UserControls
         // save in case of valid email
         public void SaveAddedDetails(int UserId)
         {
-            TvDBContext context = new TvDBContext();
-            var userAddressRepo = new BaseRepository<UserEmail>(context);
-            var typeConnectRepo = new BaseRepository<TypeConnect>(context);
-            var userRepo = new BaseRepository<User>(context);
-            UserEmail address = new UserEmail
+            var userAddressRepo = new BaseRepository<UserEmail>();
+            userAddressRepo.Insert(new UserEmail
             {
                 EmailName = tbUserEmail.Text,
                 Comment = tbComment.Text,
-                TypeConnect = typeConnectRepo.Get(x => x.NameType == cbEmailType.Text).First(),
-                User = userRepo.Get(l => l.Id == UserId).First()
-            };
-            userAddressRepo.Insert(address);
+                TypeConnect = userAddressRepo.Context.TypeConnects.Where(x => x.NameType == cbEmailType.Text).First(),
+                User = userAddressRepo.Context.Users.Where(l => l.Id == UserId).First()
+            });
         }
     }
 }

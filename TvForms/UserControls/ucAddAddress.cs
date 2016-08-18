@@ -32,9 +32,11 @@ namespace TvForms
         {
             string errorMessage = "Error:";
             bool isValidAddress = true;
-            if (tbUserAddress.Text.Trim() == String.Empty || tbUserAddress.Text.Trim().Length < 5)
+            if (tbUserAddress.Text.Trim() == String.Empty |
+                tbUserAddress.Text.Trim().Length < 5 |
+                tbUserAddress.Text.Trim().Length > 100)
             {
-                errorMessage += "\nAddress cannot be empty or shorter than 5 characters";
+                errorMessage += "\nAddress should consist of 5 to 100 characters";
                 isValidAddress = false;
             }
 
@@ -58,18 +60,14 @@ namespace TvForms
         // save to the db in case of valid input
         public void SaveAddedDetails(int UserId)
         {
-            TvDBContext context = new TvDBContext();
-            var userAddressRepo = new BaseRepository<UserAddress>(context);
-            var typeConnectRepo = new BaseRepository<TypeConnect>(context);
-            var userRepo = new BaseRepository<User>(context);
-            UserAddress address = new UserAddress
+            var userAddressRepo = new BaseRepository<UserAddress>();
+            userAddressRepo.Insert(new UserAddress
             {
                 Address = tbUserAddress.Text,
                 Comment = tbComment.Text,
-                TypeConnect = typeConnectRepo.Get(x => x.NameType == cbAddressType.Text).First(),
-                User = userRepo.Get(l => l.Id == UserId).First()
-            };
-            userAddressRepo.Insert(address);
+                TypeConnect = userAddressRepo.Context.TypeConnects.Where(x => x.NameType == cbAddressType.Text).First(),
+                User = userAddressRepo.Context.Users.Where(l => l.Id == UserId).First()
+            });
         }
     }
 }

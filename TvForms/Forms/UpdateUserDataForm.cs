@@ -15,7 +15,7 @@ namespace TvForms
     {
         // variable contains info about the type to be updated
         private EUserDetailType _updateConnectType;
-
+        private int _recordingId;
         // create new uc in case address will be updated
         private UcUpdateAddress ucAddress = new UcUpdateAddress();
         private UcUpdateEmail ucEmail = new UcUpdateEmail();
@@ -25,6 +25,7 @@ namespace TvForms
         // constructor receives all the information about data type to be updated
         public UpdateUserDataForm(int recordingId, EUserDetailType type)
         {
+            _recordingId = recordingId;
             _updateConnectType = type;
             InitializeComponent();
 
@@ -65,15 +66,14 @@ namespace TvForms
         // validator
         private bool ValidateControls()
         {
-            var type = _updateConnectType;
-            switch (type)
+            switch (_updateConnectType)
             {
                 case EUserDetailType.Address:
-                    return ucAddress.ValidateControls();
+                    return ucAddress.ValidateControls(_recordingId);
                 case EUserDetailType.Email:
-                    return ucEmail.ValidateControls();
+                    return ucEmail.ValidateControls(_recordingId);
                 case EUserDetailType.Telephone:
-                    return ucTelephone.ValidateControls();
+                    return ucTelephone.ValidateControls(_recordingId);
                 case EUserDetailType.User:
                     return ucUserNames.ValidateControls();
                 default:

@@ -32,11 +32,6 @@ namespace TvForms.UserControls
         {
             var usersRepo = new BaseRepository<User>();
             var userToUpdate = usersRepo.Get(x => x.Id == _userId)
-                .Include(x => x.Orders)
-                .Include(x => x.UserAddresses)
-                .Include(x => x.UserEmails)
-                .Include(x => x.UserPhones)
-                .Include(x => x.UserSchedules)
                 .First();
             tbFirstName.Text = userToUpdate.FirstName;
             tbLastName.Text = userToUpdate.LastName;
@@ -47,31 +42,31 @@ namespace TvForms.UserControls
             string errorMessage = "Error:";
             bool isValidName = true;
 
-            if (tbFirstName.Text.Trim() != String.Empty)
+            if (tbFirstName.Text.Trim() != String.Empty && tbFirstName.Text.Trim().Length < 30)
             {
                 if (!tbFirstName.Text.Trim().IsValidName())
                 {
-                    errorMessage += "\nFirst name should consist of 2+ characters of English alphabet.";
+                    errorMessage += "\nFirst name should consist of English alphabet characters only.";
                     isValidName = false;
                 }
             }
             else
             {
-                errorMessage += "\nFirst name field cannot be empty";
+                errorMessage += "\nFirst name should consist of up to 30 characters";
                 isValidName = false;
             }
 
-            if (tbLastName.Text.Trim() != String.Empty)
+            if (tbLastName.Text.Trim() != String.Empty | tbLastName.Text.Trim().Length <= 30)
             {
                 if (!tbLastName.Text.Trim().IsValidName())
                 {
-                    errorMessage += "\nLast name should consist of 2+ characters of English alphabet.";
+                    errorMessage += "\nLast name should consist of English alphabet characters only.";
                     isValidName = false;
                 }
             }
             else
             {
-                errorMessage += "\nLast name field cannot be empty";
+                errorMessage += "\nLast name should consist of up to 30 characters";
                 isValidName = false;
             }
 
@@ -86,9 +81,9 @@ namespace TvForms.UserControls
             return isValidName;
         }
 
+        // method saves updated user data
         private void SaveUpdatedDetails()
         {
-
             var usersRepo = new BaseRepository<User>();
             var userToUpdate = usersRepo.Get(x => x.Id == _userId)
                 .Include(x => x.Orders)
