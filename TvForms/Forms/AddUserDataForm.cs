@@ -24,10 +24,10 @@ namespace TvForms
         private UcAddEmail ucEmail = new UcAddEmail();
         private UcAddTelephone ucPhone = new UcAddTelephone();
         // variable contains information about data type to be added (address, email, telephone)
-        private EUserDetailType _addConnectType;
+        private UserDetailType _addConnectType;
 
         // for the add new user functionality
-        public AddUserDataForm(EUserDetailType type)
+        public AddUserDataForm(UserDetailType type)
         {
             _addConnectType = type;
             InitializeComponent();
@@ -35,7 +35,7 @@ namespace TvForms
         }
 
         // depending on data type, corresponding uc will be opened
-        public AddUserDataForm(int UserId, EUserDetailType type)
+        public AddUserDataForm(int UserId, UserDetailType type)
         {
             _userID = UserId;
             _addConnectType = type;
@@ -43,13 +43,13 @@ namespace TvForms
 
             switch (_addConnectType)
             {
-                case EUserDetailType.Address:
+                case UserDetailType.Address:
                     pnAddConnect.Controls.Add(ucAddress);
                     break;
-                case EUserDetailType.Email:
+                case UserDetailType.Email:
                     pnAddConnect.Controls.Add(ucEmail);
                     break;
-                case EUserDetailType.Telephone:
+                case UserDetailType.Telephone:
                     pnAddConnect.Controls.Add(ucPhone);
                     break;
             }
@@ -73,13 +73,13 @@ namespace TvForms
         {
             switch (_addConnectType)
             {
-                case EUserDetailType.Address:
+                case UserDetailType.Address:
                     return ucAddress.ValidateControls(_userID);
-                case EUserDetailType.Email:
+                case UserDetailType.Email:
                     return ucEmail.ValidateControls(_userID);
-                case EUserDetailType.Telephone:
+                case UserDetailType.Telephone:
                     return ucPhone.ValidateControls(_userID);
-                case EUserDetailType.User:
+                case UserDetailType.User:
                     return _ucNewUser.ValidateControls();
             }
             return false;

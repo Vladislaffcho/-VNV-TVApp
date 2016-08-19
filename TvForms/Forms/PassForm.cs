@@ -24,8 +24,10 @@ namespace TvForms
             //hide characters in pass field by default
             tbPassForm_Pass.UseSystemPasswordChar = !chBPassForm_ShowPass.Checked;
 
-            this.tbPassForm_Login.Text = "user"; //delete this string when program will be tested
-            this.tbPassForm_Pass.Text = "2222";  //delete this string when program will be tested
+            /*this.tbPassForm_Login.Text = "user"; //delete this string when program will be tested
+            this.tbPassForm_Pass.Text = "2222";  //delete this string when program will be tested*/
+            this.tbPassForm_Login.Text = "root"; //delete this string when program will be tested
+            this.tbPassForm_Pass.Text = "1111";  //delete this string when program will be tested
         }
 
 
@@ -99,7 +101,7 @@ namespace TvForms
 
         private void linkLbPassForm_Register_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var actions = new AddUserDataForm(EUserDetailType.User);
+            var actions = new AddUserDataForm(UserDetailType.User);
             actions.ShowDialog();
         }
     }

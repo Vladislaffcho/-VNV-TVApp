@@ -122,11 +122,6 @@ namespace TvForms
         {
             var userRepo = new BaseRepository<User>();
             var currentUser = userRepo.Get(x => x.Id == _currentUserId)
-                .Include(x => x.Orders)
-                .Include(x => x.UserAddresses)
-                .Include(x => x.UserEmails)
-                .Include(x => x.UserPhones)
-                .Include(x => x.UserSchedules)
                 .Include(x => x.UserType)
                 .First();
             if (currentUser.IsActiveStatus)
@@ -139,8 +134,8 @@ namespace TvForms
                 {
                     currentUser.IsActiveStatus = false;
                     userRepo.Update(currentUser);
-                    ErrorMassages.DisplayInfo("Your account has been deactivated\n" +
-                                              "You should contact our managers to reactivate it in the future",
+                    ErrorMassages.DisplayInfo("Your account has been deactivated.\n" +
+                                              "You should contact our managers to reactivate it in the future.",
                         "Success");
                 }
             }
@@ -155,7 +150,7 @@ namespace TvForms
         // functionality to add address
         private void btAddAddress_Click(object sender, EventArgs e)
         {
-            AddUserDataForm addAddress = new AddUserDataForm(_currentUserId, EUserDetailType.Address);
+            AddUserDataForm addAddress = new AddUserDataForm(_currentUserId, UserDetailType.Address);
             if (addAddress.ShowDialog() == DialogResult.OK)
             {
                 FillAddressLv();
@@ -168,7 +163,7 @@ namespace TvForms
             if (lvUserAddress.SelectedItems.Count > 0)
             {
                 var listViewItem = lvUserAddress.SelectedItems[0];
-                UpdateUserDataForm updateAddress = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), EUserDetailType.Address);
+                UpdateUserDataForm updateAddress = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), UserDetailType.Address);
                 if (updateAddress.ShowDialog() == DialogResult.OK)
                 {
                     FillAddressLv();
@@ -197,7 +192,7 @@ namespace TvForms
 
         private void btAddEmail_Click(object sender, EventArgs e)
         {
-            AddUserDataForm addEmail = new AddUserDataForm(_currentUserId, EUserDetailType.Email);
+            AddUserDataForm addEmail = new AddUserDataForm(_currentUserId, UserDetailType.Email);
             if (addEmail.ShowDialog() == DialogResult.OK)
             {
                 FillEmailLv();
@@ -206,7 +201,7 @@ namespace TvForms
 
         private void btAddPhone_Click(object sender, EventArgs e)
         {
-            AddUserDataForm addPhone = new AddUserDataForm(_currentUserId, EUserDetailType.Telephone);
+            AddUserDataForm addPhone = new AddUserDataForm(_currentUserId, UserDetailType.Telephone);
             if (addPhone.ShowDialog() == DialogResult.OK)
             {
                 FillPhonesLv();
@@ -218,7 +213,7 @@ namespace TvForms
             if (lvUserEmail.SelectedItems.Count > 0)
             {
                 var listViewItem = lvUserEmail.SelectedItems[0];
-                UpdateUserDataForm updateEmail = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), EUserDetailType.Email);
+                UpdateUserDataForm updateEmail = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), UserDetailType.Email);
                 if (updateEmail.ShowDialog() == DialogResult.OK)
                 {
                     FillEmailLv();
@@ -235,7 +230,7 @@ namespace TvForms
             if (lvUserTelephone.SelectedItems.Count > 0)
             {
                 var listViewItem = lvUserTelephone.SelectedItems[0];
-                UpdateUserDataForm updatePhone = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), EUserDetailType.Telephone);
+                UpdateUserDataForm updatePhone = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), UserDetailType.Telephone);
                 if (updatePhone.ShowDialog() == DialogResult.OK)
                 {
                     FillPhonesLv();
@@ -277,7 +272,7 @@ namespace TvForms
 
         private void btChangeDetails_Click(object sender, EventArgs e)
         {
-            UpdateUserDataForm updateDetails = new UpdateUserDataForm(_currentUserId, EUserDetailType.User);
+            UpdateUserDataForm updateDetails = new UpdateUserDataForm(_currentUserId, UserDetailType.User);
             if (updateDetails.ShowDialog() == DialogResult.OK)
             {
                 FillUserData();

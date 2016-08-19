@@ -79,11 +79,6 @@ namespace TvForms.UserControls
         {
             var usersRepo = new BaseRepository<User>();
             var userToUpdate = usersRepo.Get(x => x.Id == userId)
-                .Include(x => x.Orders)
-                .Include(x => x.UserAddresses)
-                .Include(x => x.UserEmails)
-                .Include(x => x.UserPhones)
-                .Include(x => x.UserSchedules)
                 .Include(x => x.UserType)
                 .First();
             userToUpdate.FirstName = tbFirstName.Text;

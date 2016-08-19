@@ -80,7 +80,8 @@
     </Compile>
     <Compile Include="DeleteUserData.cs" />
     <Compile Include="Helpers\ErrorMassages.cs" />
-    <Compile Include="Helpers\EUserDetailType.cs" />
+    <Compile Include="Helpers\UserDetailType.cs" />
+    <Compile Include="Helpers\UserStatus.cs" />
     <Compile Include="Helpers\TextFieldsValidator.cs" />
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Forms\PassForm.cs">

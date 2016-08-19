@@ -14,7 +14,7 @@ namespace TvForms
     public partial class UpdateUserDataForm : Form
     {
         // variable contains info about the type to be updated
-        private EUserDetailType _updateConnectType;
+        private UserDetailType _updateConnectType;
         private int _recordingId;
         // create new uc in case address will be updated
         private UcUpdateAddress _ucAddress = new UcUpdateAddress();
@@ -23,7 +23,7 @@ namespace TvForms
         private UcUpdateNames _ucUserNames = new UcUpdateNames();
 
         // constructor receives all the information about data type to be updated
-        public UpdateUserDataForm(int recordingId, EUserDetailType type)
+        public UpdateUserDataForm(int recordingId, UserDetailType type)
         {
             _recordingId = recordingId;
             _updateConnectType = type;
@@ -31,19 +31,19 @@ namespace TvForms
 
             switch (_updateConnectType)
             {
-                case EUserDetailType.Address:
+                case UserDetailType.Address:
                     pnUpdateConnect.Controls.Add(_ucAddress);
                     _ucAddress.UpdateAddress(_recordingId);
                     break;
-                case EUserDetailType.Email:
+                case UserDetailType.Email:
                     pnUpdateConnect.Controls.Add(_ucEmail);
                     _ucEmail.UpdateEmail(_recordingId);
                     break;
-                case EUserDetailType.Telephone:
+                case UserDetailType.Telephone:
                     pnUpdateConnect.Controls.Add(_ucTelephone);
                     _ucTelephone.UpdateTelephone(_recordingId);
                     break;
-                case EUserDetailType.User:
+                case UserDetailType.User:
                     pnUpdateConnect.Controls.Add(_ucUserNames);
                     _ucUserNames.UpdateNames(_recordingId);
                     break;
@@ -68,13 +68,13 @@ namespace TvForms
         {
             switch (_updateConnectType)
             {
-                case EUserDetailType.Address:
+                case UserDetailType.Address:
                     return _ucAddress.ValidateControls(_recordingId);
-                case EUserDetailType.Email:
+                case UserDetailType.Email:
                     return _ucEmail.ValidateControls(_recordingId);
-                case EUserDetailType.Telephone:
+                case UserDetailType.Telephone:
                     return _ucTelephone.ValidateControls(_recordingId);
-                case EUserDetailType.User:
+                case UserDetailType.User:
                     return _ucUserNames.ValidateControls(_recordingId);
                 default:
                     return true; /* return false, change validation */
