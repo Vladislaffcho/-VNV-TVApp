@@ -57,11 +57,6 @@
     <Compile Include="Helper\EUserType.cs" />
     <Compile Include="IdentificableEntity.cs" />
     <Compile Include="Helper\Md5Helper.cs" />
-    <Compile Include="Migrations\201608181409395_Init.cs" />
-    <Compile Include="Migrations\201608181409395_Init.Designer.cs">
-      <DependentUpon>201608181409395_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderChannel.cs" />
     <Compile Include="OrderService.cs" />
@@ -81,11 +76,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608181409395_Init.resx">
-      <DependentUpon>201608181409395_Init.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
