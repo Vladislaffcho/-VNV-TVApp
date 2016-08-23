@@ -46,6 +46,9 @@ namespace TvForms
 
             lvUserList.Items[0].Selected = true;
 
+            //set max value for search user numeric up and down
+            numSearchUserId.Maximum = lvUserList.Items.Count;
+
             cbStatus.Items.Add(UserStatus.Active);
             cbStatus.Items.Add(UserStatus.Inactive);
 
@@ -291,6 +294,94 @@ namespace TvForms
                     cbUserType.SelectedIndex = user.UserType.Id;
                 }
                 _userType = false;
+            }
+        }
+
+        // function searches a user in the db by id / login / id + login
+        private void btSearch_Click(object sender, EventArgs e)
+        {
+            //check if search criteria have been entered
+            if (tbSearchLogin.Text.Trim() == String.Empty &&
+                numSearchUserId.Value == 0)
+            {
+                ErrorMassages.DisplayError("Please, set search criteria", "Error");
+            }
+            else 
+            {
+                var userRepo = new BaseRepository<User>();
+                var errorMessage = "";
+                var foundUserByLogin = 0;
+                var foundUserById = 0;
+                var foundUserId = 0;
+
+                // try to find by login
+                if (tbSearchLogin.Text.Trim() != String.Empty)
+                {
+                    try
+                    {
+                        foundUserByLogin = userRepo.Get(x => x.Login == tbSearchLogin.Text.Trim())
+                            .First().Id;
+                    }
+                    catch
+                    {
+                        errorMessage += "Entered login not found.\n";
+                    }
+                }
+
+                // try to find by id
+                if (numSearchUserId.Value != 0)
+                {
+                    try
+                    {
+                        foundUserById = userRepo.Get(x => x.Id == numSearchUserId.Value)
+                            .First().Id;
+                    }
+                    catch
+                    {
+                        errorMessage += "Entered ID not found.\n";
+                    }
+                }
+
+                // if there is a match in the db, compare if entered id
+                // corresponds to entered login
+                if (errorMessage == "")
+                {
+                    if (foundUserByLogin == 0 || foundUserByLogin == foundUserById)
+                    {
+                        foundUserId = foundUserById;
+                    }
+                    else if (foundUserById == 0)
+                    {
+                        foundUserId = foundUserByLogin;
+                    }
+                    else
+                    {
+                        ErrorMassages.DisplayError("Entered criteria do not match one user", "Error");
+                        return;
+                    }
+
+                    // select found user in the lv
+                    UnselectLvItem();
+                    lvUserList.Items[foundUserId - 1].Selected = true;
+                }
+                else
+                {
+                    // show error if there was no match
+                    ErrorMassages.DisplayError(errorMessage, "Error");
+                }
+            }
+        }
+
+        // unselecting row in users list view to select found user automatically
+        private void UnselectLvItem()
+        {
+            for (int i = 0; i < lvUserList.Items.Count; i++)
+            {
+                if (lvUserList.Items[i].Selected)
+                {
+                    lvUserList.Items[i].Selected = false;
+                    return;
+                }
             }
         }
     }

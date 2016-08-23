@@ -28,7 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gbUsers = new System.Windows.Forms.GroupBox();
+            this.btSearchUser = new System.Windows.Forms.GroupBox();
+            this.gbFindUser = new System.Windows.Forms.GroupBox();
+            this.btSearch = new System.Windows.Forms.Button();
+            this.numSearchUserId = new System.Windows.Forms.NumericUpDown();
+            this.lbSearchId = new System.Windows.Forms.Label();
+            this.lbSearchLogin = new System.Windows.Forms.Label();
+            this.tbSearchLogin = new System.Windows.Forms.TextBox();
+            this.cbUserType = new System.Windows.Forms.ComboBox();
+            this.lbUserType = new System.Windows.Forms.Label();
             this.cbAccountStatus = new System.Windows.Forms.CheckBox();
             this.btViewPayment = new System.Windows.Forms.Button();
             this.lbSurname = new System.Windows.Forms.Label();
@@ -64,42 +72,117 @@
             this.colUserLogin = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUserName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUserSurname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lbUserType = new System.Windows.Forms.Label();
-            this.cbUserType = new System.Windows.Forms.ComboBox();
-            this.gbUsers.SuspendLayout();
+            this.btSearchUser.SuspendLayout();
+            this.gbFindUser.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSearchUserId)).BeginInit();
             this.tcUserContacts.SuspendLayout();
             this.tpAddress.SuspendLayout();
             this.tpEmail.SuspendLayout();
             this.tpTelephone.SuspendLayout();
             this.SuspendLayout();
             // 
-            // gbUsers
+            // btSearchUser
             // 
-            this.gbUsers.Controls.Add(this.cbUserType);
-            this.gbUsers.Controls.Add(this.lbUserType);
-            this.gbUsers.Controls.Add(this.cbAccountStatus);
-            this.gbUsers.Controls.Add(this.btViewPayment);
-            this.gbUsers.Controls.Add(this.lbSurname);
-            this.gbUsers.Controls.Add(this.lbName);
-            this.gbUsers.Controls.Add(this.tbName);
-            this.gbUsers.Controls.Add(this.tbSurname);
-            this.gbUsers.Controls.Add(this.btViewChannels);
-            this.gbUsers.Controls.Add(this.btViewServices);
-            this.gbUsers.Controls.Add(this.btViewOrders);
-            this.gbUsers.Controls.Add(this.cbAdultContent);
-            this.gbUsers.Controls.Add(this.cbStatus);
-            this.gbUsers.Controls.Add(this.lbStatus);
-            this.gbUsers.Controls.Add(this.tbMoney);
-            this.gbUsers.Controls.Add(this.lbMoney);
-            this.gbUsers.Controls.Add(this.tcUserContacts);
-            this.gbUsers.Controls.Add(this.lvUserList);
-            this.gbUsers.Location = new System.Drawing.Point(3, 3);
-            this.gbUsers.Name = "gbUsers";
-            this.gbUsers.Size = new System.Drawing.Size(846, 449);
-            this.gbUsers.TabIndex = 0;
-            this.gbUsers.TabStop = false;
-            this.gbUsers.Text = "Users";
-            this.gbUsers.Enter += new System.EventHandler(this.gbUsers_Enter);
+            this.btSearchUser.Controls.Add(this.gbFindUser);
+            this.btSearchUser.Controls.Add(this.cbUserType);
+            this.btSearchUser.Controls.Add(this.lbUserType);
+            this.btSearchUser.Controls.Add(this.cbAccountStatus);
+            this.btSearchUser.Controls.Add(this.btViewPayment);
+            this.btSearchUser.Controls.Add(this.lbSurname);
+            this.btSearchUser.Controls.Add(this.lbName);
+            this.btSearchUser.Controls.Add(this.tbName);
+            this.btSearchUser.Controls.Add(this.tbSurname);
+            this.btSearchUser.Controls.Add(this.btViewChannels);
+            this.btSearchUser.Controls.Add(this.btViewServices);
+            this.btSearchUser.Controls.Add(this.btViewOrders);
+            this.btSearchUser.Controls.Add(this.cbAdultContent);
+            this.btSearchUser.Controls.Add(this.cbStatus);
+            this.btSearchUser.Controls.Add(this.lbStatus);
+            this.btSearchUser.Controls.Add(this.tbMoney);
+            this.btSearchUser.Controls.Add(this.lbMoney);
+            this.btSearchUser.Controls.Add(this.tcUserContacts);
+            this.btSearchUser.Controls.Add(this.lvUserList);
+            this.btSearchUser.Location = new System.Drawing.Point(3, 3);
+            this.btSearchUser.Name = "btSearchUser";
+            this.btSearchUser.Size = new System.Drawing.Size(846, 449);
+            this.btSearchUser.TabIndex = 0;
+            this.btSearchUser.TabStop = false;
+            this.btSearchUser.Text = "Users";
+            this.btSearchUser.Enter += new System.EventHandler(this.gbUsers_Enter);
+            // 
+            // gbFindUser
+            // 
+            this.gbFindUser.Controls.Add(this.btSearch);
+            this.gbFindUser.Controls.Add(this.numSearchUserId);
+            this.gbFindUser.Controls.Add(this.lbSearchId);
+            this.gbFindUser.Controls.Add(this.lbSearchLogin);
+            this.gbFindUser.Controls.Add(this.tbSearchLogin);
+            this.gbFindUser.Location = new System.Drawing.Point(6, 358);
+            this.gbFindUser.Name = "gbFindUser";
+            this.gbFindUser.Size = new System.Drawing.Size(360, 83);
+            this.gbFindUser.TabIndex = 19;
+            this.gbFindUser.TabStop = false;
+            this.gbFindUser.Text = "Find User";
+            // 
+            // btSearch
+            // 
+            this.btSearch.Location = new System.Drawing.Point(259, 54);
+            this.btSearch.Name = "btSearch";
+            this.btSearch.Size = new System.Drawing.Size(75, 23);
+            this.btSearch.TabIndex = 6;
+            this.btSearch.Text = "Search";
+            this.btSearch.UseVisualStyleBackColor = true;
+            this.btSearch.Click += new System.EventHandler(this.btSearch_Click);
+            // 
+            // numSearchUserId
+            // 
+            this.numSearchUserId.Location = new System.Drawing.Point(61, 19);
+            this.numSearchUserId.Name = "numSearchUserId";
+            this.numSearchUserId.Size = new System.Drawing.Size(121, 20);
+            this.numSearchUserId.TabIndex = 3;
+            // 
+            // lbSearchId
+            // 
+            this.lbSearchId.AutoSize = true;
+            this.lbSearchId.Location = new System.Drawing.Point(20, 21);
+            this.lbSearchId.Name = "lbSearchId";
+            this.lbSearchId.Size = new System.Drawing.Size(18, 13);
+            this.lbSearchId.TabIndex = 2;
+            this.lbSearchId.Text = "ID";
+            // 
+            // lbSearchLogin
+            // 
+            this.lbSearchLogin.AutoSize = true;
+            this.lbSearchLogin.Location = new System.Drawing.Point(20, 59);
+            this.lbSearchLogin.Name = "lbSearchLogin";
+            this.lbSearchLogin.Size = new System.Drawing.Size(33, 13);
+            this.lbSearchLogin.TabIndex = 2;
+            this.lbSearchLogin.Text = "Login";
+            // 
+            // tbSearchLogin
+            // 
+            this.tbSearchLogin.Location = new System.Drawing.Point(61, 57);
+            this.tbSearchLogin.Name = "tbSearchLogin";
+            this.tbSearchLogin.Size = new System.Drawing.Size(121, 20);
+            this.tbSearchLogin.TabIndex = 1;
+            // 
+            // cbUserType
+            // 
+            this.cbUserType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbUserType.Location = new System.Drawing.Point(459, 149);
+            this.cbUserType.Name = "cbUserType";
+            this.cbUserType.Size = new System.Drawing.Size(130, 21);
+            this.cbUserType.TabIndex = 18;
+            this.cbUserType.SelectedIndexChanged += new System.EventHandler(this.cbUserType_SelectedIndexChanged);
+            // 
+            // lbUserType
+            // 
+            this.lbUserType.AutoSize = true;
+            this.lbUserType.Location = new System.Drawing.Point(393, 152);
+            this.lbUserType.Name = "lbUserType";
+            this.lbUserType.Size = new System.Drawing.Size(56, 13);
+            this.lbUserType.TabIndex = 17;
+            this.lbUserType.Text = "User Type";
             // 
             // cbAccountStatus
             // 
@@ -374,7 +457,7 @@
             this.lvUserList.HideSelection = false;
             this.lvUserList.Location = new System.Drawing.Point(6, 17);
             this.lvUserList.Name = "lvUserList";
-            this.lvUserList.Size = new System.Drawing.Size(360, 428);
+            this.lvUserList.Size = new System.Drawing.Size(360, 335);
             this.lvUserList.TabIndex = 0;
             this.lvUserList.UseCompatibleStateImageBehavior = false;
             this.lvUserList.View = System.Windows.Forms.View.Details;
@@ -400,33 +483,18 @@
             this.colUserSurname.Text = "Surname";
             this.colUserSurname.Width = 120;
             // 
-            // lbUserType
-            // 
-            this.lbUserType.AutoSize = true;
-            this.lbUserType.Location = new System.Drawing.Point(393, 152);
-            this.lbUserType.Name = "lbUserType";
-            this.lbUserType.Size = new System.Drawing.Size(56, 13);
-            this.lbUserType.TabIndex = 17;
-            this.lbUserType.Text = "User Type";
-            // 
-            // cbUserType
-            // 
-            this.cbUserType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbUserType.Location = new System.Drawing.Point(459, 149);
-            this.cbUserType.Name = "cbUserType";
-            this.cbUserType.Size = new System.Drawing.Size(130, 21);
-            this.cbUserType.TabIndex = 18;
-            this.cbUserType.SelectedIndexChanged += new System.EventHandler(this.cbUserType_SelectedIndexChanged);
-            // 
             // UcAdminView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.gbUsers);
+            this.Controls.Add(this.btSearchUser);
             this.Name = "UcAdminView";
             this.Size = new System.Drawing.Size(852, 455);
-            this.gbUsers.ResumeLayout(false);
-            this.gbUsers.PerformLayout();
+            this.btSearchUser.ResumeLayout(false);
+            this.btSearchUser.PerformLayout();
+            this.gbFindUser.ResumeLayout(false);
+            this.gbFindUser.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSearchUserId)).EndInit();
             this.tcUserContacts.ResumeLayout(false);
             this.tpAddress.ResumeLayout(false);
             this.tpEmail.ResumeLayout(false);
@@ -437,7 +505,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox gbUsers;
+        private System.Windows.Forms.GroupBox btSearchUser;
         private System.Windows.Forms.ListView lvUserList;
         private System.Windows.Forms.ColumnHeader colUserID;
         private System.Windows.Forms.ColumnHeader colUserLogin;
@@ -475,5 +543,11 @@
         private System.Windows.Forms.CheckBox cbAccountStatus;
         private System.Windows.Forms.Label lbUserType;
         private System.Windows.Forms.ComboBox cbUserType;
+        private System.Windows.Forms.GroupBox gbFindUser;
+        private System.Windows.Forms.Button btSearch;
+        private System.Windows.Forms.NumericUpDown numSearchUserId;
+        private System.Windows.Forms.Label lbSearchId;
+        private System.Windows.Forms.Label lbSearchLogin;
+        private System.Windows.Forms.TextBox tbSearchLogin;
     }
 }
