@@ -155,14 +155,12 @@ namespace TvForms
 
                 if (user.UserType.Id == (int)EUserType.ADMIN)
                 {
-                    cbUserType.Enabled = false;
                     cbAdultContent.Enabled = false;
                     cbAccountStatus.Enabled = false;
                     cbStatus.Enabled = false;
                 }
                 else
                 {
-                    cbUserType.Enabled = true;
                     cbAdultContent.Enabled = true;
                     cbAccountStatus.Enabled = true;
                     cbStatus.Enabled = true;
@@ -282,6 +280,7 @@ namespace TvForms
                 {
                     user.UserType = newType;
                     userRepo.Update(user);
+                    ErrorMassages.DisplayInfo("Next session for this user will start with new rights", "User type has been updated");
                 }
                 else
                 {
