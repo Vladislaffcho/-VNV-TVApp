@@ -29,8 +29,13 @@
         private void InitializeComponent()
         {
             this.btSearchUser = new System.Windows.Forms.GroupBox();
-            this.gbFindUser = new System.Windows.Forms.GroupBox();
+            this.gbFindUsers = new System.Windows.Forms.GroupBox();
+            this.lbSearchName = new System.Windows.Forms.Label();
+            this.tbSearchName = new System.Windows.Forms.TextBox();
+            this.btResrtSearch = new System.Windows.Forms.Button();
             this.btSearch = new System.Windows.Forms.Button();
+            this.tbSearchSurname = new System.Windows.Forms.TextBox();
+            this.lbSearchSurame = new System.Windows.Forms.Label();
             this.numSearchUserId = new System.Windows.Forms.NumericUpDown();
             this.lbSearchId = new System.Windows.Forms.Label();
             this.lbSearchLogin = new System.Windows.Forms.Label();
@@ -73,7 +78,7 @@
             this.colUserName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUserSurname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btSearchUser.SuspendLayout();
-            this.gbFindUser.SuspendLayout();
+            this.gbFindUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSearchUserId)).BeginInit();
             this.tcUserContacts.SuspendLayout();
             this.tpAddress.SuspendLayout();
@@ -83,7 +88,7 @@
             // 
             // btSearchUser
             // 
-            this.btSearchUser.Controls.Add(this.gbFindUser);
+            this.btSearchUser.Controls.Add(this.gbFindUsers);
             this.btSearchUser.Controls.Add(this.cbUserType);
             this.btSearchUser.Controls.Add(this.lbUserType);
             this.btSearchUser.Controls.Add(this.cbAccountStatus);
@@ -110,41 +115,89 @@
             this.btSearchUser.Text = "Users";
             this.btSearchUser.Enter += new System.EventHandler(this.gbUsers_Enter);
             // 
-            // gbFindUser
+            // gbFindUsers
             // 
-            this.gbFindUser.Controls.Add(this.btSearch);
-            this.gbFindUser.Controls.Add(this.numSearchUserId);
-            this.gbFindUser.Controls.Add(this.lbSearchId);
-            this.gbFindUser.Controls.Add(this.lbSearchLogin);
-            this.gbFindUser.Controls.Add(this.tbSearchLogin);
-            this.gbFindUser.Location = new System.Drawing.Point(6, 358);
-            this.gbFindUser.Name = "gbFindUser";
-            this.gbFindUser.Size = new System.Drawing.Size(360, 83);
-            this.gbFindUser.TabIndex = 19;
-            this.gbFindUser.TabStop = false;
-            this.gbFindUser.Text = "Find User";
+            this.gbFindUsers.Controls.Add(this.lbSearchName);
+            this.gbFindUsers.Controls.Add(this.tbSearchName);
+            this.gbFindUsers.Controls.Add(this.btResrtSearch);
+            this.gbFindUsers.Controls.Add(this.btSearch);
+            this.gbFindUsers.Controls.Add(this.tbSearchSurname);
+            this.gbFindUsers.Controls.Add(this.lbSearchSurame);
+            this.gbFindUsers.Controls.Add(this.numSearchUserId);
+            this.gbFindUsers.Controls.Add(this.lbSearchId);
+            this.gbFindUsers.Controls.Add(this.lbSearchLogin);
+            this.gbFindUsers.Controls.Add(this.tbSearchLogin);
+            this.gbFindUsers.Location = new System.Drawing.Point(6, 324);
+            this.gbFindUsers.Name = "gbFindUsers";
+            this.gbFindUsers.Size = new System.Drawing.Size(360, 117);
+            this.gbFindUsers.TabIndex = 2;
+            this.gbFindUsers.TabStop = false;
+            this.gbFindUsers.Text = "Find Users";
+            // 
+            // lbSearchName
+            // 
+            this.lbSearchName.AutoSize = true;
+            this.lbSearchName.Location = new System.Drawing.Point(6, 22);
+            this.lbSearchName.Name = "lbSearchName";
+            this.lbSearchName.Size = new System.Drawing.Size(35, 13);
+            this.lbSearchName.TabIndex = 9;
+            this.lbSearchName.Text = "Name";
+            // 
+            // tbSearchName
+            // 
+            this.tbSearchName.Location = new System.Drawing.Point(47, 19);
+            this.tbSearchName.Name = "tbSearchName";
+            this.tbSearchName.Size = new System.Drawing.Size(100, 20);
+            this.tbSearchName.TabIndex = 1;
+            // 
+            // btResrtSearch
+            // 
+            this.btResrtSearch.Location = new System.Drawing.Point(279, 88);
+            this.btResrtSearch.Name = "btResrtSearch";
+            this.btResrtSearch.Size = new System.Drawing.Size(75, 23);
+            this.btResrtSearch.TabIndex = 6;
+            this.btResrtSearch.Text = "Reset";
+            this.btResrtSearch.UseVisualStyleBackColor = true;
+            this.btResrtSearch.Click += new System.EventHandler(this.btResrtSearch_Click);
             // 
             // btSearch
             // 
-            this.btSearch.Location = new System.Drawing.Point(259, 54);
+            this.btSearch.Location = new System.Drawing.Point(178, 88);
             this.btSearch.Name = "btSearch";
             this.btSearch.Size = new System.Drawing.Size(75, 23);
-            this.btSearch.TabIndex = 6;
+            this.btSearch.TabIndex = 5;
             this.btSearch.Text = "Search";
             this.btSearch.UseVisualStyleBackColor = true;
             this.btSearch.Click += new System.EventHandler(this.btSearch_Click);
             // 
+            // tbSearchSurname
+            // 
+            this.tbSearchSurname.Location = new System.Drawing.Point(225, 19);
+            this.tbSearchSurname.Name = "tbSearchSurname";
+            this.tbSearchSurname.Size = new System.Drawing.Size(100, 20);
+            this.tbSearchSurname.TabIndex = 2;
+            this.tbSearchSurname.Enter += new System.EventHandler(this.btSearch_Click);
+            // 
+            // lbSearchSurame
+            // 
+            this.lbSearchSurame.AutoSize = true;
+            this.lbSearchSurame.Location = new System.Drawing.Point(170, 22);
+            this.lbSearchSurame.Name = "lbSearchSurame";
+            this.lbSearchSurame.Size = new System.Drawing.Size(49, 13);
+            this.lbSearchSurame.TabIndex = 4;
+            this.lbSearchSurame.Text = "Surname";
+            // 
             // numSearchUserId
             // 
-            this.numSearchUserId.Location = new System.Drawing.Point(61, 19);
+            this.numSearchUserId.Location = new System.Drawing.Point(225, 58);
             this.numSearchUserId.Name = "numSearchUserId";
-            this.numSearchUserId.Size = new System.Drawing.Size(121, 20);
-            this.numSearchUserId.TabIndex = 3;
+            this.numSearchUserId.Size = new System.Drawing.Size(100, 20);
+            this.numSearchUserId.TabIndex = 4;
             // 
             // lbSearchId
             // 
             this.lbSearchId.AutoSize = true;
-            this.lbSearchId.Location = new System.Drawing.Point(20, 21);
+            this.lbSearchId.Location = new System.Drawing.Point(201, 60);
             this.lbSearchId.Name = "lbSearchId";
             this.lbSearchId.Size = new System.Drawing.Size(18, 13);
             this.lbSearchId.TabIndex = 2;
@@ -153,7 +206,7 @@
             // lbSearchLogin
             // 
             this.lbSearchLogin.AutoSize = true;
-            this.lbSearchLogin.Location = new System.Drawing.Point(20, 59);
+            this.lbSearchLogin.Location = new System.Drawing.Point(6, 60);
             this.lbSearchLogin.Name = "lbSearchLogin";
             this.lbSearchLogin.Size = new System.Drawing.Size(33, 13);
             this.lbSearchLogin.TabIndex = 2;
@@ -161,10 +214,10 @@
             // 
             // tbSearchLogin
             // 
-            this.tbSearchLogin.Location = new System.Drawing.Point(61, 57);
+            this.tbSearchLogin.Location = new System.Drawing.Point(47, 57);
             this.tbSearchLogin.Name = "tbSearchLogin";
-            this.tbSearchLogin.Size = new System.Drawing.Size(121, 20);
-            this.tbSearchLogin.TabIndex = 1;
+            this.tbSearchLogin.Size = new System.Drawing.Size(100, 20);
+            this.tbSearchLogin.TabIndex = 3;
             // 
             // cbUserType
             // 
@@ -172,7 +225,7 @@
             this.cbUserType.Location = new System.Drawing.Point(459, 149);
             this.cbUserType.Name = "cbUserType";
             this.cbUserType.Size = new System.Drawing.Size(130, 21);
-            this.cbUserType.TabIndex = 18;
+            this.cbUserType.TabIndex = 12;
             this.cbUserType.SelectedIndexChanged += new System.EventHandler(this.cbUserType_SelectedIndexChanged);
             // 
             // lbUserType
@@ -190,7 +243,7 @@
             this.cbAccountStatus.Location = new System.Drawing.Point(613, 118);
             this.cbAccountStatus.Name = "cbAccountStatus";
             this.cbAccountStatus.Size = new System.Drawing.Size(129, 17);
-            this.cbAccountStatus.TabIndex = 16;
+            this.cbAccountStatus.TabIndex = 18;
             this.cbAccountStatus.Text = "Active Billing Account";
             this.cbAccountStatus.UseVisualStyleBackColor = true;
             // 
@@ -199,7 +252,7 @@
             this.btViewPayment.Location = new System.Drawing.Point(709, 49);
             this.btViewPayment.Name = "btViewPayment";
             this.btViewPayment.Size = new System.Drawing.Size(93, 21);
-            this.btViewPayment.TabIndex = 15;
+            this.btViewPayment.TabIndex = 16;
             this.btViewPayment.Text = "View Payment";
             this.btViewPayment.UseVisualStyleBackColor = true;
             // 
@@ -227,7 +280,7 @@
             this.tbName.Name = "tbName";
             this.tbName.ReadOnly = true;
             this.tbName.Size = new System.Drawing.Size(130, 20);
-            this.tbName.TabIndex = 12;
+            this.tbName.TabIndex = 8;
             // 
             // tbSurname
             // 
@@ -235,14 +288,14 @@
             this.tbSurname.Name = "tbSurname";
             this.tbSurname.ReadOnly = true;
             this.tbSurname.Size = new System.Drawing.Size(130, 20);
-            this.tbSurname.TabIndex = 11;
+            this.tbSurname.TabIndex = 9;
             // 
             // btViewChannels
             // 
             this.btViewChannels.Location = new System.Drawing.Point(613, 49);
             this.btViewChannels.Name = "btViewChannels";
             this.btViewChannels.Size = new System.Drawing.Size(75, 21);
-            this.btViewChannels.TabIndex = 10;
+            this.btViewChannels.TabIndex = 14;
             this.btViewChannels.Text = "Channels";
             this.btViewChannels.UseVisualStyleBackColor = true;
             // 
@@ -251,7 +304,7 @@
             this.btViewServices.Location = new System.Drawing.Point(709, 16);
             this.btViewServices.Name = "btViewServices";
             this.btViewServices.Size = new System.Drawing.Size(93, 21);
-            this.btViewServices.TabIndex = 9;
+            this.btViewServices.TabIndex = 15;
             this.btViewServices.Text = "View Services";
             this.btViewServices.UseVisualStyleBackColor = true;
             // 
@@ -260,7 +313,7 @@
             this.btViewOrders.Location = new System.Drawing.Point(613, 16);
             this.btViewOrders.Name = "btViewOrders";
             this.btViewOrders.Size = new System.Drawing.Size(75, 21);
-            this.btViewOrders.TabIndex = 8;
+            this.btViewOrders.TabIndex = 13;
             this.btViewOrders.Text = "View Orders";
             this.btViewOrders.UseVisualStyleBackColor = true;
             // 
@@ -271,7 +324,7 @@
             this.cbAdultContent.Location = new System.Drawing.Point(613, 85);
             this.cbAdultContent.Name = "cbAdultContent";
             this.cbAdultContent.Size = new System.Drawing.Size(90, 17);
-            this.cbAdultContent.TabIndex = 7;
+            this.cbAdultContent.TabIndex = 17;
             this.cbAdultContent.Text = "Adult Content";
             this.cbAdultContent.UseVisualStyleBackColor = true;
             this.cbAdultContent.CheckedChanged += new System.EventHandler(this.cbAdultContent_CheckedChanged);
@@ -282,7 +335,7 @@
             this.cbStatus.Location = new System.Drawing.Point(459, 116);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(130, 21);
-            this.cbStatus.TabIndex = 5;
+            this.cbStatus.TabIndex = 11;
             this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.cbStatus_SelectedIndexChanged);
             // 
             // lbStatus
@@ -300,7 +353,7 @@
             this.tbMoney.Name = "tbMoney";
             this.tbMoney.ReadOnly = true;
             this.tbMoney.Size = new System.Drawing.Size(130, 20);
-            this.tbMoney.TabIndex = 3;
+            this.tbMoney.TabIndex = 10;
             // 
             // lbMoney
             // 
@@ -344,7 +397,7 @@
             this.lvUserAddress.Location = new System.Drawing.Point(0, 0);
             this.lvUserAddress.Name = "lvUserAddress";
             this.lvUserAddress.Size = new System.Drawing.Size(464, 229);
-            this.lvUserAddress.TabIndex = 0;
+            this.lvUserAddress.TabIndex = 19;
             this.lvUserAddress.UseCompatibleStateImageBehavior = false;
             this.lvUserAddress.View = System.Windows.Forms.View.Details;
             // 
@@ -457,8 +510,8 @@
             this.lvUserList.HideSelection = false;
             this.lvUserList.Location = new System.Drawing.Point(6, 17);
             this.lvUserList.Name = "lvUserList";
-            this.lvUserList.Size = new System.Drawing.Size(360, 335);
-            this.lvUserList.TabIndex = 0;
+            this.lvUserList.Size = new System.Drawing.Size(360, 298);
+            this.lvUserList.TabIndex = 1;
             this.lvUserList.UseCompatibleStateImageBehavior = false;
             this.lvUserList.View = System.Windows.Forms.View.Details;
             this.lvUserList.SelectedIndexChanged += new System.EventHandler(this.lvUserList_SelectedIndexChanged);
@@ -492,8 +545,8 @@
             this.Size = new System.Drawing.Size(852, 455);
             this.btSearchUser.ResumeLayout(false);
             this.btSearchUser.PerformLayout();
-            this.gbFindUser.ResumeLayout(false);
-            this.gbFindUser.PerformLayout();
+            this.gbFindUsers.ResumeLayout(false);
+            this.gbFindUsers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSearchUserId)).EndInit();
             this.tcUserContacts.ResumeLayout(false);
             this.tpAddress.ResumeLayout(false);
@@ -543,11 +596,16 @@
         private System.Windows.Forms.CheckBox cbAccountStatus;
         private System.Windows.Forms.Label lbUserType;
         private System.Windows.Forms.ComboBox cbUserType;
-        private System.Windows.Forms.GroupBox gbFindUser;
+        private System.Windows.Forms.GroupBox gbFindUsers;
         private System.Windows.Forms.Button btSearch;
         private System.Windows.Forms.NumericUpDown numSearchUserId;
         private System.Windows.Forms.Label lbSearchId;
         private System.Windows.Forms.Label lbSearchLogin;
         private System.Windows.Forms.TextBox tbSearchLogin;
+        private System.Windows.Forms.TextBox tbSearchSurname;
+        private System.Windows.Forms.Label lbSearchSurame;
+        private System.Windows.Forms.Label lbSearchName;
+        private System.Windows.Forms.TextBox tbSearchName;
+        private System.Windows.Forms.Button btResrtSearch;
     }
 }

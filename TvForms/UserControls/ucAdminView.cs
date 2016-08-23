@@ -35,16 +35,7 @@ namespace TvForms
             var userRepo = new BaseRepository<User>();
             var users = userRepo.GetAll();
 
-            foreach (var user in users)
-            {
-                var lvItem = new ListViewItem(user.Id.ToString());
-                lvItem.SubItems.Add(user.Login);
-                lvItem.SubItems.Add(user.FirstName);
-                lvItem.SubItems.Add(user.LastName);
-                lvUserList.Items.Add(lvItem);
-            }
-
-            lvUserList.Items[0].Selected = true;
+            FillUsersLv(users);
 
             //set max value for search user numeric up and down
             numSearchUserId.Maximum = lvUserList.Items.Count;
@@ -188,6 +179,7 @@ namespace TvForms
             lvUserEmail.Items.Clear();
         }
 
+        // method to activate / deactivate selected user
         private void cbStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!_activeUserFlag)
@@ -230,6 +222,7 @@ namespace TvForms
             }
         }
 
+        // method to allow / forbid adult content for a user
         private void cbAdultContent_CheckedChanged(object sender, EventArgs e)
         {
             if (!_adultContentFlag)
@@ -270,6 +263,7 @@ namespace TvForms
             }
         }
 
+        // method to change chosen user's type
         private void cbUserType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!_userType)
@@ -302,6 +296,7 @@ namespace TvForms
         {
             //check if search criteria have been entered
             if (tbSearchLogin.Text.Trim() == String.Empty &&
+                tbSurname.Text.Trim() == String.Empty &&
                 numSearchUserId.Value == 0)
             {
                 ErrorMassages.DisplayError("Please, set search criteria", "Error");
@@ -309,66 +304,38 @@ namespace TvForms
             else 
             {
                 var userRepo = new BaseRepository<User>();
-                var errorMessage = "";
-                var foundUserByLogin = 0;
-                var foundUserById = 0;
-                var foundUserId = 0;
+                var foundUsers = userRepo.GetAll();
+
+                // try to find by Name
+                if (tbSearchName.Text.Trim() != String.Empty)
+                {
+                    foundUsers = foundUsers.Where(x => x.FirstName == tbSearchName.Text.Trim());
+                }
+
+                // try to find by Surname
+                if (tbSearchSurname.Text.Trim() != String.Empty)
+                {
+                    foundUsers = foundUsers.Where(x => x.LastName == tbSearchSurname.Text.Trim());
+                }
 
                 // try to find by login
                 if (tbSearchLogin.Text.Trim() != String.Empty)
                 {
-                    try
-                    {
-                        foundUserByLogin = userRepo.Get(x => x.Login == tbSearchLogin.Text.Trim())
-                            .First().Id;
-                    }
-                    catch
-                    {
-                        errorMessage += "Entered login not found.\n";
-                    }
+                    foundUsers = foundUsers.Where(x => x.Login == tbSearchLogin.Text.Trim());
                 }
 
-                // try to find by id
+                // try to find by Id
                 if (numSearchUserId.Value != 0)
                 {
-                    try
-                    {
-                        foundUserById = userRepo.Get(x => x.Id == numSearchUserId.Value)
-                            .First().Id;
-                    }
-                    catch
-                    {
-                        errorMessage += "Entered ID not found.\n";
-                    }
+                    foundUsers = foundUsers.Where(x => x.Id == numSearchUserId.Value);
                 }
 
-                // if there is a match in the db, compare if entered id
-                // corresponds to entered login
-                if (errorMessage == "")
+                if (!foundUsers.Any())
                 {
-                    if (foundUserByLogin == 0 || foundUserByLogin == foundUserById)
-                    {
-                        foundUserId = foundUserById;
-                    }
-                    else if (foundUserById == 0)
-                    {
-                        foundUserId = foundUserByLogin;
-                    }
-                    else
-                    {
-                        ErrorMassages.DisplayError("Entered criteria do not match one user", "Error");
-                        return;
-                    }
-
-                    // select found user in the lv
-                    UnselectLvItem();
-                    lvUserList.Items[foundUserId - 1].Selected = true;
+                    ErrorMassages.DisplayError("No users found according to selected criteria", "Error");
+                    return;
                 }
-                else
-                {
-                    // show error if there was no match
-                    ErrorMassages.DisplayError(errorMessage, "Error");
-                }
+                FillUsersLv(foundUsers);
             }
         }
 
@@ -383,6 +350,31 @@ namespace TvForms
                     return;
                 }
             }
+        }
+
+        // filling users LV according to the received data
+        private void FillUsersLv(IQueryable<User> users)
+        {
+            lvUserList.Items.Clear();
+            foreach (var user in users)
+            {
+                var lvItem = new ListViewItem(user.Id.ToString());
+                lvItem.SubItems.Add(user.Login);
+                lvItem.SubItems.Add(user.FirstName);
+                lvItem.SubItems.Add(user.LastName);
+                lvUserList.Items.Add(lvItem);
+            }
+            UnselectLvItem();
+            lvUserList.Items[0].Selected = true;
+        }
+
+        private void btResrtSearch_Click(object sender, EventArgs e)
+        {
+            tbSearchName.Clear();
+            tbSearchSurname.Clear();
+            tbSearchLogin.Clear();
+            numSearchUserId.Value = 0;
+            SetPageView();
         }
     }
 }
