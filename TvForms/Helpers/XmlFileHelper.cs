@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Windows.Documents;
 using System.Xml;
 using TVContext;
 
@@ -81,14 +83,13 @@ namespace TvForms
                     {
                         var progressBar = new ProgressForm();
                         progressBar.Show();
-
+                        var TvShowsList = new List<TvShow>();
                         var id = 1;
 
                         foreach (XmlNode node in xmlNodeList)
                         {
                             if (node.Attributes == null) continue;
-                            var mySqlTimestamp = ToDatetime2(node.Attributes["start"].Value);
-                            var startProgramm = Convert.ToDateTime(mySqlTimestamp);
+                            var startProgramm = DateTime.ParseExact(node.Attributes["start"].Value, "yyyyMMddHHmmss zzz", CultureInfo.InvariantCulture);
                             var originId = node.Attributes["channel"].Value.GetInt();
                             var chan = (from c in context.Channels
                                             where (c.OriginalId == originId)
@@ -102,11 +103,11 @@ namespace TvForms
                                 Channel = chan
                             };
 
-                            context.TvShows.Add(shows);
+                            TvShowsList.Add(shows);
                             id++;
                             progressBar.ShowProgress(id, xmlNodeList.Count);
                         }
-
+                        context.TvShows.AddRange(TvShowsList);
                         context.SaveChanges();
                         progressBar.Close();
                     }
@@ -137,26 +138,6 @@ namespace TvForms
                 ErrorMassages.SomethingWrongInProgrammLoad(ex);
             }
             
-        }
-
-
-        private static string ToDatetime2(string date)
-        {
-            if (date.Length != 0)
-            {
-                var year = date.Substring(0, 4);
-                var month = date.Substring(4, 2);
-                var day = date.Substring(6, 2);
-                var hour = date.Substring(8, 2);
-                var minute = date.Substring(10, 2);
-                var second = date.Substring(12, 2);
-
-                return day + "-" + month + "-" + year + " " + hour + ":" + minute + ":" + second;
-            }
-            else
-            {
-                return "0000-00-00 00:00:00";
-            }
         }
 
 

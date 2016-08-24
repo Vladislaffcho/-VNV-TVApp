@@ -13,7 +13,7 @@ namespace TvForms
     public partial class CoreForm : Form
     {
         //ToDo Review need to store all user data
-        private int CurrentUserId { get; set; }
+        private int CurrentUserId { get; set; } = 2; // need delete '2' after test programme
 
         //ToDo Review WTF? Naming convention!!!
         private UcTabsForUser UserWindow { get; set; }
@@ -22,7 +22,7 @@ namespace TvForms
 
         public CoreForm()
         {
-            ShowLoginForm();
+            //ShowLoginForm(); //uncommit after test programme
 
             InitializeComponent();
             LoadMainControl();
@@ -62,7 +62,6 @@ namespace TvForms
             else
             {
                 Environment.Exit(0);
-                //Close();
             }
         }
 
@@ -83,8 +82,8 @@ namespace TvForms
             };
             
             if (openXmlFile.ShowDialog() != DialogResult.OK || openXmlFile.FileName.Length <= 0) return;
-         
-            //XmlFileHelper.ParseChannel(openXmlFile.FileName);
+
+            XmlFileHelper.ParseChannel(openXmlFile.FileName);
             XmlFileHelper.ParseProgramm(openXmlFile.FileName);
         }
 
