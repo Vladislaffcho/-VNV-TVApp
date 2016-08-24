@@ -72,7 +72,7 @@ namespace TvForms
             this.tabControl_Shows.SelectedIndex = 0;
             this.tabControl_Shows.Size = new System.Drawing.Size(485, 334);
             this.tabControl_Shows.TabIndex = 2;
-            //this.tabControl_Shows.SelectedIndexChanged += new System.EventHandler(this.tabControl_Shows_SelectedIndexChanged);
+            this.tabControl_Shows.SelectedIndexChanged += new System.EventHandler(this.tabControl_Shows_SelectedIndexChanged);
             // 
             // tabShows_Sunday
             // 

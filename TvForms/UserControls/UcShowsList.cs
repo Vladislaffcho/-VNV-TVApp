@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using TVContext;
@@ -8,22 +9,25 @@ namespace TvForms
     public partial class UcShowsList : UserControl
     {
 
-        private List<int> CheckedShowsId { get; set; } 
+        private int CurrentUserId { get; set; }
 
-        public UcShowsList()
+        private int DisplayIndexShows { get; set; }
+
+        public UcShowsList(int userId)
         {
             InitializeComponent();
-            CheckedShowsId = new List<int>();
+            CurrentUserId = userId;
         }
-        
 
-        public void LoadCurrentDayShows(IEnumerable<TvShow> shows, List<int> favouriteShowsId)
+    
+        public void LoadShows(IEnumerable<TvShow> shows/*, List<int> favouriteShowsId*/)
         {
+            var scheduleShows = new BaseRepository<UserSchedule>().GetAll().ToList();
             lvShowPrograms.Items.Clear();
-            var number = 1;
+            DisplayIndexShows = 1;
             foreach (var sh in shows)
             {
-                var item = new ListViewItem(number.ToString());
+                var item = new ListViewItem(DisplayIndexShows.ToString());
                 
                 item.SubItems.Add($"{sh.Date.Hour:00}:{sh.Date.Minute:00}");
                 item.SubItems.Add($"{sh.Date.Day:00}/{sh.Date.Month:00}");
@@ -34,27 +38,92 @@ namespace TvForms
                 lvShowPrograms.Items.Add(item);
                 lvShowPrograms.CheckBoxes = true;
 
-                if (favouriteShowsId?.IndexOf(sh.Id) >= 0)
-                    lvShowPrograms.Items[number-1].Checked = true;
+                if (scheduleShows.Find(z => z.TvShow.Id == sh.Id) != null)
+                    lvShowPrograms.Items[DisplayIndexShows - 1].Checked = true;
 
-                number++;
+                DisplayIndexShows++;
             }
         }
 
 
-        public List<int> ListCheckedProgramsId()
+        public void AddTvShowsToControl(IEnumerable<TvShow> addShows)
         {
-            var listOfcheckedId = new List<int>();
-            if (lvShowPrograms.CheckedItems.Count > 0)
-                for (var i = 0; i < lvShowPrograms.CheckedItems.Count; i++)
-                    listOfcheckedId.Add(lvShowPrograms.CheckedItems[i].SubItems[5].Text.GetInt());
-            return listOfcheckedId;
+            
+            foreach (var sh in addShows)
+            {
+                var item = new ListViewItem(DisplayIndexShows.ToString());
+
+                item.SubItems.Add($"{sh.Date.Hour:00}:{sh.Date.Minute:00}");
+                item.SubItems.Add($"{sh.Date.Day:00}/{sh.Date.Month:00}");
+                item.SubItems.Add(sh.Name);
+                item.SubItems.Add(sh.Channel.Name);
+                item.SubItems.Add(sh.Id.ToString());
+
+                lvShowPrograms.Items.Add(item);
+                lvShowPrograms.CheckBoxes = true;
+
+                DisplayIndexShows++;
+            }
+
+        }
+
+        public void RemoveTvShowsFromControl(string channelName)
+        {
+            foreach (ListViewItem item in lvShowPrograms.Items)
+            {
+                if (item.SubItems[4].Text == channelName)
+                {
+                    lvShowPrograms.Items[item.Index].Remove();
+                    //DisplayIndexShows--;
+                }
+            }
         }
 
 
-        private void lvShowPrograms_ItemChecked(object sender, ItemCheckedEventArgs e)
+        private void lvShowPrograms_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            CheckedShowsId = ListCheckedProgramsId();
+            
+            var id = lvShowPrograms.Items[e.Index].SubItems[5].Text.GetInt();
+
+            using (var context = new TvDBContext())
+            {
+                var usScheduleRepo = new BaseRepository<UserSchedule>(context);
+                var showsRepo = new BaseRepository<TvShow>(context);
+                var user = new BaseRepository<User>(context).Get(u => u.Id == CurrentUserId).FirstOrDefault();
+
+                switch (e.NewValue)
+                {
+                    case CheckState.Checked:
+                        if (usScheduleRepo.GetAll().ToList().Find(s => s.TvShow.Id == id
+                        && s.User.Id == CurrentUserId) == null)
+                        {
+                            var schedule = new UserSchedule
+                            {
+                                DueDate = DateTime.Now.AddDays(7),
+                                User = user,
+                                TvShow = showsRepo.Get(s => s.Id == id).FirstOrDefault()
+                            };
+                            usScheduleRepo.Insert(schedule);
+                        }
+                        break;
+
+                    case CheckState.Unchecked:
+                        var removeSh = usScheduleRepo.Get(x => x.TvShow.Id == id).FirstOrDefault();
+                        if (removeSh != null)
+                        {
+                            usScheduleRepo.Remove(removeSh);
+                        }
+                        break;
+
+                    case CheckState.Indeterminate:
+                        MassagesContainer.DisplayError("Something went wrong in checking/unchecking tvShows (case CheckState.Indeterminate:)", "Error");
+                        break;
+
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
         }
+    
     }
 }

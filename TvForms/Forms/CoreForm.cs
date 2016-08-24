@@ -73,12 +73,27 @@ namespace TvForms
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var ordRepo = new BaseRepository<Order>();
-            var notPaidOrders = ordRepo.Get(x => x.IsPaid == false).ToList();
+            using (var context = new TvDBContext())
+            {
+                var ordRepo = new BaseRepository<Order>(context);
+                var schedRepo = new BaseRepository<UserSchedule>(context);
                 
-            foreach (var order in notPaidOrders)
-                ordRepo.Remove(order);
 
+                var notPaidOrders = ordRepo.Get(x => x.IsPaid == false).ToList();
+
+                foreach (var order in notPaidOrders)
+                    ordRepo.Remove(order);
+
+                var ordChannels = new BaseRepository<OrderChannel>(context).GetAll().ToList();
+                var needCheckForRemoveTvShow = schedRepo.GetAll().ToList();
+                foreach (var show in needCheckForRemoveTvShow)
+                {
+                    if(ordChannels.Find(ch => ch.Channel.Id == show.TvShow.Channel.Id) == null)
+                        schedRepo.Remove(show);
+                }
+            }
+            
+            
             Close();
         }
 
@@ -96,6 +111,8 @@ namespace TvForms
 
             XmlFileHelper.ParseChannel(openXmlFile.FileName);
             XmlFileHelper.ParseProgramm(openXmlFile.FileName);
+
+
         }
 
 

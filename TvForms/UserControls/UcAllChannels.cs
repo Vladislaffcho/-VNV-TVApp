@@ -16,31 +16,16 @@ namespace TvForms
 
         //private List<Channel> AllChannels { get; set; }
 
-        private List<TvShow> AllShows { get; set; }
+        //private List<TvShow> AllShows { get; set; }
 
-        private List<TvShow> CurrentDayShows { get; set; }
+        //private List<TvShow> CurrentDayShows { get; set; }
 
         private UcShowsList ControlForShows { get; set; }
 
-        public List<int> FavouriteChannelsId { get; private set; }
+        //public List<int> FavouriteChannelsId { get; private set; }
 
-        public List<int> FavouriteShowsId { get; private set; }
+        //public List<int> FavouriteShowsId { get; private set; }
 
-
-        //public UcAllChannels(List<Channel> channels)
-        //{
-        //    //ToDo Load info from channels to channels list and to shows UC
-        //    InitializeComponent();
-        //    LoadControls(channels);
-        //}
-
-        //public UcAllChannels(List<Channel> channels, int userId)
-        //{
-        //    //ToDo Load info from channels to channels list and to shows UC
-        //    InitializeComponent();
-        //    LoadControls(channels);
-        //    CurrentUserId = userId;
-        //}
 
         public UcAllChannels(int userId)
         {
@@ -51,27 +36,17 @@ namespace TvForms
         }
 
 
-        private void LoadControls(/*List<Channel> channels*/int userId)
+        private void LoadControls(int userId)
         {
-            //AllChannels = channels;
+            tabControl_Shows.SelectedIndex = (int)DateTime.Now.DayOfWeek;
+
             LoadAllChannelsList();
-
-
-
-
-
-
-            AllShows = _showRepo.GetAll().ToList();
-            tabControl_Shows.SelectedIndex = (int) DateTime.Now.DayOfWeek;
-            CurrentDayShows = GetCurrentDayShows((int) DateTime.Now.DayOfWeek);
-            ControlForShows = new UcShowsList();
-            FavouriteShowsId = new List<int>();
-            ControlForShows.LoadCurrentDayShows(CurrentDayShows, FavouriteShowsId);
-            tabControl_Shows.SelectedTab.Controls.Add(ControlForShows);
+            LoadTvShowsList();
+            
             this.rtbAllCh_Description.Text = "THIS IS ALL CHANNELS TAB";
         }
 
-
+       
         private void LoadAllChannelsList()
         {
             var number = 1;
@@ -92,8 +67,31 @@ namespace TvForms
                     number++;
                 }
             }
-            
         }
+
+
+        private void LoadTvShowsList()
+        {
+            using (var context = new TvDBContext())
+            {
+                var orderedChannels = new BaseRepository<OrderChannel>(context).GetAll().ToList();
+
+                var showsRepo = new BaseRepository<TvShow>().GetAll().ToList();
+                var showsByOrderedChannels = showsRepo.Where(show => orderedChannels.Find(x =>
+                                                x.Channel.Id == show.Channel.Id) != null).ToList();
+
+                var showByDateAndChannels = showsByOrderedChannels.FindAll(x =>
+                                            (int)x.Date.DayOfWeek == GetSelectedDay()
+                                /*&& Math.Abs(x.Date.Day - DateTime.Now.Day) < 7*/).ToList(); ;
+
+                ControlForShows?.Dispose();
+                ControlForShows = new UcShowsList(CurrentUserId);
+                ControlForShows.LoadShows(showByDateAndChannels);
+                tabControl_Shows.SelectedTab.Controls.Add(ControlForShows);
+            }
+
+        }
+
 
         private void ChannelsToListView(int number, Channel ch)
         {
@@ -113,122 +111,58 @@ namespace TvForms
         }
 
 
-        private List<TvShow> GetCurrentDayShows(int dayOfWeek)
+        private void cbMyChosenShows_CheckedChanged(object sender, EventArgs e)
         {
-            // <7 - for old shows, which we filtering only for current week
-            var showsList = AllShows.FindAll(x => (int) x.Date.DayOfWeek == dayOfWeek
-                                /*&& Math.Abs(x.Date.Day - DateTime.Now.Day) < 7*/).ToList();
-            LoadFavouriteShows();
-            return showsList;
-        }
-
-        /// <summary>
-        /// Method contained the
-        /// LINQ expression to find all shows in specified channel or list of channels
-        /// </summary>
-        /// <param name="channelIdList"></param>
-        /// <returns></returns>
-        private List<TvShow> GetShowsFromChosenChannel(IEnumerable<int> channelIdList)
-        {
-            LoadFavouriteShows();
-            return channelIdList.SelectMany(id => CurrentDayShows.FindAll(x => x.Channel.Id == id).ToList()).ToList();
-        }
-
-
-        //private void tabControl_Shows_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    LoadProgForCheckAndSelectChannels();
-        //}
-
-        public void LoadFavouriteShows()
-        {
-            var tmp = ControlForShows?.ListCheckedProgramsId();
-            if (tmp != null)
+            if (cbMyChosenShows.Checked)
             {
-                tmp.AddRange(FavouriteShowsId);
-                FavouriteShowsId.Clear();
-                FavouriteShowsId.AddRange(tmp.Distinct());
+                foreach (ListViewItem ch in lvChannelsList.Items)
+                    if (lvChannelsList.Items[ch.Index].Checked == false)
+                        lvChannelsList.Items.Remove(ch);
+            }
+            else
+            {
+                lvChannelsList.Items.Clear();
+                LoadAllChannelsList();
             }
         }
 
-        private void cbMyChosenShows_CheckedChanged(object sender, EventArgs e)
-        {
-            //var listOfcheckedId = new List<int>();
-            //LoadFavouriteShows();
 
-            //if (lvChannelsList.CheckedItems.Count > 0)
-            //    for (var i = 0; i < lvChannelsList.CheckedItems.Count; i++)
-            //        listOfcheckedId.Add(lvChannelsList.CheckedItems[i].SubItems[4].Text.GetInt());
-
-            //if (cbMyChosenShows.Checked)
-            //{
-            //    foreach (ListViewItem ch in lvChannelsList.Items)
-            //        if (lvChannelsList.Items[ch.Index].Checked == false)
-            //            lvChannelsList.Items.Remove(ch);
-            //}
-            //else
-            //{
-            //    var number = 1;
-            //    foreach (var ch in AllChannels)
-            //    {
-            //        if (listOfcheckedId.IndexOf(ch.Id) < 0)
-            //            ChannelsToListView(number, ch);
-            //        number++;
-            //    }
-            //}
-        }
-        
-
-        //private void LoadProgForCheckAndSelectChannels()
-        //{
-        //    var listOfcheckedId = ListCheckedChannelId();
-
-        //    if (lvChannelsList.SelectedItems.Count > 0)
-        //        for (var i = 0; i < lvChannelsList.SelectedItems.Count; i++)
-        //            listOfcheckedId.Add(lvChannelsList.SelectedItems[i].SubItems[4].Text.GetInt());
-
-        //    var uniqueId = listOfcheckedId.Distinct();
-
-        //    LoadFavouriteShows();
-
-        //    CurrentDayShows.Clear();
-        //    CurrentDayShows = GetCurrentDayShows(GetSelectedDay());
-        //    CurrentDayShows = GetShowsFromChosenChannel(uniqueId);
-        //    ControlForShows.LoadCurrentDayShows(CurrentDayShows, FavouriteShowsId);
-        //    tabControl_Shows.SelectedTab.Controls.Add(ControlForShows);
-        //}
-
-
-        //private List<int> ListCheckedChannelId()
-        //{
-        //    var listOfcheckedId = new List<int>();
-        //    if (lvChannelsList.CheckedItems.Count > 0)
-        //        for (var i = 0; i < lvChannelsList.CheckedItems.Count; i++)
-        //            listOfcheckedId.Add(lvChannelsList.CheckedItems[i].SubItems[4].Text.GetInt());
-        //    return listOfcheckedId;
-        //}
-
-        
         private void cbCheckAll_CheckedChanged(object sender, EventArgs e)
         {
             if (cbCheckAll.Checked)
+            {
                 for (var i = 0; i < lvChannelsList.Items.Count; i++)
                     lvChannelsList.Items[i].Checked = true;
+                var showsRepo = new BaseRepository<TvShow>().GetAll().ToList();
+                
+                var showByDateAndChannels = showsRepo.FindAll(x =>
+                                            (int)x.Date.DayOfWeek == GetSelectedDay()
+                                /*&& Math.Abs(x.Date.Day - DateTime.Now.Day) < 7*/).ToList(); ;
+
+                ControlForShows?.Dispose();
+                ControlForShows = new UcShowsList(CurrentUserId);
+                ControlForShows.LoadShows(showByDateAndChannels);
+                tabControl_Shows.SelectedTab.Controls.Add(ControlForShows);
+            }
             else if (!cbCheckAll.Checked)
             {
                 for (var i = 0; i < lvChannelsList.Items.Count; i++)
                 {
                     lvChannelsList.Items[i].Checked = false;
-                    lvChannelsList.Items.Clear();
                 }
-                LoadAllChannelsList();
+
+                var userSchRepo = new BaseRepository<UserSchedule>();
+                var deleteSched = userSchRepo.Get(x => x.User.Id == CurrentUserId).ToList();
+                foreach (var delSch in deleteSched)
+                {
+                    userSchRepo.Remove(delSch);
+                }
+
+                ControlForShows?.Dispose();
+                ControlForShows = new UcShowsList(CurrentUserId);
+                tabControl_Shows.SelectedTab.Controls.Add(ControlForShows);
             }
 
-            LoadFavouriteShows();
-
-            CurrentDayShows = GetCurrentDayShows(GetSelectedDay());
-            ControlForShows.LoadCurrentDayShows(CurrentDayShows, FavouriteShowsId);
-            tabControl_Shows.SelectedTab.Controls.Add(ControlForShows);
 
         }
 
@@ -236,10 +170,63 @@ namespace TvForms
  
         private void lvChannelsList_ItemCheck(object sender, ItemCheckEventArgs e)
         {
+            if (cbCheckAll.Checked) return;
 
+            var id = lvChannelsList.Items[e.Index].SubItems[4].Text.GetInt();
+
+            using (var context = new TvDBContext())
+            {
+                var channelRepo = new BaseRepository<Channel>(context);
+                var orderChannelRepo = new BaseRepository<OrderChannel>(context);
+                var orderRepo = new BaseRepository<Order>(context);
+                var showsRepo = new BaseRepository<TvShow>(context);
+
+                switch (e.NewValue)
+                {
+                    case CheckState.Checked:
+                        if (orderChannelRepo.GetAll().ToList().Find(s => s.Channel.Id == id 
+                        && s.Order.User.Id == CurrentUserId) == null)
+                        {
+                            GetNewOrder();
+                            var ordederedCh = new OrderChannel
+                            {
+                                Channel = channelRepo.Get(c => c.Id == id).FirstOrDefault(),
+                                Order = orderRepo.Get(z => z.User.Id == CurrentUserId
+                                                           && z.DateOrder.Day == DateTime.Now.Day
+                                                           && z.DateOrder.Month == DateTime.Now.Month
+                                                           && z.DateOrder.Year == DateTime.Now.Year).FirstOrDefault()
+                            };
+                            orderChannelRepo.Insert(ordederedCh);
+                        }
+                        var showsByChannel = showsRepo.Get(x => x.Channel.Id == id).ToList();
+                        var addedShows = showsByChannel.Where(show => (int) show.Date.DayOfWeek == GetSelectedDay()).ToList();
+                        ControlForShows.AddTvShowsToControl(addedShows);
+                        break;
+
+                    case CheckState.Unchecked:
+                        var removeCh = orderChannelRepo.Get(x => x.Channel.Id == id).FirstOrDefault();
+                        if (removeCh != null)
+                        {
+                            ControlForShows.RemoveTvShowsFromControl(removeCh.Channel.Name);
+                            orderChannelRepo.Remove(removeCh);
+                        }
+                        break;
+
+                    case CheckState.Indeterminate:
+                        MassagesContainer.DisplayError("Something went wrong in checking/unchecking channels (case CheckState.Indeterminate:)", "Error");
+                        break;
+
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+
+        private void GetNewOrder()
+        {
             if (lvChannelsList.CheckedItems.Count == 0)
             {
-                using(var context = new TvDBContext())
+                using (var context = new TvDBContext())
                 {
                     var currOrder = new Order
                     {
@@ -255,44 +242,12 @@ namespace TvForms
                     context.Orders.Add(currOrder);
                     context.SaveChanges();
                 }
-                
             }
+        }
 
-            var id = lvChannelsList.Items[e.Index].SubItems[4].Text.GetInt();
-
-            using (var context = new TvDBContext())
-            {
-                var channelRepo = new BaseRepository<Channel>(context);
-                var orderChannelRepo = new BaseRepository<OrderChannel>(context);
-                var orderRepo = new BaseRepository<Order>(context);
-
-                switch (e.NewValue)
-                {
-                    case CheckState.Checked:
-                        if (orderChannelRepo.GetAll().ToList().Find(s => s.Channel.Id == id) == null)
-                        {
-                            var ordederedCh = new OrderChannel
-                            {
-                                Channel = channelRepo.Get(c => c.Id == id).FirstOrDefault(),
-                                Order = orderRepo.Get(z => z.User.Id == CurrentUserId
-                                                           && z.DateOrder.Day == DateTime.Now.Day
-                                                           && z.DateOrder.Month == DateTime.Now.Month
-                                                           && z.DateOrder.Year == DateTime.Now.Year).FirstOrDefault()
-                            };
-                            orderChannelRepo.Insert(ordederedCh);
-                        }
-                        break;
-                    case CheckState.Unchecked:
-                        var removeCh = orderChannelRepo.Get(x => x.Channel.Id == id).FirstOrDefault();
-                        orderChannelRepo.Remove(removeCh);
-                        break;
-                    case CheckState.Indeterminate:
-                        MassagesContainer.DisplayError("Something went wrong in checking/unchecking channels (case CheckState.Indeterminate:)", "Error");
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
+        private void tabControl_Shows_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadTvShowsList();
         }
     }
 }
