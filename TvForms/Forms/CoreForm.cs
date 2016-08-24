@@ -13,7 +13,7 @@ namespace TvForms
     public partial class CoreForm : Form
     {
         //ToDo Review need to store all user data
-        private int CurrentUserId { get; set; } = 2; // need delete '2' after test programme
+        private int CurrentUserId { get; set; } = 2; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
 
         //ToDo Review WTF? Naming convention!!!
         private UcTabsForUser UserWindow { get; set; }
@@ -27,6 +27,10 @@ namespace TvForms
             InitializeComponent();
             LoadMainControl();
 
+            string nameWindow = this.Text;
+            var userRepo = new BaseRepository<User>();
+            nameWindow += " - " + userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault().Login;
+            this.Text = nameWindow;
         }
 
         private void LoadMainControl()
@@ -46,6 +50,7 @@ namespace TvForms
                             break;
                         case (int) EUserType.CLIENT: //user
                             panelCore.Controls.Add(new UcTabsForUser(CurrentUserId));
+                            
                             break;
                     }
                 }
@@ -68,6 +73,12 @@ namespace TvForms
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var ordRepo = new BaseRepository<Order>();
+            var notPaidOrders = ordRepo.Get(x => x.IsPaid == false).ToList();
+                
+            foreach (var order in notPaidOrders)
+                ordRepo.Remove(order);
+
             Close();
         }
 

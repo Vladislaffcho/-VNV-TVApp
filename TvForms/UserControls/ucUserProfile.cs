@@ -150,7 +150,7 @@ namespace TvForms
             }
             else
             {
-                ErrorMassages.DisplayError("Select address to update", "Error");
+                MassagesContainer.DisplayError("Select address to update", "Error");
             }
         }
 
@@ -165,7 +165,7 @@ namespace TvForms
             }
             else
             {
-                ErrorMassages.DisplayError("Select address to delete", "Error");
+                MassagesContainer.DisplayError("Select address to delete", "Error");
             }
         }
 
@@ -200,7 +200,7 @@ namespace TvForms
             }
             else
             {
-                ErrorMassages.DisplayError("Select address to update", "Error");
+                MassagesContainer.DisplayError("Select address to update", "Error");
             }
         }
 
@@ -217,7 +217,7 @@ namespace TvForms
             }
             else
             {
-                ErrorMassages.DisplayError("Select address to update", "Error");
+                MassagesContainer.DisplayError("Select address to update", "Error");
             }
         }
 
@@ -231,7 +231,7 @@ namespace TvForms
             }
             else
             {
-                ErrorMassages.DisplayError("Select email to delete", "Error");
+                MassagesContainer.DisplayError("Select email to delete", "Error");
             }
         }
 
@@ -245,7 +245,7 @@ namespace TvForms
             }
             else
             {
-                ErrorMassages.DisplayError("Select telephone to delete", "Error");
+                MassagesContainer.DisplayError("Select telephone to delete", "Error");
             }
         }
 

@@ -4,7 +4,6 @@ using System.Data.Entity.Validation;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Windows.Documents;
 using System.Xml;
 using TVContext;
 
@@ -43,10 +42,10 @@ namespace TvForms
 
                         context.SaveChanges();
                     }
-                    ErrorMassages.ChannelsLoadGood();
+                    MassagesContainer.ChannelsLoadGood();
                 }
                 else
-                    ErrorMassages.SomethingWrongInFileLoad();
+                    MassagesContainer.SomethingWrongInFileLoad();
             }
             catch (DbEntityValidationException ex)
             {
@@ -64,11 +63,11 @@ namespace TvForms
             }
             catch (Exception ex)
             {
-                ErrorMassages.SomethingWrongInChannelLoad(ex);
+                MassagesContainer.SomethingWrongInChannelLoad(ex);
             }
         }
 
-        public static void ParseProgramm(string filename)
+        public static async void ParseProgramm(string filename)
         {
             try
             {
@@ -77,45 +76,49 @@ namespace TvForms
                 doc.Load(filename);
                 var xmlNodeList = doc.SelectNodes("/tv/programme");
 
+               
+
                 if (xmlNodeList != null)
                 {
                     using (var context = new TvDBContext())
                     {
                         var progressBar = new ProgressForm();
                         progressBar.Show();
-                        var TvShowsList = new List<TvShow>();
+                        var tvShowsList = new List<TvShow>();
                         var id = 1;
+
+                        //load channels to container
+                        var channels = context.Channels.ToList();
 
                         foreach (XmlNode node in xmlNodeList)
                         {
-                            if (node.Attributes == null) continue;
-                            var startProgramm = DateTime.ParseExact(node.Attributes["start"].Value, "yyyyMMddHHmmss zzz", CultureInfo.InvariantCulture);
-                            var originId = node.Attributes["channel"].Value.GetInt();
-                            var chan = (from c in context.Channels
-                                            where (c.OriginalId == originId)
-                                            select c).ToList().FirstOrDefault();
-                            var shows = new TvShow
+                            if (node.Attributes != null)
                             {
-                                Name = node.FirstChild.InnerText,
-                                Date = startProgramm,
-                                IsAgeLimit = false,
-                                CodeOriginalChannel = originId,
-                                Channel = chan
-                            };
+                                var originId = node.Attributes["channel"].Value.GetInt();
+                                var shows = new TvShow
+                                {
+                                    Name = node.FirstChild.InnerText,
+                                    Date = DateTime.ParseExact(node.Attributes["start"].Value,
+                                            "yyyyMMddHHmmss zzz", CultureInfo.InvariantCulture),
+                                    IsAgeLimit = false,
+                                    CodeOriginalChannel = originId,
+                                    Channel = channels.Find(x => x.OriginalId == originId)
+                                };
 
-                            TvShowsList.Add(shows);
+                                tvShowsList.Add(shows);
+                            }
                             id++;
                             progressBar.ShowProgress(id, xmlNodeList.Count);
                         }
-                        context.TvShows.AddRange(TvShowsList);
+                        context.TvShows.AddRange(tvShowsList);
                         context.SaveChanges();
                         progressBar.Close();
                     }
-                    
-                    ErrorMassages.ProgrammsLoadGood();
+
+                    MassagesContainer.ProgrammsLoadGood();
                 }
                 else
-                    ErrorMassages.SomethingWrongInFileLoad();
+                    MassagesContainer.SomethingWrongInFileLoad();
 
             }
             catch (DbEntityValidationException ex)
@@ -135,7 +138,7 @@ namespace TvForms
             }
             catch (Exception ex)
             {
-                ErrorMassages.SomethingWrongInProgrammLoad(ex);
+                MassagesContainer.SomethingWrongInProgrammLoad(ex);
             }
             
         }
@@ -184,6 +187,6 @@ namespace TvForms
                 writer.WriteEndDocument();
             }
         }
-        
+
     }
 }

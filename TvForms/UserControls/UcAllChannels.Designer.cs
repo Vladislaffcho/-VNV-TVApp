@@ -72,7 +72,7 @@ namespace TvForms
             this.tabControl_Shows.SelectedIndex = 0;
             this.tabControl_Shows.Size = new System.Drawing.Size(485, 334);
             this.tabControl_Shows.TabIndex = 2;
-            this.tabControl_Shows.SelectedIndexChanged += new System.EventHandler(this.tabControl_Shows_SelectedIndexChanged);
+            //this.tabControl_Shows.SelectedIndexChanged += new System.EventHandler(this.tabControl_Shows_SelectedIndexChanged);
             // 
             // tabShows_Sunday
             // 
@@ -219,8 +219,7 @@ namespace TvForms
             this.lvChannelsList.TabIndex = 9;
             this.lvChannelsList.UseCompatibleStateImageBehavior = false;
             this.lvChannelsList.View = System.Windows.Forms.View.Details;
-            this.lvChannelsList.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lvChannelsList_ItemChecked);
-            this.lvChannelsList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvChannelsList_MouseClick);
+            this.lvChannelsList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.lvChannelsList_ItemCheck);
             // 
             // lvChNumber
             // 

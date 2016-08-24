@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace TvForms
 {
-    public static class ErrorMassages
+    public static class MassagesContainer
     {
         public static void ChannelsLoadGood()
         {

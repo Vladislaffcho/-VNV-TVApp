@@ -28,15 +28,15 @@ namespace TvForms
             
             //ToDo Load channels for put in into constructor of ucChannelShowInfo
             InitializeComponent();
-            LoadControls();
             CurrentUserId = userId;
-
+            LoadControls(CurrentUserId);
+            
         }
 
-        private void LoadControls()
+        private void LoadControls(int userId)
         {
-            CurrentWeekChannel = _channelRepo.GetAll().ToList();
-            AllChannelControl = new UcAllChannels(CurrentWeekChannel);
+            //CurrentWeekChannel = _channelRepo.GetAll().ToList();
+            AllChannelControl = new UcAllChannels(/*CurrentWeekChannel,*/ userId);
             tabPan_AllChannels.Controls.Add(AllChannelControl);
         }
 

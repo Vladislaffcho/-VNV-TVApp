@@ -68,7 +68,7 @@ namespace TvForms
             }
             else
             {
-                ErrorMassages.DisplayError(errorMessage, "Invalid input");
+                MassagesContainer.DisplayError(errorMessage, "Invalid input");
             }
             return isValidAddress;
         }

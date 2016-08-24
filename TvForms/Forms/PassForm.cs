@@ -93,7 +93,7 @@ namespace TvForms
             CurrentUserId = UserIdDetect();
 
             if (CurrentUserId != 0) return;
-            ErrorMassages.DisplayError("Incorrect login or password", "Access denied");
+            MassagesContainer.DisplayError("Incorrect login or password", "Access denied");
             e.Cancel = true;
         }
 
