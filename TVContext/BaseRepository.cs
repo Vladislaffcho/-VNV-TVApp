@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Windows.Forms;
 
 namespace TVContext
 {
@@ -11,7 +14,7 @@ namespace TVContext
 
         public BaseRepository()
         {
-            
+
         }
 
         public BaseRepository(TvDBContext context)
@@ -31,20 +34,81 @@ namespace TVContext
 
         public void Remove(TEntity entity)
         {
-            _context.Set<TEntity>().Remove(entity);
-            _context.SaveChanges();
+            try
+            {
+                _context.Set<TEntity>().Remove(entity);
+                _context.SaveChanges();
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                MessageBox.Show("Что-то пошло не так при операции АПДЕЙТ!");
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation(
+                            "Class: {0}, Property: {1}, Error: {2}",
+                            validationErrors.Entry.Entity.GetType().FullName,
+                            validationError.PropertyName,
+                            validationError.ErrorMessage);
+                    }
+                }
+
+            }
         }
 
         public void Update(TEntity entity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
-            _context.SaveChanges();
+            try
+            {
+                _context.Entry(entity).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                MessageBox.Show("Что-то пошло не так при операции АПДЕЙТ!");
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation(
+                            "Class: {0}, Property: {1}, Error: {2}",
+                            validationErrors.Entry.Entity.GetType().FullName,
+                            validationError.PropertyName,
+                            validationError.ErrorMessage);
+                    }
+                }
+
+            }
+
         }
 
         public void Insert(TEntity entity)
         {
-            _context.Entry(entity).State = EntityState.Added;
-            _context.SaveChanges();
+            try
+            {
+                _context.Entry(entity).State = EntityState.Added;
+                _context.SaveChanges();
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                MessageBox.Show("Что-то пошло не так при операции ИНСЕРТ!");
+
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation(
+                              "Class: {0}, Property: {1}, Error: {2}",
+                              validationErrors.Entry.Entity.GetType().FullName,
+                              validationError.PropertyName,
+                              validationError.ErrorMessage);
+                    }
+                    
+                }
+                
+            }
+            
         }
     }
 }

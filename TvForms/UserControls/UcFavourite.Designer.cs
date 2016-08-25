@@ -101,6 +101,7 @@
             // ChannelName
             // 
             this.ChannelName.Text = "Channel";
+            this.ChannelName.Width = 117;
             // 
             // Adult
             // 
@@ -125,7 +126,7 @@
             // Programm
             // 
             this.Programm.Text = "Programm";
-            this.Programm.Width = 313;
+            this.Programm.Width = 263;
             // 
             // btOrder
             // 

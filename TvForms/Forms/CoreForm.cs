@@ -5,6 +5,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Schema;
+using TvForms.Helpers;
 using UserControls;
 using TVContext;
 
@@ -71,31 +72,7 @@ namespace TvForms
         }
 
 
-        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (var context = new TvDBContext())
-            {
-                var ordRepo = new BaseRepository<Order>(context);
-                var schedRepo = new BaseRepository<UserSchedule>(context);
-                
 
-                var notPaidOrders = ordRepo.Get(x => x.IsPaid == false).ToList();
-
-                foreach (var order in notPaidOrders)
-                    ordRepo.Remove(order);
-
-                var ordChannels = new BaseRepository<OrderChannel>(context).GetAll().ToList();
-                var needCheckForRemoveTvShow = schedRepo.GetAll().ToList();
-                foreach (var show in needCheckForRemoveTvShow)
-                {
-                    if(ordChannels.Find(ch => ch.Channel.Id == show.TvShow.Channel.Id) == null)
-                        schedRepo.Remove(show);
-                }
-            }
-            
-            
-            Close();
-        }
 
 
         private void openXmlToolStripMenuItem_Click(object sender, EventArgs e)
@@ -186,6 +163,40 @@ namespace TvForms
 
             MessageBox.Show("Файл ZIP сохранен", "Save",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void CoreForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            using (var context = new TvDBContext())
+            {
+                var ordRepo = new BaseRepository<Order>(context);
+                var schedRepo = new BaseRepository<UserSchedule>(context);
+
+
+                var notPaidOrders = ordRepo.Get(x => x.IsPaid == false).ToList();
+
+                foreach (var order in notPaidOrders)
+                    ordRepo.Remove(order);
+
+                var ordChannels = new BaseRepository<OrderChannel>(context).GetAll().ToList();
+                var needCheckForRemoveTvShow = schedRepo.GetAll().ToList();
+                foreach (var show in needCheckForRemoveTvShow)
+                {
+                    if (ordChannels.Find(ch => ch.Channel.Id == show.TvShow.Channel.Id) == null)
+                        schedRepo.Remove(show);
+                }
+            }
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var ab = new About();
+            ab.ShowDialog();
         }
     }
 }

@@ -86,14 +86,14 @@
             // xmlToolStripMenuItem
             // 
             this.xmlToolStripMenuItem.Name = "xmlToolStripMenuItem";
-            this.xmlToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xmlToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
             this.xmlToolStripMenuItem.Text = "*.xml";
             this.xmlToolStripMenuItem.Click += new System.EventHandler(this.xmlToolStripMenuItem_Click);
             // 
             // zipToolStripMenuItem
             // 
             this.zipToolStripMenuItem.Name = "zipToolStripMenuItem";
-            this.zipToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.zipToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
             this.zipToolStripMenuItem.Text = "*.zip";
             this.zipToolStripMenuItem.Click += new System.EventHandler(this.zipToolStripMenuItem_Click);
             // 
@@ -159,6 +159,7 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // msMain
             // 
@@ -194,6 +195,7 @@
             this.Name = "CoreForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VNV TV Shedule";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CoreForm_FormClosing);
             this.msMain.ResumeLayout(false);
             this.msMain.PerformLayout();
             this.ResumeLayout(false);
