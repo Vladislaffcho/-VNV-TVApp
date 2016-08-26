@@ -20,9 +20,9 @@ namespace TvForms
         }
 
     
-        public void LoadShows(IEnumerable<TvShow> shows/*, List<int> favouriteShowsId*/)
+        public void LoadShows(IEnumerable<TvShow> shows)
         {
-            var scheduleShows = new BaseRepository<UserSchedule>().GetAll().ToList();
+            var scheduleShows = new BaseRepository<UserSchedule>().Get(sc => sc.User.Id == CurrentUserId).ToList();
             lvShowPrograms.Items.Clear();
             DisplayIndexShows = 1;
             foreach (var sh in shows)

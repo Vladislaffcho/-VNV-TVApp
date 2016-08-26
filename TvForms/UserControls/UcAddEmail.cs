@@ -7,10 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TvForms;
 using TVContext;
 
-namespace UserControls
+namespace TvForms
 {
     public partial class UcAddEmail : UserControl
     {

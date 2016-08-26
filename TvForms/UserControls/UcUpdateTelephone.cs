@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TVContext;
 
-namespace TvForms.UserControls
+namespace TvForms
 {
     public partial class UcUpdateTelephone : UserControl
     {

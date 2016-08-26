@@ -3,9 +3,7 @@ using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using TvForms.Forms;
 using TVContext;
-using UserControls;
 
 namespace TvForms
 {
@@ -263,7 +261,7 @@ namespace TvForms
 
         private void btAccountInfo_Click(object sender, EventArgs e)
         {
-            var actions = new ActionFormLittle(new UcUserAccount(_currentUserId))
+            var actions = new AcFLittleWithoutValid(new UcUserAccount(_currentUserId))
             {
                 Text = @"Account info",
                 Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\dollar.ico")

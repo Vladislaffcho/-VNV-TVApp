@@ -60,17 +60,23 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\AccountChargeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AccountChargeForm.Designer.cs">
+      <DependentUpon>AccountChargeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ActionForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ActionForm.Designer.cs">
       <DependentUpon>ActionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ActionFormLittle.cs">
+    <Compile Include="Forms\AcFLittleWithoutValid.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ActionFormLittle.Designer.cs">
-      <DependentUpon>ActionFormLittle.cs</DependentUpon>
+    <Compile Include="Forms\AcFLittleWithoutValid.Designer.cs">
+      <DependentUpon>AcFLittleWithoutValid.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\AddUserDataForm.cs">
       <SubType>Form</SubType>
@@ -219,6 +225,12 @@
     <Compile Include="UserControls\UcFavourite.Designer.cs">
       <DependentUpon>UcFavourite.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UсAccountRecharge.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UсAccountRecharge.Designer.cs">
+      <DependentUpon>UсAccountRecharge.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UсOrdersView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -227,11 +239,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\AccountChargeForm.resx">
+      <DependentUpon>AccountChargeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ActionForm.resx">
       <DependentUpon>ActionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ActionFormLittle.resx">
-      <DependentUpon>ActionFormLittle.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\AcFLittleWithoutValid.resx">
+      <DependentUpon>AcFLittleWithoutValid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddUserDataForm.resx">
       <DependentUpon>AddUserDataForm.cs</DependentUpon>
@@ -302,6 +317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcFavourite.resx">
       <DependentUpon>UcFavourite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UсAccountRecharge.resx">
+      <DependentUpon>UсAccountRecharge.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UсOrdersView.resx">
       <DependentUpon>UсOrdersView.cs</DependentUpon>

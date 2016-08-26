@@ -1,6 +1,6 @@
-﻿namespace TvForms.Forms
+﻿namespace TvForms
 {
-    partial class ActionFormLittle
+    partial class AcFLittleWithoutValid
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActionFormLittle));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AcFLittleWithoutValid));
             this.pnActionFormLittle = new System.Windows.Forms.Panel();
             this.btOK = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
@@ -38,16 +38,16 @@
             // 
             this.pnActionFormLittle.Location = new System.Drawing.Point(2, 5);
             this.pnActionFormLittle.Name = "pnActionFormLittle";
-            this.pnActionFormLittle.Size = new System.Drawing.Size(440, 135);
+            this.pnActionFormLittle.Size = new System.Drawing.Size(440, 154);
             this.pnActionFormLittle.TabIndex = 3;
             // 
             // btOK
             // 
             this.btOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btOK.Location = new System.Drawing.Point(251, 156);
+            this.btOK.Location = new System.Drawing.Point(286, 165);
             this.btOK.Name = "btOK";
             this.btOK.Size = new System.Drawing.Size(75, 23);
-            this.btOK.TabIndex = 6;
+            this.btOK.TabIndex = 5;
             this.btOK.Text = "OK";
             this.btOK.UseVisualStyleBackColor = true;
             this.btOK.Click += new System.EventHandler(this.btOK_Click);
@@ -55,10 +55,10 @@
             // btCancel
             // 
             this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btCancel.Location = new System.Drawing.Point(357, 156);
+            this.btCancel.Location = new System.Drawing.Point(367, 165);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(75, 23);
-            this.btCancel.TabIndex = 5;
+            this.btCancel.TabIndex = 6;
             this.btCancel.Text = "Cancel";
             this.btCancel.UseVisualStyleBackColor = true;
             this.btCancel.Click += new System.EventHandler(this.btCancel_Click);

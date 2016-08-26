@@ -1,4 +1,4 @@
-﻿namespace TvForms.UserControls
+﻿namespace TvForms
 {
     partial class UcRegisterNewUser
     {

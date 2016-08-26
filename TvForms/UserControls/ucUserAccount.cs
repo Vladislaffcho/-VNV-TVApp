@@ -53,6 +53,24 @@ namespace TvForms
             }
         }
 
+        public bool ValidateControls()
+        {
+            //var type = _updateConnectType;
+            //switch (type)
+            //{
+            //    case EUserDetailType.Address:
+            //        return ucAddress.ValidateControls();
+            //    case EUserDetailType.Email:
+            //        return ucEmail.ValidateControls();
+            //    case EUserDetailType.Telephone:
+            //        return ucTelephone.ValidateControls();
+            //    case EUserDetailType.User:
+            //        return ucUserNames.ValidateControls();
+            //    default:
+            //        return true; /* return false, change validation */
+            //}
+            return true;
+        }
 
         private void tbName_TextChanged(object sender, EventArgs e)
         {

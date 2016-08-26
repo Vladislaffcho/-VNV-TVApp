@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data.Entity.Validation;
-using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using TVContext;
 
@@ -82,7 +76,7 @@ namespace TvForms
         {
             using (var context = new TvDBContext())
             {
-                var orderedChannels = new BaseRepository<OrderChannel>(context).GetAll().ToList();
+                var orderedChannels = new BaseRepository<OrderChannel>(context).Get(ch => ch.Order.User.Id == CurrentUserId).ToList();
 
                 var showsRepo = new BaseRepository<TvShow>().GetAll().ToList();
                 var showsByOrderedChannels = showsRepo.Where(show => orderedChannels.Find(x =>

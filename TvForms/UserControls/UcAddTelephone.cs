@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TVContext;
 
-namespace TvForms.UserControls
+namespace TvForms
 {
     public partial class UcAddTelephone : UserControl
     {

@@ -1,4 +1,4 @@
-﻿namespace UserControls
+﻿namespace TvForms
 {
     partial class UcPayments
     {
