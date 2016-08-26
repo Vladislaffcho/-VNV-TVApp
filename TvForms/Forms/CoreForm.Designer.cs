@@ -139,6 +139,7 @@
             this.accountRechargeToolStripMenuItem.Name = "accountRechargeToolStripMenuItem";
             this.accountRechargeToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.accountRechargeToolStripMenuItem.Text = "Account Recharge";
+            this.accountRechargeToolStripMenuItem.Click += new System.EventHandler(this.accountRechargeToolStripMenuItem_Click);
             // 
             // profileToolStripMenuItem
             // 

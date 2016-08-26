@@ -42,10 +42,10 @@ namespace TvForms
 
                         context.SaveChanges();
                     }
-                    MassagesContainer.ChannelsLoadGood();
+                    MessagesContainer.ChannelsLoadGood();
                 }
                 else
-                    MassagesContainer.SomethingWrongInFileLoad();
+                    MessagesContainer.SomethingWrongInFileLoad();
             }
             catch (DbEntityValidationException ex)
             {
@@ -63,7 +63,7 @@ namespace TvForms
             }
             catch (Exception ex)
             {
-                MassagesContainer.SomethingWrongInChannelLoad(ex);
+                MessagesContainer.SomethingWrongInChannelLoad(ex);
             }
         }
 
@@ -115,10 +115,10 @@ namespace TvForms
                         progressBar.Close();
                     }
 
-                    MassagesContainer.ProgrammsLoadGood();
+                    MessagesContainer.ProgrammsLoadGood();
                 }
                 else
-                    MassagesContainer.SomethingWrongInFileLoad();
+                    MessagesContainer.SomethingWrongInFileLoad();
 
             }
             catch (DbEntityValidationException ex)
@@ -138,7 +138,7 @@ namespace TvForms
             }
             catch (Exception ex)
             {
-                MassagesContainer.SomethingWrongInProgrammLoad(ex);
+                MessagesContainer.SomethingWrongInProgrammLoad(ex);
             }
             
         }

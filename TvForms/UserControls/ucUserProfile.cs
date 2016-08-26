@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using TvForms.Forms;
 using TVContext;
+using UserControls;
 
 namespace TvForms
 {
@@ -150,7 +153,7 @@ namespace TvForms
             }
             else
             {
-                MassagesContainer.DisplayError("Select address to update", "Error");
+                MessagesContainer.DisplayError("Select address to update", "Error");
             }
         }
 
@@ -165,7 +168,7 @@ namespace TvForms
             }
             else
             {
-                MassagesContainer.DisplayError("Select address to delete", "Error");
+                MessagesContainer.DisplayError("Select address to delete", "Error");
             }
         }
 
@@ -200,7 +203,7 @@ namespace TvForms
             }
             else
             {
-                MassagesContainer.DisplayError("Select address to update", "Error");
+                MessagesContainer.DisplayError("Select address to update", "Error");
             }
         }
 
@@ -217,7 +220,7 @@ namespace TvForms
             }
             else
             {
-                MassagesContainer.DisplayError("Select address to update", "Error");
+                MessagesContainer.DisplayError("Select address to update", "Error");
             }
         }
 
@@ -231,7 +234,7 @@ namespace TvForms
             }
             else
             {
-                MassagesContainer.DisplayError("Select email to delete", "Error");
+                MessagesContainer.DisplayError("Select email to delete", "Error");
             }
         }
 
@@ -245,7 +248,7 @@ namespace TvForms
             }
             else
             {
-                MassagesContainer.DisplayError("Select telephone to delete", "Error");
+                MessagesContainer.DisplayError("Select telephone to delete", "Error");
             }
         }
 
@@ -256,6 +259,16 @@ namespace TvForms
             {
                 FillUserData();
             }
+        }
+
+        private void btAccountInfo_Click(object sender, EventArgs e)
+        {
+            var actions = new ActionFormLittle(new UcUserAccount(_currentUserId))
+            {
+                Text = @"Account info",
+                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\dollar.ico")
+            };
+            actions.Show();
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace TvForms
+﻿namespace TvForms.Forms
 {
-    partial class UpdateUserDataForm
+    partial class ActionFormLittle
     {
         /// <summary>
         /// Required designer variable.
@@ -28,11 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateUserDataForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActionFormLittle));
+            this.pnActionFormLittle = new System.Windows.Forms.Panel();
             this.btOK = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
-            this.pnUpdateConnect = new System.Windows.Forms.Panel();
             this.SuspendLayout();
+            // 
+            // pnActionFormLittle
+            // 
+            this.pnActionFormLittle.Location = new System.Drawing.Point(2, 5);
+            this.pnActionFormLittle.Name = "pnActionFormLittle";
+            this.pnActionFormLittle.Size = new System.Drawing.Size(440, 135);
+            this.pnActionFormLittle.TabIndex = 3;
             // 
             // btOK
             // 
@@ -40,7 +47,7 @@
             this.btOK.Location = new System.Drawing.Point(251, 156);
             this.btOK.Name = "btOK";
             this.btOK.Size = new System.Drawing.Size(75, 23);
-            this.btOK.TabIndex = 4;
+            this.btOK.TabIndex = 6;
             this.btOK.Text = "OK";
             this.btOK.UseVisualStyleBackColor = true;
             this.btOK.Click += new System.EventHandler(this.btOK_Click);
@@ -51,19 +58,12 @@
             this.btCancel.Location = new System.Drawing.Point(357, 156);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(75, 23);
-            this.btCancel.TabIndex = 3;
+            this.btCancel.TabIndex = 5;
             this.btCancel.Text = "Cancel";
             this.btCancel.UseVisualStyleBackColor = true;
             this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
-            // pnUpdateConnect
-            // 
-            this.pnUpdateConnect.Location = new System.Drawing.Point(2, 12);
-            this.pnUpdateConnect.Name = "pnUpdateConnect";
-            this.pnUpdateConnect.Size = new System.Drawing.Size(440, 135);
-            this.pnUpdateConnect.TabIndex = 2;
-            // 
-            // UpdateUserDataForm
+            // ActionFormLittle
             // 
             this.AcceptButton = this.btOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -71,20 +71,20 @@
             this.CancelButton = this.btCancel;
             this.ClientSize = new System.Drawing.Size(444, 191);
             this.Controls.Add(this.btOK);
+            this.Controls.Add(this.pnActionFormLittle);
             this.Controls.Add(this.btCancel);
-            this.Controls.Add(this.pnUpdateConnect);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "UpdateUserDataForm";
-            this.Text = "Update Data";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UpdateUserDataForm_FormClosing);
+            this.Name = "ActionFormLittle";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Action Form Little";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
+        private System.Windows.Forms.Panel pnActionFormLittle;
         private System.Windows.Forms.Button btOK;
         private System.Windows.Forms.Button btCancel;
-        private System.Windows.Forms.Panel pnUpdateConnect;
     }
 }

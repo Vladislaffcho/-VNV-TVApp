@@ -64,6 +64,7 @@
             this.btViewOrders = new System.Windows.Forms.Button();
             this.tbMoney = new System.Windows.Forms.TextBox();
             this.lbMoney = new System.Windows.Forms.Label();
+            this.btAccountInfo = new System.Windows.Forms.Button();
             this.gbProfile.SuspendLayout();
             this.tcUserContacts.SuspendLayout();
             this.tpAddress.SuspendLayout();
@@ -73,6 +74,7 @@
             // 
             // gbProfile
             // 
+            this.gbProfile.Controls.Add(this.btAccountInfo);
             this.gbProfile.Controls.Add(this.btChangeDetails);
             this.gbProfile.Controls.Add(this.btDeactivateAccount);
             this.gbProfile.Controls.Add(this.tcUserContacts);
@@ -103,9 +105,9 @@
             // 
             // btDeactivateAccount
             // 
-            this.btDeactivateAccount.Location = new System.Drawing.Point(298, 56);
+            this.btDeactivateAccount.Location = new System.Drawing.Point(298, 90);
             this.btDeactivateAccount.Name = "btDeactivateAccount";
-            this.btDeactivateAccount.Size = new System.Drawing.Size(113, 23);
+            this.btDeactivateAccount.Size = new System.Drawing.Size(112, 23);
             this.btDeactivateAccount.TabIndex = 27;
             this.btDeactivateAccount.Text = "Deactivate Account";
             this.btDeactivateAccount.UseVisualStyleBackColor = true;
@@ -413,6 +415,16 @@
             this.lbMoney.TabIndex = 15;
             this.lbMoney.Text = "Money";
             // 
+            // btAccountInfo
+            // 
+            this.btAccountInfo.Location = new System.Drawing.Point(298, 56);
+            this.btAccountInfo.Name = "btAccountInfo";
+            this.btAccountInfo.Size = new System.Drawing.Size(112, 22);
+            this.btAccountInfo.TabIndex = 29;
+            this.btAccountInfo.Text = "Account info";
+            this.btAccountInfo.UseVisualStyleBackColor = true;
+            this.btAccountInfo.Click += new System.EventHandler(this.btAccountInfo_Click);
+            // 
             // UcUserProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -468,5 +480,6 @@
         private System.Windows.Forms.ColumnHeader colCommentTelephone;
         private System.Windows.Forms.Button btChangeDetails;
         private System.Windows.Forms.Button btDeactivateAccount;
+        private System.Windows.Forms.Button btAccountInfo;
     }
 }

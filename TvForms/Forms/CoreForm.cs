@@ -14,7 +14,7 @@ namespace TvForms
     public partial class CoreForm : Form
     {
         //ToDo Review need to store all user data
-        private int CurrentUserId { get; set; } = 2; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
+        private int CurrentUserId { get; set; } = 1; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
 
         //ToDo Review WTF? Naming convention!!!
         private UcTabsForUser UserWindow { get; set; }
@@ -197,6 +197,16 @@ namespace TvForms
         {
             var ab = new About();
             ab.ShowDialog();
+        }
+
+        private void accountRechargeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var actions = new ActionForm(new UсOrdersView(CurrentUserId))
+            {
+                Text = "Account recharge",
+                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\wallet.ico")
+            };
+            actions.Show();
         }
     }
 }

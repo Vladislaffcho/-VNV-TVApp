@@ -83,7 +83,7 @@ namespace TvForms.UserControls
             else
             {
                 tbPassword.Clear();
-                MassagesContainer.DisplayError(errorMessage, "User has not been created");
+                MessagesContainer.DisplayError(errorMessage, "User has not been created");
             }
             return isValid;
         }
@@ -106,7 +106,7 @@ namespace TvForms.UserControls
                 };
 
                 userRepo.Insert(newUser);
-                MassagesContainer.DisplayInfo("Created new user successfully.\nYou may log in with new credentials.",
+                MessagesContainer.DisplayInfo("Created new user successfully.\nYou may log in with new credentials.",
                     "New user has been created");
             }
         }

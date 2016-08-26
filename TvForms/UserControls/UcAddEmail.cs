@@ -69,7 +69,7 @@ namespace UserControls
             }
             else
             {
-                MassagesContainer.DisplayError(errorMessage, "Invalid input");
+                MessagesContainer.DisplayError(errorMessage, "Invalid input");
             }
             return isValidEmail;
         }

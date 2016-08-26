@@ -33,8 +33,8 @@ namespace TvForms
                 var order = orderRepo.Get(o => o.Id == CurrentOrderId).FirstOrDefault();
                 tbTotalPrice.Text = order?.TotalPrice.ToString(CultureInfo.CurrentCulture) ?? "0.00";
 
-                var firstOrDefault = accountRepo.Get(x => x.Id == CurrentUserId).FirstOrDefault();
-                tbAccountBalance.Text = firstOrDefault?.Balance.ToString(CultureInfo.CurrentCulture) ?? "0.00";
+                var balance = accountRepo.Get(x => x.User.Id == CurrentUserId).FirstOrDefault();
+                tbAccountBalance.Text = balance?.Balance.ToString(CultureInfo.CurrentCulture) ?? "0.00";
             }
             
         }
@@ -52,7 +52,7 @@ namespace TvForms
                 
                 item.SubItems.Add(ch.Channel.Name);
                 item.SubItems.Add(ch.Channel.IsAgeLimit ? "+" : "none");
-                item.SubItems.Add(ch.Channel.Price == 0 ? "-" : ch.Channel.Price.ToString(CultureInfo.CurrentCulture));
+                item.SubItems.Add(Math.Abs(ch.Channel.Price) < 0.00 ? "-" : ch.Channel.Price.ToString(CultureInfo.CurrentCulture));
                 lvFavouriteProgs.Items.Add(item);
                 number++;
             }
@@ -86,19 +86,47 @@ namespace TvForms
 
         private void btMakeOrder_Click(object sender, EventArgs e)
         {
-            var acountRepo = new BaseRepository<Account>();
-            var orderRepo = new BaseRepository<Order>();
-            var balance = acountRepo.Get(b => b.User.Id == CurrentUserId).FirstOrDefault();
-            var order = orderRepo.Get(b => b.User.Id == CurrentOrderId).FirstOrDefault();
+            using (var context = new TvDBContext())
+            {
+                var accountRepo = new BaseRepository<Account>(context);
+                var orderRepo = new BaseRepository<Order>(context);
+                var user = new BaseRepository<User>(context).Get(u => u.Id == CurrentUserId).FirstOrDefault();
 
-            if (balance.Balance >= order.TotalPrice)
-            {
-                
+
+                var balance = accountRepo.Get(b => b.User.Id == CurrentUserId).FirstOrDefault();
+                var order = orderRepo.Get(b => b.Id == CurrentOrderId).FirstOrDefault();
+
+                if (balance != null && order != null && balance.Balance >= order.TotalPrice)
+                {
+                    if (order.IsPaid)
+                    {
+                        MessagesContainer.DisplayInfo("Order is paid already", "Attention!!!");
+                        return;
+                    }
+                    order.IsPaid = true;
+                    order.DateOrder = DateTime.Now;
+                    order.FromDate = DateTime.Now;
+                    order.DueDate = DateTime.Now.AddDays(7);
+                    order.User = user;
+                    balance.Balance -= order.TotalPrice;
+
+                    orderRepo.Update(order);
+                    accountRepo.Update(balance);
+
+                    tbTotalPrice.Text = @"0.00";
+                    tbAccountBalance.Text = balance.Balance.ToString(CultureInfo.CurrentCulture);
+
+                    MessagesContainer.DisplayInfo(
+                        $"Order #{order.Id} worth {order.TotalPrice} " + (lbUAH.Text) + " was paid succesfully. " + Environment.NewLine +
+                        $"Total count of channels {order.OrderChannels.Count}", 
+                                                                "Succesfull payment");
+                }
+                else
+                {
+                    MessagesContainer.DisplayError("Your balance is low!!!", "Error");
+                }
             }
-            else
-            {
-                MassagesContainer.DisplayError("", "");
-            }
+            
 
         }
     }

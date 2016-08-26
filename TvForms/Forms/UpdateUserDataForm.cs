@@ -22,6 +22,7 @@ namespace TvForms
         private UcUpdateTelephone ucTelephone = new UcUpdateTelephone();
         private UcUpdateNames ucUserNames = new UcUpdateNames();
 
+
         // constructor receives all the information about data type to be updated
         public UpdateUserDataForm(int recordingId, EUserDetailType type)
         {
@@ -79,6 +80,16 @@ namespace TvForms
                 default:
                     return true; /* return false, change validation */
             }
+        }
+
+        private void btOK_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btCancel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

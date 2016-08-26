@@ -32,14 +32,6 @@ namespace TvForms
         private int UserIdDetect()
         {
 
-            //var userRepo = new BaseRepository<User>();
-            //var userExists = userRepo.Get(x => x.Login == "user" && x.Password == "2222")
-            //    .Include(x => x.UserType)
-            //    .Include(x => x.Orders)
-            //    .FirstOrDefault();
-            //var someRepo = new BaseRepository<Channel>();
-            //var channels = someRepo.Get(x => !x.AgeLimit).ToList();
-
             //go to database and check user or admin exists
             if (tbPassForm_Pass.Text != string.Empty)
             {
@@ -93,7 +85,7 @@ namespace TvForms
             CurrentUserId = UserIdDetect();
 
             if (CurrentUserId != 0) return;
-            MassagesContainer.DisplayError("Incorrect login or password", "Access denied");
+            MessagesContainer.DisplayError("Incorrect login or password", "Access denied");
             e.Cancel = true;
         }
 
@@ -102,5 +94,7 @@ namespace TvForms
             var actions = new AddUserDataForm(EUserDetailType.User);
             actions.ShowDialog();
         }
+
+ 
     }
 }

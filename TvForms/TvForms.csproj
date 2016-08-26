@@ -66,6 +66,12 @@
     <Compile Include="Forms\ActionForm.Designer.cs">
       <DependentUpon>ActionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ActionFormLittle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ActionFormLittle.Designer.cs">
+      <DependentUpon>ActionFormLittle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddUserDataForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,7 +91,7 @@
     <Compile Include="Helpers\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\MassagesContainer.cs" />
+    <Compile Include="Helpers\MessageContainer.cs" />
     <Compile Include="Helpers\EUserDetailType.cs" />
     <Compile Include="Helpers\TextFieldsValidator.cs" />
     <Compile Include="Helpers\Helper.cs" />
@@ -224,6 +230,9 @@
     <EmbeddedResource Include="Forms\ActionForm.resx">
       <DependentUpon>ActionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ActionFormLittle.resx">
+      <DependentUpon>ActionFormLittle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddUserDataForm.resx">
       <DependentUpon>AddUserDataForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -281,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcUpdateTelephone.resx">
       <DependentUpon>UcUpdateTelephone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcUserAccount.resx">
+      <DependentUpon>UcUserAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcUserProfile.resx">
       <DependentUpon>UcUserProfile.cs</DependentUpon>

@@ -184,7 +184,7 @@ namespace TvForms
                         break;
 
                     case CheckState.Indeterminate:
-                        MassagesContainer.DisplayError("Something went wrong in checking/unchecking channels (case CheckState.Indeterminate:)", "Error");
+                        MessagesContainer.DisplayError("Something went wrong in checking/unchecking channels (case CheckState.Indeterminate:)", "Error");
                         break;
 
                     default:
@@ -266,11 +266,6 @@ namespace TvForms
                     context.UserSchedules.RemoveRange(deleteSched);
                     context.OrderChannels.RemoveRange(deleteChann);
                     context.SaveChanges();
-
-                    //foreach (var delSch in deleteSched)
-                    //{
-                    //    userSchRepo.Remove(delSch);
-                    //}
 
                     ControlForShows?.Dispose();
                     ControlForShows = new UcShowsList(CurrentUserId);

@@ -91,7 +91,7 @@
             this.gbUsers.Controls.Add(this.lvUserList);
             this.gbUsers.Location = new System.Drawing.Point(3, 3);
             this.gbUsers.Name = "gbUsers";
-            this.gbUsers.Size = new System.Drawing.Size(622, 310);
+            this.gbUsers.Size = new System.Drawing.Size(844, 447);
             this.gbUsers.TabIndex = 0;
             this.gbUsers.TabStop = false;
             this.gbUsers.Text = "Users";
@@ -100,7 +100,7 @@
             // cbAccountStatus
             // 
             this.cbAccountStatus.AutoSize = true;
-            this.cbAccountStatus.Location = new System.Drawing.Point(422, 113);
+            this.cbAccountStatus.Location = new System.Drawing.Point(505, 114);
             this.cbAccountStatus.Name = "cbAccountStatus";
             this.cbAccountStatus.Size = new System.Drawing.Size(129, 17);
             this.cbAccountStatus.TabIndex = 16;
@@ -109,7 +109,7 @@
             // 
             // btViewPayment
             // 
-            this.btViewPayment.Location = new System.Drawing.Point(512, 86);
+            this.btViewPayment.Location = new System.Drawing.Point(595, 87);
             this.btViewPayment.Name = "btViewPayment";
             this.btViewPayment.Size = new System.Drawing.Size(93, 21);
             this.btViewPayment.TabIndex = 15;
@@ -119,7 +119,7 @@
             // lbSurname
             // 
             this.lbSurname.AutoSize = true;
-            this.lbSurname.Location = new System.Drawing.Point(426, 20);
+            this.lbSurname.Location = new System.Drawing.Point(509, 21);
             this.lbSurname.Name = "lbSurname";
             this.lbSurname.Size = new System.Drawing.Size(49, 13);
             this.lbSurname.TabIndex = 14;
@@ -128,7 +128,7 @@
             // lbName
             // 
             this.lbName.AutoSize = true;
-            this.lbName.Location = new System.Drawing.Point(223, 23);
+            this.lbName.Location = new System.Drawing.Point(306, 24);
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(35, 13);
             this.lbName.TabIndex = 13;
@@ -136,7 +136,7 @@
             // 
             // tbName
             // 
-            this.tbName.Location = new System.Drawing.Point(281, 20);
+            this.tbName.Location = new System.Drawing.Point(364, 21);
             this.tbName.Name = "tbName";
             this.tbName.ReadOnly = true;
             this.tbName.Size = new System.Drawing.Size(121, 20);
@@ -144,7 +144,7 @@
             // 
             // tbSurname
             // 
-            this.tbSurname.Location = new System.Drawing.Point(484, 17);
+            this.tbSurname.Location = new System.Drawing.Point(567, 18);
             this.tbSurname.Name = "tbSurname";
             this.tbSurname.ReadOnly = true;
             this.tbSurname.Size = new System.Drawing.Size(121, 20);
@@ -152,7 +152,7 @@
             // 
             // btViewChannels
             // 
-            this.btViewChannels.Location = new System.Drawing.Point(422, 86);
+            this.btViewChannels.Location = new System.Drawing.Point(505, 87);
             this.btViewChannels.Name = "btViewChannels";
             this.btViewChannels.Size = new System.Drawing.Size(75, 21);
             this.btViewChannels.TabIndex = 10;
@@ -161,7 +161,7 @@
             // 
             // btViewServices
             // 
-            this.btViewServices.Location = new System.Drawing.Point(512, 52);
+            this.btViewServices.Location = new System.Drawing.Point(595, 53);
             this.btViewServices.Name = "btViewServices";
             this.btViewServices.Size = new System.Drawing.Size(93, 21);
             this.btViewServices.TabIndex = 9;
@@ -170,7 +170,7 @@
             // 
             // btViewOrders
             // 
-            this.btViewOrders.Location = new System.Drawing.Point(422, 52);
+            this.btViewOrders.Location = new System.Drawing.Point(505, 53);
             this.btViewOrders.Name = "btViewOrders";
             this.btViewOrders.Size = new System.Drawing.Size(75, 21);
             this.btViewOrders.TabIndex = 8;
@@ -180,7 +180,7 @@
             // cbAdultContent
             // 
             this.cbAdultContent.AutoSize = true;
-            this.cbAdultContent.Location = new System.Drawing.Point(281, 113);
+            this.cbAdultContent.Location = new System.Drawing.Point(364, 114);
             this.cbAdultContent.Name = "cbAdultContent";
             this.cbAdultContent.Size = new System.Drawing.Size(90, 17);
             this.cbAdultContent.TabIndex = 7;
@@ -191,7 +191,7 @@
             // cbStatus
             // 
             this.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbStatus.Location = new System.Drawing.Point(281, 86);
+            this.cbStatus.Location = new System.Drawing.Point(364, 87);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(121, 21);
             this.cbStatus.TabIndex = 5;
@@ -200,7 +200,7 @@
             // lbStatus
             // 
             this.lbStatus.AutoSize = true;
-            this.lbStatus.Location = new System.Drawing.Point(223, 89);
+            this.lbStatus.Location = new System.Drawing.Point(306, 90);
             this.lbStatus.Name = "lbStatus";
             this.lbStatus.Size = new System.Drawing.Size(37, 13);
             this.lbStatus.TabIndex = 4;
@@ -208,7 +208,7 @@
             // 
             // tbMoney
             // 
-            this.tbMoney.Location = new System.Drawing.Point(281, 52);
+            this.tbMoney.Location = new System.Drawing.Point(364, 53);
             this.tbMoney.Name = "tbMoney";
             this.tbMoney.ReadOnly = true;
             this.tbMoney.Size = new System.Drawing.Size(121, 20);
@@ -217,7 +217,7 @@
             // lbMoney
             // 
             this.lbMoney.AutoSize = true;
-            this.lbMoney.Location = new System.Drawing.Point(223, 55);
+            this.lbMoney.Location = new System.Drawing.Point(306, 56);
             this.lbMoney.Name = "lbMoney";
             this.lbMoney.Size = new System.Drawing.Size(39, 13);
             this.lbMoney.TabIndex = 2;
@@ -228,10 +228,10 @@
             this.tcUserContacts.Controls.Add(this.tpAddress);
             this.tcUserContacts.Controls.Add(this.tpEmail);
             this.tcUserContacts.Controls.Add(this.tpTelephone);
-            this.tcUserContacts.Location = new System.Drawing.Point(222, 146);
+            this.tcUserContacts.Location = new System.Drawing.Point(300, 154);
             this.tcUserContacts.Name = "tcUserContacts";
             this.tcUserContacts.SelectedIndex = 0;
-            this.tcUserContacts.Size = new System.Drawing.Size(400, 158);
+            this.tcUserContacts.Size = new System.Drawing.Size(538, 287);
             this.tcUserContacts.TabIndex = 1;
             // 
             // tpAddress
@@ -241,7 +241,7 @@
             this.tpAddress.Location = new System.Drawing.Point(4, 22);
             this.tpAddress.Name = "tpAddress";
             this.tpAddress.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAddress.Size = new System.Drawing.Size(392, 132);
+            this.tpAddress.Size = new System.Drawing.Size(530, 261);
             this.tpAddress.TabIndex = 0;
             this.tpAddress.Text = "Address";
             // 
@@ -254,7 +254,7 @@
             this.lvUserAddress.GridLines = true;
             this.lvUserAddress.Location = new System.Drawing.Point(0, 0);
             this.lvUserAddress.Name = "lvUserAddress";
-            this.lvUserAddress.Size = new System.Drawing.Size(392, 126);
+            this.lvUserAddress.Size = new System.Drawing.Size(530, 258);
             this.lvUserAddress.TabIndex = 0;
             this.lvUserAddress.UseCompatibleStateImageBehavior = false;
             this.lvUserAddress.View = System.Windows.Forms.View.Details;
@@ -281,7 +281,7 @@
             this.tpEmail.Location = new System.Drawing.Point(4, 22);
             this.tpEmail.Name = "tpEmail";
             this.tpEmail.Padding = new System.Windows.Forms.Padding(3);
-            this.tpEmail.Size = new System.Drawing.Size(392, 132);
+            this.tpEmail.Size = new System.Drawing.Size(530, 261);
             this.tpEmail.TabIndex = 1;
             this.tpEmail.Text = "Email";
             // 
@@ -294,7 +294,7 @@
             this.lvUserEmail.GridLines = true;
             this.lvUserEmail.Location = new System.Drawing.Point(0, 0);
             this.lvUserEmail.Name = "lvUserEmail";
-            this.lvUserEmail.Size = new System.Drawing.Size(392, 126);
+            this.lvUserEmail.Size = new System.Drawing.Size(530, 258);
             this.lvUserEmail.TabIndex = 0;
             this.lvUserEmail.UseCompatibleStateImageBehavior = false;
             this.lvUserEmail.View = System.Windows.Forms.View.Details;
@@ -321,7 +321,7 @@
             this.tpTelephone.Location = new System.Drawing.Point(4, 22);
             this.tpTelephone.Name = "tpTelephone";
             this.tpTelephone.Padding = new System.Windows.Forms.Padding(3);
-            this.tpTelephone.Size = new System.Drawing.Size(392, 132);
+            this.tpTelephone.Size = new System.Drawing.Size(530, 261);
             this.tpTelephone.TabIndex = 2;
             this.tpTelephone.Text = "Telephone";
             // 
@@ -334,7 +334,7 @@
             this.lvUserTelephone.GridLines = true;
             this.lvUserTelephone.Location = new System.Drawing.Point(0, 0);
             this.lvUserTelephone.Name = "lvUserTelephone";
-            this.lvUserTelephone.Size = new System.Drawing.Size(392, 126);
+            this.lvUserTelephone.Size = new System.Drawing.Size(527, 258);
             this.lvUserTelephone.TabIndex = 0;
             this.lvUserTelephone.UseCompatibleStateImageBehavior = false;
             this.lvUserTelephone.View = System.Windows.Forms.View.Details;
@@ -366,7 +366,7 @@
             this.lvUserList.HideSelection = false;
             this.lvUserList.Location = new System.Drawing.Point(6, 17);
             this.lvUserList.Name = "lvUserList";
-            this.lvUserList.Size = new System.Drawing.Size(210, 286);
+            this.lvUserList.Size = new System.Drawing.Size(292, 424);
             this.lvUserList.TabIndex = 0;
             this.lvUserList.UseCompatibleStateImageBehavior = false;
             this.lvUserList.View = System.Windows.Forms.View.Details;
@@ -375,30 +375,30 @@
             // colUserID
             // 
             this.colUserID.Text = "ID";
-            this.colUserID.Width = 23;
+            this.colUserID.Width = 38;
             // 
             // colUserLogin
             // 
             this.colUserLogin.Text = "Login";
-            this.colUserLogin.Width = 47;
+            this.colUserLogin.Width = 77;
             // 
             // colUserName
             // 
             this.colUserName.Text = "Name";
-            this.colUserName.Width = 66;
+            this.colUserName.Width = 83;
             // 
             // colUserSurname
             // 
             this.colUserSurname.Text = "Surname";
-            this.colUserSurname.Width = 70;
+            this.colUserSurname.Width = 79;
             // 
-            // ucAdminView
+            // UcAdminView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gbUsers);
             this.Name = "UcAdminView";
-            this.Size = new System.Drawing.Size(628, 321);
+            this.Size = new System.Drawing.Size(850, 453);
             this.gbUsers.ResumeLayout(false);
             this.gbUsers.PerformLayout();
             this.tcUserContacts.ResumeLayout(false);
