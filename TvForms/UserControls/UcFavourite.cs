@@ -83,5 +83,23 @@ namespace TvForms
 
             
         }
+
+        private void btMakeOrder_Click(object sender, EventArgs e)
+        {
+            var acountRepo = new BaseRepository<Account>();
+            var orderRepo = new BaseRepository<Order>();
+            var balance = acountRepo.Get(b => b.User.Id == CurrentUserId).FirstOrDefault();
+            var order = orderRepo.Get(b => b.User.Id == CurrentOrderId).FirstOrDefault();
+
+            if (balance.Balance >= order.TotalPrice)
+            {
+                
+            }
+            else
+            {
+                MassagesContainer.DisplayError("", "");
+            }
+
+        }
     }
 }

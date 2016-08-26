@@ -37,7 +37,7 @@
             this.Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Programm = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btOrder = new System.Windows.Forms.Button();
+            this.btMakeOrder = new System.Windows.Forms.Button();
             this.lbUAH_balance = new System.Windows.Forms.Label();
             this.tbAccountBalance = new System.Windows.Forms.TextBox();
             this.lbAccountBalance = new System.Windows.Forms.Label();
@@ -62,7 +62,7 @@
             // 
             // scContainerFav.Panel2
             // 
-            this.scContainerFav.Panel2.Controls.Add(this.btOrder);
+            this.scContainerFav.Panel2.Controls.Add(this.btMakeOrder);
             this.scContainerFav.Panel2.Controls.Add(this.lbUAH_balance);
             this.scContainerFav.Panel2.Controls.Add(this.tbAccountBalance);
             this.scContainerFav.Panel2.Controls.Add(this.lbAccountBalance);
@@ -88,6 +88,7 @@
             this.lvFavouriteProgs.GridLines = true;
             this.lvFavouriteProgs.Location = new System.Drawing.Point(0, 0);
             this.lvFavouriteProgs.Name = "lvFavouriteProgs";
+            this.lvFavouriteProgs.ShowItemToolTips = true;
             this.lvFavouriteProgs.Size = new System.Drawing.Size(643, 429);
             this.lvFavouriteProgs.TabIndex = 0;
             this.lvFavouriteProgs.UseCompatibleStateImageBehavior = false;
@@ -128,15 +129,16 @@
             this.Programm.Text = "Programm";
             this.Programm.Width = 263;
             // 
-            // btOrder
+            // btMakeOrder
             // 
-            this.btOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btOrder.Location = new System.Drawing.Point(3, 403);
-            this.btOrder.Name = "btOrder";
-            this.btOrder.Size = new System.Drawing.Size(191, 23);
-            this.btOrder.TabIndex = 6;
-            this.btOrder.Text = "Make order";
-            this.btOrder.UseVisualStyleBackColor = false;
+            this.btMakeOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btMakeOrder.Location = new System.Drawing.Point(3, 403);
+            this.btMakeOrder.Name = "btMakeOrder";
+            this.btMakeOrder.Size = new System.Drawing.Size(191, 23);
+            this.btMakeOrder.TabIndex = 6;
+            this.btMakeOrder.Text = "Make order";
+            this.btMakeOrder.UseVisualStyleBackColor = false;
+            this.btMakeOrder.Click += new System.EventHandler(this.btMakeOrder_Click);
             // 
             // lbUAH_balance
             // 
@@ -220,7 +222,7 @@
         private System.Windows.Forms.ColumnHeader Date;
         private System.Windows.Forms.ColumnHeader Time;
         private System.Windows.Forms.ColumnHeader Programm;
-        private System.Windows.Forms.Button btOrder;
+        private System.Windows.Forms.Button btMakeOrder;
         private System.Windows.Forms.Label lbUAH_balance;
         private System.Windows.Forms.TextBox tbAccountBalance;
         private System.Windows.Forms.Label lbAccountBalance;
