@@ -225,11 +225,11 @@
     <Compile Include="UserControls\UcFavourite.Designer.cs">
       <DependentUpon>UcFavourite.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UсAccountRecharge.cs">
+    <Compile Include="UserControls\UсAccountCharge.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\UсAccountRecharge.Designer.cs">
-      <DependentUpon>UсAccountRecharge.cs</DependentUpon>
+    <Compile Include="UserControls\UсAccountCharge.Designer.cs">
+      <DependentUpon>UсAccountCharge.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UсOrdersView.cs">
       <SubType>UserControl</SubType>
@@ -318,8 +318,8 @@
     <EmbeddedResource Include="UserControls\UcFavourite.resx">
       <DependentUpon>UcFavourite.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UсAccountRecharge.resx">
-      <DependentUpon>UсAccountRecharge.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\UсAccountCharge.resx">
+      <DependentUpon>UсAccountCharge.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UсOrdersView.resx">
       <DependentUpon>UсOrdersView.cs</DependentUpon>

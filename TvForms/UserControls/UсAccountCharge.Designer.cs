@@ -1,6 +1,6 @@
 ﻿namespace TvForms
 {
-    partial class UсAccountRecharge
+    partial class UсAccountCharge
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UсAccountRecharge));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UсAccountCharge));
             this.mtbCvvCode = new System.Windows.Forms.MaskedTextBox();
             this.mtbDateCard = new System.Windows.Forms.MaskedTextBox();
             this.mtbCardNumber = new System.Windows.Forms.MaskedTextBox();

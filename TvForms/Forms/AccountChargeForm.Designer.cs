@@ -44,12 +44,14 @@
             // 
             // btCancel
             // 
+            this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btCancel.Location = new System.Drawing.Point(367, 162);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(75, 23);
             this.btCancel.TabIndex = 1;
             this.btCancel.Text = "Cancel";
             this.btCancel.UseVisualStyleBackColor = true;
+            this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
             // btOk
             // 
@@ -59,18 +61,27 @@
             this.btOk.TabIndex = 2;
             this.btOk.Text = "OK";
             this.btOk.UseVisualStyleBackColor = true;
+            this.btOk.Click += new System.EventHandler(this.btOk_Click);
             // 
             // AccountChargeForm
             // 
+            this.AcceptButton = this.btOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btCancel;
             this.ClientSize = new System.Drawing.Size(445, 190);
+            this.ControlBox = false;
             this.Controls.Add(this.btOk);
             this.Controls.Add(this.btCancel);
             this.Controls.Add(this.panChargeAccount);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AccountChargeForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Charge account";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AccountChargeForm_FormClosing);
             this.ResumeLayout(false);
 
         }

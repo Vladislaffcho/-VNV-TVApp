@@ -8,7 +8,7 @@ namespace TvForms
     public partial class UcAllChannels : UserControl
     {
         private readonly BaseRepository<TvShow> _showRepo = new BaseRepository<TvShow>();
-
+        
         private int CurrentUserId { get; set; }
 
         public int CurrentOrderId { get; set; }

@@ -198,7 +198,7 @@ namespace TvForms
         private void accountRechargeToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            var actions = new AccountChargeForm(new UсAccountRecharge(CurrentUserId))
+            var actions = new AccountChargeForm(CurrentUserId)
             {
                 Text = @"Account recharge",
                 Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\mastercard_1450.ico")
