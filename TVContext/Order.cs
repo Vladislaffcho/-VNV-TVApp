@@ -48,9 +48,6 @@ namespace TVContext
         [Required]
         public virtual User User { get; set; }
 
-        //info about this payment
-        public virtual Payment Payment { get; set; }
-
         //info about all ordered servisec and channels
         public virtual ICollection<OrderChannel> OrderChannels { get; set; }
 

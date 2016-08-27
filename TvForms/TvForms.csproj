@@ -109,6 +109,7 @@
     </Compile>
     <Compile Include="Helpers\Md5Helper.cs" />
     <Compile Include="Helpers\ZipHelper.cs" />
+    <Compile Include="IIdentifyUser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Forms\ProgressForm.cs">
       <SubType>Form</SubType>

@@ -1,6 +1,6 @@
 ﻿namespace TvForms
 {
-    partial class ActionForm
+    sealed partial class ActionForm
     {
         /// <summary>
         /// Required designer variable.

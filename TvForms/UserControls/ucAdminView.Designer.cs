@@ -115,6 +115,7 @@
             this.btViewPayment.TabIndex = 15;
             this.btViewPayment.Text = "View Payment";
             this.btViewPayment.UseVisualStyleBackColor = true;
+            this.btViewPayment.Click += new System.EventHandler(this.btViewPayment_Click);
             // 
             // lbSurname
             // 
@@ -158,6 +159,7 @@
             this.btViewChannels.TabIndex = 10;
             this.btViewChannels.Text = "Channels";
             this.btViewChannels.UseVisualStyleBackColor = true;
+            this.btViewChannels.Click += new System.EventHandler(this.btViewChannels_Click);
             // 
             // btViewServices
             // 
@@ -176,6 +178,7 @@
             this.btViewOrders.TabIndex = 8;
             this.btViewOrders.Text = "View Orders";
             this.btViewOrders.UseVisualStyleBackColor = true;
+            this.btViewOrders.Click += new System.EventHandler(this.btViewOrders_Click);
             // 
             // cbAdultContent
             // 

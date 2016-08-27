@@ -7,6 +7,10 @@ namespace TVContext
 {
     public class UserEmail : CommentedEntity
     {
+        public UserEmail()
+        {
+            
+        }
 
         // set unique email address
         [MinLength(5, ErrorMessage = "Too short email (must be 5-50)")]

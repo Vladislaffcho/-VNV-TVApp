@@ -268,5 +268,25 @@ namespace TvForms
             };
             actions.Show();
         }
+
+        private void btViewOrders_Click(object sender, EventArgs e)
+        {
+            var actions = new ActionForm(new UсOrdersView(_currentUserId))
+            {
+                Text = @"User orders history",
+                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\wallet.ico")
+            };
+            actions.Show();
+        }
+
+        private void btViewPayment_Click(object sender, EventArgs e)
+        {
+            var actions = new ActionForm(new UcPayments(_currentUserId))
+            {
+                Text = @"PAYMENTS",
+                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\dollar.ico")
+            };
+            actions.Show();
+        }
     }
 }

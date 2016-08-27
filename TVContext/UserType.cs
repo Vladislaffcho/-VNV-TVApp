@@ -7,6 +7,10 @@ namespace TVContext
     
     public class UserType : CommentedEntity
     {
+        public UserType()
+        {
+            
+        }
 
         //create unique field for type of users
         //[Index(IsUnique = true)]

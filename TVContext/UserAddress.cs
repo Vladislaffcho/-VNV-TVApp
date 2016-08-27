@@ -5,6 +5,10 @@ namespace TVContext
 {
     public class UserAddress : CommentedEntity
     {
+        public UserAddress()
+        {
+            
+        }
 
         //create unique field of user address ???
         [Index(IsUnique = true)]

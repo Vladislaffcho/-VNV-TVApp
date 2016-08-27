@@ -7,6 +7,7 @@ namespace TVContext
 {
     public class OrderChannel : IdentificableEntity
     {
+
         public OrderChannel()
         {
             //Channels = new List<Channel>();

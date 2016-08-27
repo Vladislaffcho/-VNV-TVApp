@@ -19,7 +19,6 @@ namespace TvForms
 
         public bool ValidateControls()
         {
-            
             var errorMessage = "Error(s):" + Environment.NewLine;
             var isValidCardDatas = true;
 

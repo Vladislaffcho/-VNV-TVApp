@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Core;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
@@ -55,6 +58,10 @@ namespace TVContext
                 }
 
             }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error");
+            }
         }
 
         public void Update(TEntity entity)
@@ -80,6 +87,10 @@ namespace TVContext
                 }
 
             }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error");
+            }
 
         }
 
@@ -99,16 +110,20 @@ namespace TVContext
                     foreach (var validationError in validationErrors.ValidationErrors)
                     {
                         Trace.TraceInformation(
-                              "Class: {0}, Property: {1}, Error: {2}",
-                              validationErrors.Entry.Entity.GetType().FullName,
-                              validationError.PropertyName,
-                              validationError.ErrorMessage);
+                            "Class: {0}, Property: {1}, Error: {2}",
+                            validationErrors.Entry.Entity.GetType().FullName,
+                            validationError.PropertyName,
+                            validationError.ErrorMessage);
                     }
-                    
+
                 }
-                
+
             }
-            
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error");
+            }
+
         }
     }
 }

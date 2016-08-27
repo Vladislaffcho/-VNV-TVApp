@@ -6,6 +6,11 @@ namespace TVContext
 {
     public class Payment : IdentificableEntity
     {
+        public Payment()
+        {
+            
+        }
+
         //Payment date
         [Required]
         [Column(TypeName = "datetime2")]

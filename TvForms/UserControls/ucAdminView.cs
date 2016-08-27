@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TVContext;
@@ -11,6 +12,8 @@ namespace TvForms
         // Variable contains selected in users lv user's details
         private int _selectedUser;
 
+        private int CurrentUserId { get; set; }
+
         // used this flag to show / not show dialog box after changing adultContent status on launch or manually
         private bool _adultContentFlag;
 
@@ -19,7 +22,7 @@ namespace TvForms
         //private User _currentUser;
         public UcAdminView(int currentUser)
         {
-            //_currentUser = currentUser;
+            CurrentUserId = currentUser;
             InitializeComponent();
             SetPageView();
         }
@@ -246,6 +249,32 @@ namespace TvForms
                 }
                 _adultContentFlag = false;
             }
+        }
+
+        private void btViewOrders_Click(object sender, EventArgs e)
+        {
+            var actions = new ActionForm(new UсOrdersView(CurrentUserId))
+            {
+                Text = @"User orders history",
+                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\wallet.ico")
+            };
+            actions.Show();
+        }
+
+        private void btViewPayment_Click(object sender, EventArgs e)
+        {
+            var actions = new ActionForm(new UcPayments(CurrentUserId))
+            {
+                Text = @"PAYMENTS",
+                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\dollar.ico")
+            };
+            actions.Show();
+        }
+
+        private void btViewChannels_Click(object sender, EventArgs e)
+        {
+            var actionForm = new ActionForm(new UcAllChannels(CurrentUserId));
+            actionForm.Show();
         }
     }
 }

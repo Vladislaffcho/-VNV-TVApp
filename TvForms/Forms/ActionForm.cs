@@ -1,13 +1,19 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace TvForms
 {
-    public partial class ActionForm : Form
+    public sealed partial class ActionForm : Form
     {
-        public ActionForm(Control con)
+        public ActionForm(Control conrol)
         {
+ 
             InitializeComponent();
-            panActionForm.Controls.Add(con);
+            Height = conrol.Size.Height + 45;
+            Width = conrol.Size.Width + 20;
+            panActionForm.Height = conrol.Size.Height + 45;
+            panActionForm.Width = conrol.Size.Width + 20;
+            panActionForm.Controls.Add(conrol);
         }
 
 

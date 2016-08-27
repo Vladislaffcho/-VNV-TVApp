@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
@@ -35,6 +36,14 @@ namespace TvForms
 
                 var balance = accountRepo.Get(x => x.User.Id == CurrentUserId).FirstOrDefault();
                 tbAccountBalance.Text = balance?.Balance.ToString(CultureInfo.CurrentCulture) ?? "0.00";
+                if (balance?.IsActiveStatus == false || balance?.Balance < 0.00)
+                {
+                    tbAccountBalance.BackColor = Color.LightCoral;
+                }
+                else if(balance?.Balance <= 100.00 && balance.Balance >= 0.00)
+                {
+                    tbAccountBalance.BackColor = Color.Yellow;
+                }
             }
             
         }
@@ -46,7 +55,7 @@ namespace TvForms
             var orChRepository = new BaseRepository<OrderChannel>();
 
             foreach (var ch in orChRepository.Get(x => x.Order.User.Id == CurrentUserId
-                                                    && x.Order.Id == CurrentOrderId).ToList())
+                                                    /*&& x.Order.Id == CurrentOrderId*/).ToList())
             {
                 var item = new ListViewItem(number.ToString());
                 
@@ -96,6 +105,13 @@ namespace TvForms
                 var balance = accountRepo.Get(b => b.User.Id == CurrentUserId).FirstOrDefault();
                 var order = orderRepo.Get(b => b.Id == CurrentOrderId).FirstOrDefault();
 
+                if (balance?.IsActiveStatus == false)
+                {
+                    MessagesContainer.DisplayError("Account is diactivated!" + Environment.NewLine +
+                        "Please connect to administrator", "Attention!!!");
+                    return;
+                }
+
                 if (balance != null && order != null && balance.Balance >= order.TotalPrice)
                 {
                     if (order.IsPaid)
@@ -116,6 +132,16 @@ namespace TvForms
                     tbTotalPrice.Text = @"0.00";
                     tbAccountBalance.Text = balance.Balance.ToString(CultureInfo.CurrentCulture);
 
+                    var payment = new Payment()
+                    {
+                        Id = 1,
+                        Date = order.DateOrder,
+                        Order = order,
+                        Summ = order.TotalPrice
+                    };
+                    var paymentRepo = new BaseRepository<Payment>(context);
+                    paymentRepo.Insert(payment);
+
                     MessagesContainer.DisplayInfo(
                         $"Order #{order.Id} worth {order.TotalPrice} " + (lbUAH.Text) + " was paid succesfully. " + Environment.NewLine +
                         $"Total count of channels {order.OrderChannels.Count}", 
@@ -129,5 +155,7 @@ namespace TvForms
             
 
         }
+
+
     }
 }

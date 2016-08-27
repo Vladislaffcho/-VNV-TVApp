@@ -5,6 +5,10 @@ namespace TVContext
     //TODO Rename to Account
     public class Account : CommentedEntity
     {
+        public Account()
+        {
+            
+        }
 
         //the balance of the account
         [Required]

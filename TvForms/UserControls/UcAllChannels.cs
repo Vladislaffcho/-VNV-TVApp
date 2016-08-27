@@ -13,19 +13,7 @@ namespace TvForms
 
         public int CurrentOrderId { get; set; }
 
-        BaseRepository<Order> _orderRepo = new BaseRepository<Order>();
-
-        //private List<Channel> AllChannels { get; set; }
-
-        //private List<TvShow> AllShows { get; set; }
-
-        //private List<TvShow> CurrentDayShows { get; set; }
-
         private UcShowsList ControlForShows { get; set; }
-
-        //public List<int> FavouriteChannelsId { get; private set; }
-
-        //public List<int> FavouriteShowsId { get; private set; }
 
 
         public UcAllChannels(int userId)
@@ -45,7 +33,7 @@ namespace TvForms
             LoadAllChannelsList();
             LoadTvShowsList();
 
-            this.rtbAllCh_Description.Text = "THIS IS ALL CHANNELS TAB";
+            this.rtbAllCh_Description.Text = @"THIS IS ALL CHANNELS TAB";
         }
 
 

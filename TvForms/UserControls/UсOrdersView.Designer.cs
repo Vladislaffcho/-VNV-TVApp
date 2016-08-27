@@ -45,9 +45,9 @@
             this.lbUAH = new System.Windows.Forms.Label();
             this.tbPrice = new System.Windows.Forms.TextBox();
             this.lbPrice = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dTPOrderDueDate = new System.Windows.Forms.DateTimePicker();
+            this.dTPOrderSrartDate = new System.Windows.Forms.DateTimePicker();
+            this.dTPOrderDate = new System.Windows.Forms.DateTimePicker();
             this.tbSurnameUser = new System.Windows.Forms.TextBox();
             this.tbNameUser = new System.Windows.Forms.TextBox();
             this.lbSurnameUser = new System.Windows.Forms.Label();
@@ -85,7 +85,7 @@
             // 
             // price
             // 
-            this.price.Text = "Price";
+            this.price.Text = "Worth";
             this.price.Width = 53;
             // 
             // gbOrderView
@@ -120,9 +120,9 @@
             this.scOrderView.Panel2.Controls.Add(this.lbUAH);
             this.scOrderView.Panel2.Controls.Add(this.tbPrice);
             this.scOrderView.Panel2.Controls.Add(this.lbPrice);
-            this.scOrderView.Panel2.Controls.Add(this.dateTimePicker3);
-            this.scOrderView.Panel2.Controls.Add(this.dateTimePicker2);
-            this.scOrderView.Panel2.Controls.Add(this.dateTimePicker1);
+            this.scOrderView.Panel2.Controls.Add(this.dTPOrderDueDate);
+            this.scOrderView.Panel2.Controls.Add(this.dTPOrderSrartDate);
+            this.scOrderView.Panel2.Controls.Add(this.dTPOrderDate);
             this.scOrderView.Panel2.Controls.Add(this.tbSurnameUser);
             this.scOrderView.Panel2.Controls.Add(this.tbNameUser);
             this.scOrderView.Panel2.Controls.Add(this.lbSurnameUser);
@@ -155,6 +155,7 @@
             this.lvOrdersView.TabIndex = 1;
             this.lvOrdersView.UseCompatibleStateImageBehavior = false;
             this.lvOrdersView.View = System.Windows.Forms.View.Details;
+            this.lvOrdersView.SelectedIndexChanged += new System.EventHandler(this.lvOrdersView_SelectedIndexChanged);
             // 
             // btPayment
             // 
@@ -165,6 +166,7 @@
             this.btPayment.TabIndex = 39;
             this.btPayment.Text = "Payment view";
             this.btPayment.UseVisualStyleBackColor = false;
+            this.btPayment.Click += new System.EventHandler(this.btPayment_Click);
             // 
             // lbPayment
             // 
@@ -235,26 +237,26 @@
             this.lbPrice.TabIndex = 31;
             this.lbPrice.Text = "Total price";
             // 
-            // dateTimePicker3
+            // dTPOrderDueDate
             // 
-            this.dateTimePicker3.Location = new System.Drawing.Point(102, 160);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker3.TabIndex = 30;
+            this.dTPOrderDueDate.Location = new System.Drawing.Point(102, 160);
+            this.dTPOrderDueDate.Name = "dTPOrderDueDate";
+            this.dTPOrderDueDate.Size = new System.Drawing.Size(200, 20);
+            this.dTPOrderDueDate.TabIndex = 30;
             // 
-            // dateTimePicker2
+            // dTPOrderSrartDate
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(102, 123);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker2.TabIndex = 29;
+            this.dTPOrderSrartDate.Location = new System.Drawing.Point(102, 123);
+            this.dTPOrderSrartDate.Name = "dTPOrderSrartDate";
+            this.dTPOrderSrartDate.Size = new System.Drawing.Size(200, 20);
+            this.dTPOrderSrartDate.TabIndex = 29;
             // 
-            // dateTimePicker1
+            // dTPOrderDate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(102, 89);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 28;
+            this.dTPOrderDate.Location = new System.Drawing.Point(102, 89);
+            this.dTPOrderDate.Name = "dTPOrderDate";
+            this.dTPOrderDate.Size = new System.Drawing.Size(200, 20);
+            this.dTPOrderDate.TabIndex = 28;
             // 
             // tbSurnameUser
             // 
@@ -321,7 +323,7 @@
             this.cbChoseMedia.FormattingEnabled = true;
             this.cbChoseMedia.Items.AddRange(new object[] {
             "Channels",
-            "TV shows"});
+            "Additional services"});
             this.cbChoseMedia.Location = new System.Drawing.Point(7, 5);
             this.cbChoseMedia.Name = "cbChoseMedia";
             this.cbChoseMedia.Size = new System.Drawing.Size(121, 21);
@@ -365,9 +367,9 @@
         private System.Windows.Forms.Label lbUAH;
         private System.Windows.Forms.TextBox tbPrice;
         private System.Windows.Forms.Label lbPrice;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dTPOrderDueDate;
+        private System.Windows.Forms.DateTimePicker dTPOrderSrartDate;
+        private System.Windows.Forms.DateTimePicker dTPOrderDate;
         private System.Windows.Forms.TextBox tbSurnameUser;
         private System.Windows.Forms.TextBox tbNameUser;
         private System.Windows.Forms.Label lbSurnameUser;

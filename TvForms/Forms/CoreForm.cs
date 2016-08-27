@@ -7,10 +7,10 @@ using TVContext;
 
 namespace TvForms
 {
-    public partial class CoreForm : Form
+    public partial class CoreForm : Form//, IIdentifyUser
     {
         //ToDo Review need to store all user data
-        private int CurrentUserId { get; set; } = 3; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
+        private int CurrentUserId { get; set; } = 2; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
 
         //ToDo Review WTF? Naming convention!!!
         private UcTabsForUser UserWindow { get; set; }
@@ -30,6 +30,7 @@ namespace TvForms
             this.Text = nameWindow;
         }
 
+
         private void LoadMainControl()
         {
             if (CurrentUserId != 0)
@@ -47,12 +48,12 @@ namespace TvForms
                             break;
                         case (int) EUserType.CLIENT: //user
                             panelCore.Controls.Add(new UcTabsForUser(CurrentUserId));
-                            
                             break;
                     }
                 }
             }
         }
+
         
         private void ShowLoginForm()
         {
@@ -68,9 +69,6 @@ namespace TvForms
         }
 
 
-
-
-
         private void openXmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //ToDo Naming convention!
@@ -84,8 +82,6 @@ namespace TvForms
 
             XmlFileHelper.ParseChannel(openXmlFile.FileName);
             XmlFileHelper.ParseProgramm(openXmlFile.FileName);
-
-
         }
 
 
@@ -94,17 +90,18 @@ namespace TvForms
             //Uncomment when bookmarks will be ready end specify appropriate one!!!!
             var actions = new ActionForm(new UcUserProfile(CurrentUserId))
             {
-                Text = "User profile",
-                //Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\j01_9602.ico")
+                Text = @"User profile",
+                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\j01_9602.ico")
             };
             actions.Show();
         }
+
 
         private void ordersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var actions = new ActionForm(new UсOrdersView(CurrentUserId))
             {
-                Text = "User orders history",
+                Text = @"User orders history",
                 Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\wallet.ico")
             };
             actions.Show();
@@ -115,19 +112,19 @@ namespace TvForms
         {
             var actions = new ActionForm(new UcPayments(CurrentUserId))
             {
-                Text = "PAYMENTS",
+                Text = @"PAYMENTS",
                 Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\dollar.ico")
             };
             actions.Show();
         }
-
+        
 
         private void xmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var saveFile = new SaveFileDialog()
             {
                 DefaultExt = "*.xml",
-                Filter = "XML Files(*.xml)|*.xml|All files(*.*)|*.*"
+                Filter = @"XML Files(*.xml)|*.xml|All files(*.*)|*.*"
             };
 
             if (saveFile.ShowDialog() == DialogResult.Cancel)
@@ -135,10 +132,9 @@ namespace TvForms
 
             XmlFileHelper.XmlFavouriteWriter(saveFile.FileName, CurrentUserId);
 
-            MessageBox.Show("Файл XML сохранен", "Save",
+            MessageBox.Show(@"Файл XML сохранен", @"Save",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
 
 
         private void zipToolStripMenuItem_Click(object sender, EventArgs e)
@@ -147,7 +143,7 @@ namespace TvForms
             var saveFile = new SaveFileDialog()
             {
                 DefaultExt = "*.zip",
-                Filter = "ZIP Files(*.zip)|*.zip"
+                Filter = @"ZIP Files(*.zip)|*.zip"
             };
 
             if (saveFile.ShowDialog() == DialogResult.Cancel)
@@ -157,9 +153,10 @@ namespace TvForms
             ZipHelper.CreateZipFile(saveFile.FileName, saveFile.FileName.Split('.')[0] + ".xml");
             Helper.DeleteFileIfExist(saveFile.FileName.Split('.')[0] + ".xml");
 
-            MessageBox.Show("Файл ZIP сохранен", "Save",
+            MessageBox.Show(@"Файл ZIP сохранен", @"Save",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
 
         private void CoreForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -184,6 +181,7 @@ namespace TvForms
             }
         }
 
+
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
@@ -197,6 +195,13 @@ namespace TvForms
 
         private void accountRechargeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var acc = new BaseRepository<Account>().Get(a => a.User.Id == CurrentUserId).FirstOrDefault();
+            if (acc?.IsActiveStatus == false)
+            {
+                MessagesContainer.DisplayError("Account is diactivated!" + Environment.NewLine +
+                                               "Please connect to administrator", "Attention!!!");
+                return;
+            }
 
             var actions = new AccountChargeForm(CurrentUserId)
             {

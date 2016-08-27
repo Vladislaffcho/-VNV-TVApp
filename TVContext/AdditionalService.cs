@@ -5,6 +5,10 @@ namespace TVContext
 {
     public class AdditionalService : IdentificableEntity
     {
+        public AdditionalService()
+        {
+            
+        }
 
         //this service name
         [MinLength(2)]

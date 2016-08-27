@@ -41,11 +41,11 @@
             this.date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.summ = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.orderId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.gbPayments = new System.Windows.Forms.GroupBox();
-            this.btChargeAccount = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lbBallance = new System.Windows.Forms.Label();
             this.lbUAH = new System.Windows.Forms.Label();
+            this.tbBalance = new System.Windows.Forms.TextBox();
+            this.lbBallance = new System.Windows.Forms.Label();
+            this.btChargeAccount = new System.Windows.Forms.Button();
+            this.gbPayments = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.scPayments)).BeginInit();
             this.scPayments.Panel1.SuspendLayout();
             this.scPayments.Panel2.SuspendLayout();
@@ -62,6 +62,7 @@
             this.btOrderView.TabIndex = 39;
             this.btOrderView.Text = "Order view";
             this.btOrderView.UseVisualStyleBackColor = false;
+            this.btOrderView.Click += new System.EventHandler(this.btOrderView_Click);
             // 
             // lbOrder
             // 
@@ -117,7 +118,7 @@
             // scPayments.Panel2
             // 
             this.scPayments.Panel2.Controls.Add(this.lbUAH);
-            this.scPayments.Panel2.Controls.Add(this.textBox1);
+            this.scPayments.Panel2.Controls.Add(this.tbBalance);
             this.scPayments.Panel2.Controls.Add(this.lbBallance);
             this.scPayments.Panel2.Controls.Add(this.btChargeAccount);
             this.scPayments.Panel2.Controls.Add(this.btOrderView);
@@ -143,6 +144,7 @@
             this.lvPayments.FullRowSelect = true;
             this.lvPayments.GridLines = true;
             this.lvPayments.Location = new System.Drawing.Point(0, 0);
+            this.lvPayments.MultiSelect = false;
             this.lvPayments.Name = "lvPayments";
             this.lvPayments.ShowItemToolTips = true;
             this.lvPayments.Size = new System.Drawing.Size(451, 297);
@@ -150,16 +152,17 @@
             this.lvPayments.TabIndex = 1;
             this.lvPayments.UseCompatibleStateImageBehavior = false;
             this.lvPayments.View = System.Windows.Forms.View.Details;
+            this.lvPayments.SelectedIndexChanged += new System.EventHandler(this.lvPayments_SelectedIndexChanged);
             // 
             // paymentId
             // 
             this.paymentId.Text = "ID";
-            this.paymentId.Width = 33;
+            this.paymentId.Width = 57;
             // 
             // userLogin
             // 
             this.userLogin.Text = "Login";
-            this.userLogin.Width = 81;
+            this.userLogin.Width = 101;
             // 
             // date
             // 
@@ -169,12 +172,48 @@
             // summ
             // 
             this.summ.Text = "Summ";
-            this.summ.Width = 49;
+            this.summ.Width = 65;
             // 
             // orderId
             // 
             this.orderId.Text = "Order number";
-            this.orderId.Width = 62;
+            this.orderId.Width = 100;
+            // 
+            // lbUAH
+            // 
+            this.lbUAH.AutoSize = true;
+            this.lbUAH.Location = new System.Drawing.Point(88, 123);
+            this.lbUAH.Name = "lbUAH";
+            this.lbUAH.Size = new System.Drawing.Size(27, 13);
+            this.lbUAH.TabIndex = 43;
+            this.lbUAH.Text = "грн.";
+            // 
+            // tbBalance
+            // 
+            this.tbBalance.Location = new System.Drawing.Point(9, 120);
+            this.tbBalance.Name = "tbBalance";
+            this.tbBalance.Size = new System.Drawing.Size(73, 20);
+            this.tbBalance.TabIndex = 42;
+            // 
+            // lbBallance
+            // 
+            this.lbBallance.AutoSize = true;
+            this.lbBallance.Location = new System.Drawing.Point(9, 104);
+            this.lbBallance.Name = "lbBallance";
+            this.lbBallance.Size = new System.Drawing.Size(48, 13);
+            this.lbBallance.TabIndex = 41;
+            this.lbBallance.Text = "Ballance";
+            // 
+            // btChargeAccount
+            // 
+            this.btChargeAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btChargeAccount.Location = new System.Drawing.Point(9, 260);
+            this.btChargeAccount.Name = "btChargeAccount";
+            this.btChargeAccount.Size = new System.Drawing.Size(146, 23);
+            this.btChargeAccount.TabIndex = 40;
+            this.btChargeAccount.Text = "Charge account";
+            this.btChargeAccount.UseVisualStyleBackColor = false;
+            this.btChargeAccount.Click += new System.EventHandler(this.btChargeAccount_Click);
             // 
             // gbPayments
             // 
@@ -186,41 +225,6 @@
             this.gbPayments.TabIndex = 2;
             this.gbPayments.TabStop = false;
             this.gbPayments.Text = "Payments";
-            // 
-            // btChargeAccount
-            // 
-            this.btChargeAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btChargeAccount.Location = new System.Drawing.Point(9, 260);
-            this.btChargeAccount.Name = "btChargeAccount";
-            this.btChargeAccount.Size = new System.Drawing.Size(146, 23);
-            this.btChargeAccount.TabIndex = 40;
-            this.btChargeAccount.Text = "Charge account";
-            this.btChargeAccount.UseVisualStyleBackColor = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(9, 120);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(73, 20);
-            this.textBox1.TabIndex = 42;
-            // 
-            // lbBallance
-            // 
-            this.lbBallance.AutoSize = true;
-            this.lbBallance.Location = new System.Drawing.Point(9, 104);
-            this.lbBallance.Name = "lbBallance";
-            this.lbBallance.Size = new System.Drawing.Size(48, 13);
-            this.lbBallance.TabIndex = 41;
-            this.lbBallance.Text = "Ballance";
-            // 
-            // lbUAH
-            // 
-            this.lbUAH.AutoSize = true;
-            this.lbUAH.Location = new System.Drawing.Point(88, 123);
-            this.lbUAH.Name = "lbUAH";
-            this.lbUAH.Size = new System.Drawing.Size(27, 13);
-            this.lbUAH.TabIndex = 43;
-            this.lbUAH.Text = "грн.";
             // 
             // UcPayments
             // 
@@ -256,7 +260,7 @@
         private System.Windows.Forms.ColumnHeader summ;
         private System.Windows.Forms.ColumnHeader orderId;
         private System.Windows.Forms.Label lbUAH;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbBalance;
         private System.Windows.Forms.Label lbBallance;
         private System.Windows.Forms.Button btChargeAccount;
         private System.Windows.Forms.GroupBox gbPayments;

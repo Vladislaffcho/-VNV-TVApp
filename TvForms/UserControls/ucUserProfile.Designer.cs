@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gbProfile = new System.Windows.Forms.GroupBox();
+            this.btAccountInfo = new System.Windows.Forms.Button();
             this.btChangeDetails = new System.Windows.Forms.Button();
             this.btDeactivateAccount = new System.Windows.Forms.Button();
             this.tcUserContacts = new System.Windows.Forms.TabControl();
@@ -64,7 +65,6 @@
             this.btViewOrders = new System.Windows.Forms.Button();
             this.tbMoney = new System.Windows.Forms.TextBox();
             this.lbMoney = new System.Windows.Forms.Label();
-            this.btAccountInfo = new System.Windows.Forms.Button();
             this.gbProfile.SuspendLayout();
             this.tcUserContacts.SuspendLayout();
             this.tpAddress.SuspendLayout();
@@ -92,6 +92,16 @@
             this.gbProfile.TabIndex = 0;
             this.gbProfile.TabStop = false;
             this.gbProfile.Text = "Profile";
+            // 
+            // btAccountInfo
+            // 
+            this.btAccountInfo.Location = new System.Drawing.Point(298, 56);
+            this.btAccountInfo.Name = "btAccountInfo";
+            this.btAccountInfo.Size = new System.Drawing.Size(112, 22);
+            this.btAccountInfo.TabIndex = 29;
+            this.btAccountInfo.Text = "Account info";
+            this.btAccountInfo.UseVisualStyleBackColor = true;
+            this.btAccountInfo.Click += new System.EventHandler(this.btAccountInfo_Click);
             // 
             // btChangeDetails
             // 
@@ -354,6 +364,7 @@
             this.btViewPayment.TabIndex = 24;
             this.btViewPayment.Text = "View Payment";
             this.btViewPayment.UseVisualStyleBackColor = true;
+            this.btViewPayment.Click += new System.EventHandler(this.btViewPayment_Click);
             // 
             // lbSurname
             // 
@@ -397,6 +408,7 @@
             this.btViewOrders.TabIndex = 17;
             this.btViewOrders.Text = "View Orders";
             this.btViewOrders.UseVisualStyleBackColor = true;
+            this.btViewOrders.Click += new System.EventHandler(this.btViewOrders_Click);
             // 
             // tbMoney
             // 
@@ -414,16 +426,6 @@
             this.lbMoney.Size = new System.Drawing.Size(39, 13);
             this.lbMoney.TabIndex = 15;
             this.lbMoney.Text = "Money";
-            // 
-            // btAccountInfo
-            // 
-            this.btAccountInfo.Location = new System.Drawing.Point(298, 56);
-            this.btAccountInfo.Name = "btAccountInfo";
-            this.btAccountInfo.Size = new System.Drawing.Size(112, 22);
-            this.btAccountInfo.TabIndex = 29;
-            this.btAccountInfo.Text = "Account info";
-            this.btAccountInfo.UseVisualStyleBackColor = true;
-            this.btAccountInfo.Click += new System.EventHandler(this.btAccountInfo_Click);
             // 
             // UcUserProfile
             // 
