@@ -76,18 +76,14 @@ namespace TvForms
         // save in case of valid number
         public void SaveAddedDetails(int UserId)
         {
-            TvDBContext context = new TvDBContext();
-            var userPhoneRepo = new BaseRepository<UserPhone>(context);
-            var typeConnectRepo = new BaseRepository<TypeConnect>(context);
-            var userRepo = new BaseRepository<User>(context);
-            UserPhone number = new UserPhone
+            var userPhoneRepo = new BaseRepository<UserPhone>();
+            userPhoneRepo.Insert(new UserPhone
             {
                 Number = tbNumber.Text.GetInt(),
                 Comment = tbComment.Text,
-                TypeConnect = typeConnectRepo.Get(x => x.NameType == cbNumberType.Text).First(),
-                User = userRepo.Get(l => l.Id == UserId).First()
-            };
-            userPhoneRepo.Insert(number);
+                TypeConnect = userPhoneRepo._context.TypeConnects.Where(x => x.NameType == cbNumberType.Text).First(),
+                User = userPhoneRepo._context.Users.Where(l => l.Id == UserId).First()
+            });
         }
     }
 }

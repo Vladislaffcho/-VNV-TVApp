@@ -49,15 +49,21 @@ namespace TvForms
             return userRepo.Get(x => x.EmailName == email).Any();
         }
 
-        public static bool IsValidPhone(this string number)
-        {
-            return Regex.IsMatch(number, @"^([0-9]{5,9})$");
-        }
-
         public static bool IsUniqueNumber(this int number)
         {
             var userRepo = new BaseRepository<UserPhone>();
             return userRepo.Get(x => x.Number == number).Any();
+        }
+
+        public static bool IsUniqueAddress(this string address)
+        {
+            var userRepo = new BaseRepository<UserAddress>();
+            return userRepo.Get(x => x.Address == address).Any();
+        }
+
+        public static bool IsValidPhone(this string number)
+        {
+            return Regex.IsMatch(number, @"^([0-9]{5,9})$");
         }
 
         public static bool IsValidComment(this string comment)

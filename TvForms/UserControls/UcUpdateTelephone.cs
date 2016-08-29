@@ -8,43 +8,36 @@ namespace TvForms
 {
     public partial class UcUpdateTelephone : UserControl
     {
-        private int _phoneId;
-        UserPhone _phone = new UserPhone();
+        // create variable for further validation
+        private int _phoneNumber;
         public UcUpdateTelephone()
         {
             InitializeComponent();
         }
 
-        public void UpdateTelephone(int recordingId)
-        {
-            _phoneId = recordingId;
-            SetControlView();
-        }
-
-        private void SetControlView()
+        public void UpdateTelephone(int phoneId)
         {
             int i = 0;
-            using (var context = new TvDBContext())
-            {
-                var types = from t in context.TypeConnects
-                            select t;
+            var phoneRepo = new BaseRepository<UserPhone>();
+            var phoneToUpdate = phoneRepo.Get(c => c.Id == phoneId).First();
+            var types = phoneRepo._context.TypeConnects.Distinct();
 
-                _phone = context.UserPhones.First(c => c.Id == _phoneId);
-                tbNumber.Text = _phone.Number.ToString();
-                tbComment.Text = _phone.Comment;
-                foreach (var typeConnect in types)
+            _phoneNumber = phoneToUpdate.Number;
+            tbNumber.Text = phoneToUpdate.Number.ToString();
+            tbComment.Text = phoneToUpdate.Comment;
+            foreach (var typeConnect in types)
+            {
+                cbPhoneType.Items.Add(typeConnect.NameType);
+                if (typeConnect.NameType == phoneToUpdate.TypeConnect.NameType)
                 {
-                    cbPhoneType.Items.Add(typeConnect.NameType);
-                    if (typeConnect.NameType == _phone.TypeConnect.NameType)
-                    {
-                        cbPhoneType.SelectedIndex = i;
-                    }
-                    i++;
+                    cbPhoneType.SelectedIndex = i;
                 }
+                i++;
             }
         }
 
-        public bool ValidateControls()
+        // validate tb fields once OK button has been pressed
+        public bool ValidateControls(int phoneId)
         {
             string errorMessage = "Error:";
             bool isValidNumber = true;
@@ -55,7 +48,7 @@ namespace TvForms
                     errorMessage += "\nPlease enter 5 to 9 phone number digits";
                     isValidNumber = false;
                 }
-                else if (tbNumber.Text.Trim().GetInt().IsUniqueNumber())
+                else if (tbNumber.Text.Trim() != _phoneNumber.ToString() && tbNumber.Text.Trim().GetInt().IsUniqueNumber())
                 {
                     errorMessage += "\nNumber already exists. Please enter another one";
                     isValidNumber = false;
@@ -75,7 +68,7 @@ namespace TvForms
 
             if (isValidNumber)
             {
-                SaveAddedDetails();
+                SaveAddedDetails(phoneId);
             }
             else
             {
@@ -85,20 +78,16 @@ namespace TvForms
         }
 
         // save in case of valid number
-        public void SaveAddedDetails()
+        public void SaveAddedDetails(int phoneId)
         {
-            using (var context = new TvDBContext())
-            {
-                var userPhoneRepo = new BaseRepository<UserPhone>(context);
-                var typeConnectRepo = new BaseRepository<TypeConnect>(context);
-                var numberToUpdate = userPhoneRepo.Get(x => x.Id == _phoneId)
-                    .Include(x => x.TypeConnect)
-                    .Include(x => x.User).First();
-                numberToUpdate.Number = tbNumber.Text.GetInt();
-                numberToUpdate.Comment = tbComment.Text;
-                numberToUpdate.TypeConnect = typeConnectRepo.Get(l => l.NameType == cbPhoneType.SelectedItem.ToString()).First();
-                userPhoneRepo.Update(numberToUpdate);
-            }
+            var userPhoneRepo = new BaseRepository<UserPhone>();
+            var numberToUpdate = userPhoneRepo.Get(x => x.Id == phoneId)
+                .Include(x => x.TypeConnect)
+                .Include(x => x.User).First();
+            numberToUpdate.Number = tbNumber.Text.GetInt();
+            numberToUpdate.Comment = tbComment.Text;
+            numberToUpdate.TypeConnect = userPhoneRepo._context.TypeConnects.Where(l => l.NameType == cbPhoneType.SelectedItem.ToString()).First();
+            userPhoneRepo.Update(numberToUpdate);
         }
     }
 }

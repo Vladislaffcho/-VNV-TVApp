@@ -47,6 +47,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -58,50 +60,61 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <Compile Include="ActionForm.cs">
+    <Compile Include="Forms\AccountChargeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ActionForm.Designer.cs">
+    <Compile Include="Forms\AccountChargeForm.Designer.cs">
+      <DependentUpon>AccountChargeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ActionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ActionForm.Designer.cs">
       <DependentUpon>ActionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddUserDataForm.cs">
+    <Compile Include="Forms\AcFLittleWithoutValid.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddUserDataForm.Designer.cs">
+    <Compile Include="Forms\AcFLittleWithoutValid.Designer.cs">
+      <DependentUpon>AcFLittleWithoutValid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddUserDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddUserDataForm.Designer.cs">
       <DependentUpon>AddUserDataForm.cs</DependentUpon>
     </Compile>
-=======
->>>>>>> ucChannelShowInfo
-    <Compile Include="CoreForm.cs">
+    <Compile Include="Forms\CoreForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CoreForm.Designer.cs">
+    <Compile Include="Forms\CoreForm.Designer.cs">
       <DependentUpon>CoreForm.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="DeleteUserData.cs" />
-    <Compile Include="Helper.cs" />
-=======
-    <Compile Include="Helper.cs" />
-    <Compile Include="PassForm - Copy.cs">
+    <Compile Include="Helpers\About.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PassForm - Copy.Designer.cs">
-      <DependentUpon>PassForm - Copy.cs</DependentUpon>
+    <Compile Include="Helpers\About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
     </Compile>
->>>>>>> ucChannelShowInfo
-    <Compile Include="PassForm.cs">
+    <Compile Include="Helpers\MessageContainer.cs" />
+    <Compile Include="Helpers\EUserDetailType.cs" />
+    <Compile Include="Helpers\TextFieldsValidator.cs" />
+    <Compile Include="Helpers\Helper.cs" />
+    <Compile Include="Forms\PassForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PassForm.Designer.cs">
+    <Compile Include="Forms\PassForm.Designer.cs">
       <DependentUpon>PassForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Md5Helper.cs" />
+    <Compile Include="Helpers\ZipHelper.cs" />
+    <Compile Include="IIdentifyUser.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="ProgressForm.cs">
+    <Compile Include="Forms\ProgressForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProgressForm.Designer.cs">
+    <Compile Include="Forms\ProgressForm.Designer.cs">
       <DependentUpon>ProgressForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -110,128 +123,207 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="ucAddAddress.cs">
+    <Compile Include="UserControls\UcAddEmail.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucAddAddress.Designer.cs">
-      <DependentUpon>ucAddAddress.cs</DependentUpon>
+    <Compile Include="UserControls\UcAddEmail.Designer.cs">
+      <DependentUpon>UcAddEmail.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucAdminView.cs">
+    <Compile Include="UserControls\UcAddTelephone.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucAdminView.Designer.cs">
-      <DependentUpon>ucAdminView.cs</DependentUpon>
+    <Compile Include="UserControls\UcAddTelephone.Designer.cs">
+      <DependentUpon>UcAddTelephone.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucAllChannels.cs">
-=======
-    <Compile Include="TabsForUser.cs">
->>>>>>> ucChannelShowInfo
+    <Compile Include="UserControls\UcPayments.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TabsForUser.Designer.cs">
-      <DependentUpon>TabsForUser.cs</DependentUpon>
+    <Compile Include="UserControls\UcPayments.Designer.cs">
+      <DependentUpon>UcPayments.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="ucUpdateAddress.cs">
+    <Compile Include="UserControls\UcRegisterNewUser.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucUpdateAddress.Designer.cs">
-      <DependentUpon>ucUpdateAddress.cs</DependentUpon>
+    <Compile Include="UserControls\UcRegisterNewUser.Designer.cs">
+      <DependentUpon>UcRegisterNewUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucUserProfile.cs">
+    <Compile Include="UserControls\UcTabsForUser.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucUserProfile.Designer.cs">
-      <DependentUpon>ucUserProfile.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ucUserView.cs">
-=======
-    <Compile Include="ucAdminView.cs">
->>>>>>> ucChannelShowInfo
+    <Compile Include="UserControls\UcAddAddress.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucAdminView.Designer.cs">
-      <DependentUpon>ucAdminView.cs</DependentUpon>
+    <Compile Include="UserControls\UcAddAddress.Designer.cs">
+      <DependentUpon>UcAddAddress.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucChannelShowInfo.cs">
+    <Compile Include="UserControls\UcAdminView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucChannels.Designer.cs">
-      <DependentUpon>ucChannelShowInfo.cs</DependentUpon>
+    <Compile Include="UserControls\UcAdminView.Designer.cs">
+      <DependentUpon>UcAdminView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucShowProgramsListV.cs">
+    <Compile Include="UserControls\UcTabsForUser.Designer.cs">
+      <DependentUpon>UcTabsForUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcUpdateAddress.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucShowProgramsListV.Designer.cs">
-      <DependentUpon>ucShowProgramsListV.cs</DependentUpon>
+    <Compile Include="UserControls\UcUpdateAddress.Designer.cs">
+      <DependentUpon>UcUpdateAddress.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="UpdateUserDataForm.cs">
+    <Compile Include="UserControls\UcUpdateEmail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcUpdateEmail.Designer.cs">
+      <DependentUpon>UcUpdateEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcUpdateNames.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcUpdateNames.Designer.cs">
+      <DependentUpon>UcUpdateNames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcUpdateTelephone.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcUpdateTelephone.Designer.cs">
+      <DependentUpon>UcUpdateTelephone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcUserAccount.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcUserAccount.Designer.cs">
+      <DependentUpon>UcUserAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcUserProfile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcUserProfile.Designer.cs">
+      <DependentUpon>UcUserProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcAllChannels.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcAllChannels.Designer.cs">
+      <DependentUpon>UcAllChannels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcShowsList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcShowsList.Designer.cs">
+      <DependentUpon>UcShowsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UpdateUserDataForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UpdateUserDataForm.Designer.cs">
+    <Compile Include="Forms\UpdateUserDataForm.Designer.cs">
       <DependentUpon>UpdateUserDataForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\XmlFileHelper.cs" />
+    <Compile Include="UserControls\UcFavourite.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcFavourite.Designer.cs">
+      <DependentUpon>UcFavourite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UсAccountCharge.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UсAccountCharge.Designer.cs">
+      <DependentUpon>UсAccountCharge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UсOrdersView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UсOrdersView.Designer.cs">
+      <DependentUpon>UсOrdersView.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ActionForm.resx">
+    <EmbeddedResource Include="Forms\AccountChargeForm.resx">
+      <DependentUpon>AccountChargeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ActionForm.resx">
       <DependentUpon>ActionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddUserDataForm.resx">
+    <EmbeddedResource Include="Forms\AcFLittleWithoutValid.resx">
+      <DependentUpon>AcFLittleWithoutValid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddUserDataForm.resx">
       <DependentUpon>AddUserDataForm.cs</DependentUpon>
     </EmbeddedResource>
-=======
-    <Compile Include="XmlFileHelper.cs" />
-  </ItemGroup>
-  <ItemGroup>
->>>>>>> ucChannelShowInfo
-    <EmbeddedResource Include="CoreForm.resx">
+    <EmbeddedResource Include="Forms\CoreForm.resx">
       <DependentUpon>CoreForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PassForm - Copy.resx">
-      <DependentUpon>PassForm - Copy.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PassForm.resx">
+    <EmbeddedResource Include="Forms\PassForm.resx">
       <DependentUpon>PassForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProgressForm.resx">
+    <EmbeddedResource Include="Forms\ProgressForm.resx">
       <DependentUpon>ProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Helpers\About.resx">
+      <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-<<<<<<< HEAD
-    <EmbeddedResource Include="ucAddAddress.resx">
-      <DependentUpon>ucAddAddress.cs</DependentUpon>
-=======
-    <EmbeddedResource Include="TabsForUser.resx">
-      <DependentUpon>TabsForUser.cs</DependentUpon>
->>>>>>> ucChannelShowInfo
+    <EmbeddedResource Include="UserControls\UcAddAddress.resx">
+      <DependentUpon>UcAddAddress.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucAdminView.resx">
-      <DependentUpon>ucAdminView.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\UcAddEmail.resx">
+      <DependentUpon>UcAddEmail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucChannelShowInfo.resx">
-      <DependentUpon>ucChannelShowInfo.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\UcAddTelephone.resx">
+      <DependentUpon>UcAddTelephone.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
-    <EmbeddedResource Include="ucUpdateAddress.resx">
-      <DependentUpon>ucUpdateAddress.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\UcPayments.resx">
+      <DependentUpon>UcPayments.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucUserProfile.resx">
-      <DependentUpon>ucUserProfile.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\UcRegisterNewUser.resx">
+      <DependentUpon>UcRegisterNewUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucUserView.resx">
-      <DependentUpon>ucUserView.cs</DependentUpon>
-=======
-    <EmbeddedResource Include="ucShowProgramsListV.resx">
-      <DependentUpon>ucShowProgramsListV.cs</DependentUpon>
->>>>>>> ucChannelShowInfo
+    <EmbeddedResource Include="UserControls\UcTabsForUser.resx">
+      <DependentUpon>UcTabsForUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UpdateUserDataForm.resx">
+    <EmbeddedResource Include="UserControls\UcAdminView.resx">
+      <DependentUpon>UcAdminView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcAllChannels.resx">
+      <DependentUpon>UcAllChannels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcShowsList.resx">
+      <DependentUpon>UcShowsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcUpdateAddress.resx">
+      <DependentUpon>UcUpdateAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcUpdateEmail.resx">
+      <DependentUpon>UcUpdateEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcUpdateNames.resx">
+      <DependentUpon>UcUpdateNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcUpdateTelephone.resx">
+      <DependentUpon>UcUpdateTelephone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcUserAccount.resx">
+      <DependentUpon>UcUserAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcUserProfile.resx">
+      <DependentUpon>UcUserProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UpdateUserDataForm.resx">
       <DependentUpon>UpdateUserDataForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcFavourite.resx">
+      <DependentUpon>UcFavourite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UсAccountCharge.resx">
+      <DependentUpon>UсAccountCharge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UсOrdersView.resx">
+      <DependentUpon>UсOrdersView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -243,6 +335,12 @@
       <Project>{4915d8db-f82b-4046-9ca9-b697da0013f8}</Project>
       <Name>TVContext</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\TVset_2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\TVset_1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,8 +8,8 @@ namespace TvForms
 {
     public partial class UcUpdateAddress : UserControl
     {
-        private int _addressID;
-        UserAddress _address = new UserAddress();
+        // create variable for further validation
+        private string _userAddress;
         public UcUpdateAddress()
         {
             InitializeComponent();
@@ -17,42 +17,42 @@ namespace TvForms
 
         public void UpdateAddress(int addressID)
         {
-            _addressID = addressID;
-            SetControlView();
-        }
-
-        private void SetControlView()
-        {
             int i = 0;
-            using (var context = new TvDBContext())
-            {
-                var types = from t in context.TypeConnects
-                            select t;
-                types.ToList();
+            var addressRepo = new BaseRepository<UserAddress>();
+            var addressToUpdate = addressRepo.Get(c => c.Id == addressID).First();
+            var types = addressRepo._context.TypeConnects.Distinct();
 
-                _address = context.UserAddresses.First(c => c.Id == _addressID);
-                tbUserAddress.Text = _address.Address;
-                tbComment.Text = _address.Comment;
-                foreach (var typeConnect in types)
+            _userAddress = addressToUpdate.Address;
+
+            tbUserAddress.Text = addressToUpdate.Address;
+            tbComment.Text = addressToUpdate.Comment;
+            foreach (var typeConnect in types)
+            {
+                cbAddressType.Items.Add(typeConnect.NameType);
+                if (typeConnect.NameType == addressToUpdate.TypeConnect.NameType)
                 {
-                    cbAddressType.Items.Add(typeConnect.NameType);
-                    if (typeConnect.NameType == _address.TypeConnect.NameType)
-                    {
-                        cbAddressType.SelectedIndex = i;
-                    }
-                    i++;
+                    cbAddressType.SelectedIndex = i;
                 }
+                i++;
             }
         }
+        
 
         // validate entered data
-        public bool ValidateControls()
+        public bool ValidateControls(int addressId)
         {
             string errorMessage = "Error:";
             bool isValidAddress = true;
-            if (tbUserAddress.Text.Trim() == String.Empty || tbUserAddress.Text.Trim().Length < 5)
+            if (tbUserAddress.Text.Trim() == String.Empty |
+                tbUserAddress.Text.Trim().Length < 5 |
+                tbUserAddress.Text.Trim().Length > 100)
             {
-                errorMessage += "\nAddress cannot be empty or shorter than 5 characters";
+                errorMessage += "\nAddress should consist of 5 to 100 characters";
+                isValidAddress = false;
+            }
+            else if (tbUserAddress.Text.Trim() != _userAddress && tbUserAddress.Text.Trim().IsUniqueAddress())
+            {
+                errorMessage += "\nAddress already exists. Please enter another one";
                 isValidAddress = false;
             }
 
@@ -64,7 +64,7 @@ namespace TvForms
 
             if (isValidAddress)
             {
-                SaveAddedDetails();
+                SaveAddedDetails(addressId);
             }
             else
             {
@@ -73,20 +73,17 @@ namespace TvForms
             return isValidAddress;
         }
 
-        public void SaveAddedDetails()
+        // method saves changed recording to the db
+        public void SaveAddedDetails(int addressId)
         {
-            using (var context = new TvDBContext())
-            {
-                var userAddressRepo = new BaseRepository<UserAddress>(context);
-                var typeConnectRepo = new BaseRepository<TypeConnect>(context);
-                var addressToUpdate = userAddressRepo.Get(x => x.Id == _addressID)
-                    .Include(x => x.TypeConnect)
-                    .Include(x => x.User).First();
-                addressToUpdate.Address = tbUserAddress.Text;
-                addressToUpdate.Comment = tbComment.Text;
-                addressToUpdate.TypeConnect = typeConnectRepo.Get(l => l.NameType == cbAddressType.SelectedItem.ToString()).First();
-                userAddressRepo.Update(addressToUpdate);
-            }
+            var userAddressRepo = new BaseRepository<UserAddress>();
+            var addressToUpdate = userAddressRepo.Get(x => x.Id == addressId)
+                .Include(x => x.TypeConnect)
+                .Include(x => x.User).First();
+            addressToUpdate.Address = tbUserAddress.Text;
+            addressToUpdate.Comment = tbComment.Text;
+            addressToUpdate.TypeConnect = userAddressRepo._context.TypeConnects.Where(l => l.NameType == cbAddressType.SelectedItem.ToString()).First();
+            userAddressRepo.Update(addressToUpdate);
         }
     }
 }
