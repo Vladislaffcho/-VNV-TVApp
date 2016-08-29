@@ -135,14 +135,14 @@ namespace TvForms
                 {
                     currentUser.IsActiveStatus = false;
                     userRepo.Update(currentUser);
-                    ErrorMassages.DisplayInfo("Your account has been deactivated.\n" +
+                    MessagesContainer.DisplayInfo("Your account has been deactivated.\n" +
                                               "You should contact our managers to reactivate it in the future.",
                         "Success");
                 }
             }
             else
             {
-                ErrorMassages.DisplayInfo("Your account is already deactivated\n" +
+                MessagesContainer.DisplayInfo("Your account is already deactivated\n" +
                                               "You should contact our managers to reactivate it",
                         "Account status");
             }

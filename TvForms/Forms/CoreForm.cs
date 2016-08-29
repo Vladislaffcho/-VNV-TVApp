@@ -12,14 +12,9 @@ namespace TvForms
         //ToDo Review need to store all user data
         private int CurrentUserId { get; set; } = 2; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
 
-        //ToDo Review WTF? Naming convention!!!
-        private UcTabsForUser UserWindow { get; set; }
-
-        private UcAdminView AdminWindow { get; set; }
-
         public CoreForm()
         {
-            //ShowLoginForm(); //uncommit after test programme
+            ShowLoginForm(); //uncommit after test programme
 
             InitializeComponent();
             LoadMainControl();

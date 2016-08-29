@@ -58,13 +58,13 @@ namespace TvForms
             //var type = _updateConnectType;
             //switch (type)
             //{
-            //    case EUserDetailType.Address:
+            //    case UserDetailType.Address:
             //        return ucAddress.ValidateControls();
-            //    case EUserDetailType.Email:
+            //    case UserDetailType.Email:
             //        return ucEmail.ValidateControls();
-            //    case EUserDetailType.Telephone:
+            //    case UserDetailType.Telephone:
             //        return ucTelephone.ValidateControls();
-            //    case EUserDetailType.User:
+            //    case UserDetailType.User:
             //        return ucUserNames.ValidateControls();
             //    default:
             //        return true; /* return false, change validation */

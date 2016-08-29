@@ -10,7 +10,6 @@ namespace TvForms
         // Remove phone functionality
         public static void DeleteTelephone(int phoneId)
         {
-            int i = 0;
             DialogResult result = MessageBox.Show("Do you want to remove selected telephone?", "Remove email", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
@@ -23,7 +22,6 @@ namespace TvForms
         // Remove email functionality
         public static void DeleteEmail(int emailId)
         {
-            int i = 0;
             DialogResult result = MessageBox.Show("Do you want to remove selected email?", "Remove email", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
@@ -37,7 +35,6 @@ namespace TvForms
         // Remove address functionality
         public static void DeleteAddress(int addressID)
         {
-            int i = 0;
             DialogResult result = MessageBox.Show("Do you want to remove selected address?", "Remove address", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {

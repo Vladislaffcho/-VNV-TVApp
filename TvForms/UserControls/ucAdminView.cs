@@ -34,8 +34,6 @@ namespace TvForms
         {
             // clear the list view in case user's opened it previously during a session
             lvUserList.Items.Clear();
-            cbStatus.Items.Add("Active");
-            cbStatus.Items.Add("Inactive");
             var userRepo = new BaseRepository<User>();
             var users = userRepo.GetAll();
 
@@ -59,11 +57,6 @@ namespace TvForms
             cbUserType.Items.Add(EUserType.CHIEF);
 
                 lvUserList.Items[0].Selected = true;
-        }
-
-        private void gbUsers_Enter(object sender, EventArgs e)
-        {
-
         }
 
         private void lvUserList_SelectedIndexChanged(object sender, EventArgs e)
@@ -311,7 +304,7 @@ namespace TvForms
                 {
                     user.UserType = newType;
                     userRepo.Update(user);
-                    ErrorMassages.DisplayInfo("Next session for this user will start with new rights", "User type has been updated");
+                    MessagesContainer.DisplayInfo("Next session for this user will start with new rights", "User type has been updated");
                 }
                 else
                 {
@@ -329,7 +322,7 @@ namespace TvForms
                 tbSurname.Text.Trim() == String.Empty &&
                 numSearchUserId.Value == 0)
             {
-                ErrorMassages.DisplayError("Please, set search criteria", "Error");
+                MessagesContainer.DisplayError("Please, set search criteria", "Error");
             }
             else 
             {
@@ -362,7 +355,7 @@ namespace TvForms
 
                 if (!foundUsers.Any())
                 {
-                    ErrorMassages.DisplayError("No users found according to selected criteria", "Error");
+                    MessagesContainer.DisplayError("No users found according to selected criteria", "Error");
                     return;
                 }
                 FillUsersLv(foundUsers);

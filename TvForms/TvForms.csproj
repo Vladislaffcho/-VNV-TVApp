@@ -98,7 +98,6 @@
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\MessageContainer.cs" />
-    <Compile Include="Helpers\EUserDetailType.cs" />
     <Compile Include="Helpers\TextFieldsValidator.cs" />
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Forms\PassForm.cs">
@@ -108,6 +107,8 @@
       <DependentUpon>PassForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Md5Helper.cs" />
+    <Compile Include="Helpers\UserDetailType.cs" />
+    <Compile Include="Helpers\UserStatus.cs" />
     <Compile Include="Helpers\ZipHelper.cs" />
     <Compile Include="IIdentifyUser.cs" />
     <Compile Include="Program.cs" />

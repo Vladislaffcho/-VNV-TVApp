@@ -113,7 +113,6 @@
             this.btSearchUser.TabIndex = 0;
             this.btSearchUser.TabStop = false;
             this.btSearchUser.Text = "Users";
-            this.btSearchUser.Enter += new System.EventHandler(this.gbUsers_Enter);
             // 
             // gbFindUsers
             // 
