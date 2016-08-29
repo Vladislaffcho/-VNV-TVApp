@@ -36,26 +36,24 @@ namespace TvForms
             this.rtbAllCh_Description.Text = @"THIS IS ALL CHANNELS TAB";
         }
 
-
+        //ToDo rewise this method. Updated Victor's code after merge
         private void LoadAllChannelsList()
         {
             var number = 1;
-            using (var context = new TvDBContext())
-            {
-                var allChannels = new BaseRepository<Channel>(context).GetAll().ToList();
-                var orederedChannels = new BaseRepository<OrderChannel>(context).GetAll().ToList();
+            var channelsRepo = new BaseRepository<Channel>();
+            var allChannels = channelsRepo.GetAll();
+            //var orederedChannels = new BaseRepository<OrderChannel>(context).GetAll().ToList();
 
-                foreach (var ch in allChannels)
+            foreach (var ch in allChannels)
+            {
+                ChannelsToListView(number, ch);
+                lvChannelsList.CheckBoxes = true;
+                if (channelsRepo._context.OrderChannels.Where(s => s.Channel.Id == ch.Id
+                                               && s.Order.User.Id == CurrentUserId) != null)
                 {
-                    ChannelsToListView(number, ch);
-                    lvChannelsList.CheckBoxes = true;
-                    if (orederedChannels.Find(s => s.Channel.Id == ch.Id
-                                                   && s.Order.User.Id == CurrentUserId) != null)
-                    {
-                        lvChannelsList.Items[ch.Id - 1].Checked = true;
-                    }
-                    number++;
+                    lvChannelsList.Items[ch.Id - 1].Checked = true;
                 }
+                number++;
             }
         }
 

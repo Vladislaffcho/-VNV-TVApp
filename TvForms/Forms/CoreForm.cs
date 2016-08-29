@@ -66,7 +66,6 @@ namespace TvForms
 
         private void openXmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //ToDo Naming convention!
             var openXmlFile = new OpenFileDialog
             {
                 DefaultExt = "*.xml",
@@ -85,8 +84,8 @@ namespace TvForms
             //Uncomment when bookmarks will be ready end specify appropriate one!!!!
             var actions = new ActionForm(new UcUserProfile(CurrentUserId))
             {
-                Text = @"User profile",
-                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\j01_9602.ico")
+                Text = @"User profile"/*,
+                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\j01_9602.ico")*/
             };
             actions.Show();
         }
@@ -96,8 +95,8 @@ namespace TvForms
         {
             var actions = new ActionForm(new UсOrdersView(CurrentUserId))
             {
-                Text = @"User orders history",
-                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\wallet.ico")
+                Text = @"User orders history"/*,
+                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\wallet.ico")*/
             };
             actions.Show();
         }
@@ -107,8 +106,8 @@ namespace TvForms
         {
             var actions = new ActionForm(new UcPayments(CurrentUserId))
             {
-                Text = @"PAYMENTS",
-                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\dollar.ico")
+                Text = @"PAYMENTS"/*,
+                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\dollar.ico")*/
             };
             actions.Show();
         }
@@ -153,26 +152,22 @@ namespace TvForms
         }
 
 
+        //ToDo rewise this method. Updated Victor's code after merge
         private void CoreForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            using (var context = new TvDBContext())
+            var ordRepo = new BaseRepository<Order>();
+
+            var notPaidOrders = ordRepo.Get(x => x.IsPaid == false);
+
+            foreach (var order in notPaidOrders)
+                ordRepo.Remove(order);
+
+            var ordChannels = ordRepo._context.OrderChannels.Where(oCh => oCh.Order.User.Id == CurrentUserId);
+            var needCheckForRemoveTvShow = ordRepo._context.UserSchedules.Where(pr => pr.User.Id == CurrentUserId);
+            foreach (var show in needCheckForRemoveTvShow)
             {
-                var ordRepo = new BaseRepository<Order>(context);
-                var schedRepo = new BaseRepository<UserSchedule>(context);
-
-
-                var notPaidOrders = ordRepo.Get(x => x.IsPaid == false).ToList();
-
-                foreach (var order in notPaidOrders)
-                    ordRepo.Remove(order);
-
-                var ordChannels = new BaseRepository<OrderChannel>(context).Get(oCh => oCh.Order.User.Id == CurrentUserId).ToList();
-                var needCheckForRemoveTvShow = schedRepo.Get(pr => pr.User.Id == CurrentUserId).ToList();
-                foreach (var show in needCheckForRemoveTvShow)
-                {
-                    if (ordChannels.Find(ch => ch.Channel.Id == show.TvShow.Channel.Id) == null)
-                        schedRepo.Remove(show);
-                }
+                if (ordChannels.Where(ch => ch.Channel.Id == show.TvShow.Channel.Id) == null)
+                    ordRepo._context.UserSchedules.Remove(show);
             }
         }
 
@@ -200,8 +195,8 @@ namespace TvForms
 
             var actions = new AccountChargeForm(CurrentUserId)
             {
-                Text = @"Account recharge",
-                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\mastercard_1450.ico")
+                Text = @"Account recharge"/*,
+                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\mastercard_1450.ico")*/
             };
             actions.Show();
         }
