@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using TvForms.Forms;
 using TvForms.Helpers;
 using TVContext;
 
@@ -199,6 +200,12 @@ namespace TvForms
                 Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\mastercard_1450.ico")*/
             };
             actions.Show();
+        }
+
+        private void additionalServiceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var additionalServices = new AdditionalServicesForm(CurrentUserId);
+            additionalServices.ShowDialog();
         }
     }
 }

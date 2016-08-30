@@ -7,7 +7,7 @@ namespace TVContext
     {
         public OrderService()
         {
-            AdditionalServices = new List<AdditionalService>();
+            
         }
 
         //Make linked entity as virtual for lazy loading work
@@ -15,8 +15,6 @@ namespace TVContext
         public virtual Order Order { get; set; }
 
         [Required]
-        public virtual ICollection<AdditionalService> AdditionalServices { get; set; }
-
-
+        public virtual AdditionalService AdditionalService { get; set; }
     }
 }

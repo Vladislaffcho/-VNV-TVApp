@@ -22,7 +22,7 @@ namespace TvForms.Helpers
             this.textBoxDescription.Text = @"This programm free. You can use it for channel and TV show choose and buy:). " + 
                                            @"With best regards from our company!" + Environment.NewLine + 
                                            Environment.NewLine + @"Delelop team:" + Environment.NewLine + @"Nazar Kushniruk" +
-                                           Environment.NewLine + @"Ivan Dyachyk" + Environment.NewLine  + @"Vlad Mikhaliuk" +
+                                           Environment.NewLine + @"Ivan Dyachyk" + Environment.NewLine  + @"Vladyslav Mykhaylyuk" +
                                            Environment.NewLine + @"Viktor Litvak";
         }
 

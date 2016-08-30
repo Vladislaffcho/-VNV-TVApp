@@ -78,6 +78,12 @@
     <Compile Include="Forms\AcFLittleWithoutValid.Designer.cs">
       <DependentUpon>AcFLittleWithoutValid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AdditionalServicesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AdditionalServicesForm.Designer.cs">
+      <DependentUpon>AdditionalServicesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddUserDataForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AcFLittleWithoutValid.resx">
       <DependentUpon>AcFLittleWithoutValid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AdditionalServicesForm.resx">
+      <DependentUpon>AdditionalServicesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddUserDataForm.resx">
       <DependentUpon>AddUserDataForm.cs</DependentUpon>
