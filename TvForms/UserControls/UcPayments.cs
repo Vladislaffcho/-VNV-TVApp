@@ -94,7 +94,7 @@ namespace TvForms
                 tbSurnameUser.Text = payment.Order.User.LastName;
                 if (account != null)
                 {
-                    var balance = account.Balance;;
+                    var balance = account.Balance;
                     tbBalance.Text = balance.ToString(CultureInfo.CurrentCulture);
                     tbBalance.BackColor = balance <= 0.00 ? Color.LightCoral :
                         balance > 0 && balance < 100.00 ? Color.Yellow : Color.LightGreen;

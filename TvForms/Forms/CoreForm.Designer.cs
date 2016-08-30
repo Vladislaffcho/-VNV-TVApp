@@ -73,6 +73,7 @@
             this.openSavedScheduleToolStripMenuItem.Name = "openSavedScheduleToolStripMenuItem";
             this.openSavedScheduleToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.openSavedScheduleToolStripMenuItem.Text = "Open saved schedule";
+            this.openSavedScheduleToolStripMenuItem.Click += new System.EventHandler(this.openSavedScheduleToolStripMenuItem_Click);
             // 
             // saveFavouriteToXmlToolStripMenuItem
             // 
@@ -86,14 +87,14 @@
             // xmlToolStripMenuItem
             // 
             this.xmlToolStripMenuItem.Name = "xmlToolStripMenuItem";
-            this.xmlToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.xmlToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.xmlToolStripMenuItem.Text = "*.xml";
             this.xmlToolStripMenuItem.Click += new System.EventHandler(this.xmlToolStripMenuItem_Click);
             // 
             // zipToolStripMenuItem
             // 
             this.zipToolStripMenuItem.Name = "zipToolStripMenuItem";
-            this.zipToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this.zipToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.zipToolStripMenuItem.Text = "*.zip";
             this.zipToolStripMenuItem.Click += new System.EventHandler(this.zipToolStripMenuItem_Click);
             // 

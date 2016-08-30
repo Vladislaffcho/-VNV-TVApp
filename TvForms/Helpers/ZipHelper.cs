@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.IO.Compression;
+using System.Linq;
 
 namespace TvForms
 {
@@ -21,5 +22,20 @@ namespace TvForms
         }
 
 
+        public static string UnzipArchiveWithFavourite(string fileName)
+        {
+            var unzipedFileName = fileName.Split('.')[0] + ".xml";
+
+            if (fileName.Split('.').Last().ToLower() == "zip")
+            {
+                var extractPath = Path.GetDirectoryName(fileName);
+                if(File.Exists(unzipedFileName))
+                    File.Delete(unzipedFileName);
+
+                ZipFile.ExtractToDirectory(fileName, extractPath);
+            }
+            return unzipedFileName;
+
+        }
     }
 }

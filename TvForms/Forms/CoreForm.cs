@@ -13,9 +13,9 @@ namespace TvForms
         private int CurrentUserId { get; set; } = 2; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
 
         //ToDo Review WTF? Naming convention!!!
-        private UcTabsForUser UserWindow { get; set; }
+        //private UcTabsForUser UserWindow { get; set; }
 
-        private UcAdminView AdminWindow { get; set; }
+        //private UcAdminView AdminWindow { get; set; }
 
         public CoreForm()
         {
@@ -24,10 +24,15 @@ namespace TvForms
             InitializeComponent();
             LoadMainControl();
 
-            string nameWindow = this.Text;
             var userRepo = new BaseRepository<User>();
-            nameWindow += " - " + userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault().Login;
-            this.Text = nameWindow;
+            Text += Text + @" - " + userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault()?.Login;
+            
+        }
+
+        public sealed override string Text
+        {
+            get { return base.Text; }
+            set { base.Text = value; }
         }
 
 
@@ -75,13 +80,29 @@ namespace TvForms
             var openXmlFile = new OpenFileDialog
             {
                 DefaultExt = "*.xml",
-                Filter = "XML Files|*.xml"
+                Filter = @"XML Files|*.xml"
             };
             
             if (openXmlFile.ShowDialog() != DialogResult.OK || openXmlFile.FileName.Length <= 0) return;
 
             XmlFileHelper.ParseChannel(openXmlFile.FileName);
             XmlFileHelper.ParseProgramm(openXmlFile.FileName);
+        }
+
+
+        private void openSavedScheduleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var openSavedFile = new OpenFileDialog
+            {
+                DefaultExt = "(*.xml, *.zip)|*.xml;*.zip",
+                Filter = @"XML/ZIP Files|*.xml;*.zip"
+            };
+            if(openSavedFile.ShowDialog() != DialogResult.OK || openSavedFile.FileName.Length <= 0)
+                return;
+
+            var xmlFileName = ZipHelper.UnzipArchiveWithFavourite(openSavedFile.FileName);
+            XmlFileHelper.ParseFavouriteMedia(xmlFileName, CurrentUserId);
+            //panelCore.Controls.Add(new UcTabsForUser(CurrentUserId));
         }
 
 
@@ -117,7 +138,7 @@ namespace TvForms
             };
             actions.Show();
         }
-        
+
 
         private void xmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -210,5 +231,7 @@ namespace TvForms
             };
             actions.Show();
         }
+
+
     }
 }

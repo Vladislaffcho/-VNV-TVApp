@@ -67,7 +67,7 @@ namespace TvForms
             }
         }
 
-        public static async void ParseProgramm(string filename)
+        public static void ParseProgramm(string filename)
         {
             try
             {
@@ -143,6 +143,47 @@ namespace TvForms
             
         }
 
+        internal static void ParseFavouriteMedia(string xmlFileName, int currentUserId)
+        {
+            var doc = new XmlDocument();
+            doc.Load(xmlFileName);
+            var xmlChannelsNodeList = doc.SelectNodes("tv/channel");
+
+            //var xml = XDocument.Load(xmlFileName);
+            //var channels = from c in xml.Root?.Descendants("channel")
+            //    select c.Element("display-name")?.Value + ";" +
+            //           c.Element("due-date")?.Value + ";" +
+            //           c.Element("user-id")?.Value + ";" +
+            //           c.Element("price")?.Value;
+            
+            var chanellList = new List<Channel>();
+            if (xmlChannelsNodeList != null)
+            {
+                var userIdInFile = xmlChannelsNodeList.Item(0)?.ChildNodes[3].InnerText.GetInt();
+                if (userIdInFile != currentUserId)
+                {
+                    MessagesContainer.DisplayError("This file include not your favourite media!!! Sorry", "Error");
+                    return;
+                }
+                
+                foreach (XmlNode node in xmlChannelsNodeList)
+                {
+                    var chan = new Channel();
+                    chan.Id = node.ChildNodes[0].InnerText.GetInt();
+                    chan.Name = node.ChildNodes[1].InnerText;
+                    chan.Price = double.Parse(node.ChildNodes[4].InnerText, CultureInfo.CurrentCulture);
+                    chan.IsAgeLimit = false;
+
+                    chanellList.Add(chan);
+                }
+                MessagesContainer.DisplayInfo("Saved schedule was read good.", "Info");
+                
+            }
+
+            else
+                MessagesContainer.SomethingWrongInFileLoad();
+        }
+
 
         public static void XmlFavouriteWriter(string fileName, int userId)
         {
@@ -187,6 +228,7 @@ namespace TvForms
                 writer.WriteEndDocument();
             }
         }
+
 
     }
 }
