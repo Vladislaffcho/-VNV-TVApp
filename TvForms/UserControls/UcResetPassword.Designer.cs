@@ -70,7 +70,7 @@
             this.tbEnterCode.Location = new System.Drawing.Point(147, 44);
             this.tbEnterCode.Name = "tbEnterCode";
             this.tbEnterCode.Size = new System.Drawing.Size(172, 20);
-            this.tbEnterCode.TabIndex = 1;
+            this.tbEnterCode.TabIndex = 4;
             // 
             // lbCodeFromEmail
             // 
@@ -85,8 +85,9 @@
             // 
             this.tbCodeFromEmail.Location = new System.Drawing.Point(147, 70);
             this.tbCodeFromEmail.Name = "tbCodeFromEmail";
+            this.tbCodeFromEmail.ReadOnly = true;
             this.tbCodeFromEmail.Size = new System.Drawing.Size(172, 20);
-            this.tbCodeFromEmail.TabIndex = 1;
+            this.tbCodeFromEmail.TabIndex = 3;
             // 
             // btSendCode
             // 
@@ -111,15 +112,16 @@
             // 
             this.tbNewPass.Location = new System.Drawing.Point(147, 96);
             this.tbNewPass.Name = "tbNewPass";
+            this.tbNewPass.ReadOnly = true;
             this.tbNewPass.Size = new System.Drawing.Size(172, 20);
-            this.tbNewPass.TabIndex = 1;
+            this.tbNewPass.TabIndex = 6;
             // 
             // btCheckCode
             // 
             this.btCheckCode.Location = new System.Drawing.Point(345, 42);
             this.btCheckCode.Name = "btCheckCode";
             this.btCheckCode.Size = new System.Drawing.Size(75, 23);
-            this.btCheckCode.TabIndex = 3;
+            this.btCheckCode.TabIndex = 5;
             this.btCheckCode.Text = "Check Code";
             this.btCheckCode.UseVisualStyleBackColor = true;
             this.btCheckCode.Click += new System.EventHandler(this.btCheckCode_Click);
