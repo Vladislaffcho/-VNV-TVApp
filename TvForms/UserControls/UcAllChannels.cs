@@ -7,8 +7,6 @@ namespace TvForms
 {
     public partial class UcAllChannels : UserControl
     {
-        private readonly BaseRepository<TvShow> _showRepo = new BaseRepository<TvShow>();
-        
         private int CurrentUserId { get; set; }
 
         public int CurrentOrderId { get; set; }
@@ -22,18 +20,18 @@ namespace TvForms
             InitializeComponent();
             CurrentUserId = userId;
             CurrentOrderId = GetNewOrder().Id;
-            LoadControls(CurrentUserId);
+            LoadControls();
         }
 
 
-        private void LoadControls(int userId)
+        private void LoadControls()
         {
             tabControl_Shows.SelectedIndex = (int) DateTime.Now.DayOfWeek;
 
             LoadAllChannelsList();
             LoadTvShowsList();
 
-            this.rtbAllCh_Description.Text = @"THIS IS ALL CHANNELS TAB";
+            rtbAllCh_Description.Text = @"THIS IS ALL CHANNELS TAB";
         }
 
         //ToDo rewise this method. Updated Victor's code after merge
@@ -72,7 +70,6 @@ namespace TvForms
                 var showByDateAndChannels = showsByOrderedChannels.FindAll(x =>
                             (int) x.Date.DayOfWeek == GetSelectedDay()
                     /*&& Math.Abs(x.Date.Day - DateTime.Now.Day) < 7*/).ToList();
-                ;
 
                 ControlForShows?.Dispose();
                 ControlForShows = new UcShowsList(CurrentUserId);
@@ -155,7 +152,9 @@ namespace TvForms
                             var orderToUpdate = orderRepo.Get(x => x.Id == CurrentOrderId).FirstOrDefault();
                             if (orderToUpdate != null)
                             {
-                                orderToUpdate.TotalPrice -= removeCh.Channel.Price;
+                                orderToUpdate.TotalPrice = 
+                                    orderToUpdate.TotalPrice - removeCh.Channel.Price < 0.00 ? 0.00 :
+                                    orderToUpdate.TotalPrice -= removeCh.Channel.Price;
                                 orderToUpdate.User = userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault();
                                 orderRepo.Update(orderToUpdate);
                             }
@@ -239,11 +238,11 @@ namespace TvForms
 
                 using (var context = new TvDBContext())
                 {
-                    var userSchRepo = new BaseRepository<UserSchedule>(context);
+                    //var userSchRepo = new BaseRepository<UserSchedule>(context);
                     var oderedChannRepo = new BaseRepository<OrderChannel>(context);
-                    var deleteSched = userSchRepo.Get(x => x.User.Id == CurrentUserId).ToList();
+                    //var deleteSched = userSchRepo.Get(x => x.User.Id == CurrentUserId).ToList();
                     var deleteChann = oderedChannRepo.Get(x => x.Order.Id == CurrentOrderId).ToList();
-                    context.UserSchedules.RemoveRange(deleteSched);
+                    //context.UserSchedules.RemoveRange(deleteSched);
                     context.OrderChannels.RemoveRange(deleteChann);
                     context.SaveChanges();
 

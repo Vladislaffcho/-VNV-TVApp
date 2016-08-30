@@ -12,6 +12,11 @@ namespace TvForms
         //ToDo Review need to store all user data
         private int CurrentUserId { get; set; } = 2; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
 
+        //ToDo Review WTF? Naming convention!!!
+        //private UcTabsForUser UserWindow { get; set; }
+
+        //private UcAdminView AdminWindow { get; set; }
+
         public CoreForm()
         {
             ShowLoginForm(); //uncommit after test programme
@@ -19,10 +24,16 @@ namespace TvForms
             InitializeComponent();
             LoadMainControl();
 
-            string nameWindow = this.Text;
+                        var userRepo = new BaseRepository<User>();
             var userRepo = new BaseRepository<User>();
-            nameWindow += " - " + userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault().Login;
-            this.Text = nameWindow;
+            Text += Text + @" - " + userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault()?.Login;
+            
+        }
+
+        public sealed override string Text
+        {
+            get { return base.Text; }
+            set { base.Text = value; }
         }
 
 
@@ -66,16 +77,33 @@ namespace TvForms
 
         private void openXmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //ToDo Naming convention!
             var openXmlFile = new OpenFileDialog
             {
                 DefaultExt = "*.xml",
-                Filter = "XML Files|*.xml"
+                Filter = @"XML Files|*.xml"
             };
             
             if (openXmlFile.ShowDialog() != DialogResult.OK || openXmlFile.FileName.Length <= 0) return;
 
             XmlFileHelper.ParseChannel(openXmlFile.FileName);
             XmlFileHelper.ParseProgramm(openXmlFile.FileName);
+        }
+
+
+        private void openSavedScheduleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var openSavedFile = new OpenFileDialog
+            {
+                DefaultExt = "(*.xml, *.zip)|*.xml;*.zip",
+                Filter = @"XML/ZIP Files|*.xml;*.zip"
+            };
+            if(openSavedFile.ShowDialog() != DialogResult.OK || openSavedFile.FileName.Length <= 0)
+                return;
+
+            var xmlFileName = ZipHelper.UnzipArchiveWithFavourite(openSavedFile.FileName);
+            XmlFileHelper.ParseFavouriteMedia(xmlFileName, CurrentUserId);
+            //panelCore.Controls.Add(new UcTabsForUser(CurrentUserId));
         }
 
 
@@ -111,7 +139,7 @@ namespace TvForms
             };
             actions.Show();
         }
-        
+
 
         private void xmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -156,6 +184,11 @@ namespace TvForms
         private void CoreForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             var ordRepo = new BaseRepository<Order>();
+            using (var context = new TvDBContext())
+            {
+                var ordRepo = new BaseRepository<Order>(context);
+                var schedRepo = new BaseRepository<UserSchedule>(context);
+
 
             var notPaidOrders = ordRepo.Get(x => x.IsPaid == false);
 
@@ -168,6 +201,15 @@ namespace TvForms
             {
                 if (ordChannels.Where(ch => ch.Channel.Id == show.TvShow.Channel.Id) == null)
                     ordRepo._context.UserSchedules.Remove(show);
+            }
+        }
+                var ordChannels = new BaseRepository<OrderChannel>(context).Get(oCh => oCh.Order.User.Id == CurrentUserId).ToList();
+                var needCheckForRemoveTvShow = schedRepo.Get(pr => pr.User.Id == CurrentUserId).ToList();
+                foreach (var show in needCheckForRemoveTvShow)
+                {
+                    if (ordChannels.Find(ch => ch.Channel.Id == show.TvShow.Channel.Id) == null)
+                        schedRepo.Remove(show);
+                }
             }
         }
 
@@ -200,5 +242,7 @@ namespace TvForms
             };
             actions.Show();
         }
+
+
     }
 }

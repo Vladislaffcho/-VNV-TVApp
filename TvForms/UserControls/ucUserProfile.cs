@@ -45,7 +45,7 @@ namespace TvForms
             tbSurname.Text = userRepo.Get(x => x.Id == _currentUserId).First().LastName;
             // Filling Money and status TB's
             // uncomment when whole functionality has been provided
-            tbMoney.Text = "Add money from db";
+            tbMoney.Text = @"Add money from db";
 
             /*var moneyStatus = context.DepositAccounts.Where(s => s.User.Id == id);
             if (moneyStatus.Any())
