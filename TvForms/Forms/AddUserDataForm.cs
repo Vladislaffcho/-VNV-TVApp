@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using TvForms.UserControls;
 
 namespace TvForms
 {
@@ -13,6 +14,7 @@ namespace TvForms
         private UcRegisterNewUser _ucNewUser = new UcRegisterNewUser();
         private UcAddEmail ucEmail = new UcAddEmail();
         private UcAddTelephone ucPhone = new UcAddTelephone();
+        private UcResetPassword _ucResetPassword = new UcResetPassword();
         // variable contains information about data type to be added (address, email, telephone)
         private UserDetailType _addConnectType;
 
@@ -21,7 +23,16 @@ namespace TvForms
         {
             _addConnectType = type;
             InitializeComponent();
-            pnAddConnect.Controls.Add(_ucNewUser);
+            switch (_addConnectType)
+            {
+                case UserDetailType.User:
+                    pnAddConnect.Controls.Add(_ucNewUser);
+                    break;
+                case UserDetailType.Password:
+                    pnAddConnect.Controls.Add(_ucResetPassword);
+                    break;
+            }
+            
         }
 
         // depending on data type, corresponding uc will be opened
@@ -71,6 +82,8 @@ namespace TvForms
                     return ucPhone.ValidateControls(_userID);
                 case UserDetailType.User:
                     return _ucNewUser.ValidateControls();
+                case UserDetailType.Password:
+                    return true;
             }
             return false;
         }

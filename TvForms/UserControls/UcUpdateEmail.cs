@@ -19,9 +19,9 @@ namespace TvForms
         {
             // set control view
             int i = 0;
-            var phoneRepo = new BaseRepository<UserEmail>();
-            var emailToUpdate = phoneRepo.Get(c => c.Id == emailId).First();
-            var types = phoneRepo._context.TypeConnects.Distinct();
+            var emailRepo = new BaseRepository<UserEmail>();
+            var emailToUpdate = emailRepo.Get(c => c.Id == emailId).First();
+            var types = emailRepo._context.TypeConnects.Distinct();
 
             _email = emailToUpdate.EmailName;
             tbUserEmail.Text = emailToUpdate.EmailName;

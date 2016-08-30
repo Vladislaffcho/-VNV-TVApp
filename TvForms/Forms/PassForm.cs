@@ -96,6 +96,10 @@ namespace TvForms
             actions.ShowDialog();
         }
 
- 
+        private void linkLbPassForm_FogotPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var actions = new AddUserDataForm(UserDetailType.Password);
+            actions.ShowDialog();
+        }
     }
 }

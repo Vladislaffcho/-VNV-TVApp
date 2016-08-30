@@ -10,7 +10,7 @@ namespace TvForms
     public partial class CoreForm : Form//, IIdentifyUser
     {
         //ToDo Review need to store all user data
-        private int CurrentUserId { get; set; } = 2; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
+        private int CurrentUserId { get; set; } // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
 
         public CoreForm()
         {
