@@ -24,7 +24,6 @@ namespace TvForms
             InitializeComponent();
             LoadMainControl();
 
-                        var userRepo = new BaseRepository<User>();
             var userRepo = new BaseRepository<User>();
             Text += Text + @" - " + userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault()?.Login;
             
@@ -179,37 +178,29 @@ namespace TvForms
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-
+        
         //ToDo rewise this method. Updated Victor's code after merge
         private void CoreForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            var ordRepo = new BaseRepository<Order>();
+            //var ordRepo = new BaseRepository<Order>();
             using (var context = new TvDBContext())
             {
                 var ordRepo = new BaseRepository<Order>(context);
                 var schedRepo = new BaseRepository<UserSchedule>(context);
 
+                var notPaidOrders = ordRepo.Get(x => x.IsPaid == false);
 
-            var notPaidOrders = ordRepo.Get(x => x.IsPaid == false);
+                foreach (var order in notPaidOrders)
+                    ordRepo.Remove(order);
 
-            foreach (var order in notPaidOrders)
-                ordRepo.Remove(order);
-
-            var ordChannels = ordRepo._context.OrderChannels.Where(oCh => oCh.Order.User.Id == CurrentUserId);
-            var needCheckForRemoveTvShow = ordRepo._context.UserSchedules.Where(pr => pr.User.Id == CurrentUserId);
-            foreach (var show in needCheckForRemoveTvShow)
-            {
-                if (ordChannels.Where(ch => ch.Channel.Id == show.TvShow.Channel.Id) == null)
-                    ordRepo._context.UserSchedules.Remove(show);
-            }
-        }
-                var ordChannels = new BaseRepository<OrderChannel>(context).Get(oCh => oCh.Order.User.Id == CurrentUserId).ToList();
-                var needCheckForRemoveTvShow = schedRepo.Get(pr => pr.User.Id == CurrentUserId).ToList();
+                var ordChannels = ordRepo._context.OrderChannels.Where(oCh => oCh.Order.User.Id == CurrentUserId);
+                var needCheckForRemoveTvShow = ordRepo._context.UserSchedules.Where(pr => pr.User.Id == CurrentUserId);
                 foreach (var show in needCheckForRemoveTvShow)
                 {
-                    if (ordChannels.Find(ch => ch.Channel.Id == show.TvShow.Channel.Id) == null)
-                        schedRepo.Remove(show);
+                    if (ordChannels.Where(ch => ch.Channel.Id == show.TvShow.Channel.Id) == null)
+                        ordRepo._context.UserSchedules.Remove(show);
                 }
+                
             }
         }
 
