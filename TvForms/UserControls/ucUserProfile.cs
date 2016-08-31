@@ -40,9 +40,8 @@ namespace TvForms
             tbName.Clear();
             tbSurname.Clear();
             // fill user names from db
-            var userRepo = new BaseRepository<User>();
-            tbName.Text = userRepo.Get(x => x.Id == _currentUserId).First().FirstName;
-            tbSurname.Text = userRepo.Get(x => x.Id == _currentUserId).First().LastName;
+            tbName.Text = BaseRepository<User>.Get(x => x.Id == _currentUserId).First().FirstName;
+            tbSurname.Text = BaseRepository<User>.Get(x => x.Id == _currentUserId).First().LastName;
             // Filling Money and status TB's
             // uncomment when whole functionality has been provided
             tbMoney.Text = @"Add money from db";
@@ -71,8 +70,8 @@ namespace TvForms
         private void FillPhonesLv()
         {
             lvUserTelephone.Items.Clear();
-            var phoneRepo = new BaseRepository<UserPhone>();
-            var phoneExists = phoneRepo.Get(x => x.User.Id == _currentUserId)
+            //var phoneRepo = new ();
+            var phoneExists = BaseRepository<UserPhone>.Get(x => x.User.Id == _currentUserId)
                 .Include(x => x.TypeConnect);
             foreach (var userPhone in phoneExists)
             {
@@ -85,8 +84,8 @@ namespace TvForms
         private void FillEmailLv()
         {
             lvUserEmail.Items.Clear();
-            var emailRepo = new BaseRepository<UserEmail>();
-            var emailExists = emailRepo.Get(x => x.User.Id == _currentUserId)
+            //var emailRepo = new ();
+            var emailExists = BaseRepository<UserEmail>.Get(x => x.User.Id == _currentUserId)
                 .Include(x => x.TypeConnect);
             foreach (var userMail in emailExists)
             {
@@ -99,8 +98,8 @@ namespace TvForms
         private void FillAddressLv()
         {
             lvUserAddress.Items.Clear();
-            var addressRepo = new BaseRepository<UserAddress>();
-            var addressExists = addressRepo.Get(x => x.User.Id == _currentUserId)
+            //var addressRepo = new ();
+            var addressExists = BaseRepository<UserAddress>.Get(x => x.User.Id == _currentUserId)
                 .Include(x => x.TypeConnect);
             foreach (var userAddress in addressExists)
             {
@@ -121,20 +120,20 @@ namespace TvForms
         // functionality to deactivate user's account
         private void btDeactivateAccount_Click(object sender, EventArgs e)
         {
-            var userRepo = new BaseRepository<User>();
-            var currentUser = userRepo.Get(x => x.Id == _currentUserId)
+            //var userRepo = new ();
+            var currentUser = BaseRepository<User>.Get(x => x.Id == _currentUserId)
                 .Include(x => x.UserType)
                 .First();
             if (currentUser.IsActiveStatus)
             {
-                DialogResult result = MessageBox.Show("Do you want to deactivate your account?\n" +
-                                                      "You will need to contact our customer survice to reactivate it",
-                                                      "Deactivate account",
+                DialogResult result = MessageBox.Show(@"Do you want to deactivate your account?\n" +
+                                                      @"You will need to contact our customer survice to reactivate it",
+                                                      @"Deactivate account",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
                 {
                     currentUser.IsActiveStatus = false;
-                    userRepo.Update(currentUser);
+                    BaseRepository<User>.Update(currentUser);
                     MessagesContainer.DisplayInfo("Your account has been deactivated.\n" +
                                               "You should contact our managers to reactivate it in the future.",
                         "Success");

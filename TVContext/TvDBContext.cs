@@ -35,5 +35,6 @@ namespace TVContext
         public DbSet<Order> Orders { get; set; } //13
         public DbSet<OrderChannel> OrderChannels { get; set; } //14
         public DbSet<OrderService> OrderServices { get; set; } //15
+
     }
 }

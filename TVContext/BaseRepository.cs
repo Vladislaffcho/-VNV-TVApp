@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Data.Entity.Infrastructure;
@@ -11,31 +12,31 @@ using System.Windows.Forms;
 
 namespace TVContext
 {
-    public class BaseRepository<TEntity> where TEntity : IdentificableEntity
+    public sealed class BaseRepository<TEntity> where TEntity : IdentificableEntity
     {
-        public readonly TvDBContext _context = new TvDBContext();
+        private static TvDBContext _context { get; } = new TvDBContext();
 
-        public BaseRepository()
+        private BaseRepository()
         {
 
         }
 
-        public BaseRepository(TvDBContext context)
-        {
-            _context = context;
-        }
+        //public BaseRepository(TvDBContext context)
+        //{
+        //    _context = context;
+        //}
 
-        public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
+        public static IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
         {
             return _context.Set<TEntity>().Where(predicate);
         }
 
-        public IQueryable<TEntity> GetAll()
+        public static IQueryable<TEntity> GetAll()
         {
             return _context.Set<TEntity>();
         }
 
-        public void Remove(TEntity entity)
+        public static void Remove(TEntity entity)
         {
             try
             {
@@ -64,7 +65,7 @@ namespace TVContext
             }
         }
 
-        public void Update(TEntity entity)
+        public static void Update(TEntity entity)
         {
             try
             {
@@ -94,7 +95,7 @@ namespace TVContext
 
         }
 
-        public void Insert(TEntity entity)
+        public static void Insert(TEntity entity)
         {
             try
             {
@@ -123,6 +124,20 @@ namespace TVContext
             {
                 MessageBox.Show(e.Message, "Error");
             }
+        }
+
+
+        //todo needs to Rewrite for any TEntity
+        public static void AddRange(List<OrderChannel> channels)
+        {
+            _context.OrderChannels.AddRange(channels);
+            _context.SaveChanges();
+        }
+
+        public static void RemoveRange(List<OrderChannel> deleteChann)
+        {
+            _context.OrderChannels.RemoveRange(deleteChann);
+            _context.SaveChanges();
         }
     }
 }

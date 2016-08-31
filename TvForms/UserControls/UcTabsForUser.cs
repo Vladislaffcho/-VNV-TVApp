@@ -1,11 +1,13 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 using TVContext;
 
 namespace TvForms
 {
     public partial class UcTabsForUser : UserControl
     {
-        private readonly BaseRepository<Channel> _channelRepo = new BaseRepository<Channel>();
+        //private readonly List<Channel> _channelRepo = BaseRepository<Channel>.GetAll().ToList();
 
         private int CurrentUserId { get; set; }
 

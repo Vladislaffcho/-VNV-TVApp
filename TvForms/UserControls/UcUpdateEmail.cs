@@ -18,10 +18,9 @@ namespace TvForms
         public void UpdateEmail(int emailId)
         {
             // set control view
-            int i = 0;
-            var phoneRepo = new BaseRepository<UserEmail>();
-            var emailToUpdate = phoneRepo.Get(c => c.Id == emailId).First();
-            var types = phoneRepo._context.TypeConnects.Distinct();
+            var i = 0;
+            var emailToUpdate = BaseRepository<UserEmail>.Get(c => c.Id == emailId).First();
+            var types = BaseRepository<TypeConnect>.GetAll().Distinct();
 
             _email = emailToUpdate.EmailName;
             tbUserEmail.Text = emailToUpdate.EmailName;
@@ -40,8 +39,8 @@ namespace TvForms
         // validate entered data
         public bool ValidateControls(int emailId)
         {
-            string errorMessage = "Error:";
-            bool isValidEmail = true;
+            var errorMessage = "Error:";
+            var isValidEmail = true;
             if (tbUserEmail.Text.Trim() != String.Empty || tbUserEmail.Text.Trim().Length < 50)
             {
                 if (!tbUserEmail.Text.Trim().IsValidEmail())
@@ -81,14 +80,13 @@ namespace TvForms
         // method saves changed recording into the db
         public void SaveAddedDetails(int emailId)
         {
-            var userEmailRepo = new BaseRepository<UserEmail>();
-            var emailToUpdate = userEmailRepo.Get(x => x.Id == emailId)
+            var emailToUpdate = BaseRepository<UserEmail>.Get(x => x.Id == emailId)
                 .Include(x => x.TypeConnect)
                 .Include(x => x.User).First();
             emailToUpdate.EmailName = tbUserEmail.Text;
             emailToUpdate.Comment = tbComment.Text;
-            emailToUpdate.TypeConnect = userEmailRepo._context.TypeConnects.Where(l => l.NameType == cbEmailType.SelectedItem.ToString()).First();
-            userEmailRepo.Update(emailToUpdate);
+            emailToUpdate.TypeConnect = BaseRepository<TypeConnect>.Get(l => l.NameType == cbEmailType.SelectedItem.ToString()).First();
+            BaseRepository<UserEmail>.Update(emailToUpdate);
         }
     }
 }

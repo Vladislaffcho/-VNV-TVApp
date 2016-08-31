@@ -187,8 +187,8 @@ namespace TvForms
 
         public static void XmlFavouriteWriter(string fileName, int userId)
         {
-            var chOrderRepo = new BaseRepository<OrderChannel>();
-            var tvShowsRepo = new BaseRepository<UserSchedule>();
+            //var context = BaseRepository<OrderChannel>.Context;
+            //var tvShowsRepo = new BaseRepository<UserSchedule>();
 
 
             using (var writer = XmlWriter.Create(fileName))
@@ -196,7 +196,7 @@ namespace TvForms
                 writer.WriteStartDocument();
                 writer.WriteStartElement("tv");
 
-                foreach (var ordChannel in chOrderRepo.Get(x => x.Order.User.Id == userId).ToList())
+                foreach (var ordChannel in BaseRepository<OrderChannel>.Get(x => x.Order.User.Id == userId).ToList())
                 {
                     writer.WriteStartElement("channel");
 
@@ -209,7 +209,7 @@ namespace TvForms
                     writer.WriteEndElement();
                 }
 
-                foreach (var prog in tvShowsRepo.Get(x => x.User.Id == userId).ToList())
+                foreach (var prog in BaseRepository<UserSchedule>.Get(x => x.User.Id == userId).ToList())
                 {
                     writer.WriteStartElement("programme");
 

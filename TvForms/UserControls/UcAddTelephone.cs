@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TVContext;
 
@@ -22,8 +16,7 @@ namespace TvForms
         // set user control on loading
         private void SetControlView()
         {
-            var typeConnectRepo = new BaseRepository<TypeConnect>();
-            var types = typeConnectRepo.GetAll();
+            var types = BaseRepository<TypeConnect>.GetAll().ToList();
 
             foreach (var typeConnect in types)
             {
@@ -33,7 +26,7 @@ namespace TvForms
         }
 
         // validate number input
-        public bool ValidateControls(int UserId)
+        public bool ValidateControls(int userId)
         {
             string errorMessage = "Error:";
             bool isValidNumber = true;
@@ -64,7 +57,7 @@ namespace TvForms
 
             if (isValidNumber)
             {
-                SaveAddedDetails(UserId);
+                SaveAddedDetails(userId);
             }
             else
             {
@@ -74,15 +67,14 @@ namespace TvForms
         }
 
         // save in case of valid number
-        public void SaveAddedDetails(int UserId)
+        public void SaveAddedDetails(int userId)
         {
-            var userPhoneRepo = new BaseRepository<UserPhone>();
-            userPhoneRepo.Insert(new UserPhone
+            BaseRepository<UserPhone>.Insert(new UserPhone
             {
                 Number = tbNumber.Text.GetInt(),
                 Comment = tbComment.Text,
-                TypeConnect = userPhoneRepo._context.TypeConnects.Where(x => x.NameType == cbNumberType.Text).First(),
-                User = userPhoneRepo._context.Users.Where(l => l.Id == UserId).First()
+                TypeConnect = BaseRepository<TypeConnect>.Get(x => x.NameType == cbNumberType.Text).FirstOrDefault(),
+                User = BaseRepository<User>.Get(l => l.Id == userId).FirstOrDefault()
             });
         }
     }

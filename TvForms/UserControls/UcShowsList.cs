@@ -22,7 +22,7 @@ namespace TvForms
     
         public void LoadShows(IEnumerable<TvShow> shows)
         {
-            var scheduleShows = new BaseRepository<UserSchedule>().Get(sc => sc.User.Id == CurrentUserId).ToList();
+            var scheduleShows = BaseRepository<UserSchedule>.Get(sc => sc.User.Id == CurrentUserId).ToList();
             lvShowPrograms.Items.Clear();
             DisplayIndexShows = 1;
             foreach (var sh in shows)
@@ -84,45 +84,40 @@ namespace TvForms
         {
             
             var id = lvShowPrograms.Items[e.Index].SubItems[5].Text.GetInt();
+            var user = BaseRepository<User>.Get(u => u.Id == CurrentUserId).FirstOrDefault();
 
-            using (var context = new TvDBContext())
+            switch (e.NewValue)
             {
-                var usScheduleRepo = new BaseRepository<UserSchedule>(context);
-                var showsRepo = new BaseRepository<TvShow>(context);
-                var user = new BaseRepository<User>(context).Get(u => u.Id == CurrentUserId).FirstOrDefault();
-
-                switch (e.NewValue)
-                {
-                    case CheckState.Checked:
-                        if (usScheduleRepo.GetAll().ToList().Find(s => s.TvShow.Id == id
-                        && s.User.Id == CurrentUserId) == null)
+                case CheckState.Checked:
+                    if (BaseRepository<UserSchedule>.GetAll().ToList().Find(s => s.TvShow.Id == id
+                    && s.User.Id == CurrentUserId) == null)
+                    {
+                        var schedule = new UserSchedule
                         {
-                            var schedule = new UserSchedule
-                            {
-                                DueDate = DateTime.Now.AddDays(7),
-                                User = user,
-                                TvShow = showsRepo.Get(s => s.Id == id).FirstOrDefault()
-                            };
-                            usScheduleRepo.Insert(schedule);
-                        }
-                        break;
+                            DueDate = DateTime.Now.AddDays(7),
+                            User = user,
+                            TvShow = BaseRepository<TvShow>.Get(s => s.Id == id).FirstOrDefault()
+                        };
+                        BaseRepository<UserSchedule>.Insert(schedule);
+                    }
+                    break;
 
-                    case CheckState.Unchecked:
-                        var removeSh = usScheduleRepo.Get(x => x.TvShow.Id == id).FirstOrDefault();
-                        if (removeSh != null)
-                        {
-                            usScheduleRepo.Remove(removeSh);
-                        }
-                        break;
+                case CheckState.Unchecked:
+                    var removeSh = BaseRepository<UserSchedule>.Get(x => x.TvShow.Id == id).FirstOrDefault();
+                    if (removeSh != null)
+                    {
+                        BaseRepository<UserSchedule>.Remove(removeSh);
+                    }
+                    break;
 
-                    case CheckState.Indeterminate:
-                        MessagesContainer.DisplayError("Something went wrong in checking/unchecking tvShows (case CheckState.Indeterminate:)", "Error");
-                        break;
+                case CheckState.Indeterminate:
+                    MessagesContainer.DisplayError("Something went wrong in checking/unchecking tvShows (case CheckState.Indeterminate:)", "Error");
+                    break;
 
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
+            
         }
     
     }

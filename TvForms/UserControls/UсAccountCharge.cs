@@ -62,30 +62,28 @@ namespace TvForms
 
             if (isValidCardDatas)
             {
-                using (var context = new TvDBContext())
+                
+                //var accountRepo = (context);
+                var userAcc = BaseRepository<Account>.Get(a => a.User.Id == CurrentUserId).FirstOrDefault();
+                if (userAcc != null)
                 {
-                    var accountRepo = new BaseRepository<Account>(context);
-                    var userAcc = accountRepo.Get(a => a.User.Id == CurrentUserId).FirstOrDefault();
-                    if (userAcc != null)
-                    {
-                        userAcc.Balance += summ;
-                        accountRepo.Update(userAcc);
-                    }
-                    else
-                    {
-                        var user =
-                            new BaseRepository<User>(context).Get(u => u.Id == CurrentUserId).FirstOrDefault();
-                            
-                        var newAccount = new Account
-                        {
-                            Balance = summ,
-                            Comment = "automatically created new account",
-                            IsActiveStatus = true,
-                            User = user
-                        };
-                        accountRepo.Insert(newAccount);
-                    }
+                    userAcc.Balance += summ;
+                    BaseRepository<Account>.Update(userAcc);
                 }
+                else
+                {
+                    var user = BaseRepository<User>.Get(u => u.Id == CurrentUserId).FirstOrDefault();
+                            
+                    var newAccount = new Account
+                    {
+                        Balance = summ,
+                        Comment = "automatically created new account",
+                        IsActiveStatus = true,
+                        User = user
+                    };
+                    BaseRepository<Account>.Insert(newAccount);
+                }
+                
                 MessagesContainer.DisplayInfo($"Your account was succesfull charged on {summ} грн.", "Succesfull");
 
             }

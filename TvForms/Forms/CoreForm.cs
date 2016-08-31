@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -24,8 +25,8 @@ namespace TvForms
             InitializeComponent();
             LoadMainControl();
 
-            var userRepo = new BaseRepository<User>();
-            Text += Text + @" - " + userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault()?.Login;
+            //var userRepo = new BaseRepository<User>();
+            Text += Text + @" - " + BaseRepository<User>.Get(u => u.Id == CurrentUserId).FirstOrDefault()?.Login;
             
         }
 
@@ -40,8 +41,8 @@ namespace TvForms
         {
             if (CurrentUserId != 0)
             {
-                var user = new BaseRepository<User>();
-                var firstOrDefault = user.Get(x => x.Id == CurrentUserId).FirstOrDefault();
+                //var user = new BaseRepository<User>();
+                var firstOrDefault = BaseRepository<User>.Get(x => x.Id == CurrentUserId).FirstOrDefault();
                 if (firstOrDefault != null)
                 {
                     var userType = firstOrDefault.UserType.Id;
@@ -182,25 +183,24 @@ namespace TvForms
         //ToDo rewise this method. Updated Victor's code after merge
         private void CoreForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //var ordRepo = new BaseRepository<Order>();
-            using (var context = new TvDBContext())
+         
+            //var ordRepo = new BaseRepository<Order>(context);
+            //var context = BaseRepository<Order>.Context;
+
+            //var schedRepo = new BaseRepository<UserSchedule>(context);
+
+            //var notPaidOrders = ordRepo.Get(x => x.IsPaid == false);
+            var notPaidOrders = BaseRepository<Order>.Get(order => order.IsPaid == false).ToList();
+
+            foreach (var order in notPaidOrders)
+                BaseRepository<Order>.Remove(order);
+
+            var ordChannels = BaseRepository<OrderChannel>.Get(oCh => oCh.Order.User.Id == CurrentUserId).ToList();
+            var needCheckForRemoveTvShow = BaseRepository<UserSchedule>.Get(pr => pr.User.Id == CurrentUserId);
+            foreach (var show in needCheckForRemoveTvShow)
             {
-                var ordRepo = new BaseRepository<Order>(context);
-                var schedRepo = new BaseRepository<UserSchedule>(context);
-
-                var notPaidOrders = ordRepo.Get(x => x.IsPaid == false);
-
-                foreach (var order in notPaidOrders)
-                    ordRepo.Remove(order);
-
-                var ordChannels = ordRepo._context.OrderChannels.Where(oCh => oCh.Order.User.Id == CurrentUserId);
-                var needCheckForRemoveTvShow = ordRepo._context.UserSchedules.Where(pr => pr.User.Id == CurrentUserId);
-                foreach (var show in needCheckForRemoveTvShow)
-                {
-                    if (ordChannels.Where(ch => ch.Channel.Id == show.TvShow.Channel.Id) == null)
-                        ordRepo._context.UserSchedules.Remove(show);
-                }
-                
+                if (ordChannels.Find(ch => ch.Channel.Id == show.TvShow.Channel.Id) == null)
+                    BaseRepository<UserSchedule>.Remove(show);
             }
         }
 
@@ -218,7 +218,7 @@ namespace TvForms
 
         private void accountRechargeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var acc = new BaseRepository<Account>().Get(a => a.User.Id == CurrentUserId).FirstOrDefault();
+            var acc = BaseRepository<Account>.Get(a => a.User.Id == CurrentUserId).FirstOrDefault();
             if (acc?.IsActiveStatus == false)
             {
                 MessagesContainer.DisplayError("Account is diactivated!" + Environment.NewLine +

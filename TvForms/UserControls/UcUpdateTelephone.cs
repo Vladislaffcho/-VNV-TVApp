@@ -17,10 +17,9 @@ namespace TvForms
 
         public void UpdateTelephone(int phoneId)
         {
-            int i = 0;
-            var phoneRepo = new BaseRepository<UserPhone>();
-            var phoneToUpdate = phoneRepo.Get(c => c.Id == phoneId).First();
-            var types = phoneRepo._context.TypeConnects.Distinct();
+            var i = 0;
+            var phoneToUpdate = BaseRepository<UserPhone>.Get(c => c.Id == phoneId).First();
+            var types = BaseRepository<TypeConnect>.GetAll().Distinct();
 
             _phoneNumber = phoneToUpdate.Number;
             tbNumber.Text = phoneToUpdate.Number.ToString();
@@ -80,14 +79,13 @@ namespace TvForms
         // save in case of valid number
         public void SaveAddedDetails(int phoneId)
         {
-            var userPhoneRepo = new BaseRepository<UserPhone>();
-            var numberToUpdate = userPhoneRepo.Get(x => x.Id == phoneId)
+            var numberToUpdate = BaseRepository<UserPhone>.Get(x => x.Id == phoneId)
                 .Include(x => x.TypeConnect)
                 .Include(x => x.User).First();
             numberToUpdate.Number = tbNumber.Text.GetInt();
             numberToUpdate.Comment = tbComment.Text;
-            numberToUpdate.TypeConnect = userPhoneRepo._context.TypeConnects.Where(l => l.NameType == cbPhoneType.SelectedItem.ToString()).First();
-            userPhoneRepo.Update(numberToUpdate);
+            numberToUpdate.TypeConnect = BaseRepository<TypeConnect>.Get(l => l.NameType == cbPhoneType.SelectedItem.ToString()).First();
+            BaseRepository<UserPhone>.Update(numberToUpdate);
         }
     }
 }

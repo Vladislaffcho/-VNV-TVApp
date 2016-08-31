@@ -34,8 +34,7 @@ namespace TvForms
         {
             // clear the list view in case user's opened it previously during a session
             lvUserList.Items.Clear();
-            var userRepo = new BaseRepository<User>();
-            var users = userRepo.GetAll();
+            var users = BaseRepository<User>.GetAll();
 
             FillUsersLv(users);
 
@@ -71,8 +70,7 @@ namespace TvForms
                 tbSurname.Text = listViewItem.SubItems[3].Text;
 
                 #region filling user data for admin user control
-                var userContactsRepo = new BaseRepository<User>();
-                var user = userContactsRepo.Get(c => c.Id == _selectedUser).First();
+                var user = BaseRepository<User>.Get(c => c.Id == _selectedUser).First();
 
                 // Filling user's address list List View
                 if (user.UserAddresses.Any())
@@ -112,7 +110,7 @@ namespace TvForms
 
                 // Filling Money and status TB's
                 // uncomment when whole functionality has been provided
-                tbMoney.Text = "Change in ucAdminClass";
+                tbMoney.Text = @"Change in ucAdminClass";
 
                 _activeUserFlag = true;
                 if (user.IsActiveStatus)
@@ -180,15 +178,14 @@ namespace TvForms
         {
             if (!_activeUserFlag)
             {
-                var userRepo = new BaseRepository<User>();
-                var user = userRepo.Get(c => c.Id == _selectedUser)
+                var user = BaseRepository<User>.Get(c => c.Id == _selectedUser)
                     .Include(x => x.UserType)
                     .First();
 
                 if ((UserStatus)Enum.Parse(typeof(UserStatus), cbStatus.SelectedItem.ToString()) == UserStatus.Active
                     && !user.IsActiveStatus)
                 {
-                    if (MessageBox.Show("Do you want to activate this user?", "Activate user",
+                    if (MessageBox.Show(@"Do you want to activate this user?", @"Activate user",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         user.IsActiveStatus = true;
@@ -202,7 +199,7 @@ namespace TvForms
                 else if ((UserStatus)Enum.Parse(typeof(UserStatus), cbStatus.SelectedItem.ToString()) == UserStatus.Inactive
                     && user.IsActiveStatus)
                 {
-                    if (MessageBox.Show("Do you want to deactivate this user?", "Deactivate user",
+                    if (MessageBox.Show(@"Do you want to deactivate this user?", @"Deactivate user",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         user.IsActiveStatus = false;
@@ -213,7 +210,7 @@ namespace TvForms
                         cbStatus.SelectedIndex = 0;
                     }
                 }
-                userRepo.Update(user);
+                BaseRepository<User>.Update(user);
                 _activeUserFlag = false;
             }
         }
@@ -223,13 +220,12 @@ namespace TvForms
         {
             if (!_adultContentFlag)
             {
-                var userRepo = new BaseRepository<User>();
-                var user = userRepo.Get(x => x.Id == _selectedUser)
+                var user = BaseRepository<User>.Get(x => x.Id == _selectedUser)
                     .Include(x => x.UserType)
                     .First();
                 if (cbAdultContent.Checked)
                 {
-                    if (MessageBox.Show("Do you want to allow adult content for this user?", "Allow adult content",
+                    if (MessageBox.Show(@"Do you want to allow adult content for this user?", @"Allow adult content",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         user.IsAllowAdultContent = true;
@@ -242,7 +238,7 @@ namespace TvForms
                 }
                 else
                 {
-                    if (MessageBox.Show("Do you want to forbid adult content for this user?", "Forbid adult content",
+                    if (MessageBox.Show(@"Do you want to forbid adult content for this user?", @"Forbid adult content",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         user.IsAllowAdultContent = false;
@@ -253,7 +249,7 @@ namespace TvForms
                         cbAdultContent.Checked = true;
                     }
                 }
-                userRepo.Update(user);
+                BaseRepository<User>.Update(user);
 
                 _adultContentFlag = false;
             }
@@ -290,20 +286,18 @@ namespace TvForms
         {
             if (!_userType)
             {
-                var userRepo = new BaseRepository<User>();
-                var user = userRepo.Get(x => x.Id == _selectedUser)
+                var user = BaseRepository<User>.Get(x => x.Id == _selectedUser)
                     .Include(x => x.UserType)
                     .First();
                 var newTypeId = (int)Enum.Parse(typeof(EUserType), cbUserType.SelectedItem.ToString());
-                var newType = userRepo._context.UserTypes.Where(
-                                x => x.Id == newTypeId).First();
+                var newType = BaseRepository<UserType>.Get(x => x.Id == newTypeId).FirstOrDefault();
                 if (newTypeId != user.UserType.Id &&
-                    MessageBox.Show("Do you want to change user type from " + user.UserType.TypeName +
-                                    " to " + newType.TypeName, "Change user type",
+                    MessageBox.Show(@"Do you want to change user type from " + user.UserType.TypeName +
+                                    @" to " + newType?.TypeName, @"Change user type",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     user.UserType = newType;
-                    userRepo.Update(user);
+                    BaseRepository<User>.Update(user);
                     MessagesContainer.DisplayInfo("Next session for this user will start with new rights", "User type has been updated");
                 }
                 else
@@ -326,23 +320,22 @@ namespace TvForms
             }
             else 
             {
-                var userRepo = new BaseRepository<User>();
-                var foundUsers = userRepo.GetAll();
+                var foundUsers = BaseRepository<User>.GetAll();
 
                 // try to find by Name
-                if (tbSearchName.Text.Trim() != String.Empty)
+                if (tbSearchName.Text.Trim() != string.Empty)
                 {
                     foundUsers = foundUsers.Where(x => x.FirstName == tbSearchName.Text.Trim());
                 }
 
                 // try to find by Surname
-                if (tbSearchSurname.Text.Trim() != String.Empty)
+                if (tbSearchSurname.Text.Trim() != string.Empty)
                 {
                     foundUsers = foundUsers.Where(x => x.LastName == tbSearchSurname.Text.Trim());
                 }
 
                 // try to find by login
-                if (tbSearchLogin.Text.Trim() != String.Empty)
+                if (tbSearchLogin.Text.Trim() != string.Empty)
                 {
                     foundUsers = foundUsers.Where(x => x.Login == tbSearchLogin.Text.Trim());
                 }

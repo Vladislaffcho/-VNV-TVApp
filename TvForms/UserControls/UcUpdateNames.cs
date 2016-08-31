@@ -15,8 +15,7 @@ namespace TvForms
 
         public void UpdateNames(int userId)
         {
-            var usersRepo = new BaseRepository<User>();
-            var userToUpdate = usersRepo.Get(x => x.Id == userId)
+            var userToUpdate = BaseRepository<User>.Get(x => x.Id == userId)
                 .First();
             tbFirstName.Text = userToUpdate.FirstName;
             tbLastName.Text = userToUpdate.LastName;
@@ -24,10 +23,10 @@ namespace TvForms
 
         public bool ValidateControls(int userId)
         {
-            string errorMessage = "Error:";
-            bool isValidName = true;
+            var errorMessage = "Error:";
+            var isValidName = true;
 
-            if (tbFirstName.Text.Trim() != String.Empty && tbFirstName.Text.Trim().Length < 30)
+            if (tbFirstName.Text.Trim() != string.Empty && tbFirstName.Text.Trim().Length < 30)
             {
                 if (!tbFirstName.Text.Trim().IsValidName())
                 {
@@ -69,13 +68,12 @@ namespace TvForms
         // method saves updated user data
         private void SaveUpdatedDetails(int userId)
         {
-            var usersRepo = new BaseRepository<User>();
-            var userToUpdate = usersRepo.Get(x => x.Id == userId)
+            var userToUpdate = BaseRepository<User>.Get(x => x.Id == userId)
                 .Include(x => x.UserType)
                 .First();
             userToUpdate.FirstName = tbFirstName.Text;
             userToUpdate.LastName = tbLastName.Text;
-            usersRepo.Update(userToUpdate);
+            BaseRepository<User>.Update(userToUpdate);
         }
     }
 }

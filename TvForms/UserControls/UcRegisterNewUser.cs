@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TVContext;
 
@@ -92,14 +84,13 @@ namespace TvForms
         private void SaveAddedDetails()
         {
             var md5Hash = MD5.Create();
-            var userRepo = new BaseRepository<User>();
-            userRepo.Insert(new User()
+            BaseRepository<User>.Insert(new User()
             {
                 FirstName = tbFirstName.Text,
                 LastName = tbLastName.Text,
                 Login = tbLogin.Text,
                 Password = Md5Helper.GetMd5Hash(md5Hash, tbPassword.Text),
-                UserType = userRepo._context.UserTypes.Where(x => x.TypeName == "Client").First()
+                UserType = BaseRepository<UserType>.Get(x => x.TypeName == "Client").FirstOrDefault()
             });
                 MessagesContainer.DisplayInfo("Created new user successfully.\nYou may log in with new credentials.",
                 "New user has been created");

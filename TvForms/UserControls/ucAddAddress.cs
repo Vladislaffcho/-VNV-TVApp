@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
 using TVContext;
@@ -17,9 +16,8 @@ namespace TvForms
         // set control view on loading
         private void SetControlView()
         {
-            var typeConnectRepo = new BaseRepository<TypeConnect>();
-            var types = typeConnectRepo.GetAll();
-
+            var types = BaseRepository<TypeConnect>.GetAll().ToList();
+            
             foreach (var typeConnect in types)
             {
                 cbAddressType.Items.Add(typeConnect.NameType);
@@ -28,7 +26,7 @@ namespace TvForms
         }
 
         // validate entered data
-        public bool ValidateControls(int UserId)
+        public bool ValidateControls(int userId)
         {
             string errorMessage = "Error:";
             bool isValidAddress = true;
@@ -53,7 +51,7 @@ namespace TvForms
 
             if (isValidAddress)
             {
-                SaveAddedDetails(UserId);
+                SaveAddedDetails(userId);
             }
             else
             {
@@ -63,15 +61,15 @@ namespace TvForms
         }
 
         // save to the db in case of valid input
-        public void SaveAddedDetails(int UserId)
+        public void SaveAddedDetails(int userId)
         {
-            var userAddressRepo = new BaseRepository<UserAddress>();
-            userAddressRepo.Insert(new UserAddress
+            //todo something needs to correct in TypeConnect and User fields
+            BaseRepository<UserAddress>.Insert(new UserAddress
             {
                 Address = tbUserAddress.Text,
                 Comment = tbComment.Text,
-                TypeConnect = userAddressRepo._context.TypeConnects.Where(x => x.NameType == cbAddressType.Text).First(),
-                User = userAddressRepo._context.Users.Where(l => l.Id == UserId).First()
+                TypeConnect = BaseRepository<TypeConnect>.Get(x => x.NameType == cbAddressType.Text).FirstOrDefault(),
+                User = BaseRepository<User>.Get(l => l.Id == userId).FirstOrDefault()
             });
         }
     }

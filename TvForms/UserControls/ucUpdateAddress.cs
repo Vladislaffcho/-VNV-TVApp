@@ -15,12 +15,12 @@ namespace TvForms
             InitializeComponent();
         }
 
-        public void UpdateAddress(int addressID)
+        public void UpdateAddress(int addressId)
         {
-            int i = 0;
-            var addressRepo = new BaseRepository<UserAddress>();
-            var addressToUpdate = addressRepo.Get(c => c.Id == addressID).First();
-            var types = addressRepo._context.TypeConnects.Distinct();
+            var i = 0;
+
+            var addressToUpdate = BaseRepository<UserAddress>.Get(c => c.Id == addressId).First();
+            var types = BaseRepository<TypeConnect>.GetAll().Distinct();
 
             _userAddress = addressToUpdate.Address;
 
@@ -76,14 +76,13 @@ namespace TvForms
         // method saves changed recording to the db
         public void SaveAddedDetails(int addressId)
         {
-            var userAddressRepo = new BaseRepository<UserAddress>();
-            var addressToUpdate = userAddressRepo.Get(x => x.Id == addressId)
+            var addressToUpdate = BaseRepository<UserAddress>.Get(x => x.Id == addressId)
                 .Include(x => x.TypeConnect)
                 .Include(x => x.User).First();
             addressToUpdate.Address = tbUserAddress.Text;
             addressToUpdate.Comment = tbComment.Text;
-            addressToUpdate.TypeConnect = userAddressRepo._context.TypeConnects.Where(l => l.NameType == cbAddressType.SelectedItem.ToString()).First();
-            userAddressRepo.Update(addressToUpdate);
+            addressToUpdate.TypeConnect = BaseRepository<TypeConnect>.Get(l => l.NameType == cbAddressType.SelectedItem.ToString()).First();
+            BaseRepository<UserAddress>.Update(addressToUpdate);
         }
     }
 }
