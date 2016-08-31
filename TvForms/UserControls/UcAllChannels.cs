@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using TvContext;
@@ -40,14 +41,14 @@ namespace TvForms
             var number = 1;
             var channelRepo = new BaseRepository<Channel>();
             var allChannels = channelRepo.GetAll();
-            //var orederedChannels = new BaseRepository<OrderChannel>(context).GetAll().ToList();
+            var orederedChannels = new BaseRepository<OrderChannel>(channelRepo.ContextDb).GetAll().ToList();
 
             foreach (var ch in allChannels)
             {
                 ChannelsToListView(number, ch);
                 lvChannelsList.CheckBoxes = true;
-                if (new BaseRepository<OrderChannel>(channelRepo.ContextDb).Get(s => s.Channel.Id == ch.Id
-                                               && s.Order.User.Id == CurrentUserId) != null)
+                if (orederedChannels.Find(oCh => oCh.Channel.Id == ch.Id
+                                               && oCh.Order.User.Id == CurrentUserId) != null)
                 {
                     lvChannelsList.Items[ch.Id - 1].Checked = true;
                 }
@@ -69,7 +70,7 @@ namespace TvForms
 
             var showByDateAndChannels = showsByOrderedChannels.FindAll(x =>
                         (int) x.Date.DayOfWeek == GetSelectedDay()
-                /*&& Math.Abs(x.Date.Day - DateTime.Now.Day) < 7*/).ToList();
+                /*&& Math.Abs(x.Date.Day - DateTime.Now.Day) < 7*/);
 
             ControlForShows?.Dispose();
             ControlForShows = new UcShowsList(CurrentUserId);
@@ -211,15 +212,24 @@ namespace TvForms
 
                 var order = orderRepo.Get(o => o.Id == CurrentOrderId).FirstOrDefault();
 
-                var orderAllChann = channelsRepo.GetAll().Select(chan => new OrderChannel
+                var orderAllChann = channelsRepo.GetAll().ToList();
+                var list = orderAllChann.Select(channel => new OrderChannel
                 {
-                    Channel = chan, Order = order
+                    Channel = channel, Order = order
                 }).ToList();
-                ordChannelRepo.AddRange(orderAllChann);
+                ;
+                ordChannelRepo.AddRange(list);
 
-                var showByDateAndChannels = tvShowsRepo.Get(x =>
-                        (int)x.Date.DayOfWeek == GetSelectedDay()
-                /*&& Math.Abs(x.Date.Day - DateTime.Now.Day) < 7*/).ToList();
+                var showByDateAndChannels = new List<TvShow>();
+                foreach (var show in tvShowsRepo.GetAll())
+                {
+                    if ((int) show.Date.DayOfWeek == GetSelectedDay()
+                        /*&& Math.Abs(x.Date.Day - DateTime.Now.Day) < 7*/)
+                    {
+                        showByDateAndChannels.Add(show);
+                    }
+                }
+                
 
                 ControlForShows?.Dispose();
                 ControlForShows = new UcShowsList(CurrentUserId);
