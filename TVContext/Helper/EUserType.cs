@@ -1,4 +1,4 @@
-﻿namespace TVContext
+﻿namespace TvContext
 {
     /// <summary>
     /// Enumeration of types of all user in project

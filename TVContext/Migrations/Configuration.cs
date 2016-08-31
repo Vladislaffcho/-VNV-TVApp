@@ -5,14 +5,14 @@ namespace TvDbContext.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<TVContext.TvDBContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<TvContext.TvDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(TVContext.TvDBContext context)
+        protected override void Seed(TvContext.TvDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

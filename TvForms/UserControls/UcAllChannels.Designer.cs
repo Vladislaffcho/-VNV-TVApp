@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using TVContext;
+using TvContext;
 
 namespace TvForms
 {

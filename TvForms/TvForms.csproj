@@ -351,9 +351,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TVContext\TVContext.csproj">
+    <ProjectReference Include="..\TVContext\TvContext.csproj">
       <Project>{4915d8db-f82b-4046-9ca9-b697da0013f8}</Project>
-      <Name>TVContext</Name>
+      <Name>TvContext</Name>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

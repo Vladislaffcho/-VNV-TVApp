@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace TVContext
+namespace TvContext
 {
     public class AdditionalService : IdentificableEntity
     {

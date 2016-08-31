@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Xml;
-using TVContext;
+using TvContext;
 
 namespace TvForms
 {
@@ -23,7 +23,7 @@ namespace TvForms
 
                 if (xmlNodeList != null)
                 {
-                    using (var context = new TvDBContext())
+                    using (var context = new TvContext.TvDbContext())
                     {
                         foreach (XmlNode node in xmlNodeList)
                         {
@@ -80,7 +80,7 @@ namespace TvForms
 
                 if (xmlNodeList != null)
                 {
-                    using (var context = new TvDBContext())
+                    using (var context = new TvContext.TvDbContext())
                     {
                         var progressBar = new ProgressForm();
                         progressBar.Show();

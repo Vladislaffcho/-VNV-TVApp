@@ -10,16 +10,30 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Windows.Forms;
 
-namespace TVContext
+namespace TvContext
 {
     public sealed class BaseRepository<TEntity> where TEntity : IdentificableEntity
     {
-        private static TvDBContext _context { get; } = new TvDBContext();
+        //private static TvDBContext _context { get; } = new TvDBContext();
 
-        private BaseRepository()
+        private static TvDbContext _context;
+
+        private static TvDbContext ContextInstance
+        {
+            get
+            {
+                if(_context == null)
+                    _context = new TvDbContext();
+                return _context;
+            }
+            //set { _context = value; }
+        }
+
+        public BaseRepository()
         {
 
         }
+
 
         //public BaseRepository(TvDBContext context)
         //{
@@ -28,20 +42,24 @@ namespace TVContext
 
         public static IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
         {
-            return _context.Set<TEntity>().Where(predicate);
+            //return _context.Set<TEntity>().Where(predicate);
+            return ContextInstance.Set<TEntity>().Where(predicate);
         }
 
         public static IQueryable<TEntity> GetAll()
         {
-            return _context.Set<TEntity>();
+            //return _context.Set<TEntity>();
+            return ContextInstance.Set<TEntity>();
         }
 
         public static void Remove(TEntity entity)
         {
             try
             {
-                _context.Set<TEntity>().Remove(entity);
-                _context.SaveChanges();
+                //_context.Set<TEntity>().Remove(entity);
+                ContextInstance.Set<TEntity>().Remove(entity);
+                ContextInstance.SaveChanges();
+                //_context.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -69,8 +87,10 @@ namespace TVContext
         {
             try
             {
-                _context.Entry(entity).State = EntityState.Modified;
-                _context.SaveChanges();
+                //_context.Entry(entity).State = EntityState.Modified;
+                ContextInstance.Entry(entity).State = EntityState.Modified;
+                ContextInstance.SaveChanges();
+                //_context.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -99,8 +119,10 @@ namespace TVContext
         {
             try
             {
-                _context.Entry(entity).State = EntityState.Added;
-                _context.SaveChanges();
+                //_context.Entry(entity).State = EntityState.Added;
+                ContextInstance.Entry(entity).State = EntityState.Added;
+                ContextInstance.SaveChanges();
+                //_context.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -130,14 +152,18 @@ namespace TVContext
         //todo needs to Rewrite for any TEntity
         public static void AddRange(List<OrderChannel> channels)
         {
-            _context.OrderChannels.AddRange(channels);
-            _context.SaveChanges();
+            //_context.OrderChannels.AddRange(channels);
+            ContextInstance.OrderChannels.AddRange(channels);
+            ContextInstance.SaveChanges();
+            //_context.SaveChanges();
         }
 
         public static void RemoveRange(List<OrderChannel> deleteChann)
         {
-            _context.OrderChannels.RemoveRange(deleteChann);
-            _context.SaveChanges();
+            //_context.OrderChannels.RemoveRange(deleteChann);
+            ContextInstance.OrderChannels.RemoveRange(deleteChann);
+            ContextInstance.SaveChanges();
+            //_context.SaveChanges();
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TVContext
+namespace TvContext
 {
     
     public class UserType : CommentedEntity

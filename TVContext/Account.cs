@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TVContext
+namespace TvContext
 {
     //TODO Rename to Account
     public class Account : CommentedEntity

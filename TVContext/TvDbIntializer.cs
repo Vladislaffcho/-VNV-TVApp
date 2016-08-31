@@ -6,11 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
 
-namespace TVContext
+namespace TvContext
 {
-    public class TvDbIntializer : CreateDatabaseIfNotExists<TvDBContext> // this class used only when database is creating
+    public class TvDbIntializer : CreateDatabaseIfNotExists<TvDbContext> // this class used only when database is creating
     {
-        protected override void Seed(TvDBContext context)
+        
+        protected override void Seed(TvDbContext context)
         {
 
             //Create default data for UserType
@@ -62,8 +63,8 @@ namespace TVContext
                     {
                         new User()
                         {
-                            FirstName = "Name Admin",
-                            LastName = "LastN Admin",
+                            FirstName = "Andriy",
+                            LastName = "Pervozvannuy",
                             Login = "root",
                             Password = Md5Helper.GetMd5Hash(md5Hash, "1111"),
                             IsAllowAdultContent = true,
@@ -73,9 +74,9 @@ namespace TVContext
 
                         new User()
                         {
-                            FirstName = "userName",
-                            LastName = "UserLast",
-                            Login = "user",
+                            FirstName = "Viktor",
+                            LastName = "Litvak",
+                            Login = "litvak83",
                             Password = Md5Helper.GetMd5Hash(md5Hash, "2222"),
                             IsAllowAdultContent = false,
                             UserType = context.UserTypes.First(x => x.Id == (int) EUserType.CLIENT),

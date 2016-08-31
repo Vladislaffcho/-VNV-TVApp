@@ -1,16 +1,18 @@
 ﻿using System.Data.Entity;
 
 
-namespace TVContext
+namespace TvContext
 {
-    public class TvDBContext : DbContext
+    public class TvDbContext : DbContext
     {
-        public TvDBContext() : base("name=TvDBase")
+
+        public TvDbContext() : base("name=TvDBase")
         {
             //set DB intializer for default value of dictionary on create bd
             //Database.SetInitializer(new TvDbIntializer());
             //Database.Initialize(true);
         }
+
 
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{

@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TvForms", "TvForms\TvForms.csproj", "{8177BFBE-E63B-4314-AE1D-5A492EF5B008}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TVContext", "TVContext\TVContext.csproj", "{4915D8DB-F82B-4046-9CA9-B697DA0013F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TvContext", "TVContext\TvContext.csproj", "{4915D8DB-F82B-4046-9CA9-B697DA0013F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

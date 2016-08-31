@@ -2,7 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
-using TVContext;
+using TvContext;
 
 namespace TvForms
 {

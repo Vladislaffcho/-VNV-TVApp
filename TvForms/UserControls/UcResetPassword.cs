@@ -9,7 +9,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TVContext;
+using TvContext;
 
 namespace TvForms.UserControls
 {
@@ -27,8 +27,8 @@ namespace TvForms.UserControls
             {
                 if (tbEmail.Text.Trim().IsValidEmail())
                 {
-                    var emailsRepo = new BaseRepository<UserEmail>();
-                    var email = emailsRepo.Get(x => x.EmailName == tbEmail.Text.Trim());
+                    //var emailsRepo = new ();
+                    var email = BaseRepository<UserEmail>.Get(x => x.EmailName == tbEmail.Text.Trim());
                     if (email.Any())
                     {
                         tbCodeFromEmail.Text = RandomStrings.ReceivedResetCode();
@@ -57,15 +57,15 @@ namespace TvForms.UserControls
                 if (tbEnterCode.Text != String.Empty &&
                     tbEnterCode.Text == tbCodeFromEmail.Text)
                 {
-                    var userRepo = new BaseRepository<User>();
-                    var emailId = userRepo._context.UserEmails.Where(x => x.EmailName == tbEmail.Text.Trim()).First().User.Id;
+                    //var userRepo = new ();
+                    var emailId = BaseRepository<UserEmail>.Get(x => x.EmailName == tbEmail.Text.Trim()).First().User.Id;
                     tbNewPass.Text = RandomStrings.TempPassword();
-                    var user = userRepo.Get(x => x.Id == emailId)
+                    var user = BaseRepository<User>.Get(x => x.Id == emailId)
                         .Include(x => x.UserType)
                         .First();
                     var md5Hash = MD5.Create();
                     user.Password = Md5Helper.GetMd5Hash(md5Hash, tbNewPass.Text);
-                    userRepo.Update(user);
+                    BaseRepository<User>.Update(user);
                     MessagesContainer.DisplayInfo("Password has been changed. Please login using new password", "Success");
                 }
                 else

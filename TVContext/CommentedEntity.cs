@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TVContext
+namespace TvContext
 {
     public class CommentedEntity : IdentificableEntity
     {

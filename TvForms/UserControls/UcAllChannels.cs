@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using TVContext;
+using TvContext;
 
 namespace TvForms
 {
@@ -170,7 +170,7 @@ namespace TvForms
 
         private Order GetNewOrder()
         {
-           using (var context = new TvDBContext())
+           using (var context = new TvContext.TvDbContext())
             {
                 var currOrder = new Order
                     {
@@ -230,22 +230,20 @@ namespace TvForms
                 {
                     lvChannelsList.Items[i].Checked = false;
                 }
+                
+                //var userSchRepo = new BaseRepository<UserSchedule>(context);
+                //var oderedChannRepo = new (context);
+                //var deleteSched = userSchRepo.Get(x => x.User.Id == CurrentUserId).ToList();
+                var deleteChann = BaseRepository<OrderChannel>.Get(x => x.Order.Id == CurrentOrderId).ToList();
+                //context.UserSchedules.RemoveRange(deleteSched);
+                BaseRepository<OrderChannel>.RemoveRange(deleteChann);
+                //context.SaveChanges();
 
-                using (var context = new TvDBContext())
-                {
-                    //var userSchRepo = new BaseRepository<UserSchedule>(context);
-                    //var oderedChannRepo = new (context);
-                    //var deleteSched = userSchRepo.Get(x => x.User.Id == CurrentUserId).ToList();
-                    var deleteChann = BaseRepository<OrderChannel>.Get(x => x.Order.Id == CurrentOrderId).ToList();
-                    //context.UserSchedules.RemoveRange(deleteSched);
-                    BaseRepository<OrderChannel>.RemoveRange(deleteChann);
-                    //context.SaveChanges();
-
-                    ControlForShows?.Dispose();
-                    ControlForShows = new UcShowsList(CurrentUserId);
-                    tabControl_Shows.SelectedTab.Controls.Add(ControlForShows);
-                }
-               
+                ControlForShows?.Dispose();
+                ControlForShows = new UcShowsList(CurrentUserId);
+                tabControl_Shows.SelectedTab.Controls.Add(ControlForShows);
+                
+              
             }
         }
 

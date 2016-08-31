@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Security.Cryptography;
 using System.Windows.Forms;
-using TVContext;
 
 
 namespace TvForms
@@ -23,7 +22,7 @@ namespace TvForms
             //hide characters in pass field by default
             tbPassForm_Pass.UseSystemPasswordChar = !chBPassForm_ShowPass.Checked;
 
-            this.tbPassForm_Login.Text = "user"; //delete this string when program will be tested
+            this.tbPassForm_Login.Text = "litvak83"; //delete this string when program will be tested
             this.tbPassForm_Pass.Text = "2222";  //delete this string when program will be tested
             //this.tbPassForm_Login.Text = "root"; //delete this string when program will be tested
             //this.tbPassForm_Pass.Text = "1111";  //delete this string when program will be tested
@@ -36,7 +35,7 @@ namespace TvForms
             //go to database and check user or admin exists
             if (tbPassForm_Pass.Text != string.Empty)
             {
-                using (var context = new TvDBContext())
+                using (var context = new TvContext.TvDbContext())
                 {
                     using (var md5Hash = MD5.Create())
                     {

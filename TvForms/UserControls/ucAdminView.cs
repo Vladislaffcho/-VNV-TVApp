@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
-using TVContext;
+using TvContext;
 using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace TvForms
