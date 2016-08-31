@@ -148,13 +148,6 @@ namespace TvForms
             var doc = new XmlDocument();
             doc.Load(xmlFileName);
             var xmlChannelsNodeList = doc.SelectNodes("tv/channel");
-
-            //var xml = XDocument.Load(xmlFileName);
-            //var channels = from c in xml.Root?.Descendants("channel")
-            //    select c.Element("display-name")?.Value + ";" +
-            //           c.Element("due-date")?.Value + ";" +
-            //           c.Element("user-id")?.Value + ";" +
-            //           c.Element("price")?.Value;
             
             var chanellList = new List<Channel>();
             if (xmlChannelsNodeList != null)
@@ -187,16 +180,15 @@ namespace TvForms
 
         public static void XmlFavouriteWriter(string fileName, int userId)
         {
-            //var context = BaseRepository<OrderChannel>.Context;
-            //var tvShowsRepo = new BaseRepository<UserSchedule>();
-
-
+            
             using (var writer = XmlWriter.Create(fileName))
             {
                 writer.WriteStartDocument();
                 writer.WriteStartElement("tv");
 
-                foreach (var ordChannel in BaseRepository<OrderChannel>.Get(x => x.Order.User.Id == userId).ToList())
+                var ordChannelRepo = new BaseRepository<OrderChannel>();
+
+                foreach (var ordChannel in ordChannelRepo.Get(x => x.Order.User.Id == userId).ToList())
                 {
                     writer.WriteStartElement("channel");
 
@@ -209,7 +201,8 @@ namespace TvForms
                     writer.WriteEndElement();
                 }
 
-                foreach (var prog in BaseRepository<UserSchedule>.Get(x => x.User.Id == userId).ToList())
+                foreach (var prog in new BaseRepository<UserSchedule>(ordChannelRepo.ContextDb)
+                    .Get(x => x.User.Id == userId).ToList())
                 {
                     writer.WriteStartElement("programme");
 

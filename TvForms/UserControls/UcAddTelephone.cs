@@ -16,7 +16,7 @@ namespace TvForms
         // set user control on loading
         private void SetControlView()
         {
-            var types = BaseRepository<TypeConnect>.GetAll().ToList();
+            var types = new BaseRepository<TypeConnect>().GetAll().ToList();
 
             foreach (var typeConnect in types)
             {
@@ -28,8 +28,8 @@ namespace TvForms
         // validate number input
         public bool ValidateControls(int userId)
         {
-            string errorMessage = "Error:";
-            bool isValidNumber = true;
+            var errorMessage = "Error:";
+            var isValidNumber = true;
             if (tbNumber.Text.Trim() != String.Empty)
             {
                 if (!tbNumber.Text.Trim().IsValidPhone())
@@ -69,12 +69,15 @@ namespace TvForms
         // save in case of valid number
         public void SaveAddedDetails(int userId)
         {
-            BaseRepository<UserPhone>.Insert(new UserPhone
+            var phoneRepo = new BaseRepository<UserPhone>();
+            phoneRepo.Insert(new UserPhone
             {
                 Number = tbNumber.Text.GetInt(),
                 Comment = tbComment.Text,
-                TypeConnect = BaseRepository<TypeConnect>.Get(x => x.NameType == cbNumberType.Text).FirstOrDefault(),
-                User = BaseRepository<User>.Get(l => l.Id == userId).FirstOrDefault()
+                TypeConnect = new BaseRepository<TypeConnect>(phoneRepo.ContextDb)
+                    .Get(x => x.NameType == cbNumberType.Text).FirstOrDefault(),
+                User = new BaseRepository<User>(phoneRepo.ContextDb)
+                    .Get(l => l.Id == userId).FirstOrDefault()
             });
         }
     }

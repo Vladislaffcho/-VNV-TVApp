@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Entity;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TvContext;
 
@@ -26,8 +19,8 @@ namespace TvForms.Forms
         // set form view on opening
         private void SetPageView()
         {
-            //var servicesRepo = new ();
-            var services = BaseRepository<AdditionalService>.GetAll();
+            var servicesRepo = new BaseRepository<AdditionalService>();
+            var services = servicesRepo.GetAll();
             foreach (var service in services)
             {
                 var lvItem = new ListViewItem(service.Name);
@@ -37,7 +30,7 @@ namespace TvForms.Forms
                 lvAvailableAdditionalServices.Items.Add(lvItem);
             }
 
-            var userServices = BaseRepository<OrderService>.Get(s => s.Order.User.Id == _currentUser);
+            var userServices = servicesRepo.ContextDb.OrderServices.Where(s => s.Order.User.Id == _currentUser);
             foreach (var service in userServices)
             {
                 var lvItem = new ListViewItem(service.AdditionalService.Name);
@@ -55,34 +48,32 @@ namespace TvForms.Forms
             {
                 var serviceId = lvAvailableAdditionalServices
                     .SelectedItems[0].SubItems[3].Text.GetInt();
-                
-                if (!BaseRepository<OrderService>
+                var orderServiceReposotory = new BaseRepository<OrderService>();
+                if (!orderServiceReposotory
                     .Get(x => x.AdditionalService.Id == serviceId)
                     .Any(u => u.Order.User.Id == _currentUser)
                     )
                 {
                     var orderedService = new OrderService
                     {
-                        AdditionalService = BaseRepository<AdditionalService>
-                            .Get(c => c.Id == serviceId).FirstOrDefault(),
+                        AdditionalService = orderServiceReposotory.ContextDb.AddServices
+                            .FirstOrDefault(c => c.Id == serviceId),
                         // create new global order which will represent exact service order in the db
                         Order = new Order
                         {
                             DateOrder = DateTime.Now,
                             FromDate = DateTime.Now,
                             DueDate = new DateTime(2016, 12, 31),
-                            TotalPrice = BaseRepository<AdditionalService>
-                                .Get(x => x.Id == serviceId)
-                                .First()
+                            TotalPrice = orderServiceReposotory.ContextDb.AddServices
+                                .First(x => x.Id == serviceId)
                                 .Price,
                             IsPaid = false,
                             IsDeleted = false,
-                            User = BaseRepository<User>
-                                .Get(u => u.Id == _currentUser)
-                                .First()
+                            User = orderServiceReposotory.ContextDb.Users
+                                .First(u => u.Id == _currentUser)
                         }
                     };
-                    BaseRepository<OrderService>.Insert(orderedService);
+                    orderServiceReposotory.Insert(orderedService);
                     MessagesContainer.DisplayInfo("Chosen item has successfully been added to your orders", "Success");
                 }
 

@@ -19,8 +19,9 @@ namespace TvForms
         {
             // set control view
             var i = 0;
-            var emailToUpdate = BaseRepository<UserEmail>.Get(c => c.Id == emailId).First();
-            var types = BaseRepository<TypeConnect>.GetAll().Distinct();
+            var mailRepo = new BaseRepository<UserEmail>();
+            var emailToUpdate = mailRepo.Get(c => c.Id == emailId).First();
+            var types = new BaseRepository<TypeConnect>(mailRepo.ContextDb).GetAll().Distinct();
 
             _email = emailToUpdate.EmailName;
             tbUserEmail.Text = emailToUpdate.EmailName;
@@ -80,13 +81,15 @@ namespace TvForms
         // method saves changed recording into the db
         public void SaveAddedDetails(int emailId)
         {
-            var emailToUpdate = BaseRepository<UserEmail>.Get(x => x.Id == emailId)
+            var mailRepo = new BaseRepository<UserEmail>();
+            var emailToUpdate = mailRepo.Get(x => x.Id == emailId)
                 .Include(x => x.TypeConnect)
                 .Include(x => x.User).First();
             emailToUpdate.EmailName = tbUserEmail.Text;
             emailToUpdate.Comment = tbComment.Text;
-            emailToUpdate.TypeConnect = BaseRepository<TypeConnect>.Get(l => l.NameType == cbEmailType.SelectedItem.ToString()).First();
-            BaseRepository<UserEmail>.Update(emailToUpdate);
+            emailToUpdate.TypeConnect = new BaseRepository<TypeConnect>(mailRepo.ContextDb)
+                .Get(l => l.NameType == cbEmailType.SelectedItem.ToString()).First();
+            mailRepo.Update(emailToUpdate);
         }
     }
 }

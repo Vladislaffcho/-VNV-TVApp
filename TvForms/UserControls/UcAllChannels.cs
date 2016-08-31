@@ -38,14 +38,15 @@ namespace TvForms
         private void LoadAllChannelsList()
         {
             var number = 1;
-            var allChannels = BaseRepository<Channel>.GetAll();
+            var channelRepo = new BaseRepository<Channel>();
+            var allChannels = channelRepo.GetAll();
             //var orederedChannels = new BaseRepository<OrderChannel>(context).GetAll().ToList();
 
             foreach (var ch in allChannels)
             {
                 ChannelsToListView(number, ch);
                 lvChannelsList.CheckBoxes = true;
-                if (BaseRepository<OrderChannel>.Get(s => s.Channel.Id == ch.Id
+                if (new BaseRepository<OrderChannel>(channelRepo.ContextDb).Get(s => s.Channel.Id == ch.Id
                                                && s.Order.User.Id == CurrentUserId) != null)
                 {
                     lvChannelsList.Items[ch.Id - 1].Checked = true;
@@ -58,9 +59,10 @@ namespace TvForms
         private void LoadTvShowsList()
         {
            
-            var orderedChannels = BaseRepository<OrderChannel>.Get(ch => ch.Order.User.Id == CurrentUserId).ToList();
+            var orderedChannelRepo = new BaseRepository<OrderChannel>();
+            var orderedChannels = orderedChannelRepo.Get(ch => ch.Order.User.Id == CurrentUserId).ToList();
 
-            var showsRepo = BaseRepository<TvShow>.GetAll().ToList();
+            var showsRepo = new BaseRepository<TvShow>(orderedChannelRepo.ContextDb).GetAll().ToList();
             var showsByOrderedChannels = showsRepo.Where(show => orderedChannels.Find(x =>
                                                                             x.Channel.Id == show.Channel.Id) != null)
                 .ToList();
@@ -101,38 +103,37 @@ namespace TvForms
 
             var id = lvChannelsList.Items[e.Index].SubItems[4].Text.GetInt();
 
-           
-            //var channelRepo = new (context);
-            //var orderChannelRepo = new (context);
-            //var showsRepo = new (context);
-            //var orderRepo = new (context);
-            //var userRepo = new (context);
+            var channelRepo = new BaseRepository<Channel>();
+            var orderChannelRepo = new BaseRepository<OrderChannel>(channelRepo.ContextDb);
+            var showsRepo = new BaseRepository<TvShow>(channelRepo.ContextDb);
+            var orderRepo = new BaseRepository<Order>(channelRepo.ContextDb);
+            var userRepo = new BaseRepository<User>(channelRepo.ContextDb);
 
             switch (e.NewValue)
             {
                 case CheckState.Checked:
-                    if (BaseRepository<OrderChannel>.Get(s => s.Channel.Id == id
+                    if (orderChannelRepo.Get(s => s.Channel.Id == id
                         && s.Order.User.Id == CurrentUserId).FirstOrDefault() == null)
                     {
                         var orderedCh = new OrderChannel
                         {
 
-                            Channel = BaseRepository<Channel>.Get(c => c.Id == id).FirstOrDefault(),
-                            Order = BaseRepository<Order>.Get(x => x.Id == CurrentOrderId).FirstOrDefault()
+                            Channel = channelRepo.Get(c => c.Id == id).FirstOrDefault(),
+                            Order = orderRepo.Get(x => x.Id == CurrentOrderId).FirstOrDefault()
                         };
 
-                        var orderToUpdate = BaseRepository<Order>.Get(x => x.Id == CurrentOrderId).FirstOrDefault();
+                        var orderToUpdate = orderRepo.Get(x => x.Id == CurrentOrderId).FirstOrDefault();
                         if (orderToUpdate != null)
                         {
                             orderToUpdate.TotalPrice += orderedCh.Channel.Price;
-                            orderToUpdate.User = BaseRepository<User>.Get(u => u.Id == CurrentUserId).FirstOrDefault();
-                            BaseRepository<Order>.Update(orderToUpdate);
+                            orderToUpdate.User = userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault();
+                            orderRepo.Update(orderToUpdate);
                         }
 
-                        BaseRepository<OrderChannel>.Insert(orderedCh);
+                        orderChannelRepo.Insert(orderedCh);
 
                     }
-                    var showsByChannel = BaseRepository<TvShow>.Get(x => x.Channel.Id == id).ToList();
+                    var showsByChannel = showsRepo.Get(x => x.Channel.Id == id).ToList();
 
                     var addedShows =
                         showsByChannel.Where(show => (int) show.Date.DayOfWeek == GetSelectedDay()).ToList();
@@ -140,21 +141,21 @@ namespace TvForms
                     break;
 
                 case CheckState.Unchecked:
-                    var removeCh = BaseRepository<OrderChannel>.Get(x => x.Channel.Id == id).FirstOrDefault();
+                    var removeCh = orderChannelRepo.Get(x => x.Channel.Id == id).FirstOrDefault();
                     if (removeCh != null)
                     {
                         ControlForShows.RemoveTvShowsFromControl(removeCh.Channel.Name);
 
-                        var orderToUpdate = BaseRepository<Order>.Get(x => x.Id == CurrentOrderId).FirstOrDefault();
+                        var orderToUpdate = orderRepo.Get(x => x.Id == CurrentOrderId).FirstOrDefault();
                         if (orderToUpdate != null)
                         {
                             orderToUpdate.TotalPrice = 
                                 orderToUpdate.TotalPrice - removeCh.Channel.Price < 0.00 ? 0.00 :
                                 orderToUpdate.TotalPrice -= removeCh.Channel.Price;
-                            orderToUpdate.User = BaseRepository<User>.Get(u => u.Id == CurrentUserId).FirstOrDefault();
-                            BaseRepository<Order>.Update(orderToUpdate);
+                            orderToUpdate.User = userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault();
+                            orderRepo.Update(orderToUpdate);
                         }
-                        BaseRepository<OrderChannel>.Remove(removeCh);
+                        orderChannelRepo.Remove(removeCh);
                     }
                     break;
 
@@ -202,19 +203,21 @@ namespace TvForms
             {
                 for (var i = 0; i < lvChannelsList.Items.Count; i++)
                     lvChannelsList.Items[i].Checked = true;
-                
-                //var tvShows = new (context).GetAll().ToList();
-                //var channels = new (context).GetAll().ToList();
-                var order = BaseRepository<Order>.Get(o => o.Id == CurrentOrderId).FirstOrDefault();
 
-                var orderAllChann = BaseRepository<Channel>.GetAll().Select(chan => new OrderChannel
+                var orderRepo = new BaseRepository<Order>();
+                var tvShowsRepo = new BaseRepository<TvShow>(orderRepo.ContextDb);
+                var channelsRepo = new BaseRepository<Channel>(orderRepo.ContextDb);
+                var ordChannelRepo = new BaseRepository<OrderChannel>(orderRepo.ContextDb);
+
+                var order = orderRepo.Get(o => o.Id == CurrentOrderId).FirstOrDefault();
+
+                var orderAllChann = channelsRepo.GetAll().Select(chan => new OrderChannel
                 {
                     Channel = chan, Order = order
                 }).ToList();
-                BaseRepository<OrderChannel>.AddRange(orderAllChann);
-                //context.SaveChanges();
+                ordChannelRepo.AddRange(orderAllChann);
 
-                var showByDateAndChannels = BaseRepository<TvShow>.Get(x =>
+                var showByDateAndChannels = tvShowsRepo.Get(x =>
                         (int)x.Date.DayOfWeek == GetSelectedDay()
                 /*&& Math.Abs(x.Date.Day - DateTime.Now.Day) < 7*/).ToList();
 
@@ -230,20 +233,15 @@ namespace TvForms
                 {
                     lvChannelsList.Items[i].Checked = false;
                 }
-                
-                //var userSchRepo = new BaseRepository<UserSchedule>(context);
-                //var oderedChannRepo = new (context);
-                //var deleteSched = userSchRepo.Get(x => x.User.Id == CurrentUserId).ToList();
-                var deleteChann = BaseRepository<OrderChannel>.Get(x => x.Order.Id == CurrentOrderId).ToList();
-                //context.UserSchedules.RemoveRange(deleteSched);
-                BaseRepository<OrderChannel>.RemoveRange(deleteChann);
-                //context.SaveChanges();
+
+                var userSchRepo = new BaseRepository<UserSchedule>();
+                var orderedChannRepo = new BaseRepository<OrderChannel>(userSchRepo.ContextDb);
+                var deleteChann = orderedChannRepo.Get(x => x.Order.Id == CurrentOrderId).ToList();
+                orderedChannRepo.RemoveRange(deleteChann);
 
                 ControlForShows?.Dispose();
                 ControlForShows = new UcShowsList(CurrentUserId);
                 tabControl_Shows.SelectedTab.Controls.Add(ControlForShows);
-                
-              
             }
         }
 

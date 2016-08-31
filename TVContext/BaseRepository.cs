@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Core;
-using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
-using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
@@ -14,52 +11,34 @@ namespace TvContext
 {
     public sealed class BaseRepository<TEntity> where TEntity : IdentificableEntity
     {
-        //private static TvDBContext _context { get; } = new TvDBContext();
-
-        private static TvDbContext _context;
-
-        private static TvDbContext ContextInstance
-        {
-            get
-            {
-                if(_context == null)
-                    _context = new TvDbContext();
-                return _context;
-            }
-            //set { _context = value; }
-        }
+        public TvDbContext ContextDb { get; } = new TvDbContext();
 
         public BaseRepository()
         {
 
         }
 
-
-        //public BaseRepository(TvDBContext context)
-        //{
-        //    _context = context;
-        //}
-
-        public static IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
+        public BaseRepository(TvDbContext context)
         {
-            //return _context.Set<TEntity>().Where(predicate);
-            return ContextInstance.Set<TEntity>().Where(predicate);
+            ContextDb = context;
         }
 
-        public static IQueryable<TEntity> GetAll()
+        public IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
         {
-            //return _context.Set<TEntity>();
-            return ContextInstance.Set<TEntity>();
+            return ContextDb.Set<TEntity>().Where(predicate);
         }
 
-        public static void Remove(TEntity entity)
+        public IQueryable<TEntity> GetAll()
+        {
+            return ContextDb.Set<TEntity>();
+        }
+
+        public void Remove(TEntity entity)
         {
             try
             {
-                //_context.Set<TEntity>().Remove(entity);
-                ContextInstance.Set<TEntity>().Remove(entity);
-                ContextInstance.SaveChanges();
-                //_context.SaveChanges();
+                ContextDb.Set<TEntity>().Remove(entity);
+                ContextDb.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -83,14 +62,12 @@ namespace TvContext
             }
         }
 
-        public static void Update(TEntity entity)
+        public void Update(TEntity entity)
         {
             try
             {
-                //_context.Entry(entity).State = EntityState.Modified;
-                ContextInstance.Entry(entity).State = EntityState.Modified;
-                ContextInstance.SaveChanges();
-                //_context.SaveChanges();
+                ContextDb.Entry(entity).State = EntityState.Modified;
+                ContextDb.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -115,14 +92,12 @@ namespace TvContext
 
         }
 
-        public static void Insert(TEntity entity)
+        public void Insert(TEntity entity)
         {
             try
             {
-                //_context.Entry(entity).State = EntityState.Added;
-                ContextInstance.Entry(entity).State = EntityState.Added;
-                ContextInstance.SaveChanges();
-                //_context.SaveChanges();
+                ContextDb.Entry(entity).State = EntityState.Added;
+                ContextDb.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -150,20 +125,16 @@ namespace TvContext
 
 
         //todo needs to Rewrite for any TEntity
-        public static void AddRange(List<OrderChannel> channels)
+        public void AddRange(IEnumerable<OrderChannel> channels)
         {
-            //_context.OrderChannels.AddRange(channels);
-            ContextInstance.OrderChannels.AddRange(channels);
-            ContextInstance.SaveChanges();
-            //_context.SaveChanges();
+            ContextDb.OrderChannels.AddRange(channels);
+            ContextDb.SaveChanges();
         }
 
-        public static void RemoveRange(List<OrderChannel> deleteChann)
+        public void RemoveRange(IEnumerable<OrderChannel> deleteChann)
         {
-            //_context.OrderChannels.RemoveRange(deleteChann);
-            ContextInstance.OrderChannels.RemoveRange(deleteChann);
-            ContextInstance.SaveChanges();
-            //_context.SaveChanges();
+            ContextDb.OrderChannels.RemoveRange(deleteChann);
+            ContextDb.SaveChanges();
         }
     }
 }

@@ -22,15 +22,17 @@ namespace TvForms
         private void LoadDatas()
         {
   
-            var user = BaseRepository<User>.Get(u => u.Id == CurrentUserId).FirstOrDefault();
+            var userRepo = new BaseRepository<User>();
+            var user = userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault();
             switch (user?.UserType.Id)
             {
                 case (int)EUserType.ADMIN: //admin
-                    var payments = BaseRepository<Payment>.GetAll().ToList();
+                    var payments = new BaseRepository<Payment>(userRepo.ContextDb).GetAll().ToList();
                     PaymentInsertToListView(payments);
                     break;
                 case (int)EUserType.CLIENT: //current user
-                    var userPayments = BaseRepository<Payment>.Get(up => up.Order.User.Id == CurrentUserId).ToList();
+                    var userPayments = new BaseRepository<Payment>(userRepo.ContextDb)
+                            .Get(up => up.Order.User.Id == CurrentUserId).ToList();
                     PaymentInsertToListView(userPayments);
                     break;
             }
@@ -62,7 +64,7 @@ namespace TvForms
 
         private void btChargeAccount_Click(object sender, EventArgs e)
         {
-            var acc = BaseRepository<Account>.Get(a => a.User.Id == CurrentUserId).FirstOrDefault();
+            var acc = new BaseRepository<Account>().Get(a => a.User.Id == CurrentUserId).FirstOrDefault();
             if (acc?.IsActiveStatus == false)
             {
                 MessagesContainer.DisplayError("Account is diactivated!" + Environment.NewLine +
@@ -84,8 +86,10 @@ namespace TvForms
             if (listView.SelectedItems.Count <= 0) return;
 
             var idPayment = listView.SelectedItems[0].Text.GetInt();
-            var payment = BaseRepository<Payment>.Get(p => p.Id == idPayment).FirstOrDefault();
-            var account = BaseRepository<Account>.Get(a => a.User.Id == CurrentUserId).FirstOrDefault();
+            var paymentRepo = new BaseRepository<Payment>();
+            var payment = paymentRepo.Get(p => p.Id == idPayment).FirstOrDefault();
+            var account = new BaseRepository<Account>(paymentRepo.ContextDb)
+                    .Get(a => a.User.Id == CurrentUserId).FirstOrDefault();
 
             if (payment != null)
             {

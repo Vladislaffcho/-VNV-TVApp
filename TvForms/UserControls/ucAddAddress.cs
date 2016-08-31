@@ -16,7 +16,7 @@ namespace TvForms
         // set control view on loading
         private void SetControlView()
         {
-            var types = BaseRepository<TypeConnect>.GetAll().ToList();
+            var types = new BaseRepository<TypeConnect>().GetAll().ToList();
             
             foreach (var typeConnect in types)
             {
@@ -64,12 +64,14 @@ namespace TvForms
         public void SaveAddedDetails(int userId)
         {
             //todo something needs to correct in TypeConnect and User fields
-            BaseRepository<UserAddress>.Insert(new UserAddress
+            var usAddrRepo = new BaseRepository<UserAddress>();
+            usAddrRepo.Insert(new UserAddress
             {
                 Address = tbUserAddress.Text,
                 Comment = tbComment.Text,
-                TypeConnect = BaseRepository<TypeConnect>.Get(x => x.NameType == cbAddressType.Text).FirstOrDefault(),
-                User = BaseRepository<User>.Get(l => l.Id == userId).FirstOrDefault()
+                TypeConnect = new BaseRepository<TypeConnect>(usAddrRepo.ContextDb)
+                    .Get(x => x.NameType == cbAddressType.Text).FirstOrDefault(),
+                User = new BaseRepository<User>(usAddrRepo.ContextDb).Get(l => l.Id == userId).FirstOrDefault()
             });
         }
     }

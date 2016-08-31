@@ -28,16 +28,17 @@ namespace TvForms
             dTPOrderDueDate.Value = DateTimePicker.MinDateTime;
 
             cbChoseMedia.Text = cbChoseMedia.Items[0].ToString();
-            var user = BaseRepository<User>.Get(u => u.Id == CurrentUserId).FirstOrDefault();
-            //var orderRepo = new ();
+            var userRepo = new BaseRepository<User>();
+            var user = userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault();
+            var orderRepo = new BaseRepository<Order>(userRepo.ContextDb);
             switch (user?.UserType.Id)
             {
                 case (int) EUserType.ADMIN: //admin
-                    var orders = BaseRepository<Order>.GetAll().ToList();
+                    var orders = orderRepo.GetAll().ToList();
                     OrderInsertToListView(orders);
                     break;
                 case (int) EUserType.CLIENT: //current user
-                    var userOrders = BaseRepository<Order>.Get(uo => uo.User.Id == CurrentUserId).ToList();
+                    var userOrders = orderRepo.Get(uo => uo.User.Id == CurrentUserId).ToList();
                     OrderInsertToListView(userOrders);
                     break;
             }
@@ -87,7 +88,7 @@ namespace TvForms
             }
 
             var idOrder = listView.SelectedItems[0].Text.GetInt();
-            var order = BaseRepository<Order>.Get(o => o.Id == idOrder).FirstOrDefault();
+            var order = new BaseRepository<Order>().Get(o => o.Id == idOrder).FirstOrDefault();
 
             if (order != null)
             {

@@ -32,8 +32,8 @@ namespace TvForms
                 isValidCardDatas = false;
             }
 
-            var month = 0;
-            var year = 0;
+            int month;
+            int year;
             int.TryParse(mtbDateCard.Text.Split('.').First().Trim(), out month);
             int.TryParse(mtbDateCard.Text.Split('.').Last().Trim(), out year);
 
@@ -43,7 +43,7 @@ namespace TvForms
                 isValidCardDatas = false;
             }
 
-            var cvvCode = 0;
+            int cvvCode;
             int.TryParse(mtbCvvCode.Text.Trim(), out cvvCode);
             if (mtbCvvCode.Text.Trim() == string.Empty || mtbCvvCode.Text.Trim().Length != 3)
             {
@@ -51,7 +51,7 @@ namespace TvForms
                 isValidCardDatas = false;
             }
 
-            var summ = 0.0;
+            double summ;
             var isDouble = double.TryParse(tbSummRecharge.Text, NumberStyles.AllowDecimalPoint,
                 CultureInfo.InvariantCulture, out summ);
             if (isDouble == false || tbSummRecharge.Text.Trim() == string.Empty || summ <= 0.0)
@@ -62,17 +62,18 @@ namespace TvForms
 
             if (isValidCardDatas)
             {
-                
-                //var accountRepo = (context);
-                var userAcc = BaseRepository<Account>.Get(a => a.User.Id == CurrentUserId).FirstOrDefault();
+
+                var accountRepo = new BaseRepository<Account>();
+                var userAcc = accountRepo.Get(a => a.User.Id == CurrentUserId).FirstOrDefault();
                 if (userAcc != null)
                 {
                     userAcc.Balance += summ;
-                    BaseRepository<Account>.Update(userAcc);
+                    accountRepo.Update(userAcc);
                 }
                 else
                 {
-                    var user = BaseRepository<User>.Get(u => u.Id == CurrentUserId).FirstOrDefault();
+                    var user = new BaseRepository<User>(accountRepo.ContextDb)
+                        .Get(u => u.Id == CurrentUserId).FirstOrDefault();
                             
                     var newAccount = new Account
                     {
@@ -81,7 +82,7 @@ namespace TvForms
                         IsActiveStatus = true,
                         User = user
                     };
-                    BaseRepository<Account>.Insert(newAccount);
+                    accountRepo.Insert(newAccount);
                 }
                 
                 MessagesContainer.DisplayInfo($"Your account was succesfull charged on {summ} грн.", "Succesfull");

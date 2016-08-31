@@ -31,7 +31,7 @@ namespace TvForms
         // method which checks login uniqness
         public static bool IsUniqueLogin(this string login)
         {
-            return BaseRepository<User>.Get(x => x.Login == login).Any();
+            return new BaseRepository<User>().Get(x => x.Login == login).Any();
         }
 
         // regex to validate email
@@ -44,17 +44,17 @@ namespace TvForms
 
         public static bool IsUniqueEmail(this string email)
         {
-            return BaseRepository<UserEmail>.Get(x => x.EmailName == email).Any();
+            return new BaseRepository<UserEmail>().Get(x => x.EmailName == email).Any();
         }
 
         public static bool IsUniqueNumber(this int number)
         {
-            return BaseRepository<UserPhone>.Get(x => x.Number == number).Any();
+            return new BaseRepository<UserPhone>().Get(x => x.Number == number).Any();
         }
 
         public static bool IsUniqueAddress(this string address)
         {
-            return BaseRepository<UserAddress>.Get(x => x.Address == address).Any();
+            return new BaseRepository<UserAddress>().Get(x => x.Address == address).Any();
         }
 
         public static bool IsValidPhone(this string number)

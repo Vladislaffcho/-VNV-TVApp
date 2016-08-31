@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using TvContext;
+﻿using System.Windows.Forms;
 
 namespace TvForms
 {

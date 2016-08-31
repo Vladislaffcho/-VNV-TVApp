@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Validation;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using TvForms;
-using TvContext;
 
 
 namespace TvForms

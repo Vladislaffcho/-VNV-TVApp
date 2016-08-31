@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TvContext;
 
-namespace TvForms.UserControls
+namespace TvForms
 {
     public partial class UcResetPassword : UserControl
     {
@@ -23,12 +17,11 @@ namespace TvForms.UserControls
         // check if the code can be sent
         private void btSendCode_Click(object sender, EventArgs e)
         {
-            if (tbEmail.Text.Trim() != String.Empty)
+            if (tbEmail.Text.Trim() != string.Empty)
             {
                 if (tbEmail.Text.Trim().IsValidEmail())
                 {
-                    //var emailsRepo = new ();
-                    var email = BaseRepository<UserEmail>.Get(x => x.EmailName == tbEmail.Text.Trim());
+                    var email = new BaseRepository<UserEmail>().Get(x => x.EmailName == tbEmail.Text.Trim());
                     if (email.Any())
                     {
                         tbCodeFromEmail.Text = RandomStrings.ReceivedResetCode();
@@ -52,20 +45,21 @@ namespace TvForms.UserControls
         // functionality to reset password
         private void btCheckCode_Click(object sender, EventArgs e)
         {
-            if (tbCodeFromEmail.Text != String.Empty)
+            if (tbCodeFromEmail.Text != string.Empty)
             {
-                if (tbEnterCode.Text != String.Empty &&
+                if (tbEnterCode.Text != string.Empty &&
                     tbEnterCode.Text == tbCodeFromEmail.Text)
                 {
-                    //var userRepo = new ();
-                    var emailId = BaseRepository<UserEmail>.Get(x => x.EmailName == tbEmail.Text.Trim()).First().User.Id;
+                    var userRepo = new BaseRepository<User>();
+                    var emailId = new BaseRepository<UserEmail>(userRepo.ContextDb)
+                        .Get(x => x.EmailName == tbEmail.Text.Trim()).First().User.Id;
                     tbNewPass.Text = RandomStrings.TempPassword();
-                    var user = BaseRepository<User>.Get(x => x.Id == emailId)
+                    var user = userRepo.Get(x => x.Id == emailId)
                         .Include(x => x.UserType)
                         .First();
                     var md5Hash = MD5.Create();
                     user.Password = Md5Helper.GetMd5Hash(md5Hash, tbNewPass.Text);
-                    BaseRepository<User>.Update(user);
+                    userRepo.Update(user);
                     MessagesContainer.DisplayInfo("Password has been changed. Please login using new password", "Success");
                 }
                 else

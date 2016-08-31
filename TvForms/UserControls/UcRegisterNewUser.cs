@@ -84,13 +84,15 @@ namespace TvForms
         private void SaveAddedDetails()
         {
             var md5Hash = MD5.Create();
-            BaseRepository<User>.Insert(new User()
+            var userRepo = new BaseRepository<User>();
+            userRepo.Insert(new User()
             {
                 FirstName = tbFirstName.Text,
                 LastName = tbLastName.Text,
                 Login = tbLogin.Text,
                 Password = Md5Helper.GetMd5Hash(md5Hash, tbPassword.Text),
-                UserType = BaseRepository<UserType>.Get(x => x.TypeName == "Client").FirstOrDefault()
+                UserType = new BaseRepository<UserType>(userRepo.ContextDb)
+                    .Get(x => x.TypeName == "Client").FirstOrDefault()
             });
                 MessagesContainer.DisplayInfo("Created new user successfully.\nYou may log in with new credentials.",
                 "New user has been created");

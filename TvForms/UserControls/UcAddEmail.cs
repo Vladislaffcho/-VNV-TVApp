@@ -16,7 +16,7 @@ namespace TvForms
         // set user control on loading
         private void SetControlView()
         {
-            var types = BaseRepository<TypeConnect>.GetAll().ToList();
+            var types = new BaseRepository<TypeConnect>().GetAll().ToList();
 
             foreach (var typeConnect in types)
             {
@@ -69,12 +69,14 @@ namespace TvForms
         // save in case of valid email
         public void SaveAddedDetails(int userId)
         {
-            BaseRepository<UserEmail>.Insert(new UserEmail
+            var mailRepo = new BaseRepository<UserEmail>();
+            mailRepo.Insert(new UserEmail
             {
                 EmailName = tbUserEmail.Text,
                 Comment = tbComment.Text,
-                TypeConnect = BaseRepository<TypeConnect>.Get(x => x.NameType == cbEmailType.Text).FirstOrDefault(),
-                User = BaseRepository<User>.Get(l => l.Id == userId).First()
+                TypeConnect = new BaseRepository<TypeConnect>(mailRepo.ContextDb)
+                    .Get(x => x.NameType == cbEmailType.Text).FirstOrDefault(),
+                User = new BaseRepository<User>(mailRepo.ContextDb).Get(l => l.Id == userId).First()
             });
         }
     }

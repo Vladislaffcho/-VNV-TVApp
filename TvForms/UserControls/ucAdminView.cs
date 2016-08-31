@@ -34,7 +34,7 @@ namespace TvForms
         {
             // clear the list view in case user's opened it previously during a session
             lvUserList.Items.Clear();
-            var users = BaseRepository<User>.GetAll();
+            var users = new BaseRepository<User>().GetAll();
 
             FillUsersLv(users);
 
@@ -70,7 +70,7 @@ namespace TvForms
                 tbSurname.Text = listViewItem.SubItems[3].Text;
 
                 #region filling user data for admin user control
-                var user = BaseRepository<User>.Get(c => c.Id == _selectedUser).First();
+                var user = new BaseRepository<User>().Get(c => c.Id == _selectedUser).First();
 
                 // Filling user's address list List View
                 if (user.UserAddresses.Any())
@@ -178,7 +178,8 @@ namespace TvForms
         {
             if (!_activeUserFlag)
             {
-                var user = BaseRepository<User>.Get(c => c.Id == _selectedUser)
+                var userRepo = new BaseRepository<User>();
+                var user = userRepo.Get(c => c.Id == _selectedUser)
                     .Include(x => x.UserType)
                     .First();
 
@@ -210,7 +211,7 @@ namespace TvForms
                         cbStatus.SelectedIndex = 0;
                     }
                 }
-                BaseRepository<User>.Update(user);
+                userRepo.Update(user);
                 _activeUserFlag = false;
             }
         }
@@ -220,7 +221,8 @@ namespace TvForms
         {
             if (!_adultContentFlag)
             {
-                var user = BaseRepository<User>.Get(x => x.Id == _selectedUser)
+                var userRepo = new BaseRepository<User>();
+                var user = userRepo.Get(x => x.Id == _selectedUser)
                     .Include(x => x.UserType)
                     .First();
                 if (cbAdultContent.Checked)
@@ -249,7 +251,7 @@ namespace TvForms
                         cbAdultContent.Checked = true;
                     }
                 }
-                BaseRepository<User>.Update(user);
+                userRepo.Update(user);
 
                 _adultContentFlag = false;
             }
@@ -286,18 +288,20 @@ namespace TvForms
         {
             if (!_userType)
             {
-                var user = BaseRepository<User>.Get(x => x.Id == _selectedUser)
+                var userRepo = new BaseRepository<User>();
+                var user = userRepo.Get(x => x.Id == _selectedUser)
                     .Include(x => x.UserType)
                     .First();
                 var newTypeId = (int)Enum.Parse(typeof(EUserType), cbUserType.SelectedItem.ToString());
-                var newType = BaseRepository<UserType>.Get(x => x.Id == newTypeId).FirstOrDefault();
+                var newType = new BaseRepository<UserType>(userRepo.ContextDb)
+                        .Get(x => x.Id == newTypeId).FirstOrDefault();
                 if (newTypeId != user.UserType.Id &&
                     MessageBox.Show(@"Do you want to change user type from " + user.UserType.TypeName +
                                     @" to " + newType?.TypeName, @"Change user type",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     user.UserType = newType;
-                    BaseRepository<User>.Update(user);
+                    userRepo.Update(user);
                     MessagesContainer.DisplayInfo("Next session for this user will start with new rights", "User type has been updated");
                 }
                 else
@@ -320,7 +324,7 @@ namespace TvForms
             }
             else 
             {
-                var foundUsers = BaseRepository<User>.GetAll();
+                var foundUsers = new BaseRepository<User>().GetAll();
 
                 // try to find by Name
                 if (tbSearchName.Text.Trim() != string.Empty)

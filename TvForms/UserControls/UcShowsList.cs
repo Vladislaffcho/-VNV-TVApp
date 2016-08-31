@@ -22,7 +22,7 @@ namespace TvForms
     
         public void LoadShows(IEnumerable<TvShow> shows)
         {
-            var scheduleShows = BaseRepository<UserSchedule>.Get(sc => sc.User.Id == CurrentUserId).ToList();
+            var scheduleShows = new BaseRepository<UserSchedule>().Get(sc => sc.User.Id == CurrentUserId).ToList();
             lvShowPrograms.Items.Clear();
             DisplayIndexShows = 1;
             foreach (var sh in shows)
@@ -84,29 +84,32 @@ namespace TvForms
         {
             
             var id = lvShowPrograms.Items[e.Index].SubItems[5].Text.GetInt();
-            var user = BaseRepository<User>.Get(u => u.Id == CurrentUserId).FirstOrDefault();
+            var userRepo = new BaseRepository<User>();
+            var scheduleRepo = new BaseRepository<UserSchedule>(userRepo.ContextDb);
+            var user = userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault();
 
             switch (e.NewValue)
             {
                 case CheckState.Checked:
-                    if (BaseRepository<UserSchedule>.GetAll().ToList().Find(s => s.TvShow.Id == id
-                    && s.User.Id == CurrentUserId) == null)
+                    if (scheduleRepo.GetAll().ToList().Find(s => s.TvShow.Id == id 
+                        && s.User.Id == CurrentUserId) == null)
                     {
                         var schedule = new UserSchedule
                         {
                             DueDate = DateTime.Now.AddDays(7),
                             User = user,
-                            TvShow = BaseRepository<TvShow>.Get(s => s.Id == id).FirstOrDefault()
+                            TvShow = new BaseRepository<TvShow>(userRepo.ContextDb)
+                                .Get(s => s.Id == id).FirstOrDefault()
                         };
-                        BaseRepository<UserSchedule>.Insert(schedule);
+                        scheduleRepo.Insert(schedule);
                     }
                     break;
 
                 case CheckState.Unchecked:
-                    var removeSh = BaseRepository<UserSchedule>.Get(x => x.TvShow.Id == id).FirstOrDefault();
+                    var removeSh = scheduleRepo.Get(x => x.TvShow.Id == id).FirstOrDefault();
                     if (removeSh != null)
                     {
-                        BaseRepository<UserSchedule>.Remove(removeSh);
+                        scheduleRepo.Remove(removeSh);
                     }
                     break;
 

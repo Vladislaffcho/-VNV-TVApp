@@ -15,7 +15,7 @@ namespace TvForms
 
         public void UpdateNames(int userId)
         {
-            var userToUpdate = BaseRepository<User>.Get(x => x.Id == userId)
+            var userToUpdate = new BaseRepository<User>().Get(x => x.Id == userId)
                 .First();
             tbFirstName.Text = userToUpdate.FirstName;
             tbLastName.Text = userToUpdate.LastName;
@@ -68,12 +68,13 @@ namespace TvForms
         // method saves updated user data
         private void SaveUpdatedDetails(int userId)
         {
-            var userToUpdate = BaseRepository<User>.Get(x => x.Id == userId)
+            var userRepo = new BaseRepository<User>();
+            var userToUpdate = userRepo.Get(x => x.Id == userId)
                 .Include(x => x.UserType)
                 .First();
             userToUpdate.FirstName = tbFirstName.Text;
             userToUpdate.LastName = tbLastName.Text;
-            BaseRepository<User>.Update(userToUpdate);
+            userRepo.Update(userToUpdate);
         }
     }
 }

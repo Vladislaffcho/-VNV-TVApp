@@ -26,8 +26,10 @@ namespace TvForms
 
         private void LoadAccountInfo()
         {
-            var user = BaseRepository<User>.Get(u => u.Id == CurrentUserId).FirstOrDefault();
-            var account = BaseRepository<Account>.Get(a => a.User.Id == CurrentUserId).FirstOrDefault();
+            var userRepo = new BaseRepository<User>();
+            var user = userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault();
+            var account = new BaseRepository<Account>(userRepo.ContextDb)
+                    .Get(a => a.User.Id == CurrentUserId).FirstOrDefault();
 
             if (user != null)
             {

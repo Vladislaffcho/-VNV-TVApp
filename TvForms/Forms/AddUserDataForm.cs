@@ -1,5 +1,4 @@
 ﻿using System.Windows.Forms;
-using TvForms.UserControls;
 
 namespace TvForms
 {
@@ -36,9 +35,9 @@ namespace TvForms
         }
 
         // depending on data type, corresponding uc will be opened
-        public AddUserDataForm(int UserId, UserDetailType type)
+        public AddUserDataForm(int userId, UserDetailType type)
         {
-            _userID = UserId;
+            _userID = userId;
             _addConnectType = type;
             InitializeComponent();
 
