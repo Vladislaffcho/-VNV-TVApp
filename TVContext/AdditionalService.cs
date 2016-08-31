@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace TVContext
@@ -7,7 +8,7 @@ namespace TVContext
     {
         public AdditionalService()
         {
-            
+            OrderServices = new List<OrderService>();
         }
 
         //this service name
@@ -26,7 +27,7 @@ namespace TVContext
         public bool IsAgeLimit { get; set; }
 
         //info about table OrderService
-        public virtual OrderService OrderService { get; set; }
+        public virtual ICollection<OrderService> OrderServices { get; set; }
 
     }
 }

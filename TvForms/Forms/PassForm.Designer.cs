@@ -104,6 +104,7 @@
             this.linkLbPassForm_FogotPass.TabIndex = 6;
             this.linkLbPassForm_FogotPass.TabStop = true;
             this.linkLbPassForm_FogotPass.Text = "Forgot password?";
+            this.linkLbPassForm_FogotPass.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLbPassForm_FogotPass_LinkClicked);
             // 
             // lbPassForm_Welcome
             // 

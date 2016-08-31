@@ -42,28 +42,6 @@ namespace TvForms
             // fill user names from db
             tbName.Text = BaseRepository<User>.Get(x => x.Id == _currentUserId).First().FirstName;
             tbSurname.Text = BaseRepository<User>.Get(x => x.Id == _currentUserId).First().LastName;
-            // Filling Money and status TB's
-            // uncomment when whole functionality has been provided
-            tbMoney.Text = @"Add money from db";
-
-            /*var moneyStatus = context.DepositAccounts.Where(s => s.User.Id == id);
-            if (moneyStatus.Any())
-            {
-                money.ToList();
-                foreach (var i in money)
-                {
-                    tbMoney.Text = i.Balance.ToString();
-                    bool status = i.Status;
-                    if (status)
-                    {
-                        cbStatus.SelectedIndex = 0;
-                    }
-                    else
-                    {
-                        cbStatus.SelectedIndex = 1;
-                    }
-                }
-            }*/
         }
 
         // Filling user's phone list List View
@@ -283,8 +261,8 @@ namespace TvForms
         {
             var actions = new AcFLittleWithoutValid(new UcUserAccount(_currentUserId))
             {
-                Text = @"Account info",
-                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\dollar.ico")
+                Text = @"Account info"/*,
+                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\dollar.ico")*/
             };
             actions.Show();
         }
@@ -293,8 +271,8 @@ namespace TvForms
         {
             var actions = new ActionForm(new UсOrdersView(_currentUserId))
             {
-                Text = @"User orders history",
-                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\wallet.ico")
+                Text = @"User orders history"/*,
+                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\wallet.ico")*/
             };
             actions.Show();
         }
@@ -303,8 +281,8 @@ namespace TvForms
         {
             var actions = new ActionForm(new UcPayments(_currentUserId))
             {
-                Text = @"PAYMENTS",
-                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\dollar.ico")
+                Text = @"PAYMENTS"/*,
+                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\dollar.ico")*/
             };
             actions.Show();
         }

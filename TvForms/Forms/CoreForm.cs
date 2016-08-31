@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using TvForms.Forms;
 using TvForms.Helpers;
 using TVContext;
 
@@ -11,7 +12,7 @@ namespace TvForms
     public partial class CoreForm : Form//, IIdentifyUser
     {
         //ToDo Review need to store all user data
-        private int CurrentUserId { get; set; } = 2; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
+        private int CurrentUserId { get; set; } // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
 
         //ToDo Review WTF? Naming convention!!!
         //private UcTabsForUser UserWindow { get; set; }
@@ -232,6 +233,12 @@ namespace TvForms
                 Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\mastercard_1450.ico")*/
             };
             actions.Show();
+        }
+
+        private void additionalServiceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var additionalServices = new AdditionalServicesForm(CurrentUserId);
+            additionalServices.ShowDialog();
         }
 
 

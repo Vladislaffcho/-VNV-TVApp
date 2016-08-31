@@ -156,6 +156,27 @@ namespace TVContext
                     context.UserPhones.Add(item);
                 }
 
+                var additionalServices = new List<AdditionalService>
+                {
+                    new AdditionalService
+                    {
+                        Name = "Internet",
+                        Price = 125.00,
+                        IsAgeLimit = false
+                    },
+                    new AdditionalService
+                    {
+                        Name = "IP telephony",
+                        Price = 99.00,
+                        IsAgeLimit = false
+                    }
+                };
+
+                foreach (var service in additionalServices)
+                {
+                    context.AddServices.Add(service);
+                }
+
                 context.SaveChanges();
             }
             catch (DbEntityValidationException ex)

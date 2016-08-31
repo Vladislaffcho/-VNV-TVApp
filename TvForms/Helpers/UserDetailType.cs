@@ -9,6 +9,7 @@
         Address,
         Email,
         Telephone,
-        User
+        User,
+        Password
     }
 }

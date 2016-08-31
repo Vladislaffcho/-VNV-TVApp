@@ -63,8 +63,6 @@
             this.tbName = new System.Windows.Forms.TextBox();
             this.tbSurname = new System.Windows.Forms.TextBox();
             this.btViewOrders = new System.Windows.Forms.Button();
-            this.tbMoney = new System.Windows.Forms.TextBox();
-            this.lbMoney = new System.Windows.Forms.Label();
             this.gbProfile.SuspendLayout();
             this.tcUserContacts.SuspendLayout();
             this.tpAddress.SuspendLayout();
@@ -84,8 +82,6 @@
             this.gbProfile.Controls.Add(this.tbName);
             this.gbProfile.Controls.Add(this.tbSurname);
             this.gbProfile.Controls.Add(this.btViewOrders);
-            this.gbProfile.Controls.Add(this.tbMoney);
-            this.gbProfile.Controls.Add(this.lbMoney);
             this.gbProfile.Location = new System.Drawing.Point(3, 3);
             this.gbProfile.Name = "gbProfile";
             this.gbProfile.Size = new System.Drawing.Size(622, 310);
@@ -115,12 +111,14 @@
             // 
             // btDeactivateAccount
             // 
-            this.btDeactivateAccount.Location = new System.Drawing.Point(298, 90);
+            this.btDeactivateAccount.BackColor = System.Drawing.Color.Red;
+            this.btDeactivateAccount.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btDeactivateAccount.Location = new System.Drawing.Point(475, 95);
             this.btDeactivateAccount.Name = "btDeactivateAccount";
-            this.btDeactivateAccount.Size = new System.Drawing.Size(113, 23);
+            this.btDeactivateAccount.Size = new System.Drawing.Size(88, 45);
             this.btDeactivateAccount.TabIndex = 8;
             this.btDeactivateAccount.Text = "Deactivate Account";
-            this.btDeactivateAccount.UseVisualStyleBackColor = true;
+            this.btDeactivateAccount.UseVisualStyleBackColor = false;
             this.btDeactivateAccount.Click += new System.EventHandler(this.btDeactivateAccount_Click);
             // 
             // tcUserContacts
@@ -358,7 +356,7 @@
             // 
             // btViewPayment
             // 
-            this.btViewPayment.Location = new System.Drawing.Point(474, 56);
+            this.btViewPayment.Location = new System.Drawing.Point(475, 56);
             this.btViewPayment.Name = "btViewPayment";
             this.btViewPayment.Size = new System.Drawing.Size(88, 23);
             this.btViewPayment.TabIndex = 10;
@@ -402,30 +400,13 @@
             // 
             // btViewOrders
             // 
-            this.btViewOrders.Location = new System.Drawing.Point(474, 19);
+            this.btViewOrders.Location = new System.Drawing.Point(475, 19);
             this.btViewOrders.Name = "btViewOrders";
             this.btViewOrders.Size = new System.Drawing.Size(88, 23);
             this.btViewOrders.TabIndex = 9;
             this.btViewOrders.Text = "View Orders";
             this.btViewOrders.UseVisualStyleBackColor = true;
             this.btViewOrders.Click += new System.EventHandler(this.btViewOrders_Click);
-            // 
-            // tbMoney
-            // 
-            this.tbMoney.Location = new System.Drawing.Point(107, 93);
-            this.tbMoney.Name = "tbMoney";
-            this.tbMoney.ReadOnly = true;
-            this.tbMoney.Size = new System.Drawing.Size(121, 20);
-            this.tbMoney.TabIndex = 6;
-            // 
-            // lbMoney
-            // 
-            this.lbMoney.AutoSize = true;
-            this.lbMoney.Location = new System.Drawing.Point(49, 96);
-            this.lbMoney.Name = "lbMoney";
-            this.lbMoney.Size = new System.Drawing.Size(39, 13);
-            this.lbMoney.TabIndex = 15;
-            this.lbMoney.Text = "Money";
             // 
             // UcUserProfile
             // 
@@ -452,8 +433,6 @@
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.TextBox tbSurname;
         private System.Windows.Forms.Button btViewOrders;
-        private System.Windows.Forms.TextBox tbMoney;
-        private System.Windows.Forms.Label lbMoney;
         private System.Windows.Forms.Button btViewPayment;
         private System.Windows.Forms.TabControl tcUserContacts;
         private System.Windows.Forms.TabPage tpAddress;

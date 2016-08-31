@@ -78,6 +78,12 @@
     <Compile Include="Forms\AcFLittleWithoutValid.Designer.cs">
       <DependentUpon>AcFLittleWithoutValid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AdditionalServicesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AdditionalServicesForm.Designer.cs">
+      <DependentUpon>AdditionalServicesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddUserDataForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,7 @@
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\MessageContainer.cs" />
+    <Compile Include="Helpers\RandomStrings.cs" />
     <Compile Include="Helpers\TextFieldsValidator.cs" />
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Forms\PassForm.cs">
@@ -147,6 +154,12 @@
     </Compile>
     <Compile Include="UserControls\UcRegisterNewUser.Designer.cs">
       <DependentUpon>UcRegisterNewUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UcResetPassword.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcResetPassword.Designer.cs">
+      <DependentUpon>UcResetPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UcTabsForUser.cs">
       <SubType>UserControl</SubType>
@@ -250,6 +263,9 @@
     <EmbeddedResource Include="Forms\AcFLittleWithoutValid.resx">
       <DependentUpon>AcFLittleWithoutValid.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AdditionalServicesForm.resx">
+      <DependentUpon>AdditionalServicesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddUserDataForm.resx">
       <DependentUpon>AddUserDataForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -283,6 +299,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcRegisterNewUser.resx">
       <DependentUpon>UcRegisterNewUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcResetPassword.resx">
+      <DependentUpon>UcResetPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcTabsForUser.resx">
       <DependentUpon>UcTabsForUser.cs</DependentUpon>

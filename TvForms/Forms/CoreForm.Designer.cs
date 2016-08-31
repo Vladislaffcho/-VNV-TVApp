@@ -127,6 +127,7 @@
             this.additionalServiceToolStripMenuItem.Name = "additionalServiceToolStripMenuItem";
             this.additionalServiceToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.additionalServiceToolStripMenuItem.Text = "Additional service";
+            this.additionalServiceToolStripMenuItem.Click += new System.EventHandler(this.additionalServiceToolStripMenuItem_Click);
             // 
             // ordersToolStripMenuItem
             // 
