@@ -15,7 +15,7 @@ namespace TvForms
         {
             InitializeComponent();
 
-            //set cursor in password textBox field by default
+            //set cursor in login textBox field by default
             this.tbPassForm_Login.Select();
             this.tbPassForm_Login.ScrollToCaret();
 
@@ -23,7 +23,7 @@ namespace TvForms
             tbPassForm_Pass.UseSystemPasswordChar = !chBPassForm_ShowPass.Checked;
 
             this.tbPassForm_Login.Text = "litvak83"; //delete this string when program will be tested
-            this.tbPassForm_Pass.Text = "2222";  //delete this string when program will be tested
+            this.tbPassForm_Pass.Text = "ryyZJ88wyT";  //delete this string when program will be tested
             //this.tbPassForm_Login.Text = "root"; //delete this string when program will be tested
             //this.tbPassForm_Pass.Text = "1111";  //delete this string when program will be tested
         }
@@ -37,19 +37,24 @@ namespace TvForms
             {
                 using (var context = new TvContext.TvDbContext())
                 {
+                    //use MD5 library for check saved password in MD5 format
                     using (var md5Hash = MD5.Create())
                     {
+                        //get datas from form text fields 
                         var loginEntered = tbPassForm_Login.Text;
                         var passEntered = tbPassForm_Pass.Text;
 
+                        //generate appropriate code from entered pass with md5Hash (soul for password)
                         var pssCoded = Md5Helper.GetMd5Hash(md5Hash, passEntered);
-                        var comparer = StringComparer.OrdinalIgnoreCase;
 
+                        //get saved pass from DB
                         var savedPass = (from p in context.Users
                                             where p.Login == loginEntered
                                             select p.Password).FirstOrDefault();
 
-                        if (true)
+                        //compare login and pass from text fields and DB
+                        if (loginEntered.Length > 0 && loginEntered != string.Empty
+                            && savedPass == pssCoded)
                         {
                             //ToDo read to CurrentUser
                             CurrentUserId = (from p in context.Users
@@ -58,14 +63,15 @@ namespace TvForms
                         }
                         else
                         {
+                            //return 0 if current user doesn't exist
                             CurrentUserId = 0;
                         }
-                           
                     }
                 }
             }
             else
             {
+                //return 0 if current user doesn't exist
                 CurrentUserId = 0;
             }
             return CurrentUserId;
