@@ -39,8 +39,10 @@
             this.lbCVVCode = new System.Windows.Forms.Label();
             this.lbDateCard = new System.Windows.Forms.Label();
             this.ldCreditCard = new System.Windows.Forms.Label();
-            this.lLbLicence = new System.Windows.Forms.LinkLabel();
+            this.lLbLicenceMaestro = new System.Windows.Forms.LinkLabel();
             this.tbSummRecharge = new System.Windows.Forms.TextBox();
+            this.lLbLicenceMaster = new System.Windows.Forms.LinkLabel();
+            this.lLbLicenceVisa = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pbVisa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMasterCard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMaestro)).BeginInit();
@@ -86,30 +88,36 @@
             // pbVisa
             // 
             this.pbVisa.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbVisa.BackgroundImage")));
+            this.pbVisa.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbVisa.Location = new System.Drawing.Point(365, 70);
             this.pbVisa.Name = "pbVisa";
             this.pbVisa.Size = new System.Drawing.Size(64, 40);
             this.pbVisa.TabIndex = 24;
             this.pbVisa.TabStop = false;
+            this.pbVisa.DoubleClick += new System.EventHandler(this.pbVisa_DoubleClick);
             // 
             // pbMasterCard
             // 
             this.pbMasterCard.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbMasterCard.BackgroundImage")));
+            this.pbMasterCard.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbMasterCard.Location = new System.Drawing.Point(276, 10);
             this.pbMasterCard.Name = "pbMasterCard";
             this.pbMasterCard.Size = new System.Drawing.Size(64, 38);
             this.pbMasterCard.TabIndex = 23;
             this.pbMasterCard.TabStop = false;
+            this.pbMasterCard.DoubleClick += new System.EventHandler(this.pbMasterCard_DoubleClick);
             // 
             // pbMaestro
             // 
             this.pbMaestro.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbMaestro.BackgroundImage")));
+            this.pbMaestro.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbMaestro.InitialImage = null;
             this.pbMaestro.Location = new System.Drawing.Point(365, 10);
             this.pbMaestro.Name = "pbMaestro";
             this.pbMaestro.Size = new System.Drawing.Size(64, 40);
             this.pbMaestro.TabIndex = 22;
             this.pbMaestro.TabStop = false;
+            this.pbMaestro.DoubleClick += new System.EventHandler(this.pbMaestro_DoubleClick);
             // 
             // lbCVVCode
             // 
@@ -141,15 +149,17 @@
             this.ldCreditCard.TabIndex = 19;
             this.ldCreditCard.Text = "Enter card number";
             // 
-            // lLbLicence
+            // lLbLicenceMaestro
             // 
-            this.lLbLicence.AutoSize = true;
-            this.lLbLicence.Location = new System.Drawing.Point(277, 125);
-            this.lLbLicence.Name = "lLbLicence";
-            this.lLbLicence.Size = new System.Drawing.Size(152, 13);
-            this.lLbLicence.TabIndex = 5;
-            this.lLbLicence.TabStop = true;
-            this.lLbLicence.Text = "Licence Maestro/Master/VISA";
+            this.lLbLicenceMaestro.AutoSize = true;
+            this.lLbLicenceMaestro.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lLbLicenceMaestro.Location = new System.Drawing.Point(272, 125);
+            this.lLbLicenceMaestro.Name = "lLbLicenceMaestro";
+            this.lLbLicenceMaestro.Size = new System.Drawing.Size(86, 13);
+            this.lLbLicenceMaestro.TabIndex = 5;
+            this.lLbLicenceMaestro.TabStop = true;
+            this.lLbLicenceMaestro.Text = "Licence Maestro";
+            this.lLbLicenceMaestro.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLbLicenceMaestro_LinkClicked);
             // 
             // tbSummRecharge
             // 
@@ -160,12 +170,38 @@
             this.tbSummRecharge.TabIndex = 4;
             this.tbSummRecharge.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // UсAccountRecharge
+            // lLbLicenceMaster
+            // 
+            this.lLbLicenceMaster.AutoSize = true;
+            this.lLbLicenceMaster.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lLbLicenceMaster.Location = new System.Drawing.Point(353, 125);
+            this.lLbLicenceMaster.Name = "lLbLicenceMaster";
+            this.lLbLicenceMaster.Size = new System.Drawing.Size(44, 13);
+            this.lLbLicenceMaster.TabIndex = 26;
+            this.lLbLicenceMaster.TabStop = true;
+            this.lLbLicenceMaster.Text = "/Master";
+            this.lLbLicenceMaster.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLbLicenceMaster_LinkClicked);
+            // 
+            // lLbLicenceVisa
+            // 
+            this.lLbLicenceVisa.AutoSize = true;
+            this.lLbLicenceVisa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lLbLicenceVisa.Location = new System.Drawing.Point(393, 125);
+            this.lLbLicenceVisa.Name = "lLbLicenceVisa";
+            this.lLbLicenceVisa.Size = new System.Drawing.Size(36, 13);
+            this.lLbLicenceVisa.TabIndex = 27;
+            this.lLbLicenceVisa.TabStop = true;
+            this.lLbLicenceVisa.Text = "/VISA";
+            this.lLbLicenceVisa.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLbLicenceVisa_LinkClicked);
+            // 
+            // UсAccountCharge
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lLbLicenceVisa);
+            this.Controls.Add(this.lLbLicenceMaster);
             this.Controls.Add(this.tbSummRecharge);
-            this.Controls.Add(this.lLbLicence);
+            this.Controls.Add(this.lLbLicenceMaestro);
             this.Controls.Add(this.mtbCvvCode);
             this.Controls.Add(this.mtbDateCard);
             this.Controls.Add(this.mtbCardNumber);
@@ -176,7 +212,7 @@
             this.Controls.Add(this.lbCVVCode);
             this.Controls.Add(this.lbDateCard);
             this.Controls.Add(this.ldCreditCard);
-            this.Name = "UсAccountRecharge";
+            this.Name = "UсAccountCharge";
             this.Size = new System.Drawing.Size(438, 152);
             ((System.ComponentModel.ISupportInitialize)(this.pbVisa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMasterCard)).EndInit();
@@ -197,7 +233,9 @@
         private System.Windows.Forms.Label lbCVVCode;
         private System.Windows.Forms.Label lbDateCard;
         private System.Windows.Forms.Label ldCreditCard;
-        private System.Windows.Forms.LinkLabel lLbLicence;
+        private System.Windows.Forms.LinkLabel lLbLicenceMaestro;
         private System.Windows.Forms.TextBox tbSummRecharge;
+        private System.Windows.Forms.LinkLabel lLbLicenceMaster;
+        private System.Windows.Forms.LinkLabel lLbLicenceVisa;
     }
 }

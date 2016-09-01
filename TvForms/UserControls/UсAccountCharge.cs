@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
@@ -95,6 +96,67 @@ namespace TvForms
             return isValidCardDatas;
 
         }
+
+        // Simple check to make sure link is valid,
+        // can be modified to check for other protocols:
+        private bool IsHttpURL(string url)
+        {
+            return
+                ((!string.IsNullOrWhiteSpace(url)) &&
+                (url.ToLower().StartsWith("http")));
+        }
+
+        //start browser with specified link
+        private void StartBrowser(string url)
+        {
+            if (IsHttpURL(url))
+                Process.Start(url);
+        }
+
+        // Performs the actual browser launch to follow link:
+        //goto appropriate site if url correct
+        //VISA
+        //text link
+        private void lLbLicenceVisa_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            StartBrowser("https://www.visaeurope.com/");
+        }
+
+        //VISA
+        //picture double click
+        private void pbVisa_DoubleClick(object sender, EventArgs e)
+        {
+            StartBrowser("https://www.visaeurope.com/");
+        }
+
+        //MASTERCARD
+        //text link
+        private void lLbLicenceMaster_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            StartBrowser("http://www.mastercard.com/ua/consumer/index.html");
+        }
+
+        //MASTERCARD
+        //picture double click
+        private void pbMasterCard_DoubleClick(object sender, EventArgs e)
+        {
+            StartBrowser("http://www.mastercard.com/ua/consumer/index.html");
+        }
+
+        //MAESTRO CIRUS
+        //text link
+        private void lLbLicenceMaestro_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            StartBrowser("http://www.maestrocard.com/gateway/index.html");
+        }
+
+        //MAESTRO CIRUS
+        //picture double click
+        private void pbMaestro_DoubleClick(object sender, EventArgs e)
+        {
+            StartBrowser("http://www.maestrocard.com/gateway/index.html");
+        }
+
 
     }
 }

@@ -77,30 +77,37 @@ namespace TvForms
             return CurrentUserId;
         }
 
-
+        //hide/show pass during tap
         private void chBPassForm_ShowPass_CheckStateChanged(object sender, EventArgs e)
         {
             tbPassForm_Pass.UseSystemPasswordChar = !chBPassForm_ShowPass.Checked;
         }
 
+        //behavior of passForm
         private void PassForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             var eventSource = (Form)sender;
 
-            if (eventSource.DialogResult != DialogResult.OK) return;
+            if (eventSource.DialogResult != DialogResult.OK)
+                return;
             CurrentUserId = UserIdDetect();
 
-            if (CurrentUserId != 0) return;
+            if (CurrentUserId != 0)
+                return;
             MessagesContainer.DisplayError("Incorrect login or password", "Access denied");
             e.Cancel = true;
         }
 
+
+        //register new user in App
         private void linkLbPassForm_Register_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             var actions = new AddUserDataForm(UserDetailType.User);
             actions.ShowDialog();
         }
 
+
+        //recovery password
         private void linkLbPassForm_FogotPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             var actions = new AddUserDataForm(UserDetailType.Password);

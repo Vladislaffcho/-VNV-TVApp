@@ -63,13 +63,15 @@ namespace TvForms
             }
 
             var schedRepository = new BaseRepository<UserSchedule>(orChRepository.ContextDb);
+            var allChannels = new BaseRepository<Channel>(orChRepository.ContextDb).GetAll();
 
             foreach (var sced in schedRepository.Get(x => x.User.Id == CurrentUserId).ToList())
             {
                 var item = new ListViewItem(number.ToString());
 
                 var chName = orChRepository.Get(x => x.Channel.Id == sced.TvShow.Channel.Id)
-                    .FirstOrDefault()?.Channel.Name ?? "/-channel not paid-/";
+                    .FirstOrDefault()?.Channel.Name
+                    ?? "/-not paid-/ - " + allChannels.FirstOrDefault(c => c.Id == sced.TvShow.Channel.Id)?.Name;
                 item.SubItems.Add(chName);
 
                 var isAdult = orChRepository.Get(x => x.Channel.Id == sced.TvShow.Channel.Id)
