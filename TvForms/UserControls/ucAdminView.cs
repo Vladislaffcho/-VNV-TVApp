@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using TvContext;
@@ -70,7 +71,8 @@ namespace TvForms
                 tbSurname.Text = listViewItem.SubItems[3].Text;
 
                 #region filling user data for admin user control
-                var user = new BaseRepository<User>().Get(c => c.Id == _selectedUser).First();
+                var userRepo = new BaseRepository<User>();
+                var user = userRepo.Get(c => c.Id == _selectedUser).First();
 
                 // Filling user's address list List View
                 if (user.UserAddresses.Any())
@@ -110,7 +112,9 @@ namespace TvForms
 
                 // Filling Money and status TB's
                 // uncomment when whole functionality has been provided
-                tbMoney.Text = @"Change in ucAdminClass";
+                var accountBalance = new BaseRepository<Account>(userRepo.ContextDb)
+                    .Get(b => b.User.Id == _selectedUser).FirstOrDefault()?.Balance;
+                tbMoney.Text = accountBalance?.ToString(CultureInfo.CurrentCulture) ?? "0.00"; //@"Change in ucAdminClass";
 
                 _activeUserFlag = true;
                 if (user.IsActiveStatus)
@@ -259,7 +263,7 @@ namespace TvForms
 
         private void btViewOrders_Click(object sender, EventArgs e)
         {
-            var actions = new ActionForm(new UсOrdersView(CurrentUserId))
+            var actions = new ActionForm(new UсOrdersView(_selectedUser))
             {
                 Text = @"User orders history"
                 //Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\wallet.ico")
@@ -269,7 +273,7 @@ namespace TvForms
 
         private void btViewPayment_Click(object sender, EventArgs e)
         {
-            var actions = new ActionForm(new UcPayments(CurrentUserId))
+            var actions = new ActionForm(new UcPayments(_selectedUser))
             {
                 Text = @"PAYMENTS",
                 Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\dollar.ico")
@@ -395,6 +399,11 @@ namespace TvForms
             tbSearchLogin.Clear();
             numSearchUserId.Value = 0;
             SetPageView();
+        }
+
+        private void tbMoney_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

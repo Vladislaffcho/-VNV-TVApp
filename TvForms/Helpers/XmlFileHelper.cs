@@ -148,29 +148,52 @@ namespace TvForms
             var doc = new XmlDocument();
             doc.Load(xmlFileName);
             var xmlChannelsNodeList = doc.SelectNodes("tv/channel");
+            var xmlTvShowsNodeList = doc.SelectNodes("tv/programme");
             
             var chanellList = new List<Channel>();
-            if (xmlChannelsNodeList != null)
+            var tvShowslList = new List<TvShow>();
+
+            if (xmlChannelsNodeList != null || xmlTvShowsNodeList != null) 
             {
-                var userIdInFile = xmlChannelsNodeList.Item(0)?.ChildNodes[3].InnerText.GetInt();
+                var userIdInFile = xmlChannelsNodeList?.Item(0)?.ChildNodes[3].InnerText.GetInt();
                 if (userIdInFile != currentUserId)
                 {
                     MessagesContainer.DisplayError("This file include not your favourite media!!! Sorry", "Error");
                     return;
                 }
-                
-                foreach (XmlNode node in xmlChannelsNodeList)
+
+                foreach (XmlNode channelNode in xmlChannelsNodeList)
                 {
                     var chan = new Channel();
-                    chan.Id = node.ChildNodes[0].InnerText.GetInt();
-                    chan.Name = node.ChildNodes[1].InnerText;
-                    chan.Price = double.Parse(node.ChildNodes[4].InnerText, CultureInfo.CurrentCulture);
+                    chan.Id = channelNode.ChildNodes[0].InnerText.GetInt();
+                    chan.Name = channelNode.ChildNodes[1].InnerText;
+                    chan.Price = double.Parse(channelNode.ChildNodes[4].InnerText, CultureInfo.CurrentCulture);
                     chan.IsAgeLimit = false;
 
                     chanellList.Add(chan);
                 }
-                MessagesContainer.DisplayInfo("Saved schedule was read good.", "Info");
+
+                if (xmlTvShowsNodeList != null)
+                {
+                    var channelsAll = new BaseRepository<Channel>().GetAll();
+                    foreach (XmlNode tvShowNode in xmlTvShowsNodeList)
+                    {
+                        var tvShow = new TvShow();
+                        var channelId = tvShowNode.ChildNodes[1].InnerText.GetInt();
+                        var ifChannelExist = channelsAll.FirstOrDefault(ch => ch.Id == channelId);
+
+                        tvShow.Id = tvShowNode.ChildNodes[0].InnerText.GetInt();
+                        tvShow.CodeOriginalChannel = ifChannelExist?.OriginalId ?? 0;
+                        tvShow.Name = tvShowNode.ChildNodes[3].InnerText;
+                        tvShow.IsAgeLimit = ifChannelExist?.IsAgeLimit ?? false;
+                        tvShow.Date = DateTime.ParseExact(tvShowNode.ChildNodes[4].InnerText,
+                            "yyyyMMddHHmmss zzz", CultureInfo.InvariantCulture);
+
+                        tvShowslList.Add(tvShow);
+                    }
+                }
                 
+                MessagesContainer.DisplayInfo("Saved schedule was read good.", "Info");
             }
 
             else
@@ -194,9 +217,11 @@ namespace TvForms
 
                     writer.WriteElementString("id", ordChannel.Channel.OriginalId.ToString());
                     writer.WriteElementString("display-name", ordChannel.Channel.Name);
-                    writer.WriteElementString("due-date", ordChannel.Order.DueDate.ToShortDateString());
+                    writer.WriteElementString("due-date", ordChannel.Order.DueDate
+                        .ToString("yyyyMMddHHmmss zzz", CultureInfo.InvariantCulture));
                     writer.WriteElementString("user-id", userId.ToString());
-                    writer.WriteElementString("price", ordChannel.Channel.Price.ToString(CultureInfo.CurrentCulture));
+                    writer.WriteElementString("price", ordChannel.Channel.Price
+                        .ToString(CultureInfo.CurrentCulture));
 
                     writer.WriteEndElement();
                 }
@@ -210,10 +235,9 @@ namespace TvForms
                     writer.WriteElementString("channel-id", prog.TvShow.Channel.OriginalId.ToString());
                     writer.WriteElementString("channel", prog.TvShow.Channel.Name);
                     writer.WriteElementString("title", prog.TvShow.Name);
-                    writer.WriteElementString("start", prog.TvShow.Date.Year.ToString() +
-                        prog.TvShow.Date.Month + prog.TvShow.Date.Day +
-                        prog.TvShow.Date.Hour + prog.TvShow.Date.Minute + "00 +0200");
-                    
+                    writer.WriteElementString("start", prog.TvShow.Date
+                        .ToString("yyyyMMddHHmmss zzz", CultureInfo.InvariantCulture));
+
                     writer.WriteEndElement();
                 }
 
