@@ -113,7 +113,7 @@ namespace TvForms
                     //but it is always '0' and Channels don't link with TvShow
                     //To utilize - tvShowsRepo.AddRange(tvShowList); - all in norm, but it takes too much time
                     //(more than 30 minutes)
-                    using (var ctx = tvShowsRepo.ContextDb)
+                    using (var ctx = tvShowsRepo.ContextDb.include("Channels"))
                     {
                         using (var transactionScope = new TransactionScope())
                         {
