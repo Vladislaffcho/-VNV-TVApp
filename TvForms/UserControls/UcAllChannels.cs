@@ -248,15 +248,25 @@ namespace TvForms
             }
             else if (!cbCheckAllChannels.Checked)
             {
-                for (var i = 0; i < lvChannelsList.Items.Count; i++)
-                {
-                    lvChannelsList.Items[i].Checked = false;
-                }
+                //-------------------------------------------------------
+                //for (var i = 0; i < lvChannelsList.Items.Count; i++)
+                //{
+                //    lvChannelsList.Items[i].Checked = false;
+                //}
 
-                var userSchRepo = new BaseRepository<UserSchedule>();
-                var orderedChannRepo = new BaseRepository<OrderChannel>(userSchRepo.ContextDb);
+                lvChannelsList.Items.Clear();
+                
+
+                //var userSchRepo = new BaseRepository<UserSchedule>();
+                //-------------------------------------------------------
+
+                var orderedChannRepo = new BaseRepository<OrderChannel>();
                 var deleteChann = orderedChannRepo.Get(x => x.Order.Id == CurrentOrderId).ToList();
                 orderedChannRepo.RemoveRange(deleteChann);
+
+                //-------------------------------------------------------
+                LoadAllChannelsList();
+                //-------------------------------------------------------
 
                 ControlForShows?.Dispose();
                 ControlForShows = new UcShowsList(CurrentUserId);

@@ -35,7 +35,7 @@ namespace TvForms
                 item.SubItems.Add($"{sh.Date.Hour:00}:{sh.Date.Minute:00}");
                 item.SubItems.Add($"{sh.Date.Day:00}/{sh.Date.Month:00}");
                 item.SubItems.Add(sh.Name);
-                item.SubItems.Add(channelsAll.Find(ch => ch.OriginalId == sh.CodeOriginalChannel).Name);// sh.Channel.Name);
+                item.SubItems.Add(channelsAll.Find(ch => ch.OriginalId == sh.CodeOriginalChannel)?.Name ?? "o|o");// sh.Channel.Name);
                 item.SubItems.Add(sh.Id.ToString());
 
                 lvShowPrograms.Items.Add(item);
