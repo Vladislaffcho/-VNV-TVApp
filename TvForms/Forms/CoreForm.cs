@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TvForms.Forms;
@@ -13,9 +14,9 @@ namespace TvForms
         private int CurrentUserId { get; set; } // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
 
         //ToDo Review WTF? Naming convention!!!
-        //private UcTabsForUser UserWindow { get; set; }
+        private UcTabsForUser _userWindow;// { get; set; }
 
-        //private UcAdminView AdminWindow { get; set; }
+        private UcAdminView _adminWindow;// { get; set; }
 
         public CoreForm()
         {
@@ -25,15 +26,15 @@ namespace TvForms
             LoadMainControl();
 
             //var userRepo = new BaseRepository<User>();
-            Text += Text + @" - " + new BaseRepository<User>().Get(u => u.Id == CurrentUserId).FirstOrDefault()?.Login;
+            Text += @" - " + new BaseRepository<User>().Get(u => u.Id == CurrentUserId).FirstOrDefault()?.Login;
             
         }
 
-        public sealed override string Text
-        {
-            get { return base.Text; }
-            set { base.Text = value; }
-        }
+        //public sealed override string Text
+        //{
+        //    get { return base.Text; }
+        //    set { base.Text = value; }
+        //}
 
 
         private void LoadMainControl()
@@ -48,10 +49,12 @@ namespace TvForms
                     switch (userType)   
                     {
                         case (int) EUserType.ADMIN: //admin
-                            panelCore.Controls.Add(new UcAdminView(CurrentUserId));
+                            _adminWindow = new UcAdminView(CurrentUserId);
+                            panelCore.Controls.Add(_adminWindow);
                             break;
                         case (int) EUserType.CLIENT: //user
-                            panelCore.Controls.Add(new UcTabsForUser(CurrentUserId));
+                            _userWindow = new UcTabsForUser(CurrentUserId);
+                            panelCore.Controls.Add(_userWindow);
                             break;
                     }
                 }
@@ -86,6 +89,8 @@ namespace TvForms
 
             XmlFileHelper.ParseChannel(openXmlFile.FileName);
             XmlFileHelper.ParseProgramm(openXmlFile.FileName);
+
+            _userWindow.SetReloadChannelButton(true, Color.Crimson);
         }
 
 
@@ -110,8 +115,9 @@ namespace TvForms
             //Uncomment when bookmarks will be ready end specify appropriate one!!!!
             var actions = new ActionForm(new UcUserProfile(CurrentUserId))
             {
-                Text = @"User profile"/*,
-                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\j01_9602.ico")*/
+                Text = @"User profile",
+                //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
+                Icon = new Icon(@"icons\j01_9602.ico")
             };
             actions.Show();
         }
@@ -121,8 +127,9 @@ namespace TvForms
         {
             var actions = new ActionForm(new UсOrdersView(CurrentUserId))
             {
-                Text = @"User orders history"/*,
-                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\wallet.ico")*/
+                Text = @"User orders history",
+                //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
+                Icon = new Icon(@"icons\wallet.ico")
             };
             actions.Show();
         }
@@ -132,8 +139,9 @@ namespace TvForms
         {
             var actions = new ActionForm(new UcPayments(CurrentUserId))
             {
-                Text = @"PAYMENTS"/*,
-                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\dollar.ico")*/
+                Text = @"PAYMENTS",
+                //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
+                Icon = new Icon(@"icons\dollar.ico")
             };
             actions.Show();
         }
@@ -226,10 +234,12 @@ namespace TvForms
 
             var actions = new AccountChargeForm(CurrentUserId)
             {
-                Text = @"Account recharge"/*,
-                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\mastercard_1450.ico")*/
+                Text = @"Account recharge",
+                //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
+                Icon = new Icon(@"icons\mastercard_1450.ico")
             };
             actions.Show();
+            _userWindow.SetReloadMoneyButton(true, Color.Crimson);
         }
 
         private void additionalServiceToolStripMenuItem_Click(object sender, EventArgs e)

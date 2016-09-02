@@ -66,7 +66,8 @@ namespace TvForms
             var actions = new ActionForm(new UcPayments(CurrentUserId))
             {
                 Text = @"PAYMENTS",
-                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\dollar.ico")
+                //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
+                Icon = new Icon(@"icons\dollar.ico")
             };
             actions.Show();
         }

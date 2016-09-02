@@ -158,7 +158,17 @@ namespace TvForms
             
 
         }
+        
+        public void SetReloadButton(bool visible, Color color)
+        {
+            btReload.Visible = visible;
+            btReload.ForeColor = color;
+        }
 
-
+        private void btReload_Click(object sender, EventArgs e)
+        {
+            SetMoneyToTextBoxs();
+            SetReloadButton(false, Color.Black);
+        }
     }
 }

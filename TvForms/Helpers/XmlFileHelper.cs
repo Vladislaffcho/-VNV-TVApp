@@ -107,6 +107,12 @@ namespace TvForms
                     }
 
                     //-------------------------------------------------------------------------------------
+                    //using BulkInsert approach to load big entity to DB (less than 0.5sec for 118000 entities)
+                    //But, there is some problem:
+                    //Channels in show link foreign key Channel_Id, 
+                    //but it is always '0' and Channels don't link with TvShow
+                    //To utilize - tvShowsRepo.AddRange(tvShowList); - all in norm, but it takes too much time
+                    //(more than 30 minutes)
                     using (var ctx = tvShowsRepo.ContextDb)
                     {
                         using (var transactionScope = new TransactionScope())

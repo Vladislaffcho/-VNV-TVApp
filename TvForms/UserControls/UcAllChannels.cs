@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TvContext;
@@ -110,15 +111,15 @@ namespace TvForms
             //id original of channel
             var idOrigin = lvChannelsList.Items[e.Index].SubItems[4].Text.GetInt();
 
-            var channelRepo = new BaseRepository<Channel>();
-            var orderChannelRepo = new BaseRepository<OrderChannel>(channelRepo.ContextDb);
-            var showsRepo = new BaseRepository<TvShow>(channelRepo.ContextDb);
-            var orderRepo = new BaseRepository<Order>(channelRepo.ContextDb);
-            var userRepo = new BaseRepository<User>(channelRepo.ContextDb);
-
+            var userRepo = new BaseRepository<User>();
+            var orderChannelRepo = new BaseRepository<OrderChannel>(userRepo.ContextDb);
+            var orderRepo = new BaseRepository<Order>(userRepo.ContextDb);
+            
             switch (e.NewValue)
             {
                 case CheckState.Checked:
+                    var channelRepo = new BaseRepository<Channel>(userRepo.ContextDb);
+                    var showsRepo = new BaseRepository<TvShow>(userRepo.ContextDb);
                     if (orderChannelRepo.Get(s => /*s.Channel.Id*/ s.Channel.OriginalId == idOrigin
                         && s.Order.User.Id == CurrentUserId).FirstOrDefault() == null)
                     {
@@ -150,6 +151,7 @@ namespace TvForms
                     break;
 
                 case CheckState.Unchecked:
+                    var userSchedRepo = new BaseRepository<UserSchedule>(userRepo.ContextDb);
                     //var removeCh = orderChannelRepo.Get(x => x.Channel.Id == id).FirstOrDefault();
                     var removeCh = orderChannelRepo.Get(x => x.Channel.OriginalId == idOrigin).FirstOrDefault();
                     if (removeCh != null)
@@ -165,6 +167,11 @@ namespace TvForms
                             orderToUpdate.User = userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault();
                             orderRepo.Update(orderToUpdate);
                         }
+
+                        var schedFromRemovingChann = userSchedRepo.Get(sc => sc.TvShow.CodeOriginalChannel
+                                                                             == removeCh.Channel.OriginalId).ToList();
+                        userSchedRepo.RemoveRange(schedFromRemovingChann);
+
                         orderChannelRepo.Remove(removeCh);
                     }
                     break;
@@ -226,7 +233,7 @@ namespace TvForms
                 {
                     Channel = channel, Order = order
                 }).ToList();
-                ;
+                
                 ordChannelRepo.AddRange(list);
 
                 var showByDateAndChannels = new List<TvShow>();
@@ -238,7 +245,6 @@ namespace TvForms
                         showByDateAndChannels.Add(show);
                     }
                 }
-                
 
                 ControlForShows?.Dispose();
                 ControlForShows = new UcShowsList(CurrentUserId);
@@ -293,6 +299,19 @@ namespace TvForms
         {
             lvChannelsList.Items.Clear();
             LoadControls();
+        }
+
+        private void btReload_Click(object sender, EventArgs e)
+        {
+            lvChannelsList.Items.Clear();
+            LoadControls();
+            SetReloadButton(false, Color.Black);
+        }
+
+        public void SetReloadButton(bool visible, Color color)
+        {
+            btReload.Visible = visible;
+            btReload.ForeColor = color;
         }
     }
 }

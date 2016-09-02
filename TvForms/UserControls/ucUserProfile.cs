@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TvContext;
@@ -261,8 +262,9 @@ namespace TvForms
         {
             var actions = new AcFLittleWithoutValid(new UcUserAccount(_currentUserId))
             {
-                Text = @"Account info"/*,
-                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\dollar.ico")*/
+                Text = @"Account info",
+                //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
+                Icon = new Icon(@"icons\dollar.ico")
             };
             actions.Show();
         }
@@ -271,8 +273,9 @@ namespace TvForms
         {
             var actions = new ActionForm(new UсOrdersView(_currentUserId))
             {
-                Text = @"User orders history"/*,
-                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\wallet.ico")*/
+                Text = @"User orders history",
+                //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
+                Icon = new Icon(@"icons\wallet.ico")
             };
             actions.Show();
         }
@@ -281,8 +284,9 @@ namespace TvForms
         {
             var actions = new ActionForm(new UcPayments(_currentUserId))
             {
-                Text = @"PAYMENTS"/*,
-                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\dollar.ico")*/
+                Text = @"PAYMENTS",
+                //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
+                Icon = new Icon(@"icons\dollar.ico")
             };
             actions.Show();
         }

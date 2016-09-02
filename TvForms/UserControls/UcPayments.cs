@@ -57,7 +57,8 @@ namespace TvForms
             var actions = new ActionForm(new UсOrdersView(CurrentUserId))
             {
                 Text = @"User orders history",
-                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\wallet.ico")
+                //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
+                Icon = new Icon(@"icons\wallet.ico")
             };
             actions.Show();
         }
@@ -75,7 +76,8 @@ namespace TvForms
             var actions = new AccountChargeForm(CurrentUserId)
             {
                 Text = @"Account recharge",
-                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\mastercard_1450.ico")
+                //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
+                Icon = new Icon(@"icons\mastercard_1450.ico")
             };
             actions.Show();
         }

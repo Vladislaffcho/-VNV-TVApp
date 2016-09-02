@@ -265,8 +265,9 @@ namespace TvForms
         {
             var actions = new ActionForm(new UсOrdersView(_selectedUser))
             {
-                Text = @"User orders history"
-                //Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\wallet.ico")
+                Text = @"User orders history",
+                //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
+                Icon = new Icon(@"icons\wallet.ico")
             };
             actions.Show();
         }
@@ -276,7 +277,8 @@ namespace TvForms
             var actions = new ActionForm(new UcPayments(_selectedUser))
             {
                 Text = @"PAYMENTS",
-                Icon = new Icon(@"d:\docs\C#\TvAppTeam\TVAppVNV\TvForms\icons\dollar.ico")
+                //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
+                Icon = new Icon(@"icons\dollar.ico")
             };
             actions.Show();
         }

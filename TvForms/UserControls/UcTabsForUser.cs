@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace TvForms
 {
@@ -53,6 +54,17 @@ namespace TvForms
             
         }
 
-        
+
+        public void SetReloadChannelButton(bool visible, Color color)
+        {
+            if (tabForUsers.SelectedTab == tabPan_AllChannels)
+                AllChannelControl.SetReloadButton(true, Color.Crimson);
+        }
+
+        public void SetReloadMoneyButton(bool visible, Color color)
+        {
+            if(tabForUsers.SelectedTab == tabPan_MyFavourite)
+                MyFavouriteControl.SetReloadButton(true, Color.Crimson);
+        }
     }
 }

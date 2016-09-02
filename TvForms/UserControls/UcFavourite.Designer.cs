@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcFavoirute));
             this.scContainerFav = new System.Windows.Forms.SplitContainer();
             this.lvFavouriteProgs = new System.Windows.Forms.ListView();
             this.Number = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -44,6 +45,7 @@
             this.lbUAH = new System.Windows.Forms.Label();
             this.tbTotalPrice = new System.Windows.Forms.TextBox();
             this.lbTotalPrice = new System.Windows.Forms.Label();
+            this.btReload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.scContainerFav)).BeginInit();
             this.scContainerFav.Panel1.SuspendLayout();
             this.scContainerFav.Panel2.SuspendLayout();
@@ -62,6 +64,7 @@
             // 
             // scContainerFav.Panel2
             // 
+            this.scContainerFav.Panel2.Controls.Add(this.btReload);
             this.scContainerFav.Panel2.Controls.Add(this.btMakeOrder);
             this.scContainerFav.Panel2.Controls.Add(this.lbUAH_balance);
             this.scContainerFav.Panel2.Controls.Add(this.tbAccountBalance);
@@ -194,6 +197,21 @@
             this.lbTotalPrice.TabIndex = 0;
             this.lbTotalPrice.Text = "Total price";
             // 
+            // btReload
+            // 
+            this.btReload.ForeColor = System.Drawing.Color.Crimson;
+            this.btReload.Image = ((System.Drawing.Image)(resources.GetObject("btReload.Image")));
+            this.btReload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btReload.Location = new System.Drawing.Point(18, 138);
+            this.btReload.Name = "btReload";
+            this.btReload.Size = new System.Drawing.Size(70, 29);
+            this.btReload.TabIndex = 12;
+            this.btReload.Text = "Reload";
+            this.btReload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btReload.UseVisualStyleBackColor = true;
+            this.btReload.Visible = false;
+            this.btReload.Click += new System.EventHandler(this.btReload_Click);
+            // 
             // UcFavoirute
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -228,5 +246,6 @@
         private System.Windows.Forms.Label lbAccountBalance;
         private System.Windows.Forms.Label lbUAH;
         private System.Windows.Forms.TextBox tbTotalPrice;
+        private System.Windows.Forms.Button btReload;
     }
 }

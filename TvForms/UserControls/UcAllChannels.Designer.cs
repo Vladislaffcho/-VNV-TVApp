@@ -35,6 +35,7 @@ namespace TvForms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcAllChannels));
             this.tabControl_Shows = new System.Windows.Forms.TabControl();
             this.tabShows_Sunday = new System.Windows.Forms.TabPage();
             this.tabShows_Monday = new System.Windows.Forms.TabPage();
@@ -46,6 +47,7 @@ namespace TvForms
             this.gbAllCh_Description = new System.Windows.Forms.GroupBox();
             this.rtbAllCh_Description = new System.Windows.Forms.RichTextBox();
             this.gbUcAllChannel = new System.Windows.Forms.GroupBox();
+            this.btReload = new System.Windows.Forms.Button();
             this.cbCheckAllChannels = new System.Windows.Forms.CheckBox();
             this.cbOnlyChosenChannels = new System.Windows.Forms.CheckBox();
             this.lvChannelsList = new System.Windows.Forms.ListView();
@@ -165,6 +167,7 @@ namespace TvForms
             // 
             // gbUcAllChannel
             // 
+            this.gbUcAllChannel.Controls.Add(this.btReload);
             this.gbUcAllChannel.Controls.Add(this.cbCheckAllChannels);
             this.gbUcAllChannel.Controls.Add(this.cbOnlyChosenChannels);
             this.gbUcAllChannel.Controls.Add(this.lvChannelsList);
@@ -176,6 +179,21 @@ namespace TvForms
             this.gbUcAllChannel.TabIndex = 0;
             this.gbUcAllChannel.TabStop = false;
             this.gbUcAllChannel.Text = "Channel choose";
+            // 
+            // btReload
+            // 
+            this.btReload.ForeColor = System.Drawing.Color.Crimson;
+            this.btReload.Image = ((System.Drawing.Image)(resources.GetObject("btReload.Image")));
+            this.btReload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btReload.Location = new System.Drawing.Point(249, 386);
+            this.btReload.Name = "btReload";
+            this.btReload.Size = new System.Drawing.Size(70, 29);
+            this.btReload.TabIndex = 11;
+            this.btReload.Text = "Reload";
+            this.btReload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btReload.UseVisualStyleBackColor = true;
+            this.btReload.Visible = false;
+            this.btReload.Click += new System.EventHandler(this.btReload_Click);
             // 
             // cbCheckAllChannels
             // 
@@ -276,5 +294,6 @@ namespace TvForms
         private ColumnHeader lvIsAdultChannel;
         private CheckBox cbOnlyChosenChannels;
         private CheckBox cbCheckAllChannels;
+        private Button btReload;
     }
 }
