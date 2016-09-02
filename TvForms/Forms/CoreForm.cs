@@ -106,7 +106,8 @@ namespace TvForms
 
             var xmlFileName = ZipHelper.UnzipArchiveWithFavourite(openSavedFile.FileName);
             XmlFileHelper.ParseFavouriteMedia(xmlFileName, CurrentUserId);
-            //panelCore.Controls.Add(new UcTabsForUser(CurrentUserId));
+
+            _userWindow.SetReloadChannelButton(true, Color.Crimson);
         }
 
 
