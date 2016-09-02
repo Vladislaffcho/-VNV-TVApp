@@ -69,12 +69,15 @@ namespace TvForms
             {
                 var item = new ListViewItem(number.ToString());
 
-                var chName = orChRepository.Get(x => x.Channel.Id == sced.TvShow.Channel.Id)
+                //var chName = orChRepository.Get(x => x.Channel.Id == sced.TvShow.Channel.Id)
+                var chName = orChRepository.Get(x => x.Channel.OriginalId == sced.TvShow.CodeOriginalChannel)
                     .FirstOrDefault()?.Channel.Name
-                    ?? "/-not paid-/ - " + allChannels.FirstOrDefault(c => c.Id == sced.TvShow.Channel.Id)?.Name;
+                    //?? "/-not paid-/ - " + allChannels.FirstOrDefault(c => c.Id == sced.TvShow.Channel.Id)?.Name;
+                    ?? "/-not paid-/ - " + allChannels.FirstOrDefault(c => c.OriginalId == sced.TvShow.CodeOriginalChannel)?.Name;
                 item.SubItems.Add(chName);
 
-                var isAdult = orChRepository.Get(x => x.Channel.Id == sced.TvShow.Channel.Id)
+                //var isAdult = orChRepository.Get(x => x.Channel.Id == sced.TvShow.Channel.Id)
+                var isAdult = orChRepository.Get(x => x.Channel.OriginalId == sced.TvShow.CodeOriginalChannel)
                     .FirstOrDefault()?.Channel.IsAgeLimit ?? false;
                 item.SubItems.Add(isAdult ? "+" : string.Empty);
 

@@ -356,7 +356,6 @@
             this.tbMoney.ReadOnly = true;
             this.tbMoney.Size = new System.Drawing.Size(130, 20);
             this.tbMoney.TabIndex = 10;
-            this.tbMoney.TextChanged += new System.EventHandler(this.tbMoney_TextChanged);
             // 
             // lbMoney
             // 

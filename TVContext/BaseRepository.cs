@@ -136,5 +136,23 @@ namespace TvContext
             ContextDb.OrderChannels.RemoveRange(deleteChann);
             ContextDb.SaveChanges();
         }
+
+        public void AddRange(IEnumerable<UserSchedule> userSchedule)
+        {
+            ContextDb.UserSchedules.AddRange(userSchedule);
+            ContextDb.SaveChanges();
+        }
+
+        public void AddRange(IEnumerable<Channel> channels)
+        {
+            ContextDb.Channels.AddRange(channels);
+            ContextDb.SaveChanges();
+        }
+
+        public void AddRange(IEnumerable<TvShow> tvShowList)
+        {
+            ContextDb.TvShows.AddRange(tvShowList);
+            ContextDb.SaveChanges();
+        }
     }
 }

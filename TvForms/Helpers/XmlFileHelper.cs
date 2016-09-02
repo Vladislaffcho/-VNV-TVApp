@@ -4,8 +4,10 @@ using System.Data.Entity.Validation;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Transactions;
 using System.Xml;
 using TvContext;
+using EntityFramework.BulkInsert.Extensions;
 
 namespace TvForms
 {
@@ -23,25 +25,19 @@ namespace TvForms
 
                 if (xmlNodeList != null)
                 {
-                    using (var context = new TvContext.TvDbContext())
-                    {
-                        foreach (XmlNode node in xmlNodeList)
+                    var channelRepo = new BaseRepository<Channel>();
+                    var channelList = (from XmlNode node in xmlNodeList
+                        where node.Attributes != null
+                        let originId = node.Attributes["id"].Value.GetInt()
+                        select new Channel
                         {
-                            if (node.Attributes == null) continue;
-                            var originId = node.Attributes["id"].Value.GetInt();
-                            var clientEntity = new Channel
-                            {
-                                Name = node.FirstChild.InnerText,
-                                Price = 0,
-                                IsAgeLimit = false,
-                                OriginalId = originId
-                            };
+                            Name = node.FirstChild.InnerText,
+                            Price = 0,
+                            IsAgeLimit = false,
+                            OriginalId = originId
+                        }).ToList();
+                    channelRepo.AddRange(channelList);
 
-                            context.Channels.Add(clientEntity);
-                        }
-
-                        context.SaveChanges();
-                    }
                     MessagesContainer.ChannelsLoadGood();
                 }
                 else
@@ -76,44 +72,55 @@ namespace TvForms
                 doc.Load(filename);
                 var xmlNodeList = doc.SelectNodes("/tv/programme");
 
-               
-
                 if (xmlNodeList != null)
                 {
-                    using (var context = new TvContext.TvDbContext())
+                    var tvShowsRepo = new BaseRepository<TvShow>();
+                    var channelsAll = new BaseRepository<Channel>(tvShowsRepo.ContextDb).GetAll().ToList();
+
+                    var tvShowList = new List<TvShow>();
+                    
+                    var progressBar = new ProgressForm();
+                    progressBar.Show();
+                    //id for progress bar
+                    var id = 1;
+
+                    //load channels to container
+                    foreach (XmlNode node in xmlNodeList)
                     {
-                        var progressBar = new ProgressForm();
-                        progressBar.Show();
-                        var tvShowsList = new List<TvShow>();
-                        var id = 1;
-
-                        //load channels to container
-                        var channels = context.Channels.ToList();
-
-                        foreach (XmlNode node in xmlNodeList)
+                        if (node.Attributes != null)
                         {
-                            if (node.Attributes != null)
-                            {
-                                var originId = node.Attributes["channel"].Value.GetInt();
-                                var shows = new TvShow
-                                {
-                                    Name = node.FirstChild.InnerText,
-                                    Date = DateTime.ParseExact(node.Attributes["start"].Value,
-                                            "yyyyMMddHHmmss zzz", CultureInfo.InvariantCulture),
-                                    IsAgeLimit = false,
-                                    CodeOriginalChannel = originId,
-                                    Channel = channels.Find(x => x.OriginalId == originId)
-                                };
-
-                                tvShowsList.Add(shows);
-                            }
-                            id++;
-                            progressBar.ShowProgress(id, xmlNodeList.Count);
+                            var channelOriginId = node.Attributes["channel"].Value.GetInt();
+                            var shows = new TvShow();
+                            //{
+                                shows.Name = node.FirstChild.InnerText;//,
+                                shows.Date = DateTime.ParseExact(node.Attributes["start"].Value,
+                                        "yyyyMMddHHmmss zzz", CultureInfo.InvariantCulture);//,
+                                shows.IsAgeLimit = false;//,
+                                shows.CodeOriginalChannel = channelOriginId;//,
+                                shows.Channel = channelsAll.Find(x => x.OriginalId == channelOriginId);
+                            //};
+                            tvShowList.Add(shows);
                         }
-                        context.TvShows.AddRange(tvShowsList);
-                        context.SaveChanges();
-                        progressBar.Close();
+                        //count persents for progress bar
+                        id++;
+                        progressBar.ShowProgress(id, xmlNodeList.Count);
                     }
+
+                    //-------------------------------------------------------------------------------------
+                    using (var ctx = tvShowsRepo.ContextDb)
+                    {
+                        using (var transactionScope = new TransactionScope())
+                        {
+                            ctx.BulkInsert(tvShowList);
+                            ctx.SaveChanges();
+                            transactionScope.Complete();
+                        }
+                    }
+                  
+                    //tvShowsRepo.AddRange(tvShowList);
+                    //-------------------------------------------------------------------------------------
+                    
+                    progressBar.Close();
 
                     MessagesContainer.ProgrammsLoadGood();
                 }
@@ -143,15 +150,24 @@ namespace TvForms
             
         }
 
+
         internal static void ParseFavouriteMedia(string xmlFileName, int currentUserId)
         {
             var doc = new XmlDocument();
             doc.Load(xmlFileName);
             var xmlChannelsNodeList = doc.SelectNodes("tv/channel");
             var xmlTvShowsNodeList = doc.SelectNodes("tv/programme");
+
+            var channelRepo = new BaseRepository<Channel>();
+            var tvShowRepo = new BaseRepository<TvShow>(channelRepo.ContextDb);
+            var orderRepo = new BaseRepository<Order>(channelRepo.ContextDb);
+            var currentOrder = orderRepo.Get(o => o.User.Id == currentUserId
+                                                      && o.IsPaid == false && o.IsDeleted == false).FirstOrDefault();
+            var currentUser = new BaseRepository<User>(channelRepo.ContextDb)
+                .Get(u => u.Id == currentUserId).FirstOrDefault();
             
-            var chanellList = new List<Channel>();
-            var tvShowslList = new List<TvShow>();
+            var orderChanellList = new List<OrderChannel>();
+            var userScheduleList = new List<UserSchedule>();
 
             if (xmlChannelsNodeList != null || xmlTvShowsNodeList != null) 
             {
@@ -162,36 +178,43 @@ namespace TvForms
                     return;
                 }
 
-                foreach (XmlNode channelNode in xmlChannelsNodeList)
+                //change due date of current order from saved file
+                if (currentOrder != null)
                 {
-                    var chan = new Channel();
-                    chan.Id = channelNode.ChildNodes[0].InnerText.GetInt();
-                    chan.Name = channelNode.ChildNodes[1].InnerText;
-                    chan.Price = double.Parse(channelNode.ChildNodes[4].InnerText, CultureInfo.CurrentCulture);
-                    chan.IsAgeLimit = false;
-
-                    chanellList.Add(chan);
+                    currentOrder.DueDate = DateTime.ParseExact(xmlChannelsNodeList.Item(0)?.ChildNodes[2].InnerText,
+                        "yyyyMMddHHmmss zzz", CultureInfo.InvariantCulture);
+                    orderRepo.Update(currentOrder);
                 }
+
+                //add saved channels to list
+                orderChanellList.AddRange(from XmlNode channelNode in xmlChannelsNodeList
+                    select channelNode.ChildNodes[0].InnerText.GetInt()
+                    into chanOrigId
+                    select new OrderChannel()
+                    {
+                        Channel = channelRepo.Get(ch => ch.OriginalId == chanOrigId).FirstOrDefault(),
+                        Order = currentOrder
+                    });
 
                 if (xmlTvShowsNodeList != null)
                 {
-                    var channelsAll = new BaseRepository<Channel>().GetAll();
-                    foreach (XmlNode tvShowNode in xmlTvShowsNodeList)
-                    {
-                        var tvShow = new TvShow();
-                        var channelId = tvShowNode.ChildNodes[1].InnerText.GetInt();
-                        var ifChannelExist = channelsAll.FirstOrDefault(ch => ch.Id == channelId);
-
-                        tvShow.Id = tvShowNode.ChildNodes[0].InnerText.GetInt();
-                        tvShow.CodeOriginalChannel = ifChannelExist?.OriginalId ?? 0;
-                        tvShow.Name = tvShowNode.ChildNodes[3].InnerText;
-                        tvShow.IsAgeLimit = ifChannelExist?.IsAgeLimit ?? false;
-                        tvShow.Date = DateTime.ParseExact(tvShowNode.ChildNodes[4].InnerText,
-                            "yyyyMMddHHmmss zzz", CultureInfo.InvariantCulture);
-
-                        tvShowslList.Add(tvShow);
-                    }
+                    //add saved tvShows to list
+                    userScheduleList.AddRange(from XmlNode tvShowNode in xmlTvShowsNodeList
+                        select tvShowNode.ChildNodes[0].InnerText.GetInt()
+                        into showId
+                        select new UserSchedule
+                        {
+                            User = currentUser,
+                            TvShow = tvShowRepo.Get(sh => sh.Id == showId).FirstOrDefault(),
+                            DueDate = currentOrder?.DueDate ?? DateTime.Now.AddDays(7)
+                        });
                 }
+                
+                var ordChannelRepo = new BaseRepository<OrderChannel>(channelRepo.ContextDb);
+                ordChannelRepo.AddRange(orderChanellList);
+
+                var schedRepo = new BaseRepository<UserSchedule>(channelRepo.ContextDb);
+                schedRepo.AddRange(userScheduleList);
                 
                 MessagesContainer.DisplayInfo("Saved schedule was read good.", "Info");
             }
@@ -210,8 +233,9 @@ namespace TvForms
                 writer.WriteStartElement("tv");
 
                 var ordChannelRepo = new BaseRepository<OrderChannel>();
+                var userOrdChannels = ordChannelRepo.Get(x => x.Order.User.Id == userId).ToList();
 
-                foreach (var ordChannel in ordChannelRepo.Get(x => x.Order.User.Id == userId).ToList())
+                foreach (var ordChannel in userOrdChannels)
                 {
                     writer.WriteStartElement("channel");
 
@@ -231,9 +255,13 @@ namespace TvForms
                 {
                     writer.WriteStartElement("programme");
 
-                    writer.WriteElementString("id", prog.Id.ToString());
-                    writer.WriteElementString("channel-id", prog.TvShow.Channel.OriginalId.ToString());
-                    writer.WriteElementString("channel", prog.TvShow.Channel.Name);
+                    writer.WriteElementString("programme-id", prog.TvShow.Id.ToString());
+                    writer.WriteElementString("channel-id", prog.TvShow.CodeOriginalChannel.ToString());
+                    //writer.WriteElementString("channel", prog.TvShow.Channel.Name);
+                    var channelName =
+                        userOrdChannels.Find(ch => ch.Channel.OriginalId == prog.TvShow.CodeOriginalChannel)
+                            .Channel.Name;
+                    writer.WriteElementString("channel", channelName);
                     writer.WriteElementString("title", prog.TvShow.Name);
                     writer.WriteElementString("start", prog.TvShow.Date
                         .ToString("yyyyMMddHHmmss zzz", CultureInfo.InvariantCulture));

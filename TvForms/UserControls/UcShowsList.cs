@@ -23,6 +23,9 @@ namespace TvForms
         public void LoadShows(IEnumerable<TvShow> shows)
         {
             var scheduleShows = new BaseRepository<UserSchedule>().Get(sc => sc.User.Id == CurrentUserId).ToList();
+            //-----------------------------------------
+            var channelsAll = new BaseRepository<Channel>().GetAll().ToList();
+            //-----------------------------------------
             lvShowPrograms.Items.Clear();
             DisplayIndexShows = 1;
             foreach (var sh in shows)
@@ -32,7 +35,7 @@ namespace TvForms
                 item.SubItems.Add($"{sh.Date.Hour:00}:{sh.Date.Minute:00}");
                 item.SubItems.Add($"{sh.Date.Day:00}/{sh.Date.Month:00}");
                 item.SubItems.Add(sh.Name);
-                item.SubItems.Add(sh.Channel.Name);
+                item.SubItems.Add(channelsAll.Find(ch => ch.OriginalId == sh.CodeOriginalChannel).Name);// sh.Channel.Name);
                 item.SubItems.Add(sh.Id.ToString());
 
                 lvShowPrograms.Items.Add(item);
@@ -48,7 +51,9 @@ namespace TvForms
 
         public void AddTvShowsToControl(IEnumerable<TvShow> addShows)
         {
-            
+            //-----------------------------------------
+            var channelsAll = new BaseRepository<Channel>().GetAll().ToList();
+            //-----------------------------------------
             foreach (var sh in addShows)
             {
                 var item = new ListViewItem(DisplayIndexShows.ToString());
@@ -56,7 +61,8 @@ namespace TvForms
                 item.SubItems.Add($"{sh.Date.Hour:00}:{sh.Date.Minute:00}");
                 item.SubItems.Add($"{sh.Date.Day:00}/{sh.Date.Month:00}");
                 item.SubItems.Add(sh.Name);
-                item.SubItems.Add(sh.Channel.Name);
+                //item.SubItems.Add(sh.Channel.Name);
+                item.SubItems.Add(channelsAll.Find(ch => ch.OriginalId == sh.CodeOriginalChannel).Name);
                 item.SubItems.Add(sh.Id.ToString());
 
                 lvShowPrograms.Items.Add(item);

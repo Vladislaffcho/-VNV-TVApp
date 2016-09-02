@@ -61,7 +61,7 @@ namespace TvForms
         
         private void ShowLoginForm()
         {
-            PassForm lg = new PassForm();
+            var lg = new PassForm();
             if (lg.ShowDialog() == DialogResult.OK)
             {
                 CurrentUserId = lg.CurrentUserId;
@@ -196,7 +196,8 @@ namespace TvForms
 
             foreach (var show in needCheckForRemoveTvShow)
             {
-                if (ordChannels.Find(ch => ch.Channel.Id == show.TvShow.Channel.Id) == null)
+                //if (ordChannels.Find(ch => ch.Channel.Id == show.TvShow.Channel.Id) == null)
+                if (ordChannels.Find(ch => ch.Channel.OriginalId == show.TvShow.CodeOriginalChannel) == null)
                     schedRepo.Remove(show);
             }
         }

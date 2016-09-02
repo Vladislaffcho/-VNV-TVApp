@@ -366,7 +366,7 @@ namespace TvForms
         // unselecting row in users list view to select found user automatically
         private void UnselectLvItem()
         {
-            for (int i = 0; i < lvUserList.Items.Count; i++)
+            for (var i = 0; i < lvUserList.Items.Count; i++)
             {
                 if (lvUserList.Items[i].Selected)
                 {
@@ -401,9 +401,5 @@ namespace TvForms
             SetPageView();
         }
 
-        private void tbMoney_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

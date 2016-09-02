@@ -23,7 +23,7 @@ namespace TvForms
             tbPassForm_Pass.UseSystemPasswordChar = !chBPassForm_ShowPass.Checked;
 
             this.tbPassForm_Login.Text = "litvak83"; //delete this string when program will be tested
-            this.tbPassForm_Pass.Text = "ryyZJ88wyT";  //delete this string when program will be tested
+            this.tbPassForm_Pass.Text = "2222";  //delete this string when program will be tested
             //this.tbPassForm_Login.Text = "root"; //delete this string when program will be tested
             //this.tbPassForm_Pass.Text = "1111";  //delete this string when program will be tested
         }

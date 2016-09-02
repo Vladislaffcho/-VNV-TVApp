@@ -23,13 +23,13 @@ namespace TvForms
             //ToDo Load channels for put in into constructor of ucChannelShowInfo
             InitializeComponent();
             CurrentUserId = userId;
-            LoadControls(CurrentUserId);
+            LoadControls();
             
         }
 
-        private void LoadControls(int userId)
+        private void LoadControls()
         {
-            AllChannelControl = new UcAllChannels(userId);
+            AllChannelControl = new UcAllChannels(CurrentUserId);
             tabPan_AllChannels.Controls.Add(AllChannelControl);
         }
 
@@ -37,10 +37,19 @@ namespace TvForms
         private void tabForUsers_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             //0 - AllChannels tab, 1 - MyFavourite tab
-            CurrentOrderId = AllChannelControl.CurrentOrderId;
-            MyFavouriteControl?.Dispose();
-            MyFavouriteControl = new UcFavoirute(CurrentUserId, CurrentOrderId);
-            tabPan_MyFavourite.Controls.Add(MyFavouriteControl);
+            var numberCurrentTab = tabForUsers.SelectedIndex;
+            switch (numberCurrentTab)
+            {
+                case 0:
+                    AllChannelControl.MarkChosenMedia();
+                    break;
+                case 1:
+                    CurrentOrderId = AllChannelControl.CurrentOrderId;
+                    MyFavouriteControl?.Dispose();
+                    MyFavouriteControl = new UcFavoirute(CurrentUserId, CurrentOrderId);
+                    tabPan_MyFavourite.Controls.Add(MyFavouriteControl);
+                    break;
+            }
             
         }
 

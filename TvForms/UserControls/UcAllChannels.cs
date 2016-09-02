@@ -50,7 +50,7 @@ namespace TvForms
                 if (orederedChannels.Find(oCh => oCh.Channel.Id == ch.Id
                                                && oCh.Order.User.Id == CurrentUserId) != null)
                 {
-                    lvChannelsList.Items[ch.Id - 1].Checked = true;
+                    lvChannelsList.Items[number-1].Checked = true;
                 }
                 number++;
             }
@@ -64,10 +64,14 @@ namespace TvForms
             var orderedChannels = orderedChannelRepo.Get(ch => ch.Order.User.Id == CurrentUserId).ToList();
 
             var showsRepo = new BaseRepository<TvShow>(orderedChannelRepo.ContextDb).GetAll().ToList();
-            var showsByOrderedChannels = showsRepo.Where(show => orderedChannels.Find(x =>
-                                                                            x.Channel.Id == show.Channel.Id) != null)
-                .ToList();
+            //------------------------------------------------------------
+            //var showsByOrderedChannels = showsRepo.Where(show => orderedChannels.Find(x =>
+            //                                                                x.Channel.Id == show.Channel.Id) != null)
+                //.ToList();
 
+            var showsByOrderedChannels = showsRepo.Where(show => orderedChannels.Find(x =>
+                               x.Channel.OriginalId == show.CodeOriginalChannel) != null).ToList();
+            //------------------------------------------------------------
             var showByDateAndChannels = showsByOrderedChannels.FindAll(x =>
                         (int) x.Date.DayOfWeek == GetSelectedDay()
                 /*&& Math.Abs(x.Date.Day - DateTime.Now.Day) < 7*/);
@@ -86,7 +90,8 @@ namespace TvForms
             item.SubItems.Add(ch.Name);
             item.SubItems.Add(Math.Abs(ch.Price) <= 0.00 ? string.Empty : $"{ch.Price:0.00}");
             item.SubItems.Add(ch.IsAgeLimit ? "+" : string.Empty);
-            item.SubItems.Add(ch.Id.ToString());
+            //item.SubItems.Add(ch.Id.ToString());
+            item.SubItems.Add(ch.OriginalId.ToString());
             lvChannelsList.Items.Add(item);
         }
 
@@ -102,7 +107,8 @@ namespace TvForms
         {
             if (cbCheckAllChannels.Checked) return;
 
-            var id = lvChannelsList.Items[e.Index].SubItems[4].Text.GetInt();
+            //id original of channel
+            var idOrigin = lvChannelsList.Items[e.Index].SubItems[4].Text.GetInt();
 
             var channelRepo = new BaseRepository<Channel>();
             var orderChannelRepo = new BaseRepository<OrderChannel>(channelRepo.ContextDb);
@@ -113,13 +119,14 @@ namespace TvForms
             switch (e.NewValue)
             {
                 case CheckState.Checked:
-                    if (orderChannelRepo.Get(s => s.Channel.Id == id
+                    if (orderChannelRepo.Get(s => /*s.Channel.Id*/ s.Channel.OriginalId == idOrigin
                         && s.Order.User.Id == CurrentUserId).FirstOrDefault() == null)
                     {
                         var orderedCh = new OrderChannel
                         {
 
-                            Channel = channelRepo.Get(c => c.Id == id).FirstOrDefault(),
+                            //Channel = channelRepo.Get(c => c.Id == id).FirstOrDefault(),
+                            Channel = channelRepo.Get(c => c.OriginalId == idOrigin).FirstOrDefault(),
                             Order = orderRepo.Get(x => x.Id == CurrentOrderId).FirstOrDefault()
                         };
 
@@ -134,7 +141,8 @@ namespace TvForms
                         orderChannelRepo.Insert(orderedCh);
 
                     }
-                    var showsByChannel = showsRepo.Get(x => x.Channel.Id == id).ToList();
+                    //var showsByChannel = showsRepo.Get(x => x.Channel.Id == id).ToList();
+                    var showsByChannel = showsRepo.Get(x => x.CodeOriginalChannel == idOrigin).ToList();
 
                     var addedShows =
                         showsByChannel.Where(show => (int) show.Date.DayOfWeek == GetSelectedDay()).ToList();
@@ -142,7 +150,8 @@ namespace TvForms
                     break;
 
                 case CheckState.Unchecked:
-                    var removeCh = orderChannelRepo.Get(x => x.Channel.Id == id).FirstOrDefault();
+                    //var removeCh = orderChannelRepo.Get(x => x.Channel.Id == id).FirstOrDefault();
+                    var removeCh = orderChannelRepo.Get(x => x.Channel.OriginalId == idOrigin).FirstOrDefault();
                     if (removeCh != null)
                     {
                         ControlForShows.RemoveTvShowsFromControl(removeCh.Channel.Name);
@@ -268,6 +277,12 @@ namespace TvForms
                 lvChannelsList.Items.Clear();
                 LoadAllChannelsList();
             }
+        }
+
+        public void MarkChosenMedia()
+        {
+            lvChannelsList.Items.Clear();
+            LoadControls();
         }
     }
 }
