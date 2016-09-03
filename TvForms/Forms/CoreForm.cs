@@ -200,7 +200,7 @@ namespace TvForms
                 ordRepo.Remove(order);
 
             var ordChannelRepo = new BaseRepository<OrderChannel>(ordRepo.ContextDb);
-            var ordChannels = ordChannelRepo.Get(oCh => oCh.Order.User.Id == CurrentUserId).ToList();
+            var ordChannels = ordChannelRepo.Get(oCh => oCh.Order.User.Id == CurrentUserId)?.ToList();
             var needCheckForRemoveTvShow = schedRepo.Get(pr => pr.User.Id == CurrentUserId).ToList();
 
             foreach (var show in needCheckForRemoveTvShow)

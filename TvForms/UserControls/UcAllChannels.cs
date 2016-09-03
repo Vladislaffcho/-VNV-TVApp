@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -104,7 +105,7 @@ namespace TvForms
         }
 
 
-        private void lvChannelsList_ItemCheck(object sender, ItemCheckEventArgs e)
+        private async void lvChannelsList_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             if (cbCheckAllChannels.Checked) return;
 
@@ -143,7 +144,7 @@ namespace TvForms
 
                     }
                     //var showsByChannel = showsRepo.Get(x => x.Channel.Id == id).ToList();
-                    var showsByChannel = showsRepo.Get(x => x.CodeOriginalChannel == idOrigin).ToList();
+                    var showsByChannel = await showsRepo.Get(x => x.CodeOriginalChannel == idOrigin).ToListAsync();
 
                     var addedShows =
                         showsByChannel.Where(show => (int) show.Date.DayOfWeek == GetSelectedDay()).ToList();

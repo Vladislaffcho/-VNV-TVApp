@@ -33,12 +33,12 @@ namespace TvContext
             return ContextDb.Set<TEntity>();
         }
 
-        public void Remove(TEntity entity)
+        public async void Remove(TEntity entity)
         {
             try
             {
                 ContextDb.Set<TEntity>().Remove(entity);
-                ContextDb.SaveChanges();
+                await ContextDb.SaveChangesAsync();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -62,12 +62,12 @@ namespace TvContext
             }
         }
 
-        public void Update(TEntity entity)
+        public async void Update(TEntity entity)
         {
             try
             {
                 ContextDb.Entry(entity).State = EntityState.Modified;
-                ContextDb.SaveChanges();
+                await ContextDb.SaveChangesAsync();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -92,12 +92,12 @@ namespace TvContext
 
         }
 
-        public void Insert(TEntity entity)
+        public async void Insert(TEntity entity)
         {
             try
             {
                 ContextDb.Entry(entity).State = EntityState.Added;
-                ContextDb.SaveChanges();
+                await ContextDb.SaveChangesAsync();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -125,12 +125,12 @@ namespace TvContext
 
 
         //todo needs to Rewrite for any TEntity
-        public void AddRange(IEnumerable<OrderChannel> channels)
+        public async void AddRange(IEnumerable<OrderChannel> channels)
         {
             try
             {
                 ContextDb.OrderChannels.AddRange(channels);
-                ContextDb.SaveChanges();
+                await ContextDb.SaveChangesAsync();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -157,18 +157,18 @@ namespace TvContext
             
         }
 
-        public void RemoveRange(IEnumerable<OrderChannel> deleteChann)
+        public async void RemoveRange(IEnumerable<OrderChannel> deleteChann)
         {
             ContextDb.OrderChannels.RemoveRange(deleteChann);
-            ContextDb.SaveChanges();
+            await ContextDb.SaveChangesAsync();
         }
 
-        public void AddRange(IEnumerable<UserSchedule> userSchedule)
+        public async void AddRange(IEnumerable<UserSchedule> userSchedule)
         {
             try
             {
                 ContextDb.UserSchedules.AddRange(userSchedule);
-                ContextDb.SaveChanges();
+                await ContextDb.SaveChangesAsync();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -195,22 +195,22 @@ namespace TvContext
           
         }
 
-        public void RemoveRange(IEnumerable<UserSchedule> deleteUserSchedules)
+        public async void RemoveRange(IEnumerable<UserSchedule> deleteUserSchedules)
         {
             ContextDb.UserSchedules.RemoveRange(deleteUserSchedules);
-            ContextDb.SaveChanges();
+            await ContextDb.SaveChangesAsync();
         }
 
-        public void AddRange(IEnumerable<Channel> channels)
+        public async void AddRange(IEnumerable<Channel> channels)
         {
             ContextDb.Channels.AddRange(channels);
-            ContextDb.SaveChanges();
+            await ContextDb.SaveChangesAsync();
         }
 
-        public void AddRange(IEnumerable<TvShow> tvShowList)
+        public async void AddRange(IEnumerable<TvShow> tvShowList)
         {
             ContextDb.TvShows.AddRange(tvShowList);
-            ContextDb.SaveChanges();
+            await ContextDb.SaveChangesAsync();
         }
     }
 }
