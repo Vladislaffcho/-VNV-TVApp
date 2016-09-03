@@ -59,7 +59,8 @@ namespace TvForms.Forms
                         AdditionalService = orderServiceReposotory.ContextDb.AddServices
                             .FirstOrDefault(c => c.Id == serviceId),
                         // create new global order which will represent exact service order in the db
-                        Order = new Order
+                        Order = orderServiceReposotory.ContextDb.Orders.FirstOrDefault(o => o.User.Id == _currentUser 
+                            && o.IsPaid == false && o.IsDeleted == false) /*new Order
                         {
                             DateOrder = DateTime.Now,
                             FromDate = DateTime.Now,
@@ -71,10 +72,25 @@ namespace TvForms.Forms
                             IsDeleted = false,
                             User = orderServiceReposotory.ContextDb.Users
                                 .First(u => u.Id == _currentUser)
-                        }
+                        }*/
                     };
+
+                    orderedService.Order.TotalPrice += orderedService.AdditionalService.Price;
+                    orderedService.Order.User = orderServiceReposotory.ContextDb.Users
+                                .FirstOrDefault(u => u.Id == _currentUser);
+
                     orderServiceReposotory.Insert(orderedService);
                     MessagesContainer.DisplayInfo("Chosen item has successfully been added to your orders", "Success");
+                    var userServices = orderServiceReposotory.ContextDb.OrderServices.Where(s => s.Order.User.Id == _currentUser);
+                    lvMyAdditionalService.Items.Clear();
+                    foreach (var service in userServices)
+                    {
+                        var lvItem = new ListViewItem(service.AdditionalService.Name);
+                        lvItem.SubItems.Add(service.AdditionalService.Price.ToString());
+                        lvItem.SubItems.Add(AgeLimitedContent(service.AdditionalService.IsAgeLimit));
+                        lvItem.SubItems.Add(service.AdditionalService.Id.ToString());
+                        lvMyAdditionalService.Items.Add(lvItem);
+                    }
                 }
 
                 else

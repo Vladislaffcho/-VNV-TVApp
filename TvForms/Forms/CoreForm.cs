@@ -247,6 +247,7 @@ namespace TvForms
         {
             var additionalServices = new AdditionalServicesForm(CurrentUserId);
             additionalServices.ShowDialog();
+            _userWindow.SetReloadMoneyButton(true, Color.Crimson);
         }
 
 

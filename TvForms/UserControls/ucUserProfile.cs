@@ -105,7 +105,7 @@ namespace TvForms
                 .First();
             if (currentUser.IsActiveStatus)
             {
-                DialogResult result = MessageBox.Show(@"Do you want to deactivate your account?\n" +
+                DialogResult result = MessageBox.Show(@"Do you want to deactivate your account?" + Environment.NewLine +
                                                       @"You will need to contact our customer survice to reactivate it",
                                                       @"Deactivate account",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
