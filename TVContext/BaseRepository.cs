@@ -146,15 +146,12 @@ namespace TvContext
                             validationError.PropertyName,
                             validationError.ErrorMessage);
                     }
-
                 }
-
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Error");
             }
-            
         }
 
         public void RemoveRange(IEnumerable<OrderChannel> deleteChann)
@@ -192,7 +189,6 @@ namespace TvContext
             {
                 MessageBox.Show(e.Message, "Error");
             }
-          
         }
 
         public void RemoveRange(IEnumerable<UserSchedule> deleteUserSchedules)
@@ -212,5 +208,14 @@ namespace TvContext
             ContextDb.TvShows.AddRange(tvShowList);
             await ContextDb.SaveChangesAsync();
         }
+
+        public void Clear(int orderId)
+        {
+            var oldOrderedChannels = ContextDb.OrderChannels.Where(orCh => orCh.Order.Id == orderId);
+            ContextDb.OrderChannels.RemoveRange(oldOrderedChannels);
+            ContextDb.SaveChanges();
+        }
+
+        
     }
 }

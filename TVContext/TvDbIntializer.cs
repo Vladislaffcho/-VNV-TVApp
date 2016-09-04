@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
@@ -182,7 +181,7 @@ namespace TvContext
             }
             catch (DbEntityValidationException ex)
             {
-                StringBuilder sb = new StringBuilder();
+                var sb = new StringBuilder();
 
                 foreach (var failure in ex.EntityValidationErrors)
                 {
@@ -193,7 +192,7 @@ namespace TvContext
                         sb.AppendLine();
                     }
                 }
-                throw new DbEntityValidationException("Entity Validation Failed - errors follow:\n" + sb.ToString(), ex);
+                throw new DbEntityValidationException("Entity Validation Failed - errors follow:\n" + sb, ex);
             }
 
             base.Seed(context);

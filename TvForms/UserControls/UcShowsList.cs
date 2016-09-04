@@ -11,7 +11,9 @@ namespace TvForms
 
         private int CurrentUserId { get; set; }
 
-        private int DisplayIndexShows { get; set; }
+        private int DisplayIndexShows { get; } = new BaseRepository<TvShow>().Get(s => s.Id > 0).First().Id - 1;
+
+
 
         public UcShowsList(int userId)
         {
@@ -20,32 +22,59 @@ namespace TvForms
         }
 
     
-        public void LoadShows(IEnumerable<TvShow> shows)
+        public void LoadShows(List<TvShow> shows)
         {
+            if (shows.Count <= 0)
+                return;
+
             var scheduleShows = new BaseRepository<UserSchedule>().Get(sc => sc.User.Id == CurrentUserId).ToList();
+
+            lvShowPrograms.Items.Clear();
+
+            ListViewItem[] arrTvShowsItems = ProgrammeToListViewItem(shows).ToArray();
+
+            lvShowPrograms.BeginUpdate();
+
+            ListView.ListViewItemCollection lvic = new ListView.ListViewItemCollection(lvShowPrograms);
+            lvic.AddRange(arrTvShowsItems);
+
+            for (var i = 0; i < scheduleShows.Count; i++)
+                if (scheduleShows[i].TvShow.CodeOriginalChannel == arrTvShowsItems[i].SubItems[4].Text.GetInt())
+                    arrTvShowsItems[i].Checked = true;
+
+            lvShowPrograms.EndUpdate();
+        }
+
+        private List<ListViewItem> ProgrammeToListViewItem(List<TvShow> shows)
+        {
+            var itemsList = new List<ListViewItem>();
+            //var displayIndexShows = 1;
             //-----------------------------------------
             var channelsAll = new BaseRepository<Channel>().GetAll().ToList();
+            var scheduleShows = new BaseRepository<UserSchedule>()
+                .Get(sc => sc.User.Id == CurrentUserId).ToList();
             //-----------------------------------------
-            lvShowPrograms.Items.Clear();
-            DisplayIndexShows = 1;
+
             foreach (var sh in shows)
             {
-                var item = new ListViewItem(DisplayIndexShows.ToString());
-                
+                var item = new ListViewItem((sh.Id - DisplayIndexShows).ToString());
+
                 item.SubItems.Add($"{sh.Date.Hour:00}:{sh.Date.Minute:00}");
                 item.SubItems.Add($"{sh.Date.Day:00}/{sh.Date.Month:00}");
                 item.SubItems.Add(sh.Name);
-                item.SubItems.Add(channelsAll.Find(ch => ch.OriginalId == sh.CodeOriginalChannel)?.Name ?? "o|o");// sh.Channel.Name);
+                item.SubItems.Add(channelsAll.Find(ch => ch.OriginalId == sh.CodeOriginalChannel)?.Name ?? "o|o");
                 item.SubItems.Add(sh.Id.ToString());
 
-                lvShowPrograms.Items.Add(item);
-                lvShowPrograms.CheckBoxes = true;
+                itemsList.Add(item);
+                //displayIndexShows++;
 
-                if (scheduleShows.Find(z => z.TvShow.Id == sh.Id) != null)
-                    lvShowPrograms.Items[DisplayIndexShows - 1].Checked = true;
-
-                DisplayIndexShows++;
+                if (scheduleShows.Find(s => s.TvShow.Id == sh.Id) != null)
+                {
+                    item.Checked = true;
+                }
             }
+
+            return itemsList;
         }
 
 
@@ -53,10 +82,11 @@ namespace TvForms
         {
             //-----------------------------------------
             var channelsAll = new BaseRepository<Channel>().GetAll().ToList();
+            //var displayIndexShows = 1;
             //-----------------------------------------
             foreach (var sh in addShows)
             {
-                var item = new ListViewItem(DisplayIndexShows.ToString());
+                var item = new ListViewItem((sh.Id - DisplayIndexShows).ToString());
 
                 item.SubItems.Add($"{sh.Date.Hour:00}:{sh.Date.Minute:00}");
                 item.SubItems.Add($"{sh.Date.Day:00}/{sh.Date.Month:00}");
@@ -66,9 +96,8 @@ namespace TvForms
                 item.SubItems.Add(sh.Id.ToString());
 
                 lvShowPrograms.Items.Add(item);
-                lvShowPrograms.CheckBoxes = true;
 
-                DisplayIndexShows++;
+                //displayIndexShows++;
             }
 
         }

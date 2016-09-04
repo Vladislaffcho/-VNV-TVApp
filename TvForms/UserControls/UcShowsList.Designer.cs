@@ -38,6 +38,7 @@
             // 
             // lvShowPrograms
             // 
+            this.lvShowPrograms.CheckBoxes = true;
             this.lvShowPrograms.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Number,
             this.TimeShows,
