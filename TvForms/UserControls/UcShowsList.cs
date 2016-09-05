@@ -11,7 +11,7 @@ namespace TvForms
 
         private int CurrentUserId { get; set; }
 
-        private int DisplayIndexShows { get; } = new BaseRepository<TvShow>().Get(s => s.Id > 0).First().Id - 1;
+        private int DisplayIndexShows { get; } = /*new BaseRepository<TvShow>().Get(s => s.Id > 0).First().Id - */1;
 
 
 

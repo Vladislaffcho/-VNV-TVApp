@@ -44,6 +44,9 @@ namespace TvForms
             //var number = 1;
             var allChannels = new BaseRepository<Channel>().GetAll().ToList();
             
+            if(!allChannels.Any())
+                return;
+
             ListViewItem[] arrChannelItems = ChannelsToListViewItem(allChannels).ToArray();
 
             lvChannelsList.BeginUpdate();
