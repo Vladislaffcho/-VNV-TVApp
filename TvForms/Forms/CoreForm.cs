@@ -55,6 +55,7 @@ namespace TvForms
                         case (int) EUserType.CLIENT: //user
                             _userWindow = new UcTabsForUser(CurrentUserId);
                             panelCore.Controls.Add(_userWindow);
+                            openXmlToolStripMenuItem.Visible = false;
                             break;
                     }
                 }
