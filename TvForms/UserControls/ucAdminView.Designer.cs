@@ -308,6 +308,7 @@
             this.btViewServices.TabIndex = 15;
             this.btViewServices.Text = "View Services";
             this.btViewServices.UseVisualStyleBackColor = true;
+            this.btViewServices.Click += new System.EventHandler(this.btViewServices_Click);
             // 
             // btViewOrders
             // 

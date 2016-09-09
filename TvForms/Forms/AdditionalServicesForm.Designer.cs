@@ -33,14 +33,14 @@
             this.lvMyAdditionalService = new System.Windows.Forms.ListView();
             this.colMyServiceName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colMyServicePrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colMyServiceAgeLimit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvAvailableAdditionalServices = new System.Windows.Forms.ListView();
             this.colAvailServiceName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colAvailServicePrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.gbAvailableServices = new System.Windows.Forms.GroupBox();
-            this.gbUserServices = new System.Windows.Forms.GroupBox();
-            this.btAddService = new System.Windows.Forms.Button();
             this.colAvailServiceAgeLimit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colMyServiceAgeLimit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.gbAvailableServices = new System.Windows.Forms.GroupBox();
+            this.btAddService = new System.Windows.Forms.Button();
+            this.gbUserServices = new System.Windows.Forms.GroupBox();
             this.gbAvailableServices.SuspendLayout();
             this.gbUserServices.SuspendLayout();
             this.SuspendLayout();
@@ -80,6 +80,11 @@
             this.colMyServicePrice.Text = "Price";
             this.colMyServicePrice.Width = 51;
             // 
+            // colMyServiceAgeLimit
+            // 
+            this.colMyServiceAgeLimit.Text = "18+";
+            this.colMyServiceAgeLimit.Width = 51;
+            // 
             // lvAvailableAdditionalServices
             // 
             this.lvAvailableAdditionalServices.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -105,6 +110,11 @@
             this.colAvailServicePrice.Text = "Price";
             this.colAvailServicePrice.Width = 51;
             // 
+            // colAvailServiceAgeLimit
+            // 
+            this.colAvailServiceAgeLimit.Text = "18+";
+            this.colAvailServiceAgeLimit.Width = 51;
+            // 
             // gbAvailableServices
             // 
             this.gbAvailableServices.Controls.Add(this.btAddService);
@@ -116,16 +126,6 @@
             this.gbAvailableServices.TabStop = false;
             this.gbAvailableServices.Text = "Available Services";
             // 
-            // gbUserServices
-            // 
-            this.gbUserServices.Controls.Add(this.lvMyAdditionalService);
-            this.gbUserServices.Location = new System.Drawing.Point(235, 3);
-            this.gbUserServices.Name = "gbUserServices";
-            this.gbUserServices.Size = new System.Drawing.Size(207, 133);
-            this.gbUserServices.TabIndex = 8;
-            this.gbUserServices.TabStop = false;
-            this.gbUserServices.Text = "My Services";
-            // 
             // btAddService
             // 
             this.btAddService.Location = new System.Drawing.Point(115, 135);
@@ -136,18 +136,19 @@
             this.btAddService.UseVisualStyleBackColor = true;
             this.btAddService.Click += new System.EventHandler(this.btAddService_Click);
             // 
-            // colAvailServiceAgeLimit
+            // gbUserServices
             // 
-            this.colAvailServiceAgeLimit.Text = "18+";
-            this.colAvailServiceAgeLimit.Width = 51;
-            // 
-            // colMyServiceAgeLimit
-            // 
-            this.colMyServiceAgeLimit.Text = "18+";
-            this.colMyServiceAgeLimit.Width = 51;
+            this.gbUserServices.Controls.Add(this.lvMyAdditionalService);
+            this.gbUserServices.Location = new System.Drawing.Point(235, 3);
+            this.gbUserServices.Name = "gbUserServices";
+            this.gbUserServices.Size = new System.Drawing.Size(207, 133);
+            this.gbUserServices.TabIndex = 8;
+            this.gbUserServices.TabStop = false;
+            this.gbUserServices.Text = "My Services";
             // 
             // AdditionalServicesForm
             // 
+            this.AcceptButton = this.btClose;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(445, 190);
@@ -155,9 +156,12 @@
             this.Controls.Add(this.gbAvailableServices);
             this.Controls.Add(this.btClose);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(461, 229);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(461, 229);
             this.Name = "AdditionalServicesForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Additional Services";
             this.gbAvailableServices.ResumeLayout(false);
             this.gbUserServices.ResumeLayout(false);

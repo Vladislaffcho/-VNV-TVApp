@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using TvContext;
+using TvForms.Forms;
 using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace TvForms
@@ -403,5 +404,10 @@ namespace TvForms
             SetPageView();
         }
 
+        private void btViewServices_Click(object sender, EventArgs e)
+        {
+            var additionalServices = new AdditionalServicesForm(CurrentUserId);
+            additionalServices.ShowDialog();
+        }
     }
 }

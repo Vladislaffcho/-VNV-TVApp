@@ -11,7 +11,7 @@ namespace TvForms
 
         private int CurrentUserId { get; set; }
 
-        private int DisplayIndexShows { get; } = /*new BaseRepository<TvShow>().Get(s => s.Id > 0).First().Id - */1;
+        private int DisplayIndexShows { get; } = /*new BaseRepository<TvShow>().Get(s => s.Id > 0).First().Id - */0;
 
 
 
@@ -28,6 +28,7 @@ namespace TvForms
                 return;
 
             var scheduleShows = new BaseRepository<UserSchedule>().Get(sc => sc.User.Id == CurrentUserId).ToList();
+            var schShowsIdList = scheduleShows.Select(show => show.TvShow.Id).ToList();
 
             lvShowPrograms.Items.Clear();
 
@@ -38,9 +39,9 @@ namespace TvForms
             ListView.ListViewItemCollection lvic = new ListView.ListViewItemCollection(lvShowPrograms);
             lvic.AddRange(arrTvShowsItems);
 
-            for (var i = 0; i < scheduleShows.Count; i++)
-                if (scheduleShows[i].TvShow.CodeOriginalChannel == arrTvShowsItems[i].SubItems[4].Text.GetInt())
-                    arrTvShowsItems[i].Checked = true;
+            foreach (ListViewItem item in arrTvShowsItems)
+                if (schShowsIdList.Any(schedule => schedule == item.SubItems[5].Text.GetInt()))
+                    item.Checked = true;
 
             lvShowPrograms.EndUpdate();
         }

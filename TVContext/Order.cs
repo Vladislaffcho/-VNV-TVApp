@@ -10,8 +10,8 @@ namespace TvContext
     {
         public Order()
         {
-            OrderChannels = new List<OrderChannel>();
-            OrderServices = new List<OrderService>();
+            //OrderChannels = new List<OrderChannel>();
+            //OrderServices = new List<OrderService>();
         }
 
         //Oreder date
@@ -46,12 +46,12 @@ namespace TvContext
 
         //FK for OrderService table
         [Required]
-        public virtual User User { get; set; }
+        public User User { get; set; }
 
         //info about all ordered servisec and channels
-        public virtual ICollection<OrderChannel> OrderChannels { get; set; }
+        public ICollection<OrderChannel> OrderChannels { get; set; }
 
-        public virtual ICollection<OrderService> OrderServices { get; set; }
+        public ICollection<OrderService> OrderServices { get; set; }
 
     }
 }

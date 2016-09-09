@@ -4,10 +4,10 @@ using System.Data.Entity.Validation;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Transactions;
+//using System.Transactions; //for BulkInsert
 using System.Xml;
 using TvContext;
-using EntityFramework.BulkInsert.Extensions;
+//using EntityFramework.BulkInsert.Extensions; //for BulkInsert
 
 namespace TvForms
 {
@@ -17,7 +17,6 @@ namespace TvForms
         {
             try
             {
-                //ToDo Remove or do good progress bar
                 var doc = new XmlDocument();
                 doc.Load(filename);
 
@@ -67,7 +66,6 @@ namespace TvForms
         {
             try
             {
-                //ToDo Remove or do good progress bar
                 var doc = new XmlDocument();
                 doc.Load(filename);
                 var xmlNodeList = doc.SelectNodes("/tv/programme");
@@ -167,6 +165,21 @@ namespace TvForms
 
             var channelRepo = new BaseRepository<Channel>();
             var tvShowRepo = new BaseRepository<TvShow>(channelRepo.ContextDb);
+
+            if (channelRepo.GetAll().Any() == false)
+            {
+                MessagesContainer.DisplayInfo("You can't load favourite media. Channels table is clear!!!" +
+                                              Environment.NewLine + "Load base about channels first!!!", "Error");
+                return;
+            }
+
+            if (tvShowRepo.GetAll().Any() == false)
+            {
+                MessagesContainer.DisplayInfo("You can't load favourite media. TV programmers table is clear!!!" +
+                                              Environment.NewLine + "Load base about TvShows first!!!", "Error");
+                return;
+            }
+
             var orderRepo = new BaseRepository<Order>(channelRepo.ContextDb);
             var currentOrder = orderRepo.Get(o => o.User.Id == currentUserId
                                                       && o.IsPaid == false && o.IsDeleted == false).FirstOrDefault();
@@ -193,15 +206,43 @@ namespace TvForms
                     orderRepo.Update(currentOrder);
                 }
 
+                //check for right format saved *.xml file (for channels)
+                foreach (XmlNode chaNode in xmlChannelsNodeList)
+                {
+                    try
+                    {
+                        if (chaNode.Attributes == null || chaNode.Attributes["favourite"].Value != "true")
+                        {
+                            MessagesContainer.DisplayError("This file doesn't contains favourite media!!!", "WRONG FILE!");
+                            return;
+                        }
+                    }
+                    catch(Exception)
+                    {
+                        MessagesContainer.DisplayError("This file doesn't contains favourite media!!!", "WRONG FILE!");
+                        return;
+                    }
+                }
+
+                //check for right format saved *.xml file (for programmers)
+                if (xmlTvShowsNodeList != null 
+                    && xmlTvShowsNodeList.Cast<XmlNode>().Any(showNode => showNode.Attributes == null || 
+                    showNode.Attributes["favourite"].Value != "true"))
+                {
+                    MessagesContainer.DisplayError("This file doesn't contains favourite media!!!", "WRONG FILE!");
+                    return;
+                }
+                
                 //add saved channels to list
                 orderChanellList.AddRange(from XmlNode channelNode in xmlChannelsNodeList
-                    select channelNode.ChildNodes[0].InnerText.GetInt()
+                                          select channelNode.ChildNodes[0].InnerText.GetInt()
                     into chanOrigId
-                    select new OrderChannel()
-                    {
-                        Channel = channelRepo.Get(ch => ch.OriginalId == chanOrigId).FirstOrDefault(),
-                        Order = currentOrder
-                    });
+                                          select new OrderChannel
+                                          {
+                                              Channel = channelRepo.Get(ch => ch.OriginalId == chanOrigId).FirstOrDefault(),
+                                              Order = currentOrder
+                                          });
+
 
                 if (xmlTvShowsNodeList != null)
                 {
@@ -217,13 +258,22 @@ namespace TvForms
                         });
                 }
                 
-                var ordChannelRepo = new BaseRepository<OrderChannel>(channelRepo.ContextDb);
-                ordChannelRepo.AddRange(orderChanellList);
+                if (orderChanellList.Any(o => o.Channel == null) ||
+                    userScheduleList.Any(sc => sc.TvShow == null))
+                {
+                    MessagesContainer.DisplayInfo("Saved channels or TV-programmers don't meet current database.", "Info");
+                }
+                else
+                {
+                    var ordChannelRepo = new BaseRepository<OrderChannel>(channelRepo.ContextDb);
+                    ordChannelRepo.AddRange(orderChanellList);
 
-                var schedRepo = new BaseRepository<UserSchedule>(channelRepo.ContextDb);
-                schedRepo.AddRange(userScheduleList);
+                    var schedRepo = new BaseRepository<UserSchedule>(channelRepo.ContextDb);
+                    schedRepo.AddRange(userScheduleList);
+
+                    MessagesContainer.DisplayInfo("Saved schedule was read good.", "Info");
+                }
                 
-                MessagesContainer.DisplayInfo("Saved schedule was read good.", "Info");
             }
 
             else
@@ -241,10 +291,12 @@ namespace TvForms
 
                 var ordChannelRepo = new BaseRepository<OrderChannel>();
                 var userOrdChannels = ordChannelRepo.Get(x => x.Order.User.Id == userId).ToList();
+                userOrdChannels = ordChannelRepo.Get(x => x.Order.Id == userId).ToList();
 
                 foreach (var ordChannel in userOrdChannels)
                 {
                     writer.WriteStartElement("channel");
+                    writer.WriteAttributeString("favourite", "true");
 
                     writer.WriteElementString("id", ordChannel.Channel.OriginalId.ToString());
                     writer.WriteElementString("display-name", ordChannel.Channel.Name);
@@ -261,6 +313,7 @@ namespace TvForms
                     .Get(x => x.User.Id == userId).ToList())
                 {
                     writer.WriteStartElement("programme");
+                    writer.WriteAttributeString("favourite", "true");
 
                     writer.WriteElementString("programme-id", prog.TvShow.Id.ToString());
                     writer.WriteElementString("channel-id", prog.TvShow.CodeOriginalChannel.ToString());

@@ -2,13 +2,12 @@
 
 namespace TvContext
 {
-    //TODO Rename to Account
     public class Account : CommentedEntity
     {
-        public Account()
-        {
+        //public Account()
+        //{
             
-        }
+        //}
 
         //the balance of the account
         [Required]
@@ -19,7 +18,7 @@ namespace TvContext
         public bool IsActiveStatus { get; set; }
 
         //Make linked entity as virtual for lazy loading workS
-        public virtual User User { get; set; }
+        public User User { get; set; }
 
     }
 }

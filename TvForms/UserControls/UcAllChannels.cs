@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -23,7 +22,7 @@ namespace TvForms
             //ToDo Load info from channels to channels list and to shows UC
             InitializeComponent();
             CurrentUserId = userId;
-            CurrentOrderId = GetNewOrder().Id;
+            //CurrentOrderId = GetNewOrder().Id;
             LoadControls();
         }
 
@@ -33,7 +32,7 @@ namespace TvForms
             tabControl_Shows.SelectedIndex = (int) DateTime.Now.DayOfWeek;
 
             LoadAllChannelsList();
-            LoadTvShowsList();//need to rewrite
+            LoadTvShowsList();//need to rewise
 
             rtbAllCh_Description.Text = @"THIS IS ALL CHANNELS TAB";
         }
@@ -104,7 +103,7 @@ namespace TvForms
                 number++;
 
                 if (orderedChannels.Find(oCh => oCh.Channel.Id == ch.Id
-                                                && oCh.Order.User.Id == CurrentUserId) != null)
+                                               /* && oCh.Order.User.Id == CurrentUserId*/) != null)
                 {
                     item.Checked = true;
                 }
@@ -193,19 +192,19 @@ namespace TvForms
                     }
                     break;
 
-                case CheckState.Indeterminate:
-                    MessagesContainer.DisplayError("Something went wrong in checking/unchecking channels (case CheckState.Indeterminate:)", "Error");
-                    break;
+                //case CheckState.Indeterminate:
+                //    MessagesContainer.DisplayError("Something went wrong in checking/unchecking channels (case CheckState.Indeterminate:)", "Error");
+                //    break;
 
-                default:
-                    throw new ArgumentOutOfRangeException();
+                //default:
+                //    throw new ArgumentOutOfRangeException();
             }
             
         }
 
         private Order GetNewOrder()
         {
-           using (var context = new TvContext.TvDbContext())
+           using (var context = new TvDbContext())
             {
                 var currOrder = new Order
                     {

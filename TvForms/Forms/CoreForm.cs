@@ -11,7 +11,7 @@ namespace TvForms
     public partial class CoreForm : Form//, IIdentifyUser
     {
         //ToDo Review need to store all user data
-        private int CurrentUserId { get; set; } // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
+        private int CurrentUserId { get; set; } = 3; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
 
         //ToDo Review WTF? Naming convention!!!
         private UcTabsForUser _userWindow;// { get; set; }
@@ -20,21 +20,20 @@ namespace TvForms
 
         public CoreForm()
         {
-            ShowLoginForm(); //uncommit after test programme
+            //ShowLoginForm(); //uncommit after test programme
 
             InitializeComponent();
             LoadMainControl();
 
-            //var userRepo = new BaseRepository<User>();
             Text += @" - " + new BaseRepository<User>().Get(u => u.Id == CurrentUserId).FirstOrDefault()?.Login;
             
         }
 
-        //public sealed override string Text
-        //{
-        //    get { return base.Text; }
-        //    set { base.Text = value; }
-        //}
+        public sealed override string Text
+        {
+            get { return base.Text; }
+            set { base.Text = value; }
+        }
 
 
         private void LoadMainControl()
@@ -91,7 +90,9 @@ namespace TvForms
             XmlFileHelper.ParseChannel(openXmlFile.FileName);
             XmlFileHelper.ParseProgramm(openXmlFile.FileName);
 
-            _userWindow.SetReloadChannelButton(true, Color.Crimson);
+            var userType = new BaseRepository<User>().Get(u => u.Id == CurrentUserId).FirstOrDefault()?.UserType.Id;
+            if (userType == (int)EUserType.CLIENT)
+                _userWindow.SetReloadChannelButton(true, Color.Crimson);
         }
 
 
@@ -108,7 +109,9 @@ namespace TvForms
             var xmlFileName = ZipHelper.UnzipArchiveWithFavourite(openSavedFile.FileName);
             XmlFileHelper.ParseFavouriteMedia(xmlFileName, CurrentUserId);
 
-            _userWindow.SetReloadChannelButton(true, Color.Crimson);
+            var userType = new BaseRepository<User>().Get(u => u.Id == CurrentUserId).FirstOrDefault()?.UserType.Id;
+            if(userType == (int)EUserType.CLIENT)
+                _userWindow.SetReloadChannelButton(true, Color.Crimson);
         }
 
 
@@ -194,22 +197,31 @@ namespace TvForms
 
             var ordRepo = new BaseRepository<Order>();
             var schedRepo = new BaseRepository<UserSchedule>(ordRepo.ContextDb);
+            var ordChannelRepo = new BaseRepository<OrderChannel>(ordRepo.ContextDb);
 
             var notPaidOrders = ordRepo.Get(order => order.IsPaid == false).ToList();
+            var notPaidChannels = ordChannelRepo.Get(ch => ch.Order.IsPaid == false &&
+                ch.Order.User.Id == CurrentUserId || ch.Order == null).ToList();
 
+            //var ordChannels = ordChannelRepo.Get(oCh => oCh.Order.User.Id == CurrentUserId)?.ToList();
+            var needCheckForRemoveTvShow = schedRepo.Get(pr => pr.User.Id == CurrentUserId)?.ToList();
+            
+            //delete all not paid twShows
+            if (needCheckForRemoveTvShow != null)
+                foreach (var show in needCheckForRemoveTvShow)
+                {
+                    //if (ordChannels.Find(ch => ch.Channel.Id == show.TvShow.Channel.Id) == null)
+                    if (notPaidChannels.Find(ch => ch.Channel?.OriginalId == show.TvShow.CodeOriginalChannel) != null)
+                        schedRepo.Remove(show);
+
+                }
+
+            //delete all ordered channels which are not paid
+            ordChannelRepo.RemoveRange(notPaidChannels);
+
+            //delete not paid orders
             foreach (var order in notPaidOrders)
                 ordRepo.Remove(order);
-
-            var ordChannelRepo = new BaseRepository<OrderChannel>(ordRepo.ContextDb);
-            var ordChannels = ordChannelRepo.Get(oCh => oCh.Order.User.Id == CurrentUserId)?.ToList();
-            var needCheckForRemoveTvShow = schedRepo.Get(pr => pr.User.Id == CurrentUserId).ToList();
-
-            foreach (var show in needCheckForRemoveTvShow)
-            {
-                //if (ordChannels.Find(ch => ch.Channel.Id == show.TvShow.Channel.Id) == null)
-                if (ordChannels.Find(ch => ch.Channel.OriginalId == show.TvShow.CodeOriginalChannel) == null)
-                    schedRepo.Remove(show);
-            }
         }
 
 
@@ -241,7 +253,7 @@ namespace TvForms
                 Icon = new Icon(@"icons\mastercard_1450.ico")
             };
             actions.Show();
-            _userWindow.SetReloadMoneyButton(true, Color.Crimson);
+            //_userWindow.SetReloadMoneyButton(true, Color.Crimson);
         }
 
         private void additionalServiceToolStripMenuItem_Click(object sender, EventArgs e)

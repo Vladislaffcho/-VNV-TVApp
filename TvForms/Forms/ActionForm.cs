@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
+﻿ using System.Windows.Forms;
 
 namespace TvForms
 {
@@ -13,9 +12,8 @@ namespace TvForms
             Width = conrol.Size.Width + 20;
             panActionForm.Height = conrol.Size.Height + 45;
             panActionForm.Width = conrol.Size.Width + 20;
+            conrol.Dock = DockStyle.Fill;
             panActionForm.Controls.Add(conrol);
         }
-
-
     }
 }

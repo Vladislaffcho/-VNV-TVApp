@@ -15,7 +15,7 @@ namespace TvForms
         public static void CreateZipFile(string archiveName, string sourceFile)
         {
             // Create and open a new ZIP file
-            var zip = ZipFile.Open(archiveName, ZipArchiveMode.Create);
+            var zip = ZipFile.Open(archiveName, ZipArchiveMode.Update);
 
             zip.CreateEntryFromFile(sourceFile, Path.GetFileName(sourceFile), CompressionLevel.Optimal);
             zip.Dispose();

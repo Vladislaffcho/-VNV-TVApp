@@ -10,17 +10,21 @@ namespace TvContext
 
         public OrderChannel()
         {
-            //Channels = new List<Channel>();
+            
         }
 
+        //link to Channel entity(FK)
         [Required]
         public virtual Channel Channel { get; set; }
 
-        //Make linked entity as virtual for lazy loading work
+        //link to current user who are choosing media and make order
         [Required]
+        public virtual User User { get; set; }
+
+        //Make linked entity as virtual for lazy loading work
+        //[Required]
         public virtual Order Order { get; set; }
 
-        //public virtual ICollection<Channel> Channels { get; set; }
-
+        
     }
 }

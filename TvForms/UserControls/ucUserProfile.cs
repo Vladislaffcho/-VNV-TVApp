@@ -19,6 +19,7 @@ namespace TvForms
         {
             _currentUserId = userIdId;
             InitializeComponent();
+            gbProfile.Dock = DockStyle.Fill;
             SetPageView();
         }
 

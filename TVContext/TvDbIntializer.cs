@@ -62,25 +62,26 @@ namespace TvContext
                     {
                         new User()
                         {
-                            FirstName = "Andriy",
-                            LastName = "Pervozvannuy",
-                            Login = "root",
-                            Password = Md5Helper.GetMd5Hash(md5Hash, "1111"),
+                            FirstName = "Administrator",
+                            LastName = "Company",
+                            Login = "admin",
+                            Password = Md5Helper.GetMd5Hash(md5Hash, "admin"),
                             IsAllowAdultContent = true,
                             UserType = context.UserTypes.First(x => x.Id == (int) EUserType.ADMIN),
                             IsActiveStatus = true
-                        },
+                        }/*,
 
                         new User()
                         {
-                            FirstName = "Viktor",
-                            LastName = "Litvak",
-                            Login = "litvak83",
+                            FirstName = "User",
+                            LastName = "pitvak",
+                            Login = "user",
                             Password = Md5Helper.GetMd5Hash(md5Hash, "2222"),
-                            IsAllowAdultContent = false,
+                            IsAllowAdultContent = true,
                             UserType = context.UserTypes.First(x => x.Id == (int) EUserType.CLIENT),
                             IsActiveStatus = true
-                        }
+                        }*/
+
                     };
                     
 
@@ -91,7 +92,7 @@ namespace TvContext
 
                     context.SaveChanges();
                 }
-
+                /*
                 var defaultEmail = new List<UserEmail> {
                     new UserEmail {
                         EmailName = "root@root.com",
@@ -155,7 +156,7 @@ namespace TvContext
                 {
                     context.UserPhones.Add(item);
                 }
-
+                */
                 var additionalServices = new List<AdditionalService>
                 {
                     new AdditionalService

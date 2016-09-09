@@ -42,7 +42,7 @@ namespace TvContext
             }
             catch (DbEntityValidationException dbEx)
             {
-                MessageBox.Show("Что-то пошло не так при операции АПДЕЙТ!");
+                MessageBox.Show("Что-то пошло не так при операции Remove!");
                 foreach (var validationErrors in dbEx.EntityValidationErrors)
                 {
                     foreach (var validationError in validationErrors.ValidationErrors)
@@ -134,7 +134,7 @@ namespace TvContext
             }
             catch (DbEntityValidationException dbEx)
             {
-                MessageBox.Show("Что-то пошло не так при операции ИНСЕРТ!");
+                MessageBox.Show("Что-то пошло не так при операции AddRange-OrderChannel!");
 
                 foreach (var validationErrors in dbEx.EntityValidationErrors)
                 {

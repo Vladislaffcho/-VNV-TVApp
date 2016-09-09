@@ -82,9 +82,10 @@
             this.gbProfile.Controls.Add(this.tbName);
             this.gbProfile.Controls.Add(this.tbSurname);
             this.gbProfile.Controls.Add(this.btViewOrders);
-            this.gbProfile.Location = new System.Drawing.Point(3, 3);
+            this.gbProfile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbProfile.Location = new System.Drawing.Point(0, 0);
             this.gbProfile.Name = "gbProfile";
-            this.gbProfile.Size = new System.Drawing.Size(622, 310);
+            this.gbProfile.Size = new System.Drawing.Size(628, 321);
             this.gbProfile.TabIndex = 0;
             this.gbProfile.TabStop = false;
             this.gbProfile.Text = "Profile";
@@ -126,10 +127,11 @@
             this.tcUserContacts.Controls.Add(this.tpAddress);
             this.tcUserContacts.Controls.Add(this.tpEmail);
             this.tcUserContacts.Controls.Add(this.tpTelephone);
-            this.tcUserContacts.Location = new System.Drawing.Point(6, 132);
+            this.tcUserContacts.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tcUserContacts.Location = new System.Drawing.Point(3, 146);
             this.tcUserContacts.Name = "tcUserContacts";
             this.tcUserContacts.SelectedIndex = 0;
-            this.tcUserContacts.Size = new System.Drawing.Size(610, 172);
+            this.tcUserContacts.Size = new System.Drawing.Size(622, 172);
             this.tcUserContacts.TabIndex = 26;
             // 
             // tpAddress
@@ -142,7 +144,7 @@
             this.tpAddress.Location = new System.Drawing.Point(4, 22);
             this.tpAddress.Name = "tpAddress";
             this.tpAddress.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAddress.Size = new System.Drawing.Size(602, 146);
+            this.tpAddress.Size = new System.Drawing.Size(614, 146);
             this.tpAddress.TabIndex = 0;
             this.tpAddress.Text = "Address";
             // 
@@ -413,6 +415,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gbProfile);
+            this.MinimumSize = new System.Drawing.Size(628, 321);
             this.Name = "UcUserProfile";
             this.Size = new System.Drawing.Size(628, 321);
             this.gbProfile.ResumeLayout(false);

@@ -34,9 +34,9 @@ namespace TvContext
        
         // link with table Channel
         [Required]
-        public virtual Channel Channel { get; set; }
+        public Channel Channel { get; set; }
 
         //info about all UserShedule which ordered this show
-        public virtual ICollection<UserSchedule> UserSchedules { get; set; }
+        public ICollection<UserSchedule> UserSchedules { get; set; }
     }
 }
