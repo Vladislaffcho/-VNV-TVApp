@@ -20,7 +20,7 @@ namespace TvForms
 
         public CoreForm()
         {
-            //ShowLoginForm(); //uncommit after test programme
+            ShowLoginForm(); //uncommit after test programme
 
             InitializeComponent();
             LoadMainControl();
