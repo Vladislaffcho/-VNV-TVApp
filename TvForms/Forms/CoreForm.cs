@@ -55,6 +55,8 @@ namespace TvForms
                             _userWindow = new UcTabsForUser(CurrentUserId);
                             panelCore.Controls.Add(_userWindow);
                             openXmlToolStripMenuItem.Visible = false;
+                            addServiceToolStripMenuItem.Visible = false;
+                            removeServicesToolStripMenuItem.Visible = false;
                             break;
                     }
                 }
@@ -260,9 +262,22 @@ namespace TvForms
         {
             var additionalServices = new AdditionalServicesForm(CurrentUserId);
             additionalServices.ShowDialog();
-            _userWindow.SetReloadMoneyButton(true, Color.Crimson);
+            //ToDo commented the line below as it gets the app crashed. Rewise the method
+            //_userWindow.SetReloadMoneyButton(true, Color.Crimson);
         }
 
+        // add additional servide to the DB
+        private void addServiceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var addCompanyServices = new AddServiceForm();
+            addCompanyServices.ShowDialog();
+        }
 
+        // remove addotional service from the db
+        private void removeServicesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var removeCompanyServices = new DeleteServiceForm();
+            removeCompanyServices.ShowDialog();
+        }
     }
 }

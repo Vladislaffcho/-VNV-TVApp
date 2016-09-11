@@ -424,19 +424,5 @@ namespace TvForms
             var additionalServices = new AdditionalServicesForm(CurrentUserId);
             additionalServices.ShowDialog();
         }
-
-        // add additional servide to the DB
-        private void btAddServices_Click(object sender, EventArgs e)
-        {
-            var addCompanyServices = new AddServiceForm();
-            addCompanyServices.ShowDialog();
-        }
-
-        // remove addotional service from the db
-        private void btRemoveService_Click(object sender, EventArgs e)
-        {
-            var removeCompanyServices = new DeleteServiceForm();
-            removeCompanyServices.ShowDialog();
-        }
     }
 }

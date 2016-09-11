@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.btSearchUser = new System.Windows.Forms.GroupBox();
-            this.btAddServices = new System.Windows.Forms.Button();
             this.gbFindUsers = new System.Windows.Forms.GroupBox();
             this.lbSearchName = new System.Windows.Forms.Label();
             this.tbSearchName = new System.Windows.Forms.TextBox();
@@ -78,7 +77,6 @@
             this.colUserLogin = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUserName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUserSurname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btRemoveService = new System.Windows.Forms.Button();
             this.btSearchUser.SuspendLayout();
             this.gbFindUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSearchUserId)).BeginInit();
@@ -90,8 +88,6 @@
             // 
             // btSearchUser
             // 
-            this.btSearchUser.Controls.Add(this.btRemoveService);
-            this.btSearchUser.Controls.Add(this.btAddServices);
             this.btSearchUser.Controls.Add(this.gbFindUsers);
             this.btSearchUser.Controls.Add(this.cbUserType);
             this.btSearchUser.Controls.Add(this.lbUserType);
@@ -117,16 +113,6 @@
             this.btSearchUser.TabIndex = 0;
             this.btSearchUser.TabStop = false;
             this.btSearchUser.Text = "Users";
-            // 
-            // btAddServices
-            // 
-            this.btAddServices.Location = new System.Drawing.Point(613, 147);
-            this.btAddServices.Name = "btAddServices";
-            this.btAddServices.Size = new System.Drawing.Size(75, 23);
-            this.btAddServices.TabIndex = 19;
-            this.btAddServices.Text = "Add Service";
-            this.btAddServices.UseVisualStyleBackColor = true;
-            this.btAddServices.Click += new System.EventHandler(this.btAddServices_Click);
             // 
             // gbFindUsers
             // 
@@ -553,16 +539,6 @@
             this.colUserSurname.Text = "Surname";
             this.colUserSurname.Width = 120;
             // 
-            // btRemoveService
-            // 
-            this.btRemoveService.Location = new System.Drawing.Point(709, 147);
-            this.btRemoveService.Name = "btRemoveService";
-            this.btRemoveService.Size = new System.Drawing.Size(101, 23);
-            this.btRemoveService.TabIndex = 20;
-            this.btRemoveService.Text = "Remove Service";
-            this.btRemoveService.UseVisualStyleBackColor = true;
-            this.btRemoveService.Click += new System.EventHandler(this.btRemoveService_Click);
-            // 
             // UcAdminView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -634,7 +610,5 @@
         private System.Windows.Forms.Label lbSearchName;
         private System.Windows.Forms.TextBox tbSearchName;
         private System.Windows.Forms.Button btResetSearch;
-        private System.Windows.Forms.Button btAddServices;
-        private System.Windows.Forms.Button btRemoveService;
     }
 }
