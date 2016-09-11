@@ -11,14 +11,14 @@ using TvContext;
 
 namespace TvForms.Forms
 {
-    // functionality 
-    public partial class AddCompanyServices : Form
+    public partial class AddServiceForm : Form
     {
-        public AddCompanyServices()
+        public AddServiceForm()
         {
             InitializeComponent();
         }
 
+        // functionality to add new services to the DB
         private void btOK_Click(object sender, EventArgs e)
         {
             var errorMessage ="";
@@ -46,7 +46,7 @@ namespace TvForms.Forms
                 serviceRepo.Insert(new AdditionalService
                 {
                     Name = tbServiceName.Text,
-                    Price = numServicePrice.Text.GetInt(),
+                    Price = numServicePrice.Text.GetDouble(),
                     IsAgeLimit = cbAdultContent.Checked
                 });
                 MessagesContainer.DisplayInfo("Service added successfully", "Success");

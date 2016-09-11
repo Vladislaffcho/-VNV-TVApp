@@ -25,7 +25,7 @@ namespace TvForms.Forms
             {
                 var lvItem = new ListViewItem(service.Name);
                 lvItem.SubItems.Add(service.Price.ToString());
-                lvItem.SubItems.Add(AgeLimitedContent(service.IsAgeLimit));
+                lvItem.SubItems.Add(service.IsAgeLimit.AgeLimitedContent());
                 lvItem.SubItems.Add(service.Id.ToString());
                 lvAvailableAdditionalServices.Items.Add(lvItem);
             }
@@ -35,7 +35,7 @@ namespace TvForms.Forms
             {
                 var lvItem = new ListViewItem(service.AdditionalService.Name);
                 lvItem.SubItems.Add(service.AdditionalService.Price.ToString());
-                lvItem.SubItems.Add(AgeLimitedContent(service.AdditionalService.IsAgeLimit));
+                lvItem.SubItems.Add(service.AdditionalService.IsAgeLimit.AgeLimitedContent());
                 lvItem.SubItems.Add(service.AdditionalService.Id.ToString());
                 lvMyAdditionalService.Items.Add(lvItem);
             }
@@ -87,7 +87,7 @@ namespace TvForms.Forms
                     {
                         var lvItem = new ListViewItem(service.AdditionalService.Name);
                         lvItem.SubItems.Add(service.AdditionalService.Price.ToString());
-                        lvItem.SubItems.Add(AgeLimitedContent(service.AdditionalService.IsAgeLimit));
+                        lvItem.SubItems.Add(service.AdditionalService.IsAgeLimit.AgeLimitedContent());
                         lvItem.SubItems.Add(service.AdditionalService.Id.ToString());
                         lvMyAdditionalService.Items.Add(lvItem);
                     }
@@ -102,15 +102,6 @@ namespace TvForms.Forms
             {
                 MessagesContainer.DisplayError("You should select a service to add", "Error");
             }
-        }
-
-        private string AgeLimitedContent(bool isLimited)
-        {
-            if (isLimited)
-            {
-                return "Yes";
-            }
-            return "No";
         }
     }
 }

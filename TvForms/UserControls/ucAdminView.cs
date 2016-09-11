@@ -408,6 +408,7 @@ namespace TvForms
             lvUserList.Items[0].Selected = true;
         }
 
+        // reset search button click
         private void btResrtSearch_Click(object sender, EventArgs e)
         {
             tbSearchName.Clear();
@@ -417,16 +418,25 @@ namespace TvForms
             SetPageView();
         }
 
+        // functionality to view additional services of a user
         private void btViewServices_Click(object sender, EventArgs e)
         {
             var additionalServices = new AdditionalServicesForm(CurrentUserId);
             additionalServices.ShowDialog();
         }
 
+        // add additional servide to the DB
         private void btAddServices_Click(object sender, EventArgs e)
         {
-            var addCompanyServices = new AddCompanyServices();
+            var addCompanyServices = new AddServiceForm();
             addCompanyServices.ShowDialog();
+        }
+
+        // remove addotional service from the db
+        private void btRemoveService_Click(object sender, EventArgs e)
+        {
+            var removeCompanyServices = new DeleteServiceForm();
+            removeCompanyServices.ShowDialog();
         }
     }
 }
