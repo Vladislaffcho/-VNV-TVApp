@@ -77,6 +77,7 @@
             this.colUserLogin = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUserName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUserSurname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btAddServices = new System.Windows.Forms.Button();
             this.btSearchUser.SuspendLayout();
             this.gbFindUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSearchUserId)).BeginInit();
@@ -88,6 +89,7 @@
             // 
             // btSearchUser
             // 
+            this.btSearchUser.Controls.Add(this.btAddServices);
             this.btSearchUser.Controls.Add(this.gbFindUsers);
             this.btSearchUser.Controls.Add(this.cbUserType);
             this.btSearchUser.Controls.Add(this.lbUserType);
@@ -539,6 +541,16 @@
             this.colUserSurname.Text = "Surname";
             this.colUserSurname.Width = 120;
             // 
+            // btAddServices
+            // 
+            this.btAddServices.Location = new System.Drawing.Point(613, 147);
+            this.btAddServices.Name = "btAddServices";
+            this.btAddServices.Size = new System.Drawing.Size(75, 23);
+            this.btAddServices.TabIndex = 19;
+            this.btAddServices.Text = "Add Service";
+            this.btAddServices.UseVisualStyleBackColor = true;
+            this.btAddServices.Click += new System.EventHandler(this.btAddServices_Click);
+            // 
             // UcAdminView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -610,5 +622,6 @@
         private System.Windows.Forms.Label lbSearchName;
         private System.Windows.Forms.TextBox tbSearchName;
         private System.Windows.Forms.Button btResrtSearch;
+        private System.Windows.Forms.Button btAddServices;
     }
 }

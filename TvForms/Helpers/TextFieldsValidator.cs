@@ -71,5 +71,16 @@ namespace TvForms
             return false;
         }
 
+        // method to validate new service names
+        public static bool IsValidService(this string service)
+        {
+            Regex r = new Regex("^[a-zA-Z0-9 ]*$");
+            if (r.IsMatch(service))
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }

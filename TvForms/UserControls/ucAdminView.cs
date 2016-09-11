@@ -300,6 +300,8 @@ namespace TvForms
                     .Include(x => x.UserType)
                     .First();
 
+                // check if the user is active
+                // in case he is not, show error message that it is forbidden to change type for inactive user
                 if (user.IsActiveStatus)
                 {
                     var newTypeId = (int)Enum.Parse(typeof(EUserType), cbUserType.SelectedItem.ToString());
@@ -419,6 +421,12 @@ namespace TvForms
         {
             var additionalServices = new AdditionalServicesForm(CurrentUserId);
             additionalServices.ShowDialog();
+        }
+
+        private void btAddServices_Click(object sender, EventArgs e)
+        {
+            var addCompanyServices = new AddCompanyServices();
+            addCompanyServices.ShowDialog();
         }
     }
 }
