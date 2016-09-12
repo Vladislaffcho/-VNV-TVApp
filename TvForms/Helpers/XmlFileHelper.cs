@@ -21,6 +21,7 @@ namespace TvForms
                 doc.Load(filename);
 
                 var xmlNodeList = doc.SelectNodes("/tv/channel");
+                var rand = new Random();
 
                 if (xmlNodeList != null)
                 {
@@ -31,8 +32,8 @@ namespace TvForms
                         select new Channel
                         {
                             Name = node.FirstChild.InnerText,
-                            Price = 0,
-                            IsAgeLimit = false,
+                            Price = rand.Next(0, rand.Next(1,5)*100),
+                            IsAgeLimit = rand.Next(0,4)%3 == 0,
                             OriginalId = originId
                         }).ToList();
                     channelRepo.AddRange(channelList);
@@ -72,6 +73,8 @@ namespace TvForms
 
                 if (xmlNodeList != null)
                 {
+                    var rand = new Random();
+
                     var tvShowsRepo = new BaseRepository<TvShow>();
                     var channelsAll = new BaseRepository<Channel>(tvShowsRepo.ContextDb).GetAll().ToList();
 
@@ -93,7 +96,7 @@ namespace TvForms
                                 shows.Name = node.FirstChild.InnerText;//,
                                 shows.Date = DateTime.ParseExact(node.Attributes["start"].Value,
                                         "yyyyMMddHHmmss zzz", CultureInfo.InvariantCulture);//,
-                                shows.IsAgeLimit = false;//,
+                                shows.IsAgeLimit = rand.Next(0, 4) % 3 == 0;//,
                                 shows.CodeOriginalChannel = channelOriginId;//,
                                 shows.Channel = channelsAll.Find(x => x.OriginalId == channelOriginId);
                             //};
@@ -180,9 +183,9 @@ namespace TvForms
                 return;
             }
 
-            var orderRepo = new BaseRepository<Order>(channelRepo.ContextDb);
-            var currentOrder = orderRepo.Get(o => o.User.Id == currentUserId
-                                                      && o.IsPaid == false && o.IsDeleted == false).FirstOrDefault();
+            //var orderRepo = new BaseRepository<Order>(channelRepo.ContextDb);
+            //var currentOrder = orderRepo.Get(o => o.User.Id == currentUserId
+                                                      //&& o.IsPaid == false && o.IsDeleted == false).FirstOrDefault();
             var currentUser = new BaseRepository<User>(channelRepo.ContextDb)
                 .Get(u => u.Id == currentUserId).FirstOrDefault();
             
@@ -191,7 +194,7 @@ namespace TvForms
 
             if (xmlChannelsNodeList != null || xmlTvShowsNodeList != null) 
             {
-                var userIdInFile = xmlChannelsNodeList?.Item(0)?.ChildNodes[3].InnerText.GetInt();
+                var userIdInFile = xmlChannelsNodeList?.Item(0)?.ChildNodes[2].InnerText.GetInt();
                 if (userIdInFile != currentUserId)
                 {
                     MessagesContainer.DisplayError("This file include not your favourite media!!! Sorry", "Error");
@@ -199,12 +202,12 @@ namespace TvForms
                 }
 
                 //change due date of current order from saved file
-                if (currentOrder != null)
-                {
-                    currentOrder.DueDate = DateTime.ParseExact(xmlChannelsNodeList.Item(0)?.ChildNodes[2].InnerText,
-                        "yyyyMMddHHmmss zzz", CultureInfo.InvariantCulture);
-                    orderRepo.Update(currentOrder);
-                }
+                //if (currentOrder != null)
+                //{
+                //    currentOrder.DueDate = DateTime.ParseExact(xmlChannelsNodeList.Item(0)?.ChildNodes[2].InnerText,
+                //        "yyyyMMddHHmmss zzz", CultureInfo.InvariantCulture);
+                //    orderRepo.Update(currentOrder);
+                //}
 
                 //check for right format saved *.xml file (for channels)
                 foreach (XmlNode chaNode in xmlChannelsNodeList)
@@ -240,7 +243,7 @@ namespace TvForms
                                           select new OrderChannel
                                           {
                                               Channel = channelRepo.Get(ch => ch.OriginalId == chanOrigId).FirstOrDefault(),
-                                              Order = currentOrder
+                                              User = currentUser
                                           });
 
 
@@ -254,7 +257,7 @@ namespace TvForms
                         {
                             User = currentUser,
                             TvShow = tvShowRepo.Get(sh => sh.Id == showId).FirstOrDefault(),
-                            DueDate = currentOrder?.DueDate ?? DateTime.Now.AddDays(7)
+                            //DueDate = currentOrder?.DueDate ?? DateTime.Now.AddDays(7)
                         });
                 }
                 
@@ -290,8 +293,8 @@ namespace TvForms
                 writer.WriteStartElement("tv");
 
                 var ordChannelRepo = new BaseRepository<OrderChannel>();
-                var userOrdChannels = ordChannelRepo.Get(x => x.Order.User.Id == userId).ToList();
-                userOrdChannels = ordChannelRepo.Get(x => x.Order.Id == userId).ToList();
+                var userOrdChannels = ordChannelRepo.Get(x => x.User.Id == userId 
+                    && x.Order == null).ToList();
 
                 foreach (var ordChannel in userOrdChannels)
                 {
@@ -300,8 +303,8 @@ namespace TvForms
 
                     writer.WriteElementString("id", ordChannel.Channel.OriginalId.ToString());
                     writer.WriteElementString("display-name", ordChannel.Channel.Name);
-                    writer.WriteElementString("due-date", ordChannel.Order.DueDate
-                        .ToString("yyyyMMddHHmmss zzz", CultureInfo.InvariantCulture));
+                    //writer.WriteElementString("due-date", ordChannel.Order.DueDate
+                    //    .ToString("yyyyMMddHHmmss zzz", CultureInfo.InvariantCulture));
                     writer.WriteElementString("user-id", userId.ToString());
                     writer.WriteElementString("price", ordChannel.Channel.Price
                         .ToString(CultureInfo.CurrentCulture));

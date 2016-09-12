@@ -90,7 +90,7 @@ namespace TvForms
                 FirstName = tbFirstName.Text,
                 LastName = tbLastName.Text,
                 Login = tbLogin.Text,
-                Password = Md5Helper.GetMd5Hash(md5Hash, tbPassword.Text),
+                Password = tbPassword.Text.GetMd5Hash(),
                 UserType = new BaseRepository<UserType>(userRepo.ContextDb)
                     .Get(x => x.TypeName == "Client").FirstOrDefault()
             });

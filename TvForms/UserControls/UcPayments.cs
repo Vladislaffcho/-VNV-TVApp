@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -21,18 +22,19 @@ namespace TvForms
 
         private void LoadDatas()
         {
-  
             var userRepo = new BaseRepository<User>();
             var user = userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault();
             switch (user?.UserType.Id)
             {
                 case (int)EUserType.ADMIN: //admin
-                    var payments = new BaseRepository<Payment>(userRepo.ContextDb).GetAll().ToList();
+                    var payments = new BaseRepository<Payment>(userRepo.ContextDb).GetAll()
+                        .Include(p => p.Order.User).ToList();
                     PaymentInsertToListView(payments);
                     break;
                 case (int)EUserType.CLIENT: //current user
                     var userPayments = new BaseRepository<Payment>(userRepo.ContextDb)
-                            .Get(up => up.Order.User.Id == CurrentUserId).ToList();
+                            .Get(up => up.Order.User.Id == CurrentUserId)
+                            .Include(p => p.Order.User).ToList();
                     PaymentInsertToListView(userPayments);
                     break;
             }
@@ -89,7 +91,7 @@ namespace TvForms
 
             var idPayment = listView.SelectedItems[0].Text.GetInt();
             var paymentRepo = new BaseRepository<Payment>();
-            var payment = paymentRepo.Get(p => p.Id == idPayment).FirstOrDefault();
+            var payment = paymentRepo.Get(p => p.Id == idPayment).Include(p => p.Order.User).FirstOrDefault();
             var account = new BaseRepository<Account>(paymentRepo.ContextDb)
                     .Get(a => a.User.Id == CurrentUserId).FirstOrDefault();
 
@@ -104,7 +106,6 @@ namespace TvForms
                     tbBalance.BackColor = balance <= 0.00 ? Color.LightCoral :
                         balance > 0 && balance < 100.00 ? Color.Yellow : Color.LightGreen;
                 }
-                
             }
 
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -34,11 +35,11 @@ namespace TvForms
             switch (user?.UserType.Id)
             {
                 case (int) EUserType.ADMIN: //admin
-                    var orders = orderRepo.GetAll().ToList();
+                    var orders = orderRepo.GetAll().Include(o => o.User).ToList();
                     OrderInsertToListView(orders);
                     break;
                 case (int) EUserType.CLIENT: //current user
-                    var userOrders = orderRepo.Get(uo => uo.User.Id == CurrentUserId).ToList();
+                    var userOrders = orderRepo.Get(uo => uo.User.Id == CurrentUserId).Include(o => o.User).ToList();
                     OrderInsertToListView(userOrders);
                     break;
             }
@@ -89,7 +90,7 @@ namespace TvForms
             }
 
             var idOrder = listView.SelectedItems[0].Text.GetInt();
-            var order = new BaseRepository<Order>().Get(o => o.Id == idOrder).FirstOrDefault();
+            var order = new BaseRepository<Order>().Get(o => o.Id == idOrder).Include(o => o.User).FirstOrDefault();
 
             if (order != null)
             {

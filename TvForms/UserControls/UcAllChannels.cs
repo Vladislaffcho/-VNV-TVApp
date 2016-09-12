@@ -12,7 +12,9 @@ namespace TvForms
     {
         private int CurrentUserId { get; }
 
-        public int CurrentOrderId { get; }
+        //private double ChoosenChannelsPrice { get; set; }
+
+        //public int CurrentOrderId { get; }
 
         private UcShowsList ControlForShows { get; set; }
 
@@ -33,6 +35,7 @@ namespace TvForms
 
             LoadAllChannelsList();
             LoadTvShowsList();//need to rewise
+            //ChoosenChannelsPrice = 0.0;
 
             rtbAllCh_Description.Text = @"THIS IS ALL CHANNELS TAB";
         }
@@ -61,7 +64,7 @@ namespace TvForms
         {
            
             var orderedChannelRepo = new BaseRepository<OrderChannel>();
-            var orderedChannels = orderedChannelRepo.Get(ch => ch.Order.User.Id == CurrentUserId).ToList();
+            var orderedChannels = orderedChannelRepo.Get(ch => ch.User.Id == CurrentUserId).ToList();
 
             var showByDateAndChannels = new List<TvShow>();
             foreach (var chan in orderedChannels)
@@ -95,15 +98,14 @@ namespace TvForms
                 item.SubItems.Add(ch.Name);
                 item.SubItems.Add(Math.Abs(ch.Price) <= 0.00 ? string.Empty : $"{ch.Price:0.00}");
                 item.SubItems.Add(ch.IsAgeLimit ? "+" : string.Empty);
-                //item.SubItems.Add(ch.Id.ToString());
                 item.SubItems.Add(ch.OriginalId.ToString());
-                //lvChannelsList.Items.Add(item);
                 
                 itemsList.Add(item);
                 number++;
 
+                //make field checked if current user ordered and/or paid this channels
                 if (orderedChannels.Find(oCh => oCh.Channel.Id == ch.Id
-                                               /* && oCh.Order.User.Id == CurrentUserId*/) != null)
+                                               && oCh.User.Id == CurrentUserId) != null)
                 {
                     item.Checked = true;
                 }
@@ -128,6 +130,7 @@ namespace TvForms
             var idOrigin = lvChannelsList.Items[e.Index].SubItems[4].Text.GetInt();
 
             var userRepo = new BaseRepository<User>();
+            var user = userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault();
             var orderChannelRepo = new BaseRepository<OrderChannel>(userRepo.ContextDb);
             var orderRepo = new BaseRepository<Order>(userRepo.ContextDb);
             
@@ -137,26 +140,17 @@ namespace TvForms
                     var channelRepo = new BaseRepository<Channel>(userRepo.ContextDb);
                     var showsRepo = new BaseRepository<TvShow>(userRepo.ContextDb);
                     if (orderChannelRepo.Get(s => /*s.Channel.Id*/ s.Channel.OriginalId == idOrigin
-                        && s.Order.User.Id == CurrentUserId).FirstOrDefault() == null)
+                        && s.User.Id == CurrentUserId).FirstOrDefault() == null)
                     {
                         var orderedCh = new OrderChannel
                         {
-
-                            //Channel = channelRepo.Get(c => c.Id == id).FirstOrDefault(),
                             Channel = channelRepo.Get(c => c.OriginalId == idOrigin).FirstOrDefault(),
-                            Order = orderRepo.Get(x => x.Id == CurrentOrderId).FirstOrDefault()
+                            User = user
                         };
-
-                        var orderToUpdate = orderRepo.Get(x => x.Id == CurrentOrderId).FirstOrDefault();
-                        if (orderToUpdate != null)
-                        {
-                            orderToUpdate.TotalPrice += orderedCh.Channel.Price;
-                            orderToUpdate.User = userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault();
-                            orderRepo.Update(orderToUpdate);
-                        }
 
                         orderChannelRepo.Insert(orderedCh);
 
+                        //ChoosenChannelsPrice += orderedCh.Channel.Price;
                     }
                     //var showsByChannel = showsRepo.Get(x => x.Channel.Id == id).ToList();
                     var showsByChannel = await showsRepo.Get(x => x.CodeOriginalChannel == idOrigin).ToListAsync();
@@ -168,21 +162,14 @@ namespace TvForms
 
                 case CheckState.Unchecked:
                     var userSchedRepo = new BaseRepository<UserSchedule>(userRepo.ContextDb);
-                    //var removeCh = orderChannelRepo.Get(x => x.Channel.Id == id).FirstOrDefault();
                     var removeCh = orderChannelRepo.Get(x => x.Channel.OriginalId == idOrigin).FirstOrDefault();
                     if (removeCh != null)
                     {
-                        ControlForShows.RemoveTvShowsFromControl(removeCh.Channel.Name);
+                        ControlForShows.RemoveTvShowsFromControl(removeCh.Channel.OriginalId);
 
-                        var orderToUpdate = orderRepo.Get(x => x.Id == CurrentOrderId).FirstOrDefault();
-                        if (orderToUpdate != null)
-                        {
-                            orderToUpdate.TotalPrice = 
-                                orderToUpdate.TotalPrice - removeCh.Channel.Price < 0.00 ? 0.00 :
-                                orderToUpdate.TotalPrice -= removeCh.Channel.Price;
-                            orderToUpdate.User = userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault();
-                            orderRepo.Update(orderToUpdate);
-                        }
+                        //ChoosenChannelsPrice = 
+                        //    ChoosenChannelsPrice - removeCh.Channel.Price < 0.00 ? 0.00 :
+                        //    ChoosenChannelsPrice -= removeCh.Channel.Price;
 
                         var schedFromRemovingChann = userSchedRepo.Get(sc => sc.TvShow.CodeOriginalChannel
                                                                              == removeCh.Channel.OriginalId).ToList();
@@ -196,34 +183,13 @@ namespace TvForms
                 //    MessagesContainer.DisplayError("Something went wrong in checking/unchecking channels (case CheckState.Indeterminate:)", "Error");
                 //    break;
 
-                //default:
-                //    throw new ArgumentOutOfRangeException();
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
             
         }
 
-        private Order GetNewOrder()
-        {
-           using (var context = new TvDbContext())
-            {
-                var currOrder = new Order
-                    {
-                        User = context.Users.First(x => x.Id == CurrentUserId),
-                        TotalPrice = 0.0,
-                        FromDate = DateTime.Now,
-                        DateOrder = DateTime.Now,
-                        DueDate = DateTime.Now.AddDays(7),
-                        IsPaid = false,
-                        IsDeleted = false
-                    };
 
-                context.Orders.Add(currOrder);
-                context.SaveChanges();
-
-                return currOrder;
-            }
-            
-        }
 
         private void tabControl_Shows_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -243,15 +209,14 @@ namespace TvForms
                 var tvShowsRepo = new BaseRepository<TvShow>(orderRepo.ContextDb);
                 var channelsRepo = new BaseRepository<Channel>(orderRepo.ContextDb);
                 var ordChannelRepo = new BaseRepository<OrderChannel>(orderRepo.ContextDb);
+                var user = new BaseRepository<User>(orderRepo.ContextDb).Get(u => u.Id == CurrentUserId).FirstOrDefault();
 
-                ordChannelRepo.Clear(CurrentOrderId);
-
-                var order = orderRepo.Get(o => o.Id == CurrentOrderId).FirstOrDefault();
+                ordChannelRepo.Clear(CurrentUserId);
 
                 var orderAllChann = channelsRepo.GetAll().ToList();
                 var list = orderAllChann.Select(channel => new OrderChannel
                 {
-                    Channel = channel, Order = order
+                    Channel = channel, User = user
                 }).ToList();
                 
                 ordChannelRepo.AddRange(list);
@@ -275,21 +240,28 @@ namespace TvForms
             else if (!cbCheckAllChannels.Checked)
             {
                 //-------------------------------------------------------
-                //for (var i = 0; i < lvChannelsList.Items.Count; i++)
-                //{
-                //    lvChannelsList.Items[i].Checked = false;
-                //}
-
                 lvChannelsList.Items.Clear();
 
                 var userSchRepo = new BaseRepository<UserSchedule>();
-                var deleteSchedule = userSchRepo.Get(x => x.User.Orders.FirstOrDefault(o => o.Id == CurrentOrderId).Id == CurrentOrderId).ToList();
-                userSchRepo.RemoveRange(deleteSchedule);
+                var deleteScheduleList = new List<UserSchedule>();
+                //deleteSchedule = userSchRepo.Get(x => x.TvShow.Channel.OrderChannel. .User.Orders.FirstOrDefault(o => o.Id == CurrentOrderId).Id == CurrentOrderId).ToList();
+                
                 //-------------------------------------------------------
 
                 var orderedChannRepo = new BaseRepository<OrderChannel>(userSchRepo.ContextDb);
-                var deleteChann = orderedChannRepo.Get(x => x.Order.Id == CurrentOrderId).ToList();
-                orderedChannRepo.RemoveRange(deleteChann);
+                var deleteOrdChann = orderedChannRepo.Get(x => x.Order == null 
+                    && x.User.Id == CurrentUserId).ToList();
+
+                foreach (var sched in userSchRepo.Get(uSch => uSch.User.Id == CurrentUserId).ToList())
+                {
+                    if (deleteOrdChann.Any(doch => doch.Channel.OriginalId == sched.TvShow.CodeOriginalChannel))
+                    {
+                        deleteScheduleList.Add(sched);
+                    }
+                }
+
+                userSchRepo.RemoveRange(deleteScheduleList);
+                orderedChannRepo.RemoveRange(deleteOrdChann);
 
                 //-------------------------------------------------------
                 LoadAllChannelsList();

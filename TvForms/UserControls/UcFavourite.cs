@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -11,25 +12,42 @@ namespace TvForms
     {
 
         private int CurrentUserId { get; set; }
+
         private int CurrentOrderId { get; set; }
 
-        public UcFavoirute(int currentUserId, int currentOrderId)
+        private double OrderPrice { get; set; }
+
+        public UcFavoirute(int currentUserId)
         {
             InitializeComponent();
             CurrentUserId = currentUserId;
-            CurrentOrderId = currentOrderId;
+            cbHidePaid.CheckState = CheckState.Checked;
             SetMoneyToTextBoxs();
-            LoadFavouriteMedia();
         }
-
-
+        
         private void SetMoneyToTextBoxs()
         {
-            var orderRepo = new BaseRepository<Order>();
-            var order = orderRepo.Get(o => o.Id == CurrentOrderId).FirstOrDefault();
-            tbTotalPrice.Text = order?.TotalPrice.ToString(CultureInfo.CurrentCulture) ?? "0.00";
+            OrderPrice = 0.00;
 
-            var balance = new BaseRepository<Account>(orderRepo.ContextDb)
+            foreach (ListViewItem item in lvFavouriteProgs.Items)
+            {
+                double result;
+                OrderPrice += double.TryParse(item.SubItems[3].Text, out result) 
+                    ? result 
+                    : 0.00;
+            }
+
+            var orderServRepo = new BaseRepository<OrderService>();
+            var myServices = orderServRepo.Get(s => s.User.Id == CurrentUserId
+                                                    && s.Order == null).ToList();
+            foreach (var service in myServices)
+            {
+                OrderPrice += service.AdditionalService.Price;
+            }
+
+            tbTotalPrice.Text = OrderPrice.ToString(CultureInfo.CurrentCulture);
+
+            var balance = new BaseRepository<Account>(orderServRepo.ContextDb)
                     .Get(x => x.User.Id == CurrentUserId).FirstOrDefault();
             tbAccountBalance.Text = balance?.Balance.ToString(CultureInfo.CurrentCulture) ?? "0.00";
             if (balance?.IsActiveStatus == false || balance?.Balance < 0.00)
@@ -40,18 +58,18 @@ namespace TvForms
             {
                 tbAccountBalance.BackColor = Color.Yellow;
             }
-            
-            
         }
 
 
-        private void LoadFavouriteMedia()
+        private void LoadFavouriteMedia(bool isPaidMediaNeed)
         {
             var number = 1;
             var orChRepository = new BaseRepository<OrderChannel>();
+            var chosenOrdChann = orChRepository.Get(x => x.User.Id == CurrentUserId
+                                                         && (x.Order == null || x.Order.IsPaid == isPaidMediaNeed))
+                .ToList();
 
-            foreach (var ch in orChRepository.Get(x => x.Order.User.Id == CurrentUserId
-                                                    /*&& x.Order.Id == CurrentOrderId*/).ToList())
+            foreach (var ch in chosenOrdChann)
             {
                 var item = new ListViewItem(number.ToString());
                 
@@ -61,11 +79,12 @@ namespace TvForms
                 lvFavouriteProgs.Items.Add(item);
                 number++;
             }
-
-            var schedRepository = new BaseRepository<UserSchedule>(orChRepository.ContextDb);
+            
             var allChannels = new BaseRepository<Channel>(orChRepository.ContextDb).GetAll();
 
-            foreach (var sced in schedRepository.Get(x => x.User.Id == CurrentUserId).ToList())
+            var isPaidSchedule = NotPaidSchedule(isPaidMediaNeed);
+
+            foreach (var sced in isPaidSchedule)
             {
                 var item = new ListViewItem(number.ToString());
 
@@ -90,22 +109,46 @@ namespace TvForms
                 lvFavouriteProgs.Items.Add(item);
                 number++;
             }
+        }
 
-            
+        //return all TV programms which are specifed to not paid channels
+        private IEnumerable<UserSchedule> NotPaidSchedule(bool isPaidMediaNeed)
+        {
+            var schedList = new BaseRepository<UserSchedule>()
+                .Get(x => x.User.Id == CurrentUserId).ToList();
+            var ordChannelsIsPaid = new BaseRepository<OrderChannel>()
+                .Get(x => x.User.Id == CurrentUserId && (x.Order == null || x.Order.IsPaid == isPaidMediaNeed)).ToList();
+            var notPaidSchedule = new List<UserSchedule>();
+            foreach (var sced in schedList)
+            {
+                if(ordChannelsIsPaid.Find(or => or.Channel.OriginalId == sced.TvShow.CodeOriginalChannel) != null)
+                {
+                    notPaidSchedule.Add(sced);
+                }
+            }
+            return notPaidSchedule;
         }
 
         private void btMakeOrder_Click(object sender, EventArgs e)
         {
-
-            var userRepo = new BaseRepository<User>();
-            var accountRepo = new BaseRepository<Account>(userRepo.ContextDb);
-            var orderRepo = new BaseRepository<Order>(userRepo.ContextDb);
-            var paymentRepo = new BaseRepository<Payment>(userRepo.ContextDb);
             
-            var user = userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault();
+            var userRepo        = new BaseRepository<User>();
+            var accountRepo     = new BaseRepository<Account>(userRepo.ContextDb);
+            var orderRepo       = new BaseRepository<Order>(userRepo.ContextDb);
+            var paymentRepo     = new BaseRepository<Payment>(userRepo.ContextDb);
+            var ordChanRepo     = new BaseRepository<OrderChannel>(userRepo.ContextDb);
+            var ordServicesRepo = new BaseRepository<OrderService>(userRepo.ContextDb);
 
+            var user = userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault();
             var balance = accountRepo.Get(b => b.User.Id == CurrentUserId).FirstOrDefault();
-            var order = orderRepo.Get(b => b.Id == CurrentOrderId).FirstOrDefault();
+            var notPaidChannels = ordChanRepo.Get(ch => ch.Order == null || ch.Order.IsPaid == false).ToList();
+            var notPaidServices = ordServicesRepo.Get(s => s.Order == null || s.Order.IsPaid == false).ToList();
+
+            if (notPaidServices.Count == 0 && notPaidChannels.Count == 0)
+            {
+                MessagesContainer.DisplayError("No channels and/or services to pay", "Attention!!!");
+                return;
+            }
 
             if (balance?.IsActiveStatus == false)
             {
@@ -113,6 +156,10 @@ namespace TvForms
                     "Please connect to administrator", "Attention!!!");
                 return;
             }
+
+            CurrentOrderId = GetNewOrderId(OrderPrice);
+            //return order created in this method (by GetNewOrder)
+            var order = orderRepo.Get(b => b.Id == CurrentOrderId).FirstOrDefault();
 
             if (balance != null && order != null && balance.Balance >= order.TotalPrice)
             {
@@ -144,19 +191,34 @@ namespace TvForms
                 
                 paymentRepo.Insert(payment);
 
+                var payingChannels = ordChanRepo.Get(ch => ch.User.Id == CurrentUserId
+                                                           && ch.Order == null).ToList();
+                foreach (var chann in payingChannels)
+                {
+                    chann.Order = order;
+                    chann.Channel = chann.Channel;
+                    ordChanRepo.Update(chann);
+                }
+
+                var payingServices = ordServicesRepo.Get(sr => sr.User.Id == CurrentUserId
+                                                           && sr.Order == null).ToList();
+                foreach (var serv in payingServices)
+                {
+                    serv.Order = order;
+                    serv.AdditionalService = serv.AdditionalService;
+                    ordServicesRepo.Update(serv);
+                }
+
                 MessagesContainer.DisplayInfo(
-                    $"Order #{order.Id} worth {order.TotalPrice} " + (lbUAH.Text) +
-                    " was paid succesfully. " + Environment.NewLine +
-                    $"Total count of channels {order.OrderChannels.Count}", 
-                                                            "Succesfull payment");
+                    $"Order #{order.Id} worth {order.TotalPrice} {lbUAH.Text}" + 
+                    $" was paid succesfully. {Environment.NewLine }" +
+                    $"Total count of channels {order.OrderChannels?.Count ?? 0.00}",
+                    @"Succesfull payment");
             }
             else
             {
                 MessagesContainer.DisplayError("Your balance is low!!!", "Error");
             }
-            
-            
-
         }
         
         public void SetReloadButton(bool visible, Color color)
@@ -169,6 +231,40 @@ namespace TvForms
         {
             SetMoneyToTextBoxs();
             SetReloadButton(false, Color.Black);
+        }
+
+        //return and save object Order to DB for current order of media
+        private int GetNewOrderId(double worth)
+        {
+            var orderRepo = new BaseRepository<Order>();
+            var currOrder = new Order
+            {
+                User = orderRepo.ContextDb.Users.First(x => x.Id == CurrentUserId),
+                TotalPrice = worth,
+                FromDate = DateTime.Now,
+                DateOrder = DateTime.Now,
+                DueDate = DateTime.Now.AddDays(7),
+                IsPaid = false,
+                IsDeleted = false
+            };
+            orderRepo.Insert(currOrder);
+            return currOrder.Id;
+            
+        }
+
+        private void cbHidePaid_CheckedChanged(object sender, EventArgs e)
+        {
+            const bool isNeedLoadNotPaidMedia = false;
+            if (cbHidePaid.Checked)
+            {
+                lvFavouriteProgs.Items.Clear();
+                LoadFavouriteMedia(isNeedLoadNotPaidMedia);
+            }
+            else if (!cbHidePaid.Checked)
+            {
+                lvFavouriteProgs.Items.Clear();
+                LoadFavouriteMedia(!isNeedLoadNotPaidMedia);    
+            }
         }
     }
 }

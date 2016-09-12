@@ -11,7 +11,7 @@ namespace TvForms
     public partial class CoreForm : Form//, IIdentifyUser
     {
         //ToDo Review need to store all user data
-        private int CurrentUserId { get; set; } = 3; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
+        private int CurrentUserId { get; set; }// = 3; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
 
         //ToDo Review WTF? Naming convention!!!
         private UcTabsForUser _userWindow;// { get; set; }
@@ -20,7 +20,7 @@ namespace TvForms
 
         public CoreForm()
         {
-            //ShowLoginForm(); //uncommit after test programme
+            ShowLoginForm(); //uncommit after test programme
 
             InitializeComponent();
             LoadMainControl();
@@ -194,7 +194,6 @@ namespace TvForms
         //ToDo rewise this method. Updated Victor's code after merge
         private void CoreForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             var ordRepo = new BaseRepository<Order>();
             var schedRepo = new BaseRepository<UserSchedule>(ordRepo.ContextDb);
             var ordChannelRepo = new BaseRepository<OrderChannel>(ordRepo.ContextDb);

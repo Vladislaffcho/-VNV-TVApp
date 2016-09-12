@@ -57,8 +57,7 @@ namespace TvForms
                     var user = userRepo.Get(x => x.Id == emailId)
                         .Include(x => x.UserType)
                         .First();
-                    var md5Hash = MD5.Create();
-                    user.Password = Md5Helper.GetMd5Hash(md5Hash, tbNewPass.Text);
+                    user.Password = tbNewPass.Text.GetMd5Hash();
                     userRepo.Update(user);
                     MessagesContainer.DisplayInfo("Password has been changed. Please login using new password", "Success");
                 }

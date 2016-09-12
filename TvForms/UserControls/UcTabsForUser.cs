@@ -9,7 +9,7 @@ namespace TvForms
 
         private int CurrentUserId { get; set; }
 
-        private int CurrentOrderId { get; set; }
+        //private int CurrentOrderId { get; set; }
 
         //ToDO Use only one UC
         //private List<Channel> CurrentWeekChannel { get; set; }
@@ -45,9 +45,9 @@ namespace TvForms
                     AllChannelControl.MarkChosenMedia();
                     break;
                 case 1:
-                    CurrentOrderId = AllChannelControl.CurrentOrderId;
+                    //CurrentOrderId = AllChannelControl.CurrentOrderId;
                     MyFavouriteControl?.Dispose();
-                    MyFavouriteControl = new UcFavoirute(CurrentUserId, CurrentOrderId);
+                    MyFavouriteControl = new UcFavoirute(CurrentUserId);
                     tabPan_MyFavourite.Controls.Add(MyFavouriteControl);
                     break;
             }

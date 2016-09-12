@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<tv>
+	<channel favourite="true">
+		<id>1</id>
+		<display-name>1+1</display-name>
+		<user-id>3</user-id>
+		<price>0</price>
+	</channel>
+	<channel favourite="true">
+		<id>2</id>
+		<display-name>112 Украина</display-name>
+		<user-id>3</user-id>
+		<price>0</price>
+	</channel>
+	<channel favourite="true">
+		<id>3</id>
+		<display-name>24 (Телеканал новостей 24)</display-name>
+		<user-id>3</user-id>
+		<price>0</price>
+	</channel>
+	<channel favourite="true">
+		<id>4</id>
+		<display-name>24 Док</display-name>
+		<user-id>3</user-id>
+		<price>0</price>
+	</channel>
+	<programme favourite="true">
+		<programme-id>2</programme-id>
+		<channel-id>1</channel-id>
+		<channel>1+1</channel>
+		<title>"Лучший ресторан с Русланом Сеничкиным".</title>
+		<start>20160725070000 +03:00</start>
+	</programme>
+	<programme favourite="true">
+		<programme-id>4</programme-id>
+		<channel-id>1</channel-id>
+		<channel>1+1</channel>
+		<title>"Четыре свадьбы", 5 сезон.</title>
+		<start>20160725094500 +03:00</start>
+	</programme>
+	<programme favourite="true">
+		<programme-id>6</programme-id>
+		<channel-id>1</channel-id>
+		<channel>1+1</channel>
+		<title>"Слепая".</title>
+		<start>20160725121500 +03:00</start>
+	</programme>
+	<programme favourite="true">
+		<programme-id>9</programme-id>
+		<channel-id>1</channel-id>
+		<channel>1+1</channel>
+		<title>Т/с "Величественный век".</title>
+		<start>20160725171000 +03:00</start>
+	</programme>
+	<programme favourite="true">
+		<programme-id>10</programme-id>
+		<channel-id>1</channel-id>
+		<channel>1+1</channel>
+		<title>ТСН.</title>
+		<start>20160725193000 +03:00</start>
+	</programme>
+	<programme favourite="true">
+		<programme-id>20</programme-id>
+		<channel-id>3</channel-id>
+		<channel>24 (Телеканал новостей 24)</channel>
+		<title>Новости.</title>
+		<start>20160729230000 +03:00</start>
+	</programme>
+	<programme favourite="true">
+		<programme-id>21</programme-id>
+		<channel-id>3</channel-id>
+		<channel>24 (Телеканал новостей 24)</channel>
+		<title>Погода Украины.</title>
+		<start>20160729232500 +03:00</start>
+	</programme>
+</tv>

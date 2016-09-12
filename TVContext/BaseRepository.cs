@@ -209,9 +209,10 @@ namespace TvContext
             await ContextDb.SaveChangesAsync();
         }
 
-        public void Clear(int orderId)
+        public void Clear(int userId)
         {
-            var oldOrderedChannels = ContextDb.OrderChannels.Where(orCh => orCh.Order.Id == orderId);
+            var oldOrderedChannels = ContextDb.OrderChannels.Where(orCh => orCh.Order == null
+                && orCh.User.Id == userId);
             ContextDb.OrderChannels.RemoveRange(oldOrderedChannels);
             ContextDb.SaveChanges();
         }

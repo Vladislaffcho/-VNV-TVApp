@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 
 
@@ -31,41 +30,36 @@ namespace TvForms
 
         private int UserIdDetect()
         {
-
             //go to database and check user or admin exists
             if (tbPassForm_Pass.Text != string.Empty)
             {
                 using (var context = new TvContext.TvDbContext())
                 {
-                    //use MD5 library for check saved password in MD5 format
-                    using (var md5Hash = MD5.Create())
+                    //get datas from form text fields 
+                    var loginEntered = tbPassForm_Login.Text;
+                    var passEntered = tbPassForm_Pass.Text;
+
+                    //generate appropriate code from entered pass with md5Hash (soul for password)
+                    var pssCoded = passEntered.GetMd5Hash();
+
+                    //get saved pass from DB
+                    var savedPass = (from p in context.Users
+                                        where p.Login == loginEntered
+                                        select p.Password).FirstOrDefault();
+
+                    //compare login and pass from text fields and DB
+                    if (loginEntered.Length > 0 && loginEntered != string.Empty
+                        && savedPass == pssCoded)
                     {
-                        //get datas from form text fields 
-                        var loginEntered = tbPassForm_Login.Text;
-                        var passEntered = tbPassForm_Pass.Text;
-
-                        //generate appropriate code from entered pass with md5Hash (soul for password)
-                        var pssCoded = Md5Helper.GetMd5Hash(md5Hash, passEntered);
-
-                        //get saved pass from DB
-                        var savedPass = (from p in context.Users
+                        //ToDo read to CurrentUser
+                        CurrentUserId = (from p in context.Users
                                             where p.Login == loginEntered
-                                            select p.Password).FirstOrDefault();
-
-                        //compare login and pass from text fields and DB
-                        if (loginEntered.Length > 0 && loginEntered != string.Empty
-                            && savedPass == pssCoded)
-                        {
-                            //ToDo read to CurrentUser
-                            CurrentUserId = (from p in context.Users
-                                             where p.Login == loginEntered
-                                             select p.Id).FirstOrDefault();
-                        }
-                        else
-                        {
-                            //return 0 if current user doesn't exist
-                            CurrentUserId = 0;
-                        }
+                                            select p.Id).FirstOrDefault();
+                    }
+                    else
+                    {
+                        //return 0 if current user doesn't exist
+                        CurrentUserId = 0;
                     }
                 }
             }

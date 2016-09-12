@@ -103,11 +103,11 @@ namespace TvForms
 
         }
 
-        public void RemoveTvShowsFromControl(string channelName)
+        public void RemoveTvShowsFromControl(int channelOriginalId)
         {
             foreach (ListViewItem item in lvShowPrograms.Items)
             {
-                if (item.SubItems[4].Text == channelName)
+                if (item.SubItems[4].Text.GetInt() == channelOriginalId)
                 {
                     lvShowPrograms.Items[item.Index].Remove();
                     //DisplayIndexShows--;

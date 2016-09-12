@@ -38,6 +38,8 @@
             this.Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Programm = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cbHidePaid = new System.Windows.Forms.CheckBox();
+            this.btReload = new System.Windows.Forms.Button();
             this.btMakeOrder = new System.Windows.Forms.Button();
             this.lbUAH_balance = new System.Windows.Forms.Label();
             this.tbAccountBalance = new System.Windows.Forms.TextBox();
@@ -45,7 +47,6 @@
             this.lbUAH = new System.Windows.Forms.Label();
             this.tbTotalPrice = new System.Windows.Forms.TextBox();
             this.lbTotalPrice = new System.Windows.Forms.Label();
-            this.btReload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.scContainerFav)).BeginInit();
             this.scContainerFav.Panel1.SuspendLayout();
             this.scContainerFav.Panel2.SuspendLayout();
@@ -64,6 +65,7 @@
             // 
             // scContainerFav.Panel2
             // 
+            this.scContainerFav.Panel2.Controls.Add(this.cbHidePaid);
             this.scContainerFav.Panel2.Controls.Add(this.btReload);
             this.scContainerFav.Panel2.Controls.Add(this.btMakeOrder);
             this.scContainerFav.Panel2.Controls.Add(this.lbUAH_balance);
@@ -132,6 +134,32 @@
             this.Programm.Text = "Programm";
             this.Programm.Width = 263;
             // 
+            // cbHidePaid
+            // 
+            this.cbHidePaid.AutoSize = true;
+            this.cbHidePaid.Location = new System.Drawing.Point(18, 188);
+            this.cbHidePaid.Name = "cbHidePaid";
+            this.cbHidePaid.Size = new System.Drawing.Size(102, 17);
+            this.cbHidePaid.TabIndex = 13;
+            this.cbHidePaid.Text = "Hide paid media";
+            this.cbHidePaid.UseVisualStyleBackColor = true;
+            this.cbHidePaid.CheckedChanged += new System.EventHandler(this.cbHidePaid_CheckedChanged);
+            // 
+            // btReload
+            // 
+            this.btReload.ForeColor = System.Drawing.Color.Crimson;
+            this.btReload.Image = ((System.Drawing.Image)(resources.GetObject("btReload.Image")));
+            this.btReload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btReload.Location = new System.Drawing.Point(18, 138);
+            this.btReload.Name = "btReload";
+            this.btReload.Size = new System.Drawing.Size(70, 29);
+            this.btReload.TabIndex = 12;
+            this.btReload.Text = "Reload";
+            this.btReload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btReload.UseVisualStyleBackColor = true;
+            this.btReload.Visible = false;
+            this.btReload.Click += new System.EventHandler(this.btReload_Click);
+            // 
             // btMakeOrder
             // 
             this.btMakeOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -197,21 +225,6 @@
             this.lbTotalPrice.TabIndex = 0;
             this.lbTotalPrice.Text = "Total price";
             // 
-            // btReload
-            // 
-            this.btReload.ForeColor = System.Drawing.Color.Crimson;
-            this.btReload.Image = ((System.Drawing.Image)(resources.GetObject("btReload.Image")));
-            this.btReload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btReload.Location = new System.Drawing.Point(18, 138);
-            this.btReload.Name = "btReload";
-            this.btReload.Size = new System.Drawing.Size(70, 29);
-            this.btReload.TabIndex = 12;
-            this.btReload.Text = "Reload";
-            this.btReload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btReload.UseVisualStyleBackColor = true;
-            this.btReload.Visible = false;
-            this.btReload.Click += new System.EventHandler(this.btReload_Click);
-            // 
             // UcFavoirute
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,5 +260,6 @@
         private System.Windows.Forms.Label lbUAH;
         private System.Windows.Forms.TextBox tbTotalPrice;
         private System.Windows.Forms.Button btReload;
+        private System.Windows.Forms.CheckBox cbHidePaid;
     }
 }
