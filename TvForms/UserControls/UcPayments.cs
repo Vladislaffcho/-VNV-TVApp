@@ -18,6 +18,7 @@ namespace TvForms
             InitializeComponent();
             CurrentUserId = currentUserId;
             LoadDatas();
+            Dock = DockStyle.Fill;
         }
 
         private void LoadDatas()
@@ -109,6 +110,12 @@ namespace TvForms
             }
 
 
+        }
+
+        private void lvPayments_Resize(object sender, EventArgs e)
+        {
+            //todo write width of columns in %
+            lvPayments.Columns[0].Width = 100;
         }
     }
 }

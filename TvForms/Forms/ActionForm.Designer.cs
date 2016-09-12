@@ -34,6 +34,7 @@
             // 
             // panActionForm
             // 
+            this.panActionForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panActionForm.Location = new System.Drawing.Point(0, 0);
             this.panActionForm.Name = "panActionForm";
             this.panActionForm.Size = new System.Drawing.Size(630, 323);

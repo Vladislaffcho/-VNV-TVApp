@@ -87,6 +87,12 @@
     <Compile Include="Forms\AcFLittleWithoutValid.Designer.cs">
       <DependentUpon>AcFLittleWithoutValid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AddServiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddServiceForm.Designer.cs">
+      <DependentUpon>AddServiceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AdditionalServicesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,12 +112,19 @@
       <DependentUpon>CoreForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DeleteUserData.cs" />
+    <Compile Include="Forms\DeleteServiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DeleteServiceForm.Designer.cs">
+      <DependentUpon>DeleteServiceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\About.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Helpers\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AgeLimitHelper.cs" />
     <Compile Include="Helpers\MessageContainer.cs" />
     <Compile Include="Helpers\RandomStrings.cs" />
     <Compile Include="Helpers\TextFieldsValidator.cs" />
@@ -272,6 +285,9 @@
     <EmbeddedResource Include="Forms\AcFLittleWithoutValid.resx">
       <DependentUpon>AcFLittleWithoutValid.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddServiceForm.resx">
+      <DependentUpon>AddServiceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AdditionalServicesForm.resx">
       <DependentUpon>AdditionalServicesForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -280,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CoreForm.resx">
       <DependentUpon>CoreForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DeleteServiceForm.resx">
+      <DependentUpon>DeleteServiceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PassForm.resx">
       <DependentUpon>PassForm.cs</DependentUpon>

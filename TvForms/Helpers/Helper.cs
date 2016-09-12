@@ -23,6 +23,16 @@ namespace TvForms
             return -1;
         }
 
+        public static double GetDouble(this string source)
+        {
+            double i;
+            if (double.TryParse(source, out i))
+            {
+                return i;
+            }
+            return -1;
+        }
+
 
         public static void DeleteFileIfExist(string fileName)
         {

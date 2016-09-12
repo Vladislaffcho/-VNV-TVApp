@@ -46,6 +46,8 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.panelCore = new System.Windows.Forms.Panel();
+            this.addServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeServicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,14 +89,14 @@
             // xmlToolStripMenuItem
             // 
             this.xmlToolStripMenuItem.Name = "xmlToolStripMenuItem";
-            this.xmlToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xmlToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
             this.xmlToolStripMenuItem.Text = "*.xml";
             this.xmlToolStripMenuItem.Click += new System.EventHandler(this.xmlToolStripMenuItem_Click);
             // 
             // zipToolStripMenuItem
             // 
             this.zipToolStripMenuItem.Name = "zipToolStripMenuItem";
-            this.zipToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.zipToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
             this.zipToolStripMenuItem.Text = "*.zip";
             this.zipToolStripMenuItem.Click += new System.EventHandler(this.zipToolStripMenuItem_Click);
             // 
@@ -124,6 +126,9 @@
             // 
             // additionalServiceToolStripMenuItem
             // 
+            this.additionalServiceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addServiceToolStripMenuItem,
+            this.removeServicesToolStripMenuItem});
             this.additionalServiceToolStripMenuItem.Name = "additionalServiceToolStripMenuItem";
             this.additionalServiceToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.additionalServiceToolStripMenuItem.Text = "Additional service";
@@ -185,6 +190,20 @@
             this.panelCore.Size = new System.Drawing.Size(852, 455);
             this.panelCore.TabIndex = 3;
             // 
+            // addServiceToolStripMenuItem
+            // 
+            this.addServiceToolStripMenuItem.Name = "addServiceToolStripMenuItem";
+            this.addServiceToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.addServiceToolStripMenuItem.Text = "Add Service";
+            this.addServiceToolStripMenuItem.Click += new System.EventHandler(this.addServiceToolStripMenuItem_Click);
+            // 
+            // removeServicesToolStripMenuItem
+            // 
+            this.removeServicesToolStripMenuItem.Name = "removeServicesToolStripMenuItem";
+            this.removeServicesToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.removeServicesToolStripMenuItem.Text = "Remove Service";
+            this.removeServicesToolStripMenuItem.Click += new System.EventHandler(this.removeServicesToolStripMenuItem_Click);
+            // 
             // CoreForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,6 +243,8 @@
         private System.Windows.Forms.ToolStripMenuItem saveFavouriteToXmlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem xmlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zipToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addServiceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeServicesToolStripMenuItem;
     }
 }
 

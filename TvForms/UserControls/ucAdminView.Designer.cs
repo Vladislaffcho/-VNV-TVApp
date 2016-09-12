@@ -32,7 +32,7 @@
             this.gbFindUsers = new System.Windows.Forms.GroupBox();
             this.lbSearchName = new System.Windows.Forms.Label();
             this.tbSearchName = new System.Windows.Forms.TextBox();
-            this.btResrtSearch = new System.Windows.Forms.Button();
+            this.btResetSearch = new System.Windows.Forms.Button();
             this.btSearch = new System.Windows.Forms.Button();
             this.tbSearchSurname = new System.Windows.Forms.TextBox();
             this.lbSearchSurame = new System.Windows.Forms.Label();
@@ -118,7 +118,7 @@
             // 
             this.gbFindUsers.Controls.Add(this.lbSearchName);
             this.gbFindUsers.Controls.Add(this.tbSearchName);
-            this.gbFindUsers.Controls.Add(this.btResrtSearch);
+            this.gbFindUsers.Controls.Add(this.btResetSearch);
             this.gbFindUsers.Controls.Add(this.btSearch);
             this.gbFindUsers.Controls.Add(this.tbSearchSurname);
             this.gbFindUsers.Controls.Add(this.lbSearchSurame);
@@ -149,15 +149,15 @@
             this.tbSearchName.Size = new System.Drawing.Size(100, 20);
             this.tbSearchName.TabIndex = 1;
             // 
-            // btResrtSearch
+            // btResetSearch
             // 
-            this.btResrtSearch.Location = new System.Drawing.Point(279, 88);
-            this.btResrtSearch.Name = "btResrtSearch";
-            this.btResrtSearch.Size = new System.Drawing.Size(75, 23);
-            this.btResrtSearch.TabIndex = 6;
-            this.btResrtSearch.Text = "Reset";
-            this.btResrtSearch.UseVisualStyleBackColor = true;
-            this.btResrtSearch.Click += new System.EventHandler(this.btResrtSearch_Click);
+            this.btResetSearch.Location = new System.Drawing.Point(279, 88);
+            this.btResetSearch.Name = "btResetSearch";
+            this.btResetSearch.Size = new System.Drawing.Size(75, 23);
+            this.btResetSearch.TabIndex = 6;
+            this.btResetSearch.Text = "Reset";
+            this.btResetSearch.UseVisualStyleBackColor = true;
+            this.btResetSearch.Click += new System.EventHandler(this.btResrtSearch_Click);
             // 
             // btSearch
             // 
@@ -250,7 +250,7 @@
             // 
             this.btViewPayment.Location = new System.Drawing.Point(709, 49);
             this.btViewPayment.Name = "btViewPayment";
-            this.btViewPayment.Size = new System.Drawing.Size(93, 21);
+            this.btViewPayment.Size = new System.Drawing.Size(101, 21);
             this.btViewPayment.TabIndex = 16;
             this.btViewPayment.Text = "View Payment";
             this.btViewPayment.UseVisualStyleBackColor = true;
@@ -304,7 +304,7 @@
             // 
             this.btViewServices.Location = new System.Drawing.Point(709, 16);
             this.btViewServices.Name = "btViewServices";
-            this.btViewServices.Size = new System.Drawing.Size(93, 21);
+            this.btViewServices.Size = new System.Drawing.Size(101, 21);
             this.btViewServices.TabIndex = 15;
             this.btViewServices.Text = "View Services";
             this.btViewServices.UseVisualStyleBackColor = true;
@@ -609,6 +609,6 @@
         private System.Windows.Forms.Label lbSearchSurame;
         private System.Windows.Forms.Label lbSearchName;
         private System.Windows.Forms.TextBox tbSearchName;
-        private System.Windows.Forms.Button btResrtSearch;
+        private System.Windows.Forms.Button btResetSearch;
     }
 }

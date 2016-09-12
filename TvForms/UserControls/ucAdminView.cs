@@ -299,20 +299,33 @@ namespace TvForms
                 var user = userRepo.Get(x => x.Id == _selectedUser)
                     .Include(x => x.UserType)
                     .First();
-                var newTypeId = (int)Enum.Parse(typeof(EUserType), cbUserType.SelectedItem.ToString());
-                var newType = new BaseRepository<UserType>(userRepo.ContextDb)
-                        .Get(x => x.Id == newTypeId).FirstOrDefault();
-                if (newTypeId != user.UserType.Id &&
-                    MessageBox.Show(@"Do you want to change user type from " + user.UserType.TypeName +
-                                    @" to " + newType?.TypeName, @"Change user type",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+
+                // check if the user is active
+                // in case he is not, show error message that it is forbidden to change type for inactive user
+                if (user.IsActiveStatus)
                 {
-                    user.UserType = newType;
-                    userRepo.Update(user);
-                    MessagesContainer.DisplayInfo("Next session for this user will start with new rights", "User type has been updated");
+                    var newTypeId = (int)Enum.Parse(typeof(EUserType), cbUserType.SelectedItem.ToString());
+                    var newType = new BaseRepository<UserType>(userRepo.ContextDb)
+                            .Get(x => x.Id == newTypeId).FirstOrDefault();
+                    if (newTypeId != user.UserType.Id &&
+                        MessageBox.Show(@"Do you want to change user type from " + user.UserType.TypeName +
+                                        @" to " + newType?.TypeName, @"Change user type",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        user.UserType = newType;
+                        userRepo.Update(user);
+                        MessagesContainer.DisplayInfo("Next session for this user will start with new rights", "User type has been updated");
+                    }
+                    else
+                    {
+                        cbUserType.SelectedIndex = user.UserType.Id;
+                    }
                 }
                 else
                 {
+                    _userType = true;
+                    MessagesContainer.DisplayError("Changing user type for inactive user is forbidden." + 
+                                                   Environment.NewLine + "Activate user first", "Error");
                     cbUserType.SelectedIndex = user.UserType.Id;
                 }
                 _userType = false;
@@ -395,6 +408,7 @@ namespace TvForms
             lvUserList.Items[0].Selected = true;
         }
 
+        // reset search button click
         private void btResrtSearch_Click(object sender, EventArgs e)
         {
             tbSearchName.Clear();
@@ -404,6 +418,7 @@ namespace TvForms
             SetPageView();
         }
 
+        // functionality to view additional services of a user
         private void btViewServices_Click(object sender, EventArgs e)
         {
             var additionalServices = new AdditionalServicesForm(CurrentUserId);

@@ -73,7 +73,7 @@
             // colMyServiceName
             // 
             this.colMyServiceName.Text = "Service";
-            this.colMyServiceName.Width = 94;
+            this.colMyServiceName.Width = 92;
             // 
             // colMyServicePrice
             // 
@@ -103,7 +103,7 @@
             // colAvailServiceName
             // 
             this.colAvailServiceName.Text = "Service";
-            this.colAvailServiceName.Width = 94;
+            this.colAvailServiceName.Width = 93;
             // 
             // colAvailServicePrice
             // 

@@ -108,6 +108,8 @@
             // scPayments
             // 
             this.scPayments.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scPayments.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.scPayments.IsSplitterFixed = true;
             this.scPayments.Location = new System.Drawing.Point(3, 16);
             this.scPayments.Name = "scPayments";
             // 
@@ -127,8 +129,8 @@
             this.scPayments.Panel2.Controls.Add(this.tbNameUser);
             this.scPayments.Panel2.Controls.Add(this.lbSurnameUser);
             this.scPayments.Panel2.Controls.Add(this.lbNameUser);
-            this.scPayments.Size = new System.Drawing.Size(617, 297);
-            this.scPayments.SplitterDistance = 451;
+            this.scPayments.Size = new System.Drawing.Size(611, 304);
+            this.scPayments.SplitterDistance = 446;
             this.scPayments.TabIndex = 0;
             // 
             // lvPayments
@@ -147,12 +149,13 @@
             this.lvPayments.MultiSelect = false;
             this.lvPayments.Name = "lvPayments";
             this.lvPayments.ShowItemToolTips = true;
-            this.lvPayments.Size = new System.Drawing.Size(451, 297);
+            this.lvPayments.Size = new System.Drawing.Size(446, 304);
             this.lvPayments.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvPayments.TabIndex = 1;
             this.lvPayments.UseCompatibleStateImageBehavior = false;
             this.lvPayments.View = System.Windows.Forms.View.Details;
             this.lvPayments.SelectedIndexChanged += new System.EventHandler(this.lvPayments_SelectedIndexChanged);
+            this.lvPayments.Resize += new System.EventHandler(this.lvPayments_Resize);
             // 
             // paymentId
             // 
@@ -219,9 +222,10 @@
             // 
             this.gbPayments.AutoSize = true;
             this.gbPayments.Controls.Add(this.scPayments);
-            this.gbPayments.Location = new System.Drawing.Point(4, 3);
+            this.gbPayments.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbPayments.Location = new System.Drawing.Point(0, 0);
             this.gbPayments.Name = "gbPayments";
-            this.gbPayments.Size = new System.Drawing.Size(623, 316);
+            this.gbPayments.Size = new System.Drawing.Size(617, 323);
             this.gbPayments.TabIndex = 2;
             this.gbPayments.TabStop = false;
             this.gbPayments.Text = "Payments";
@@ -230,9 +234,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.Controls.Add(this.gbPayments);
             this.Name = "UcPayments";
-            this.Size = new System.Drawing.Size(630, 323);
+            this.Size = new System.Drawing.Size(617, 323);
             this.scPayments.Panel1.ResumeLayout(false);
             this.scPayments.Panel2.ResumeLayout(false);
             this.scPayments.Panel2.PerformLayout();
