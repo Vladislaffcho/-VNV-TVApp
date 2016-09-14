@@ -11,7 +11,7 @@ namespace TvForms
     public partial class CoreForm : Form//, IIdentifyUser
     {
         //ToDo Review need to store all user data
-        private int CurrentUserId { get; set; }// = 3; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
+        private int CurrentUserId { get; set; } = 1; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
 
         //ToDo Review WTF? Naming convention!!!
         private UcTabsForUser _userWindow;// { get; set; }
@@ -20,7 +20,7 @@ namespace TvForms
 
         public CoreForm()
         {
-            ShowLoginForm(); //uncommit after test programme
+            //ShowLoginForm(); //uncommit after test programme
 
             InitializeComponent();
             LoadMainControl();
@@ -194,7 +194,6 @@ namespace TvForms
         }
 
         
-        //ToDo rewise this method. Updated Victor's code after merge
         private void CoreForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             var ordRepo = new BaseRepository<Order>();
@@ -255,15 +254,20 @@ namespace TvForms
                 Icon = new Icon(@"icons\mastercard_1450.ico")
             };
             actions.Show();
-            //_userWindow.SetReloadMoneyButton(true, Color.Crimson);
+
+            var userType = new BaseRepository<User>().Get(u => u.Id == CurrentUserId).FirstOrDefault()?.UserType.Id;
+            if (userType == (int)EUserType.CLIENT)
+               _userWindow.SetReloadMoneyButton(true, Color.Crimson);
         }
 
         private void additionalServiceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var additionalServices = new AdditionalServicesForm(CurrentUserId);
             additionalServices.ShowDialog();
-            //ToDo commented the line below as it gets the app crashed. Rewise the method
-            //_userWindow.SetReloadMoneyButton(true, Color.Crimson);
+
+            var userType = new BaseRepository<User>().Get(u => u.Id == CurrentUserId).FirstOrDefault()?.UserType.Id;
+            if (userType == (int)EUserType.CLIENT)
+                _userWindow.SetReloadMoneyButton(true, Color.Crimson);
         }
 
         // add additional servide to the DB

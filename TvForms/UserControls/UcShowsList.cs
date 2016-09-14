@@ -63,11 +63,14 @@ namespace TvForms
                 item.SubItems.Add($"{sh.Date.Hour:00}:{sh.Date.Minute:00}");
                 item.SubItems.Add($"{sh.Date.Day:00}/{sh.Date.Month:00}");
                 item.SubItems.Add(sh.Name);
-                item.SubItems.Add(channelsAll.Find(ch => ch.OriginalId == sh.CodeOriginalChannel)?.Name ?? "o|o");
+
+                var channel = channelsAll.Find(ch => ch.OriginalId == sh.CodeOriginalChannel);
+                item.SubItems.Add(channel?.Name ?? "o|o");
+                item.SubItems.Add(channel?.OriginalId.ToString() ?? "0");
+
                 item.SubItems.Add(sh.Id.ToString());
 
                 itemsList.Add(item);
-                //displayIndexShows++;
 
                 if (scheduleShows.Find(s => s.TvShow.Id == sh.Id) != null)
                 {
@@ -79,11 +82,21 @@ namespace TvForms
         }
 
 
-        public void AddTvShowsToControl(IEnumerable<TvShow> addShows)
+        public void AddTvShowsToControl(List<TvShow> addShows)
         {
             //-----------------------------------------
             var channelsAll = new BaseRepository<Channel>().GetAll().ToList();
-            //var displayIndexShows = 1;
+
+            //do not add shows if this shows are in the list
+            foreach (ListViewItem item in lvShowPrograms.Items)
+            {
+                if (addShows[0].CodeOriginalChannel == item.SubItems[5].Text.GetInt())
+                {
+                    return;
+                }    
+            }
+            
+
             //-----------------------------------------
             foreach (var sh in addShows)
             {
@@ -92,13 +105,13 @@ namespace TvForms
                 item.SubItems.Add($"{sh.Date.Hour:00}:{sh.Date.Minute:00}");
                 item.SubItems.Add($"{sh.Date.Day:00}/{sh.Date.Month:00}");
                 item.SubItems.Add(sh.Name);
-                //item.SubItems.Add(sh.Channel.Name);
-                item.SubItems.Add(channelsAll.Find(ch => ch.OriginalId == sh.CodeOriginalChannel).Name);
+
+                var channel = channelsAll.Find(ch => ch.OriginalId == sh.CodeOriginalChannel);
+                item.SubItems.Add(channel.Name);
+                item.SubItems.Add(channel.OriginalId.ToString());
                 item.SubItems.Add(sh.Id.ToString());
 
                 lvShowPrograms.Items.Add(item);
-
-                //displayIndexShows++;
             }
 
         }
@@ -106,20 +119,15 @@ namespace TvForms
         public void RemoveTvShowsFromControl(int channelOriginalId)
         {
             foreach (ListViewItem item in lvShowPrograms.Items)
-            {
-                if (item.SubItems[4].Text.GetInt() == channelOriginalId)
-                {
+                if (item.SubItems[5].Text.GetInt() == channelOriginalId)
                     lvShowPrograms.Items[item.Index].Remove();
-                    //DisplayIndexShows--;
-                }
-            }
         }
 
 
         private void lvShowPrograms_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            
-            var id = lvShowPrograms.Items[e.Index].SubItems[5].Text.GetInt();
+            //tv programme id in listview
+            var id = lvShowPrograms.Items[e.Index].SubItems[6].Text.GetInt();
             var userRepo = new BaseRepository<User>();
             var scheduleRepo = new BaseRepository<UserSchedule>(userRepo.ContextDb);
             var user = userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault();

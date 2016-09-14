@@ -45,7 +45,6 @@ namespace TvForms
                     AllChannelControl.MarkChosenMedia();
                     break;
                 case 1:
-                    //CurrentOrderId = AllChannelControl.CurrentOrderId;
                     MyFavouriteControl?.Dispose();
                     MyFavouriteControl = new UcFavoirute(CurrentUserId);
                     tabPan_MyFavourite.Controls.Add(MyFavouriteControl);

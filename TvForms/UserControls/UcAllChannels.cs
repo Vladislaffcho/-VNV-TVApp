@@ -12,19 +12,13 @@ namespace TvForms
     {
         private int CurrentUserId { get; }
 
-        //private double ChoosenChannelsPrice { get; set; }
-
-        //public int CurrentOrderId { get; }
-
         private UcShowsList ControlForShows { get; set; }
 
 
         public UcAllChannels(int userId)
         {
-            //ToDo Load info from channels to channels list and to shows UC
             InitializeComponent();
             CurrentUserId = userId;
-            //CurrentOrderId = GetNewOrder().Id;
             LoadControls();
         }
 
@@ -35,12 +29,9 @@ namespace TvForms
 
             LoadAllChannelsList();
             LoadTvShowsList();//need to rewise
-            //ChoosenChannelsPrice = 0.0;
-
             rtbAllCh_Description.Text = @"THIS IS ALL CHANNELS TAB";
         }
 
-        //ToDo rewise this method. Updated Victor's code after merge
         private void LoadAllChannelsList()
         {
             //var number = 1;
@@ -132,7 +123,6 @@ namespace TvForms
             var userRepo = new BaseRepository<User>();
             var user = userRepo.Get(u => u.Id == CurrentUserId).FirstOrDefault();
             var orderChannelRepo = new BaseRepository<OrderChannel>(userRepo.ContextDb);
-            var orderRepo = new BaseRepository<Order>(userRepo.ContextDb);
             
             switch (e.NewValue)
             {
@@ -147,14 +137,10 @@ namespace TvForms
                             Channel = channelRepo.Get(c => c.OriginalId == idOrigin).FirstOrDefault(),
                             User = user
                         };
-
                         orderChannelRepo.Insert(orderedCh);
-
-                        //ChoosenChannelsPrice += orderedCh.Channel.Price;
                     }
-                    //var showsByChannel = showsRepo.Get(x => x.Channel.Id == id).ToList();
-                    var showsByChannel = await showsRepo.Get(x => x.CodeOriginalChannel == idOrigin).ToListAsync();
 
+                    var showsByChannel = await showsRepo.Get(x => x.CodeOriginalChannel == idOrigin).ToListAsync();
                     var addedShows =
                         showsByChannel.Where(show => (int) show.Date.DayOfWeek == GetSelectedDay()).ToList();
                     ControlForShows.AddTvShowsToControl(addedShows);
@@ -166,17 +152,13 @@ namespace TvForms
                     if (removeCh != null)
                     {
                         ControlForShows.RemoveTvShowsFromControl(removeCh.Channel.OriginalId);
-
-                        //ChoosenChannelsPrice = 
-                        //    ChoosenChannelsPrice - removeCh.Channel.Price < 0.00 ? 0.00 :
-                        //    ChoosenChannelsPrice -= removeCh.Channel.Price;
-
+                      
                         var schedFromRemovingChann = userSchedRepo.Get(sc => sc.TvShow.CodeOriginalChannel
                                                                              == removeCh.Channel.OriginalId).ToList();
                         userSchedRepo.RemoveRange(schedFromRemovingChann);
-
                         orderChannelRepo.Remove(removeCh);
                     }
+                    ControlForShows.RemoveTvShowsFromControl(idOrigin);
                     break;
 
                 //case CheckState.Indeterminate:

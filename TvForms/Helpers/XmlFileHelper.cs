@@ -183,9 +183,6 @@ namespace TvForms
                 return;
             }
 
-            //var orderRepo = new BaseRepository<Order>(channelRepo.ContextDb);
-            //var currentOrder = orderRepo.Get(o => o.User.Id == currentUserId
-                                                      //&& o.IsPaid == false && o.IsDeleted == false).FirstOrDefault();
             var currentUser = new BaseRepository<User>(channelRepo.ContextDb)
                 .Get(u => u.Id == currentUserId).FirstOrDefault();
             
@@ -201,15 +198,6 @@ namespace TvForms
                     return;
                 }
 
-                //change due date of current order from saved file
-                //if (currentOrder != null)
-                //{
-                //    currentOrder.DueDate = DateTime.ParseExact(xmlChannelsNodeList.Item(0)?.ChildNodes[2].InnerText,
-                //        "yyyyMMddHHmmss zzz", CultureInfo.InvariantCulture);
-                //    orderRepo.Update(currentOrder);
-                //}
-
-                //check for right format saved *.xml file (for channels)
                 foreach (XmlNode chaNode in xmlChannelsNodeList)
                 {
                     try
@@ -293,8 +281,7 @@ namespace TvForms
                 writer.WriteStartElement("tv");
 
                 var ordChannelRepo = new BaseRepository<OrderChannel>();
-                var userOrdChannels = ordChannelRepo.Get(x => x.User.Id == userId 
-                    && x.Order == null).ToList();
+                var userOrdChannels = ordChannelRepo.Get(x => x.User.Id == userId).ToList();
 
                 foreach (var ordChannel in userOrdChannels)
                 {
