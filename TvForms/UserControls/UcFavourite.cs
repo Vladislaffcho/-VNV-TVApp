@@ -146,13 +146,13 @@ namespace TvForms
 
             if (notPaidServices.Count == 0 && notPaidChannels.Count == 0)
             {
-                MessagesContainer.DisplayError("No channels and/or services to pay", "Attention!!!");
+                MessageContainer.DisplayError("No channels and/or services to pay", "Attention!!!");
                 return;
             }
 
             if (balance?.IsActiveStatus == false)
             {
-                MessagesContainer.DisplayError("Account is diactivated!" + Environment.NewLine +
+                MessageContainer.DisplayError("Account is diactivated!" + Environment.NewLine +
                     "Please connect to administrator", "Attention!!!");
                 return;
             }
@@ -165,7 +165,7 @@ namespace TvForms
             {
                 if (order.IsPaid)
                 {
-                    MessagesContainer.DisplayInfo("Order is paid already", "Attention!!!");
+                    MessageContainer.DisplayInfo("Order is paid already", "Attention!!!");
                     return;
                 }
                 order.IsPaid = true;
@@ -209,7 +209,7 @@ namespace TvForms
                     ordServicesRepo.Update(serv);
                 }
 
-                MessagesContainer.DisplayInfo(
+                MessageContainer.DisplayInfo(
                     $"Order #{order.Id} worth {order.TotalPrice} {lbUAH.Text}" + 
                     $" was paid succesfully. {Environment.NewLine }" +
                     $"Total count of channels {order.OrderChannels?.Count ?? 0.00}",
@@ -217,7 +217,7 @@ namespace TvForms
             }
             else
             {
-                MessagesContainer.DisplayError("Your balance is low!!!", "Error");
+                MessageContainer.DisplayError("Your balance is low!!!", "Error");
             }
         }
         

@@ -51,7 +51,7 @@
             this.tabPan_AllChannels.Location = new System.Drawing.Point(4, 4);
             this.tabPan_AllChannels.Name = "tabPan_AllChannels";
             this.tabPan_AllChannels.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPan_AllChannels.Size = new System.Drawing.Size(844, 429);
+            this.tabPan_AllChannels.Size = new System.Drawing.Size(776, 411);
             this.tabPan_AllChannels.TabIndex = 0;
             this.tabPan_AllChannels.Text = "All Channels";
             this.tabPan_AllChannels.UseVisualStyleBackColor = true;
@@ -65,7 +65,7 @@
             this.tabForUsers.Location = new System.Drawing.Point(0, 0);
             this.tabForUsers.Name = "tabForUsers";
             this.tabForUsers.SelectedIndex = 0;
-            this.tabForUsers.Size = new System.Drawing.Size(852, 455);
+            this.tabForUsers.Size = new System.Drawing.Size(784, 437);
             this.tabForUsers.TabIndex = 1;
             this.tabForUsers.SelectedIndexChanged += new System.EventHandler(this.tabForUsers_SelectedIndexChanged);
             // 
@@ -75,7 +75,7 @@
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.Controls.Add(this.tabForUsers);
             this.Name = "UcTabsForUser";
-            this.Size = new System.Drawing.Size(852, 455);
+            this.Size = new System.Drawing.Size(784, 437);
             this.tabForUsers.ResumeLayout(false);
             this.ResumeLayout(false);
 

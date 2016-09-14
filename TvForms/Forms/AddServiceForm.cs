@@ -38,7 +38,7 @@ namespace TvForms.Forms
 
             if (isError)
             {
-                MessagesContainer.DisplayError(errorMessage, "Error");
+                MessageContainer.DisplayError(errorMessage, "Error");
             }
             else
             {
@@ -49,7 +49,7 @@ namespace TvForms.Forms
                     Price = numServicePrice.Text.GetDouble(),
                     IsAgeLimit = cbAdultContent.Checked
                 });
-                MessagesContainer.DisplayInfo("Service added successfully", "Success");
+                MessageContainer.DisplayInfo("Service added successfully", "Success");
                 this.Close();
             }
         }

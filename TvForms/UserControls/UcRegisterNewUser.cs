@@ -75,7 +75,7 @@ namespace TvForms
             else
             {
                 tbPassword.Clear();
-                MessagesContainer.DisplayError(errorMessage, "User has not been created");
+                MessageContainer.DisplayError(errorMessage, "User has not been created");
             }
             return isValid;
         }
@@ -94,7 +94,7 @@ namespace TvForms
                 UserType = new BaseRepository<UserType>(userRepo.ContextDb)
                     .Get(x => x.TypeName == "Client").FirstOrDefault()
             });
-                MessagesContainer.DisplayInfo("Created new user successfully.\nYou may log in with new credentials.",
+                MessageContainer.DisplayInfo("Created new user successfully.\nYou may log in with new credentials.",
                 "New user has been created");
         }
     }

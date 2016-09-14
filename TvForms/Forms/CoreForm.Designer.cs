@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CoreForm));
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openXmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadFromXmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSavedScheduleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFavouriteToXmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,6 +39,8 @@
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.additionalServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeServicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountRechargeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.profileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,15 +48,13 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.panelCore = new System.Windows.Forms.Panel();
-            this.addServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeServicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openXmlToolStripMenuItem,
+            this.loadFromXmlToolStripMenuItem,
             this.openSavedScheduleToolStripMenuItem,
             this.saveFavouriteToXmlToolStripMenuItem,
             this.toolStripSeparator1,
@@ -63,17 +63,17 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // openXmlToolStripMenuItem
+            // loadFromXmlToolStripMenuItem
             // 
-            this.openXmlToolStripMenuItem.Name = "openXmlToolStripMenuItem";
-            this.openXmlToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.openXmlToolStripMenuItem.Text = "Open xml File";
-            this.openXmlToolStripMenuItem.Click += new System.EventHandler(this.openXmlToolStripMenuItem_Click);
+            this.loadFromXmlToolStripMenuItem.Name = "loadFromXmlToolStripMenuItem";
+            this.loadFromXmlToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.loadFromXmlToolStripMenuItem.Text = "Load channels from xml";
+            this.loadFromXmlToolStripMenuItem.Click += new System.EventHandler(this.openXmlToolStripMenuItem_Click);
             // 
             // openSavedScheduleToolStripMenuItem
             // 
             this.openSavedScheduleToolStripMenuItem.Name = "openSavedScheduleToolStripMenuItem";
-            this.openSavedScheduleToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.openSavedScheduleToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
             this.openSavedScheduleToolStripMenuItem.Text = "Open saved schedule";
             this.openSavedScheduleToolStripMenuItem.Click += new System.EventHandler(this.openSavedScheduleToolStripMenuItem_Click);
             // 
@@ -83,7 +83,7 @@
             this.xmlToolStripMenuItem,
             this.zipToolStripMenuItem});
             this.saveFavouriteToXmlToolStripMenuItem.Name = "saveFavouriteToXmlToolStripMenuItem";
-            this.saveFavouriteToXmlToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.saveFavouriteToXmlToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
             this.saveFavouriteToXmlToolStripMenuItem.Text = "Save favourite to...";
             // 
             // xmlToolStripMenuItem
@@ -103,12 +103,12 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(183, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(198, 6);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -133,6 +133,20 @@
             this.additionalServiceToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.additionalServiceToolStripMenuItem.Text = "Additional service";
             this.additionalServiceToolStripMenuItem.Click += new System.EventHandler(this.additionalServiceToolStripMenuItem_Click);
+            // 
+            // addServiceToolStripMenuItem
+            // 
+            this.addServiceToolStripMenuItem.Name = "addServiceToolStripMenuItem";
+            this.addServiceToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.addServiceToolStripMenuItem.Text = "Add Service";
+            this.addServiceToolStripMenuItem.Click += new System.EventHandler(this.addServiceToolStripMenuItem_Click);
+            // 
+            // removeServicesToolStripMenuItem
+            // 
+            this.removeServicesToolStripMenuItem.Name = "removeServicesToolStripMenuItem";
+            this.removeServicesToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.removeServicesToolStripMenuItem.Text = "Remove Service";
+            this.removeServicesToolStripMenuItem.Click += new System.EventHandler(this.removeServicesToolStripMenuItem_Click);
             // 
             // ordersToolStripMenuItem
             // 
@@ -177,7 +191,7 @@
             this.aboutToolStripMenuItem});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
-            this.msMain.Size = new System.Drawing.Size(852, 24);
+            this.msMain.Size = new System.Drawing.Size(784, 24);
             this.msMain.TabIndex = 0;
             this.msMain.Text = "MainMenu";
             // 
@@ -187,36 +201,22 @@
             this.panelCore.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelCore.Location = new System.Drawing.Point(0, 24);
             this.panelCore.Name = "panelCore";
-            this.panelCore.Size = new System.Drawing.Size(852, 455);
+            this.panelCore.Size = new System.Drawing.Size(784, 437);
             this.panelCore.TabIndex = 3;
-            // 
-            // addServiceToolStripMenuItem
-            // 
-            this.addServiceToolStripMenuItem.Name = "addServiceToolStripMenuItem";
-            this.addServiceToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.addServiceToolStripMenuItem.Text = "Add Service";
-            this.addServiceToolStripMenuItem.Click += new System.EventHandler(this.addServiceToolStripMenuItem_Click);
-            // 
-            // removeServicesToolStripMenuItem
-            // 
-            this.removeServicesToolStripMenuItem.Name = "removeServicesToolStripMenuItem";
-            this.removeServicesToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.removeServicesToolStripMenuItem.Text = "Remove Service";
-            this.removeServicesToolStripMenuItem.Click += new System.EventHandler(this.removeServicesToolStripMenuItem_Click);
             // 
             // CoreForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(852, 479);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.panelCore);
             this.Controls.Add(this.msMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.msMain;
-            this.MaximumSize = new System.Drawing.Size(868, 518);
+            this.MaximumSize = new System.Drawing.Size(800, 500);
             this.Name = "CoreForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "VNV TV Shedule";
+            this.Text = "VNV TV application";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CoreForm_FormClosing);
             this.msMain.ResumeLayout(false);
             this.msMain.PerformLayout();
@@ -227,7 +227,7 @@
 
         #endregion
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openXmlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadFromXmlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openSavedScheduleToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;

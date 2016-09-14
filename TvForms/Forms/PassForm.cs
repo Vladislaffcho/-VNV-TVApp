@@ -88,7 +88,7 @@ namespace TvForms
 
             if (CurrentUserId != 0)
                 return;
-            MessagesContainer.DisplayError("Incorrect login or password", "Access denied");
+            MessageContainer.DisplayError("Incorrect login or password", "Access denied");
             e.Cancel = true;
         }
 

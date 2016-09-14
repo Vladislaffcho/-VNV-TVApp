@@ -114,14 +114,14 @@ namespace TvForms
                 {
                     currentUser.IsActiveStatus = false;
                     userRepo.Update(currentUser);
-                    MessagesContainer.DisplayInfo("Your account has been deactivated.\n" +
+                    MessageContainer.DisplayInfo("Your account has been deactivated.\n" +
                                               "You should contact our managers to reactivate it in the future.",
                         "Success");
                 }
             }
             else
             {
-                MessagesContainer.DisplayInfo("Your account is already deactivated\n" +
+                MessageContainer.DisplayInfo("Your account is already deactivated\n" +
                                               "You should contact our managers to reactivate it",
                         "Account status");
             }
@@ -151,7 +151,7 @@ namespace TvForms
             }
             else
             {
-                MessagesContainer.DisplayError("Select address to update", "Error");
+                MessageContainer.DisplayError("Select address to update", "Error");
             }
         }
 
@@ -166,7 +166,7 @@ namespace TvForms
             }
             else
             {
-                MessagesContainer.DisplayError("Select address to delete", "Error");
+                MessageContainer.DisplayError("Select address to delete", "Error");
             }
         }
 
@@ -201,7 +201,7 @@ namespace TvForms
             }
             else
             {
-                MessagesContainer.DisplayError("Select address to update", "Error");
+                MessageContainer.DisplayError("Select address to update", "Error");
             }
         }
 
@@ -218,7 +218,7 @@ namespace TvForms
             }
             else
             {
-                MessagesContainer.DisplayError("Select address to update", "Error");
+                MessageContainer.DisplayError("Select address to update", "Error");
             }
         }
 
@@ -232,7 +232,7 @@ namespace TvForms
             }
             else
             {
-                MessagesContainer.DisplayError("Select email to delete", "Error");
+                MessageContainer.DisplayError("Select email to delete", "Error");
             }
         }
 
@@ -246,7 +246,7 @@ namespace TvForms
             }
             else
             {
-                MessagesContainer.DisplayError("Select telephone to delete", "Error");
+                MessageContainer.DisplayError("Select telephone to delete", "Error");
             }
         }
 

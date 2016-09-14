@@ -71,7 +71,7 @@ namespace TvForms
             var acc = new BaseRepository<Account>().Get(a => a.User.Id == CurrentUserId).FirstOrDefault();
             if (acc?.IsActiveStatus == false)
             {
-                MessagesContainer.DisplayError("Account is diactivated!" + Environment.NewLine +
+                MessageContainer.DisplayError("Account is diactivated!" + Environment.NewLine +
                                                "Please connect to administrator", "Attention!!!");
                 return;
             }

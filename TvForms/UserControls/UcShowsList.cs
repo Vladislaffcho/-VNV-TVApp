@@ -150,7 +150,7 @@ namespace TvForms
                     break;
 
                 case CheckState.Indeterminate:
-                    MessagesContainer.DisplayError("Something went wrong in checking/unchecking tvShows (case CheckState.Indeterminate:)", "Error");
+                    MessageContainer.DisplayError("Something went wrong in checking/unchecking tvShows (case CheckState.Indeterminate:)", "Error");
                     break;
 
                 default:

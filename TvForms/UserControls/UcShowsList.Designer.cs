@@ -51,7 +51,7 @@
             this.lvShowPrograms.Location = new System.Drawing.Point(0, 0);
             this.lvShowPrograms.Name = "lvShowPrograms";
             this.lvShowPrograms.ShowItemToolTips = true;
-            this.lvShowPrograms.Size = new System.Drawing.Size(477, 308);
+            this.lvShowPrograms.Size = new System.Drawing.Size(401, 281);
             this.lvShowPrograms.TabIndex = 0;
             this.lvShowPrograms.UseCompatibleStateImageBehavior = false;
             this.lvShowPrograms.View = System.Windows.Forms.View.Details;
@@ -75,7 +75,7 @@
             // NameShows
             // 
             this.NameShows.Text = "Name";
-            this.NameShows.Width = 197;
+            this.NameShows.Width = 133;
             // 
             // ChannelName
             // 
@@ -88,7 +88,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lvShowPrograms);
             this.Name = "UcShowsList";
-            this.Size = new System.Drawing.Size(477, 308);
+            this.Size = new System.Drawing.Size(401, 281);
             this.ResumeLayout(false);
 
         }

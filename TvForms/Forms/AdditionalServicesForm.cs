@@ -84,7 +84,7 @@ namespace TvForms.Forms
                     ChoosenServicePrice += orderedService.AdditionalService?.Price ?? 0.0;
                     orderServiceReposotory.Insert(orderedService);
 
-                    MessagesContainer.DisplayInfo("Chosen item has successfully been added to your orders", "Success");
+                    MessageContainer.DisplayInfo("Chosen item has successfully been added to your orders", "Success");
                     var userServices = orderServiceReposotory.ContextDb.OrderServices.Where(s => s.User.Id == _currentUser);
                     lvMyAdditionalService.Items.Clear();
                     foreach (var service in userServices)
@@ -99,12 +99,12 @@ namespace TvForms.Forms
 
                 else
                 {
-                    MessagesContainer.DisplayError("You already have this service", "Error");
+                    MessageContainer.DisplayError("You already have this service", "Error");
                 }
             }
             else
             {
-                MessagesContainer.DisplayError("You should select a service to add", "Error");
+                MessageContainer.DisplayError("You should select a service to add", "Error");
             }
         }
     }

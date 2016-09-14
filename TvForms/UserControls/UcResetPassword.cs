@@ -28,17 +28,17 @@ namespace TvForms
                     }
                     else
                     {
-                        MessagesContainer.DisplayError("Email not found", "Error");
+                        MessageContainer.DisplayError("Email not found", "Error");
                     }
                 }
                 else
                 {
-                    MessagesContainer.DisplayError("Please, enter valid email", "Error");
+                    MessageContainer.DisplayError("Please, enter valid email", "Error");
                 }
             }
             else
             {
-                MessagesContainer.DisplayError("You should enter email first", "Email not entered");
+                MessageContainer.DisplayError("You should enter email first", "Email not entered");
             }
         }
 
@@ -59,16 +59,16 @@ namespace TvForms
                         .First();
                     user.Password = tbNewPass.Text.GetMd5Hash();
                     userRepo.Update(user);
-                    MessagesContainer.DisplayInfo("Password has been changed. Please login using new password", "Success");
+                    MessageContainer.DisplayInfo("Password has been changed. Please login using new password", "Success");
                 }
                 else
                 {
-                    MessagesContainer.DisplayError("Invalid code from email", "Error");
+                    MessageContainer.DisplayError("Invalid code from email", "Error");
                 }
             }
             else
             {
-                MessagesContainer.DisplayError("Request reser code first", "Error");
+                MessageContainer.DisplayError("Request reser code first", "Error");
             }
         }
     }

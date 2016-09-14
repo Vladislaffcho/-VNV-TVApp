@@ -54,7 +54,7 @@ namespace TvForms
                         case (int) EUserType.CLIENT: //user
                             _userWindow = new UcTabsForUser(CurrentUserId);
                             panelCore.Controls.Add(_userWindow);
-                            openXmlToolStripMenuItem.Visible = false;
+                            loadFromXmlToolStripMenuItem.Visible = false;
                             addServiceToolStripMenuItem.Visible = false;
                             removeServicesToolStripMenuItem.Visible = false;
                             break;
@@ -80,13 +80,12 @@ namespace TvForms
 
         private void openXmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //ToDo Naming convention!
             var openXmlFile = new OpenFileDialog
             {
                 DefaultExt = "*.xml",
                 Filter = @"XML Files|*.xml"
             };
-            
+
             if (openXmlFile.ShowDialog() != DialogResult.OK || openXmlFile.FileName.Length <= 0) return;
 
             XmlFileHelper.ParseChannel(openXmlFile.FileName);
@@ -244,7 +243,7 @@ namespace TvForms
             var acc = new BaseRepository<Account>().Get(a => a.User.Id == CurrentUserId).FirstOrDefault();
             if (acc?.IsActiveStatus == false)
             {
-                MessagesContainer.DisplayError("Account is diactivated!" + Environment.NewLine +
+                MessageContainer.DisplayError("Account is diactivated!" + Environment.NewLine +
                                                "Please connect to administrator", "Attention!!!");
                 return;
             }

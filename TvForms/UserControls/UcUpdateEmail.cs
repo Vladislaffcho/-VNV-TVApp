@@ -73,7 +73,7 @@ namespace TvForms
             }
             else
             {
-                MessagesContainer.DisplayError(errorMessage, "Invalid input");
+                MessageContainer.DisplayError(errorMessage, "Invalid input");
             }
             return isValidEmail;
         }

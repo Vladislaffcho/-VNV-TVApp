@@ -48,12 +48,12 @@ namespace TvForms.Forms
                 var serviceToRemove = serviceReposotory.Get(x => x.Id == serviceId)
                     .First();
                 serviceReposotory.Remove(serviceToRemove);
-                MessagesContainer.DisplayInfo("Service removed successfully", "Success");
+                MessageContainer.DisplayInfo("Service removed successfully", "Success");
                 SetPageView();
             }
             else
             {
-                MessagesContainer.DisplayError("Select a service to remove", "Error");
+                MessageContainer.DisplayError("Select a service to remove", "Error");
             }
         }
     }

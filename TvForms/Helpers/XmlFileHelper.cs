@@ -32,16 +32,16 @@ namespace TvForms
                         select new Channel
                         {
                             Name = node.FirstChild.InnerText,
-                            Price = rand.Next(0, rand.Next(1,5)*100),
-                            IsAgeLimit = rand.Next(0,4)%3 == 0,
+                            Price = rand.Next(0, rand.Next(1,5)*10),
+                            IsAgeLimit = rand.Next(0,4)%2 == 0,
                             OriginalId = originId
                         }).ToList();
                     channelRepo.AddRange(channelList);
 
-                    MessagesContainer.ChannelsLoadGood();
+                    MessageContainer.ChannelsLoadGood();
                 }
                 else
-                    MessagesContainer.SomethingWrongInFileLoad();
+                    MessageContainer.SomethingWrongInFileLoad();
             }
             catch (DbEntityValidationException ex)
             {
@@ -59,7 +59,7 @@ namespace TvForms
             }
             catch (Exception ex)
             {
-                MessagesContainer.SomethingWrongInChannelLoad(ex);
+                MessageContainer.SomethingWrongInChannelLoad(ex);
             }
         }
 
@@ -130,10 +130,10 @@ namespace TvForms
 
                     progressBar.Close();
 
-                    MessagesContainer.ProgrammsLoadGood();
+                    MessageContainer.ProgrammsLoadGood();
                 }
                 else
-                    MessagesContainer.SomethingWrongInFileLoad();
+                    MessageContainer.SomethingWrongInFileLoad();
 
             }
             catch (DbEntityValidationException ex)
@@ -153,7 +153,7 @@ namespace TvForms
             }
             catch (Exception ex)
             {
-                MessagesContainer.SomethingWrongInProgrammLoad(ex);
+                MessageContainer.SomethingWrongInProgrammLoad(ex);
             }
             
         }
@@ -171,14 +171,14 @@ namespace TvForms
 
             if (channelRepo.GetAll().Any() == false)
             {
-                MessagesContainer.DisplayInfo("You can't load favourite media. Channels table is clear!!!" +
+                MessageContainer.DisplayInfo("You can't load favourite media. Channels table is clear!!!" +
                                               Environment.NewLine + "Load base about channels first!!!", "Error");
                 return;
             }
 
             if (tvShowRepo.GetAll().Any() == false)
             {
-                MessagesContainer.DisplayInfo("You can't load favourite media. TV programmers table is clear!!!" +
+                MessageContainer.DisplayInfo("You can't load favourite media. TV programmers table is clear!!!" +
                                               Environment.NewLine + "Load base about TvShows first!!!", "Error");
                 return;
             }
@@ -197,7 +197,7 @@ namespace TvForms
                 var userIdInFile = xmlChannelsNodeList?.Item(0)?.ChildNodes[2].InnerText.GetInt();
                 if (userIdInFile != currentUserId)
                 {
-                    MessagesContainer.DisplayError("This file include not your favourite media!!! Sorry", "Error");
+                    MessageContainer.DisplayError("This file include not your favourite media!!! Sorry", "Error");
                     return;
                 }
 
@@ -216,13 +216,13 @@ namespace TvForms
                     {
                         if (chaNode.Attributes == null || chaNode.Attributes["favourite"].Value != "true")
                         {
-                            MessagesContainer.DisplayError("This file doesn't contains favourite media!!!", "WRONG FILE!");
+                            MessageContainer.DisplayError("This file doesn't contains favourite media!!!", "WRONG FILE!");
                             return;
                         }
                     }
                     catch(Exception)
                     {
-                        MessagesContainer.DisplayError("This file doesn't contains favourite media!!!", "WRONG FILE!");
+                        MessageContainer.DisplayError("This file doesn't contains favourite media!!!", "WRONG FILE!");
                         return;
                     }
                 }
@@ -232,7 +232,7 @@ namespace TvForms
                     && xmlTvShowsNodeList.Cast<XmlNode>().Any(showNode => showNode.Attributes == null || 
                     showNode.Attributes["favourite"].Value != "true"))
                 {
-                    MessagesContainer.DisplayError("This file doesn't contains favourite media!!!", "WRONG FILE!");
+                    MessageContainer.DisplayError("This file doesn't contains favourite media!!!", "WRONG FILE!");
                     return;
                 }
                 
@@ -264,7 +264,7 @@ namespace TvForms
                 if (orderChanellList.Any(o => o.Channel == null) ||
                     userScheduleList.Any(sc => sc.TvShow == null))
                 {
-                    MessagesContainer.DisplayInfo("Saved channels or TV-programmers don't meet current database.", "Info");
+                    MessageContainer.DisplayInfo("Saved channels or TV-programmers don't meet current database.", "Info");
                 }
                 else
                 {
@@ -274,13 +274,13 @@ namespace TvForms
                     var schedRepo = new BaseRepository<UserSchedule>(channelRepo.ContextDb);
                     schedRepo.AddRange(userScheduleList);
 
-                    MessagesContainer.DisplayInfo("Saved schedule was read good.", "Info");
+                    MessageContainer.DisplayInfo("Saved schedule was read good.", "Info");
                 }
                 
             }
 
             else
-                MessagesContainer.SomethingWrongInFileLoad();
+                MessageContainer.SomethingWrongInFileLoad();
         }
 
 

@@ -314,7 +314,7 @@ namespace TvForms
                     {
                         user.UserType = newType;
                         userRepo.Update(user);
-                        MessagesContainer.DisplayInfo("Next session for this user will start with new rights", "User type has been updated");
+                        MessageContainer.DisplayInfo("Next session for this user will start with new rights", "User type has been updated");
                     }
                     else
                     {
@@ -324,7 +324,7 @@ namespace TvForms
                 else
                 {
                     _userType = true;
-                    MessagesContainer.DisplayError("Changing user type for inactive user is forbidden." + 
+                    MessageContainer.DisplayError("Changing user type for inactive user is forbidden." + 
                                                    Environment.NewLine + "Activate user first", "Error");
                     cbUserType.SelectedIndex = user.UserType.Id;
                 }
@@ -340,7 +340,7 @@ namespace TvForms
                 tbSurname.Text.Trim() == String.Empty &&
                 numSearchUserId.Value == 0)
             {
-                MessagesContainer.DisplayError("Please, set search criteria", "Error");
+                MessageContainer.DisplayError("Please, set search criteria", "Error");
             }
             else 
             {
@@ -372,7 +372,7 @@ namespace TvForms
 
                 if (!foundUsers.Any())
                 {
-                    MessagesContainer.DisplayError("No users found according to selected criteria", "Error");
+                    MessageContainer.DisplayError("No users found according to selected criteria", "Error");
                     return;
                 }
                 FillUsersLv(foundUsers);

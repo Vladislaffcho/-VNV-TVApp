@@ -69,10 +69,10 @@ namespace TvForms
             this.tabControl_Shows.Controls.Add(this.tabShows_Thursday);
             this.tabControl_Shows.Controls.Add(this.tabShows_Friday);
             this.tabControl_Shows.Controls.Add(this.tabShows_Saturday);
-            this.tabControl_Shows.Location = new System.Drawing.Point(350, 14);
+            this.tabControl_Shows.Location = new System.Drawing.Point(350, 16);
             this.tabControl_Shows.Name = "tabControl_Shows";
             this.tabControl_Shows.SelectedIndex = 0;
-            this.tabControl_Shows.Size = new System.Drawing.Size(485, 334);
+            this.tabControl_Shows.Size = new System.Drawing.Size(409, 307);
             this.tabControl_Shows.TabIndex = 2;
             this.tabControl_Shows.SelectedIndexChanged += new System.EventHandler(this.tabControl_Shows_SelectedIndexChanged);
             // 
@@ -81,7 +81,7 @@ namespace TvForms
             this.tabShows_Sunday.Location = new System.Drawing.Point(4, 22);
             this.tabShows_Sunday.Name = "tabShows_Sunday";
             this.tabShows_Sunday.Padding = new System.Windows.Forms.Padding(3);
-            this.tabShows_Sunday.Size = new System.Drawing.Size(477, 308);
+            this.tabShows_Sunday.Size = new System.Drawing.Size(401, 281);
             this.tabShows_Sunday.TabIndex = 8;
             this.tabShows_Sunday.Text = "Sunday";
             this.tabShows_Sunday.UseVisualStyleBackColor = true;
@@ -91,7 +91,7 @@ namespace TvForms
             this.tabShows_Monday.Location = new System.Drawing.Point(4, 22);
             this.tabShows_Monday.Name = "tabShows_Monday";
             this.tabShows_Monday.Padding = new System.Windows.Forms.Padding(3);
-            this.tabShows_Monday.Size = new System.Drawing.Size(477, 308);
+            this.tabShows_Monday.Size = new System.Drawing.Size(401, 281);
             this.tabShows_Monday.TabIndex = 1;
             this.tabShows_Monday.Text = "Monday";
             this.tabShows_Monday.UseVisualStyleBackColor = true;
@@ -101,7 +101,7 @@ namespace TvForms
             this.tabShows_Tuesday.Location = new System.Drawing.Point(4, 22);
             this.tabShows_Tuesday.Name = "tabShows_Tuesday";
             this.tabShows_Tuesday.Padding = new System.Windows.Forms.Padding(3);
-            this.tabShows_Tuesday.Size = new System.Drawing.Size(477, 308);
+            this.tabShows_Tuesday.Size = new System.Drawing.Size(401, 281);
             this.tabShows_Tuesday.TabIndex = 7;
             this.tabShows_Tuesday.Text = "Tuesday";
             this.tabShows_Tuesday.UseVisualStyleBackColor = true;
@@ -111,7 +111,7 @@ namespace TvForms
             this.tabShows_Wednesday.Location = new System.Drawing.Point(4, 22);
             this.tabShows_Wednesday.Name = "tabShows_Wednesday";
             this.tabShows_Wednesday.Padding = new System.Windows.Forms.Padding(3);
-            this.tabShows_Wednesday.Size = new System.Drawing.Size(477, 308);
+            this.tabShows_Wednesday.Size = new System.Drawing.Size(401, 281);
             this.tabShows_Wednesday.TabIndex = 3;
             this.tabShows_Wednesday.Text = "Wednesday";
             this.tabShows_Wednesday.UseVisualStyleBackColor = true;
@@ -121,7 +121,7 @@ namespace TvForms
             this.tabShows_Thursday.Location = new System.Drawing.Point(4, 22);
             this.tabShows_Thursday.Name = "tabShows_Thursday";
             this.tabShows_Thursday.Padding = new System.Windows.Forms.Padding(3);
-            this.tabShows_Thursday.Size = new System.Drawing.Size(477, 308);
+            this.tabShows_Thursday.Size = new System.Drawing.Size(401, 281);
             this.tabShows_Thursday.TabIndex = 4;
             this.tabShows_Thursday.Text = "Thursday";
             this.tabShows_Thursday.UseVisualStyleBackColor = true;
@@ -131,7 +131,7 @@ namespace TvForms
             this.tabShows_Friday.Location = new System.Drawing.Point(4, 22);
             this.tabShows_Friday.Name = "tabShows_Friday";
             this.tabShows_Friday.Padding = new System.Windows.Forms.Padding(3);
-            this.tabShows_Friday.Size = new System.Drawing.Size(477, 308);
+            this.tabShows_Friday.Size = new System.Drawing.Size(401, 281);
             this.tabShows_Friday.TabIndex = 5;
             this.tabShows_Friday.Text = "Friday";
             this.tabShows_Friday.UseVisualStyleBackColor = true;
@@ -141,7 +141,7 @@ namespace TvForms
             this.tabShows_Saturday.Location = new System.Drawing.Point(4, 22);
             this.tabShows_Saturday.Name = "tabShows_Saturday";
             this.tabShows_Saturday.Padding = new System.Windows.Forms.Padding(3);
-            this.tabShows_Saturday.Size = new System.Drawing.Size(477, 308);
+            this.tabShows_Saturday.Size = new System.Drawing.Size(401, 281);
             this.tabShows_Saturday.TabIndex = 6;
             this.tabShows_Saturday.Text = "Saturday";
             this.tabShows_Saturday.UseVisualStyleBackColor = true;
@@ -149,9 +149,9 @@ namespace TvForms
             // gbAllCh_Description
             // 
             this.gbAllCh_Description.Controls.Add(this.rtbAllCh_Description);
-            this.gbAllCh_Description.Location = new System.Drawing.Point(350, 373);
+            this.gbAllCh_Description.Location = new System.Drawing.Point(350, 351);
             this.gbAllCh_Description.Name = "gbAllCh_Description";
-            this.gbAllCh_Description.Size = new System.Drawing.Size(485, 50);
+            this.gbAllCh_Description.Size = new System.Drawing.Size(409, 46);
             this.gbAllCh_Description.TabIndex = 8;
             this.gbAllCh_Description.TabStop = false;
             this.gbAllCh_Description.Text = "Show description";
@@ -161,7 +161,7 @@ namespace TvForms
             this.rtbAllCh_Description.Enabled = false;
             this.rtbAllCh_Description.Location = new System.Drawing.Point(2, 18);
             this.rtbAllCh_Description.Name = "rtbAllCh_Description";
-            this.rtbAllCh_Description.Size = new System.Drawing.Size(487, 33);
+            this.rtbAllCh_Description.Size = new System.Drawing.Size(403, 22);
             this.rtbAllCh_Description.TabIndex = 0;
             this.rtbAllCh_Description.Text = "";
             // 
@@ -173,9 +173,9 @@ namespace TvForms
             this.gbUcAllChannel.Controls.Add(this.lvChannelsList);
             this.gbUcAllChannel.Controls.Add(this.gbAllCh_Description);
             this.gbUcAllChannel.Controls.Add(this.tabControl_Shows);
-            this.gbUcAllChannel.Location = new System.Drawing.Point(3, 0);
+            this.gbUcAllChannel.Location = new System.Drawing.Point(8, 8);
             this.gbUcAllChannel.Name = "gbUcAllChannel";
-            this.gbUcAllChannel.Size = new System.Drawing.Size(838, 426);
+            this.gbUcAllChannel.Size = new System.Drawing.Size(765, 400);
             this.gbUcAllChannel.TabIndex = 0;
             this.gbUcAllChannel.TabStop = false;
             this.gbUcAllChannel.Text = "Channel choose";
@@ -185,7 +185,7 @@ namespace TvForms
             this.btReload.ForeColor = System.Drawing.Color.Crimson;
             this.btReload.Image = ((System.Drawing.Image)(resources.GetObject("btReload.Image")));
             this.btReload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btReload.Location = new System.Drawing.Point(249, 386);
+            this.btReload.Location = new System.Drawing.Point(256, 364);
             this.btReload.Name = "btReload";
             this.btReload.Size = new System.Drawing.Size(70, 29);
             this.btReload.TabIndex = 11;
@@ -198,7 +198,7 @@ namespace TvForms
             // cbCheckAllChannels
             // 
             this.cbCheckAllChannels.AutoSize = true;
-            this.cbCheckAllChannels.Location = new System.Drawing.Point(576, 354);
+            this.cbCheckAllChannels.Location = new System.Drawing.Point(506, 332);
             this.cbCheckAllChannels.Name = "cbCheckAllChannels";
             this.cbCheckAllChannels.Size = new System.Drawing.Size(116, 17);
             this.cbCheckAllChannels.TabIndex = 10;
@@ -209,7 +209,7 @@ namespace TvForms
             // cbOnlyChosenChannels
             // 
             this.cbOnlyChosenChannels.AutoSize = true;
-            this.cbOnlyChosenChannels.Location = new System.Drawing.Point(698, 354);
+            this.cbOnlyChosenChannels.Location = new System.Drawing.Point(628, 332);
             this.cbOnlyChosenChannels.Name = "cbOnlyChosenChannels";
             this.cbOnlyChosenChannels.Size = new System.Drawing.Size(131, 17);
             this.cbOnlyChosenChannels.TabIndex = 0;
@@ -233,7 +233,7 @@ namespace TvForms
             this.lvChannelsList.Location = new System.Drawing.Point(3, 16);
             this.lvChannelsList.Name = "lvChannelsList";
             this.lvChannelsList.ShowItemToolTips = true;
-            this.lvChannelsList.Size = new System.Drawing.Size(341, 407);
+            this.lvChannelsList.Size = new System.Drawing.Size(341, 381);
             this.lvChannelsList.TabIndex = 9;
             this.lvChannelsList.UseCompatibleStateImageBehavior = false;
             this.lvChannelsList.View = System.Windows.Forms.View.Details;
@@ -266,7 +266,7 @@ namespace TvForms
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.Controls.Add(this.gbUcAllChannel);
             this.Name = "UcAllChannels";
-            this.Size = new System.Drawing.Size(844, 429);
+            this.Size = new System.Drawing.Size(776, 411);
             this.tabControl_Shows.ResumeLayout(false);
             this.gbAllCh_Description.ResumeLayout(false);
             this.gbUcAllChannel.ResumeLayout(false);
