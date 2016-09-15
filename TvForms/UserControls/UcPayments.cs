@@ -108,14 +108,12 @@ namespace TvForms
                         balance > 0 && balance < 100.00 ? Color.Yellow : Color.LightGreen;
                 }
             }
-
-
         }
 
         private void lvPayments_Resize(object sender, EventArgs e)
         {
             //todo write width of columns in %
-            lvPayments.Columns[0].Width = 100;
+            //lvPayments.Columns[0].Width = 100;
         }
     }
 }

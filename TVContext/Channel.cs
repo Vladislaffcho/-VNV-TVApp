@@ -20,7 +20,6 @@ namespace TvContext
         [Required]
         public double Price { get; set; }
 
-        //ToDo Naming convention !!!! IsAgeLimit
         // if ageLimit 18+ - true
         [Required]
         [DefaultValue(false)]

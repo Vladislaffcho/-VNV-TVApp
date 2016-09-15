@@ -5,14 +5,7 @@ namespace TvForms
 {
     public partial class UcTabsForUser : UserControl
     {
-        //private readonly List<Channel> _channelRepo = BaseRepository<Channel>.GetAll().ToList();
-
         private int CurrentUserId { get; set; }
-
-        //private int CurrentOrderId { get; set; }
-
-        //ToDO Use only one UC
-        //private List<Channel> CurrentWeekChannel { get; set; }
 
         private UcAllChannels AllChannelControl { get; set; }
 
@@ -20,12 +13,9 @@ namespace TvForms
 
         public UcTabsForUser(int userId)
         {
-            
-            //ToDo Load channels for put in into constructor of ucChannelShowInfo
             InitializeComponent();
             CurrentUserId = userId;
             LoadControls();
-            
         }
 
         private void LoadControls()

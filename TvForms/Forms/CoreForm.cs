@@ -10,17 +10,15 @@ namespace TvForms
 {
     public partial class CoreForm : Form//, IIdentifyUser
     {
-        //ToDo Review need to store all user data
-        private int CurrentUserId { get; set; } = 1; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
+        private int CurrentUserId { get; set; }// = 2; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
 
-        //ToDo Review WTF? Naming convention!!!
         private UcTabsForUser _userWindow;// { get; set; }
 
         private UcAdminView _adminWindow;// { get; set; }
 
         public CoreForm()
         {
-            //ShowLoginForm(); //uncommit after test programme
+            ShowLoginForm(); //uncommit after test programme
 
             InitializeComponent();
             LoadMainControl();
@@ -208,7 +206,7 @@ namespace TvForms
             var needCheckForRemoveTvShow = schedRepo.Get(pr => pr.User.Id == CurrentUserId)?.ToList();
             
             //delete all not paid twShows
-            if (needCheckForRemoveTvShow != null)
+            if (needCheckForRemoveTvShow != null && notPaidChannels.Count > 0)
                 foreach (var show in needCheckForRemoveTvShow)
                 {
                     //if (ordChannels.Find(ch => ch.Channel.Id == show.TvShow.Channel.Id) == null)

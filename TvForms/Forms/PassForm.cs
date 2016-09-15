@@ -51,7 +51,6 @@ namespace TvForms
                     if (loginEntered.Length > 0 && loginEntered != string.Empty
                         && savedPass == pssCoded)
                     {
-                        //ToDo read to CurrentUser
                         CurrentUserId = (from p in context.Users
                                             where p.Login == loginEntered
                                             select p.Id).FirstOrDefault();

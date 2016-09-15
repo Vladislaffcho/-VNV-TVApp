@@ -13,7 +13,6 @@ namespace TvContext
             //TvShows = new List<TvShow>();
         }
 
-        //ToDo Rename to DueDate
         // date when schedule expires
         [Column(TypeName = "datetime2")]
         [Required]
@@ -28,7 +27,6 @@ namespace TvContext
         public virtual User User { get; set; }
 
      
-        //ToDo Naming convention !!!! TvShows
         // set show ID from TvShow table
         //[Required]
         //public virtual ICollection<TvShow> TvShows { get; set; }
