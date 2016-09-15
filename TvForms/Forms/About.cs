@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TvForms.Helpers
+namespace TvForms
 {
     public partial class About : Form
     {

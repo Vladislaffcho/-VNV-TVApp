@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TvForms.Forms;
-using TvForms.Helpers;
+using TvForms;
 using TvContext;
 
 namespace TvForms
