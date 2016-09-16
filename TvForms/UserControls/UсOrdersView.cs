@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using TvContext;
 
@@ -14,6 +15,7 @@ namespace TvForms
 
         public UсOrdersView(int currentUserId)
         {
+            //Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             InitializeComponent();
             CurrentUserId = currentUserId;
             LoadDatas();

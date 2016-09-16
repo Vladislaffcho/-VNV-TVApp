@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AccountChargeForm));
             this.panChargeAccount = new System.Windows.Forms.Panel();
             this.btCancel = new System.Windows.Forms.Button();
-            this.btOk = new System.Windows.Forms.Button();
+            this.btOkey = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // panChargeAccount
@@ -53,31 +53,33 @@
             this.btCancel.UseVisualStyleBackColor = true;
             this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
-            // btOk
+            // btOkey
             // 
-            this.btOk.Location = new System.Drawing.Point(286, 162);
-            this.btOk.Name = "btOk";
-            this.btOk.Size = new System.Drawing.Size(75, 23);
-            this.btOk.TabIndex = 2;
-            this.btOk.Text = "OK";
-            this.btOk.UseVisualStyleBackColor = true;
-            this.btOk.Click += new System.EventHandler(this.btOk_Click);
+            this.btOkey.Location = new System.Drawing.Point(286, 162);
+            this.btOkey.Name = "btOkey";
+            this.btOkey.Size = new System.Drawing.Size(75, 23);
+            this.btOkey.TabIndex = 2;
+            this.btOkey.Text = "Ok";
+            this.btOkey.UseVisualStyleBackColor = true;
+            this.btOkey.Click += new System.EventHandler(this.btOkey_Click);
             // 
             // AccountChargeForm
             // 
-            this.AcceptButton = this.btOk;
+            this.AcceptButton = this.btOkey;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btCancel;
             this.ClientSize = new System.Drawing.Size(445, 190);
             this.ControlBox = false;
-            this.Controls.Add(this.btOk);
+            this.Controls.Add(this.btOkey);
             this.Controls.Add(this.btCancel);
             this.Controls.Add(this.panChargeAccount);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(461, 229);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(461, 229);
             this.Name = "AccountChargeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Charge account";
@@ -90,6 +92,6 @@
 
         private System.Windows.Forms.Panel panChargeAccount;
         private System.Windows.Forms.Button btCancel;
-        private System.Windows.Forms.Button btOk;
+        private System.Windows.Forms.Button btOkey;
     }
 }

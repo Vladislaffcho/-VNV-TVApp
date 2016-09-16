@@ -30,6 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcFavoirute));
             this.scContainerFav = new System.Windows.Forms.SplitContainer();
+            this.lvFavouriteProgs = new System.Windows.Forms.ListView();
+            this.Number = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ChannelName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Adult = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Programm = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cbHidePaid = new System.Windows.Forms.CheckBox();
             this.btReload = new System.Windows.Forms.Button();
             this.btMakeOrder = new System.Windows.Forms.Button();
@@ -39,14 +47,6 @@
             this.lbUAH = new System.Windows.Forms.Label();
             this.tbTotalPrice = new System.Windows.Forms.TextBox();
             this.lbTotalPrice = new System.Windows.Forms.Label();
-            this.lvFavouriteProgs = new System.Windows.Forms.ListView();
-            this.Number = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ChannelName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Adult = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Programm = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.scContainerFav)).BeginInit();
             this.scContainerFav.Panel1.SuspendLayout();
             this.scContainerFav.Panel2.SuspendLayout();
@@ -77,98 +77,6 @@
             this.scContainerFav.Size = new System.Drawing.Size(776, 411);
             this.scContainerFav.SplitterDistance = 591;
             this.scContainerFav.TabIndex = 0;
-            // 
-            // cbHidePaid
-            // 
-            this.cbHidePaid.AutoSize = true;
-            this.cbHidePaid.Location = new System.Drawing.Point(18, 129);
-            this.cbHidePaid.Name = "cbHidePaid";
-            this.cbHidePaid.Size = new System.Drawing.Size(102, 17);
-            this.cbHidePaid.TabIndex = 13;
-            this.cbHidePaid.Text = "Hide paid media";
-            this.cbHidePaid.UseVisualStyleBackColor = true;
-            this.cbHidePaid.CheckedChanged += new System.EventHandler(this.cbHidePaid_CheckedChanged);
-            // 
-            // btReload
-            // 
-            this.btReload.BackColor = System.Drawing.Color.DarkOrange;
-            this.btReload.ForeColor = System.Drawing.Color.DarkBlue;
-            this.btReload.Image = ((System.Drawing.Image)(resources.GetObject("btReload.Image")));
-            this.btReload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btReload.Location = new System.Drawing.Point(18, 161);
-            this.btReload.Name = "btReload";
-            this.btReload.Size = new System.Drawing.Size(70, 29);
-            this.btReload.TabIndex = 12;
-            this.btReload.Text = "Reload";
-            this.btReload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btReload.UseVisualStyleBackColor = false;
-            this.btReload.Visible = false;
-            this.btReload.Click += new System.EventHandler(this.btReload_Click);
-            // 
-            // btMakeOrder
-            // 
-            this.btMakeOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btMakeOrder.Location = new System.Drawing.Point(18, 371);
-            this.btMakeOrder.Name = "btMakeOrder";
-            this.btMakeOrder.Size = new System.Drawing.Size(135, 23);
-            this.btMakeOrder.TabIndex = 6;
-            this.btMakeOrder.Text = "Make order";
-            this.btMakeOrder.UseVisualStyleBackColor = false;
-            this.btMakeOrder.Click += new System.EventHandler(this.btMakeOrder_Click);
-            // 
-            // lbUAH_balance
-            // 
-            this.lbUAH_balance.AutoSize = true;
-            this.lbUAH_balance.Location = new System.Drawing.Point(111, 88);
-            this.lbUAH_balance.Name = "lbUAH_balance";
-            this.lbUAH_balance.Size = new System.Drawing.Size(27, 13);
-            this.lbUAH_balance.TabIndex = 5;
-            this.lbUAH_balance.Text = "грн.";
-            // 
-            // tbAccountBalance
-            // 
-            this.tbAccountBalance.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.tbAccountBalance.Location = new System.Drawing.Point(18, 85);
-            this.tbAccountBalance.Name = "tbAccountBalance";
-            this.tbAccountBalance.Size = new System.Drawing.Size(85, 20);
-            this.tbAccountBalance.TabIndex = 4;
-            this.tbAccountBalance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lbAccountBalance
-            // 
-            this.lbAccountBalance.AutoSize = true;
-            this.lbAccountBalance.Location = new System.Drawing.Point(15, 69);
-            this.lbAccountBalance.Name = "lbAccountBalance";
-            this.lbAccountBalance.Size = new System.Drawing.Size(88, 13);
-            this.lbAccountBalance.TabIndex = 3;
-            this.lbAccountBalance.Text = "Account balance";
-            // 
-            // lbUAH
-            // 
-            this.lbUAH.AutoSize = true;
-            this.lbUAH.Location = new System.Drawing.Point(111, 42);
-            this.lbUAH.Name = "lbUAH";
-            this.lbUAH.Size = new System.Drawing.Size(27, 13);
-            this.lbUAH.TabIndex = 2;
-            this.lbUAH.Text = "грн.";
-            // 
-            // tbTotalPrice
-            // 
-            this.tbTotalPrice.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.tbTotalPrice.Location = new System.Drawing.Point(18, 39);
-            this.tbTotalPrice.Name = "tbTotalPrice";
-            this.tbTotalPrice.Size = new System.Drawing.Size(85, 20);
-            this.tbTotalPrice.TabIndex = 1;
-            this.tbTotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lbTotalPrice
-            // 
-            this.lbTotalPrice.AutoSize = true;
-            this.lbTotalPrice.Location = new System.Drawing.Point(15, 23);
-            this.lbTotalPrice.Name = "lbTotalPrice";
-            this.lbTotalPrice.Size = new System.Drawing.Size(57, 13);
-            this.lbTotalPrice.TabIndex = 0;
-            this.lbTotalPrice.Text = "Total price";
             // 
             // lvFavouriteProgs
             // 
@@ -225,6 +133,98 @@
             // 
             this.Programm.Text = "Programm";
             this.Programm.Width = 218;
+            // 
+            // cbHidePaid
+            // 
+            this.cbHidePaid.AutoSize = true;
+            this.cbHidePaid.Location = new System.Drawing.Point(18, 129);
+            this.cbHidePaid.Name = "cbHidePaid";
+            this.cbHidePaid.Size = new System.Drawing.Size(102, 17);
+            this.cbHidePaid.TabIndex = 13;
+            this.cbHidePaid.Text = "Hide paid media";
+            this.cbHidePaid.UseVisualStyleBackColor = true;
+            this.cbHidePaid.CheckedChanged += new System.EventHandler(this.cbHidePaid_CheckedChanged);
+            // 
+            // btReload
+            // 
+            this.btReload.BackColor = System.Drawing.Color.DarkOrange;
+            this.btReload.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btReload.Image = ((System.Drawing.Image)(resources.GetObject("btReload.Image")));
+            this.btReload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btReload.Location = new System.Drawing.Point(18, 161);
+            this.btReload.Name = "btReload";
+            this.btReload.Size = new System.Drawing.Size(70, 29);
+            this.btReload.TabIndex = 12;
+            this.btReload.Text = "Reload";
+            this.btReload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btReload.UseVisualStyleBackColor = false;
+            this.btReload.Visible = false;
+            this.btReload.Click += new System.EventHandler(this.btReload_Click);
+            // 
+            // btMakeOrder
+            // 
+            this.btMakeOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btMakeOrder.Location = new System.Drawing.Point(18, 371);
+            this.btMakeOrder.Name = "btMakeOrder";
+            this.btMakeOrder.Size = new System.Drawing.Size(135, 23);
+            this.btMakeOrder.TabIndex = 6;
+            this.btMakeOrder.Text = "Make order";
+            this.btMakeOrder.UseVisualStyleBackColor = false;
+            this.btMakeOrder.Click += new System.EventHandler(this.btMakeOrder_Click);
+            // 
+            // lbUAH_balance
+            // 
+            this.lbUAH_balance.AutoSize = true;
+            this.lbUAH_balance.Location = new System.Drawing.Point(111, 88);
+            this.lbUAH_balance.Name = "lbUAH_balance";
+            this.lbUAH_balance.Size = new System.Drawing.Size(30, 13);
+            this.lbUAH_balance.TabIndex = 5;
+            this.lbUAH_balance.Text = "UAH";
+            // 
+            // tbAccountBalance
+            // 
+            this.tbAccountBalance.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.tbAccountBalance.Location = new System.Drawing.Point(18, 85);
+            this.tbAccountBalance.Name = "tbAccountBalance";
+            this.tbAccountBalance.Size = new System.Drawing.Size(85, 20);
+            this.tbAccountBalance.TabIndex = 4;
+            this.tbAccountBalance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lbAccountBalance
+            // 
+            this.lbAccountBalance.AutoSize = true;
+            this.lbAccountBalance.Location = new System.Drawing.Point(15, 69);
+            this.lbAccountBalance.Name = "lbAccountBalance";
+            this.lbAccountBalance.Size = new System.Drawing.Size(88, 13);
+            this.lbAccountBalance.TabIndex = 3;
+            this.lbAccountBalance.Text = "Account balance";
+            // 
+            // lbUAH
+            // 
+            this.lbUAH.AutoSize = true;
+            this.lbUAH.Location = new System.Drawing.Point(111, 42);
+            this.lbUAH.Name = "lbUAH";
+            this.lbUAH.Size = new System.Drawing.Size(30, 13);
+            this.lbUAH.TabIndex = 2;
+            this.lbUAH.Text = "UAH";
+            // 
+            // tbTotalPrice
+            // 
+            this.tbTotalPrice.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.tbTotalPrice.Location = new System.Drawing.Point(18, 39);
+            this.tbTotalPrice.Name = "tbTotalPrice";
+            this.tbTotalPrice.Size = new System.Drawing.Size(85, 20);
+            this.tbTotalPrice.TabIndex = 1;
+            this.tbTotalPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lbTotalPrice
+            // 
+            this.lbTotalPrice.AutoSize = true;
+            this.lbTotalPrice.Location = new System.Drawing.Point(15, 23);
+            this.lbTotalPrice.Name = "lbTotalPrice";
+            this.lbTotalPrice.Size = new System.Drawing.Size(57, 13);
+            this.lbTotalPrice.TabIndex = 0;
+            this.lbTotalPrice.Text = "Total price";
             // 
             // UcFavoirute
             // 

@@ -86,7 +86,7 @@ namespace TvForms
                     accountRepo.Insert(newAccount);
                 }
                 
-                MessageContainer.DisplayInfo($"Your account was succesfull charged on {summ} грн.", "Succesfull");
+                MessageContainer.DisplayInfo($"Your account was succesfull charged on {summ} UAH", "Succesfull");
 
             }
             else

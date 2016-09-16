@@ -81,9 +81,9 @@
             this.lbEnterSumm.Location = new System.Drawing.Point(17, 108);
             this.lbEnterSumm.Name = "lbEnterSumm";
             this.lbEnterSumm.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbEnterSumm.Size = new System.Drawing.Size(65, 13);
+            this.lbEnterSumm.Size = new System.Drawing.Size(68, 13);
             this.lbEnterSumm.TabIndex = 25;
-            this.lbEnterSumm.Text = "Summ (грн.)";
+            this.lbEnterSumm.Text = "Summ (UAH)";
             // 
             // pbVisa
             // 

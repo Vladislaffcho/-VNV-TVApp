@@ -17,7 +17,7 @@ namespace TvForms
             panChargeAccount.Controls.Add(_ucCharge);
         }
 
-        private void btOk_Click(object sender, System.EventArgs e)
+        private void btOkey_Click(object sender, System.EventArgs e)
         {
             Close();
         }
@@ -30,13 +30,16 @@ namespace TvForms
         private void AccountChargeForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             var eventSource = (Form)sender;
-            if (eventSource.DialogResult != DialogResult.Cancel)
-            {
-                if (!_ucCharge.ValidateControls())
+            //todo I don't understand why is DialogResult allways CANCEL ???????
+            //if (eventSource.DialogResult != DialogResult.Cancel)
+            //{
+            if (!_ucCharge.ValidateControls())
                 {
                     e.Cancel = true;
                 }
-            }
+            //}
         }
+
+
     }
 }

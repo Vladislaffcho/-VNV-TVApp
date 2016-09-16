@@ -11,7 +11,7 @@ namespace TvForms
 {
     public partial class CoreForm : Form//, IIdentifyUser
     {
-        private int CurrentUserId { get; set; } = 2; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
+        private int CurrentUserId { get; set; }// = 2; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
 
         private UcTabsForUser _userWindow;// { get; set; }
 
@@ -19,7 +19,7 @@ namespace TvForms
 
         public CoreForm()
         {
-            //ShowLoginForm(); //uncommit after test programme
+            ShowLoginForm(); //uncommit after test programme
 
             InitializeComponent();
             LoadMainControl();
@@ -212,7 +212,8 @@ namespace TvForms
                 ch.Order.User.Id == CurrentUserId || ch.Order == null).ToList();
 
             //var ordChannels = ordChannelRepo.Get(oCh => oCh.Order.User.Id == CurrentUserId)?.ToList();
-            var needCheckForRemoveTvShow = schedRepo.Get(pr => pr.User.Id == CurrentUserId)?.ToList();
+            var needCheckForRemoveTvShow = schedRepo.Get(pr => pr.User.Id == CurrentUserId)?
+                .Include(sh => sh.TvShow).ToList();
             
             //delete all not paid twShows
             if (needCheckForRemoveTvShow != null && notPaidChannels.Count > 0)

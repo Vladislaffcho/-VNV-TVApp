@@ -216,9 +216,9 @@
             this.lbUAH.AutoSize = true;
             this.lbUAH.Location = new System.Drawing.Point(254, 194);
             this.lbUAH.Name = "lbUAH";
-            this.lbUAH.Size = new System.Drawing.Size(27, 13);
+            this.lbUAH.Size = new System.Drawing.Size(30, 13);
             this.lbUAH.TabIndex = 33;
-            this.lbUAH.Text = "грн.";
+            this.lbUAH.Text = "UAH";
             // 
             // tbPrice
             // 

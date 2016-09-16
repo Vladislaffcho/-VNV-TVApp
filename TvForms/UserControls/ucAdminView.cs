@@ -296,7 +296,8 @@ namespace TvForms
 
         private void btViewChannels_Click(object sender, EventArgs e)
         {
-            var actionForm = new ActionForm(new UcAllChannels(CurrentUserId))
+            var ucAllChan = new UcAllChannels(CurrentUserId);
+            var actionForm = new ActionForm(ucAllChan)
             {
                 Text = @"Loaded channels and programms",
                 Icon = new Icon(@"icons\download-16.ico")

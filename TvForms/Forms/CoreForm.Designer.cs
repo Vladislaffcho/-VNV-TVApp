@@ -219,7 +219,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.msMain;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(800, 500);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "CoreForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VNV TV application";
