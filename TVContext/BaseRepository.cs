@@ -9,6 +9,8 @@ using System.Windows.Forms;
 
 namespace TvContext
 {
+    // class provides db interaction functionality
+    // Repository pattern was applied here
     public sealed class BaseRepository<TEntity> where TEntity : IdentificableEntity
     {
         public TvDbContext ContextDb { get; } = new TvDbContext();
@@ -42,7 +44,7 @@ namespace TvContext
             }
             catch (DbEntityValidationException dbEx)
             {
-                MessageBox.Show("Что-то пошло не так при операции Remove!");
+                MessageBox.Show("Something went wrong while REMOVING data!");
                 foreach (var validationErrors in dbEx.EntityValidationErrors)
                 {
                     foreach (var validationError in validationErrors.ValidationErrors)
@@ -71,7 +73,7 @@ namespace TvContext
             }
             catch (DbEntityValidationException dbEx)
             {
-                MessageBox.Show("Что-то пошло не так при операции АПДЕЙТ!");
+                MessageBox.Show("Something went wrong while UPDATING data!");
                 foreach (var validationErrors in dbEx.EntityValidationErrors)
                 {
                     foreach (var validationError in validationErrors.ValidationErrors)
@@ -101,7 +103,7 @@ namespace TvContext
             }
             catch (DbEntityValidationException dbEx)
             {
-                MessageBox.Show("Что-то пошло не так при операции ИНСЕРТ!");
+                MessageBox.Show("Something went wrong while INSERTING data!");
 
                 foreach (var validationErrors in dbEx.EntityValidationErrors)
                 {
@@ -134,7 +136,7 @@ namespace TvContext
             }
             catch (DbEntityValidationException dbEx)
             {
-                MessageBox.Show("Что-то пошло не так при операции AddRange-OrderChannel!");
+                MessageBox.Show("Something went wrong while executing AddRange-OrderChannel operation!");
 
                 foreach (var validationErrors in dbEx.EntityValidationErrors)
                 {
@@ -169,7 +171,7 @@ namespace TvContext
             }
             catch (DbEntityValidationException dbEx)
             {
-                MessageBox.Show("Что-то пошло не так при операции ИНСЕРТ!");
+                MessageBox.Show("Something went wrong while INSERTING data!");
 
                 foreach (var validationErrors in dbEx.EntityValidationErrors)
                 {

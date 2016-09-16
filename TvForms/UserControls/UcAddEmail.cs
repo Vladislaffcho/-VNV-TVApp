@@ -7,6 +7,7 @@ namespace TvForms
 {
     public partial class UcAddEmail : UserControl
     {
+        // class to add user email
         public UcAddEmail()
         {
             InitializeComponent();
