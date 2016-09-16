@@ -1,6 +1,6 @@
 ﻿namespace TvForms
 {
-    partial class UcPayments
+    sealed partial class UcPayments
     {
         /// <summary> 
         /// Required designer variable.

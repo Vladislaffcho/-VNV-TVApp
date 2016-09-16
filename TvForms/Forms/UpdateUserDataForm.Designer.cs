@@ -74,7 +74,10 @@
             this.Controls.Add(this.btCancel);
             this.Controls.Add(this.pnUpdateConnect);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "UpdateUserDataForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Update Data";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UpdateUserDataForm_FormClosing);
             this.ResumeLayout(false);

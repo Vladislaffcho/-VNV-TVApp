@@ -14,9 +14,9 @@ namespace TvForms
         public About()
         {
             InitializeComponent();
-            this.Text = String.Format("About {0}", "TV Application");
+            this.Text = $@"About {"TV Application"}";
             this.labelProductName.Text = @"VNV+ command in IT Academy. Vinnitsia";
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
+            this.labelVersion.Text = $@"Version {AssemblyVersion}";
             this.labelCopyright.Text = @"All rights reserved. " + AssemblyCopyright;
             this.labelCompanyName.Text = @"VNV+";
             this.textBoxDescription.Text = @"This programm free. You can use it for channel and TV show choose and buy:). " + 
@@ -24,6 +24,13 @@ namespace TvForms
                                            Environment.NewLine + @"Delelop team:" + Environment.NewLine + @"Nazar Kushniruk" +
                                            Environment.NewLine + @"Ivan Dyachyk" + Environment.NewLine  + @"Vladyslav Mykhaylyuk" +
                                            Environment.NewLine + @"Viktor Litvak";
+            
+        }
+
+        public sealed override string Text
+        {
+            get { return base.Text; }
+            set { base.Text = value; }
         }
 
         #region Assembly Attribute Accessors

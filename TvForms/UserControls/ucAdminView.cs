@@ -57,7 +57,7 @@ namespace TvForms
             cbUserType.Items.Add(EUserType.MANAGER);
             cbUserType.Items.Add(EUserType.CHIEF);
 
-                lvUserList.Items[0].Selected = true;
+            lvUserList.Items[0].Selected = true;
         }
 
         private void lvUserList_SelectedIndexChanged(object sender, EventArgs e)
@@ -270,7 +270,12 @@ namespace TvForms
                 //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
                 Icon = new Icon(@"icons\wallet.ico")
             };
-            actions.Show();
+            if (ParentForm != null)
+            {
+                ParentForm.ShowInTaskbar = false;
+                actions.ShowDialog();
+                ParentForm.ShowInTaskbar = true;
+            }
         }
 
         private void btViewPayment_Click(object sender, EventArgs e)
@@ -281,13 +286,27 @@ namespace TvForms
                 //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
                 Icon = new Icon(@"icons\dollar.ico")
             };
-            actions.Show();
+            if (ParentForm != null)
+            {
+                ParentForm.ShowInTaskbar = false;
+                actions.ShowDialog();
+                ParentForm.ShowInTaskbar = true;
+            }
         }
 
         private void btViewChannels_Click(object sender, EventArgs e)
         {
-            var actionForm = new ActionForm(new UcAllChannels(CurrentUserId));
-            actionForm.Show();
+            var actionForm = new ActionForm(new UcAllChannels(CurrentUserId))
+            {
+                Text = @"Loaded channels and programms",
+                Icon = new Icon(@"icons\download-16.ico")
+            };
+            if (ParentForm != null)
+            {
+                ParentForm.Visible = false;
+                actionForm.ShowDialog();
+                ParentForm.Visible = true;
+            }
         }
 
         // method to change chosen user's type
@@ -422,7 +441,12 @@ namespace TvForms
         private void btViewServices_Click(object sender, EventArgs e)
         {
             var additionalServices = new AdditionalServicesForm(CurrentUserId);
-            additionalServices.ShowDialog();
+            if (ParentForm != null)
+            {
+                ParentForm.ShowInTaskbar = false;
+                additionalServices.ShowDialog();
+                ParentForm.ShowInTaskbar = true;
+            }
         }
     }
 }

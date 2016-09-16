@@ -3,14 +3,13 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TvForms.Forms;
-using TvForms;
 using TvContext;
 
 namespace TvForms
 {
     public partial class CoreForm : Form//, IIdentifyUser
     {
-        private int CurrentUserId { get; set; }// = 2; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
+        private int CurrentUserId { get; set; } = 2; // need delete '2' after test programme and uncommit ShowLoginForm() in CoreForm constructor
 
         private UcTabsForUser _userWindow;// { get; set; }
 
@@ -18,7 +17,7 @@ namespace TvForms
 
         public CoreForm()
         {
-            ShowLoginForm(); //uncommit after test programme
+            //ShowLoginForm(); //uncommit after test programme
 
             InitializeComponent();
             LoadMainControl();
@@ -121,9 +120,12 @@ namespace TvForms
             {
                 Text = @"User profile",
                 //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
-                Icon = new Icon(@"icons\j01_9602.ico")
+                Icon = new Icon(@"icons\profile.ico")
             };
-            actions.Show();
+            
+            this.Visible = false;
+            actions.ShowDialog();
+            this.Visible = true;
         }
 
 
@@ -135,7 +137,9 @@ namespace TvForms
                 //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
                 Icon = new Icon(@"icons\wallet.ico")
             };
-            actions.Show();
+            this.Visible = false;
+            actions.ShowDialog();
+            this.Visible = true;
         }
 
 
@@ -149,7 +153,9 @@ namespace TvForms
                 //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
                 Icon = new Icon(@"icons\dollar.ico")
             };
-            actions.Show();
+            this.Visible = false;
+            actions.ShowDialog();
+            this.Visible = true;
         }
 
 
@@ -251,7 +257,9 @@ namespace TvForms
                 //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
                 Icon = new Icon(@"icons\mastercard_1450.ico")
             };
-            actions.Show();
+            this.ShowInTaskbar = false;
+            actions.ShowDialog();
+            this.ShowInTaskbar = true;
 
             var userType = new BaseRepository<User>().Get(u => u.Id == CurrentUserId).FirstOrDefault()?.UserType.Id;
             if (userType == (int)EUserType.CLIENT)
@@ -260,26 +268,33 @@ namespace TvForms
 
         private void additionalServiceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var additionalServices = new AdditionalServicesForm(CurrentUserId);
-            additionalServices.ShowDialog();
-
             var userType = new BaseRepository<User>().Get(u => u.Id == CurrentUserId).FirstOrDefault()?.UserType.Id;
-            if (userType == (int)EUserType.CLIENT)
+            if (userType == (int) EUserType.CLIENT)
+            {
+                var additionalServices = new AdditionalServicesForm(CurrentUserId);
+                this.ShowInTaskbar = false;
+                additionalServices.ShowDialog();
+                this.ShowInTaskbar = true;
                 _userWindow.SetReloadMoneyButton(true, Color.Crimson);
+            }
         }
 
         // add additional servide to the DB
         private void addServiceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var addCompanyServices = new AddServiceForm();
+            this.ShowInTaskbar = false;
             addCompanyServices.ShowDialog();
+            this.ShowInTaskbar = true;
         }
 
         // remove addotional service from the db
         private void removeServicesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var removeCompanyServices = new DeleteServiceForm();
+            this.ShowInTaskbar = false;
             removeCompanyServices.ShowDialog();
+            this.ShowInTaskbar = true;
         }
     }
 }

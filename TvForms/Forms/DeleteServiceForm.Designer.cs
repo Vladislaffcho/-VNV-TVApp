@@ -108,9 +108,12 @@
             this.Controls.Add(this.btOK);
             this.Controls.Add(this.gbServices);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(293, 221);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(293, 221);
             this.Name = "DeleteServiceForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DeleteServiceForm";
             this.gbServices.ResumeLayout(false);
             this.ResumeLayout(false);

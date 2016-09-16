@@ -111,7 +111,7 @@
     <Compile Include="Forms\CoreForm.Designer.cs">
       <DependentUpon>CoreForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DeleteUserData.cs" />
+    <Compile Include="Helpers\DeleteUserData.cs" />
     <Compile Include="Forms\DeleteServiceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,7 +139,7 @@
     <Compile Include="Helpers\UserDetailType.cs" />
     <Compile Include="Helpers\UserStatus.cs" />
     <Compile Include="Helpers\ZipHelper.cs" />
-    <Compile Include="IIdentifyUser.cs" />
+    <Compile Include="Helpers\IIdentifyUser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Forms\ProgressForm.cs">
       <SubType>Form</SubType>

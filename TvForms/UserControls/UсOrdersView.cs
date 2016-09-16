@@ -70,7 +70,9 @@ namespace TvForms
                 //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
                 Icon = new Icon(@"icons\dollar.ico")
             };
-            actions.Show();
+            ParentForm?.Close();
+            actions.ShowDialog();
+            
         }
 
         private void lvOrdersView_SelectedIndexChanged(object sender, System.EventArgs e)

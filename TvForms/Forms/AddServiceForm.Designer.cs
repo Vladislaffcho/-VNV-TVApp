@@ -119,9 +119,12 @@
             this.Controls.Add(this.lbServiceName);
             this.Controls.Add(this.tbServiceName);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(370, 200);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(370, 200);
             this.Name = "AddServiceForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add New Service";
             ((System.ComponentModel.ISupportInitialize)(this.numServicePrice)).EndInit();
             this.ResumeLayout(false);

@@ -130,10 +130,16 @@ namespace TvForms
         // functionality to add address
         private void btAddAddress_Click(object sender, EventArgs e)
         {
-            AddUserDataForm addAddress = new AddUserDataForm(_currentUserId, UserDetailType.Address);
-            if (addAddress.ShowDialog() == DialogResult.OK)
+            var addAddress = new AddUserDataForm(_currentUserId, UserDetailType.Address);
+            addAddress.Text = @"Add address";
+            if (ParentForm != null)
             {
-                FillAddressLv();
+                ParentForm.Visible = false;
+                if (addAddress.ShowDialog() == DialogResult.OK)
+                {
+                    FillAddressLv();
+                }
+                ParentForm.Visible = true;
             }
         }
 
@@ -144,9 +150,15 @@ namespace TvForms
             {
                 var listViewItem = lvUserAddress.SelectedItems[0];
                 UpdateUserDataForm updateAddress = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), UserDetailType.Address);
-                if (updateAddress.ShowDialog() == DialogResult.OK)
+                updateAddress.Text = @"Update address";
+                if (ParentForm != null)
                 {
-                    FillAddressLv();
+                    ParentForm.Visible = false;
+                    if (updateAddress.ShowDialog() == DialogResult.OK)
+                    {
+                        FillAddressLv();
+                    }
+                    ParentForm.Visible = true;
                 }
             }
             else
@@ -173,18 +185,30 @@ namespace TvForms
         private void btAddEmail_Click(object sender, EventArgs e)
         {
             AddUserDataForm addEmail = new AddUserDataForm(_currentUserId, UserDetailType.Email);
-            if (addEmail.ShowDialog() == DialogResult.OK)
+            addEmail.Text = @"Add e-mail";
+            if (ParentForm != null)
             {
-                FillEmailLv();
+                ParentForm.Visible = false;
+                if (addEmail.ShowDialog() == DialogResult.OK)
+                {
+                    FillEmailLv();
+                }
+                ParentForm.Visible = true;
             }
         }
 
         private void btAddPhone_Click(object sender, EventArgs e)
         {
             AddUserDataForm addPhone = new AddUserDataForm(_currentUserId, UserDetailType.Telephone);
-            if (addPhone.ShowDialog() == DialogResult.OK)
+            addPhone.Text = @"Add phone";
+            if (ParentForm != null)
             {
-                FillPhonesLv();
+                ParentForm.Visible = false;
+                if (addPhone.ShowDialog() == DialogResult.OK)
+                {
+                    FillPhonesLv();
+                }
+                ParentForm.Visible = true;
             }
         }
 
@@ -194,9 +218,15 @@ namespace TvForms
             {
                 var listViewItem = lvUserEmail.SelectedItems[0];
                 UpdateUserDataForm updateEmail = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), UserDetailType.Email);
-                if (updateEmail.ShowDialog() == DialogResult.OK)
+                updateEmail.Text = @"Update e-mail";
+                if (ParentForm != null)
                 {
-                    FillEmailLv();
+                    ParentForm.Visible = false;
+                    if (updateEmail.ShowDialog() == DialogResult.OK)
+                    {
+                        FillEmailLv();
+                    }
+                    ParentForm.Visible = true;
                 }
             }
             else
@@ -211,9 +241,15 @@ namespace TvForms
             {
                 var listViewItem = lvUserTelephone.SelectedItems[0];
                 UpdateUserDataForm updatePhone = new UpdateUserDataForm(listViewItem.SubItems[3].Text.GetInt(), UserDetailType.Telephone);
-                if (updatePhone.ShowDialog() == DialogResult.OK)
+                updatePhone.Text = @"Update telephone";
+                if (ParentForm != null)
                 {
-                    FillPhonesLv();
+                    ParentForm.Visible = false;
+                    if (updatePhone.ShowDialog() == DialogResult.OK)
+                    {
+                        FillPhonesLv();
+                    }
+                    ParentForm.Visible = true;
                 }
             }
             else
@@ -253,9 +289,15 @@ namespace TvForms
         private void btChangeDetails_Click(object sender, EventArgs e)
         {
             UpdateUserDataForm updateDetails = new UpdateUserDataForm(_currentUserId, UserDetailType.User);
-            if (updateDetails.ShowDialog() == DialogResult.OK)
+            updateDetails.Text = @"Update details";
+            if (ParentForm != null)
             {
-                FillUserData();
+                ParentForm.Visible = false;
+                if (updateDetails.ShowDialog() == DialogResult.OK)
+                {
+                    FillUserData();
+                }
+                ParentForm.Visible = true;
             }
         }
 
@@ -267,7 +309,12 @@ namespace TvForms
                 //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
                 Icon = new Icon(@"icons\dollar.ico")
             };
-            actions.Show();
+            if (ParentForm != null)
+            {
+                ParentForm.Visible = false;
+                actions.ShowDialog();
+                ParentForm.Visible = true;
+            }
         }
 
         private void btViewOrders_Click(object sender, EventArgs e)
@@ -278,7 +325,12 @@ namespace TvForms
                 //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
                 Icon = new Icon(@"icons\wallet.ico")
             };
-            actions.Show();
+            if (ParentForm != null)
+            {
+                ParentForm.Visible = false;
+                actions.ShowDialog();
+                ParentForm.Visible = true;
+            }
         }
 
         private void btViewPayment_Click(object sender, EventArgs e)
@@ -289,7 +341,12 @@ namespace TvForms
                 //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
                 Icon = new Icon(@"icons\dollar.ico")
             };
-            actions.Show();
+            if (ParentForm != null)
+            {
+                ParentForm.Visible = false;
+                actions.ShowDialog();
+                ParentForm.Visible = true;
+            }
         }
     }
 }

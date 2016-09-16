@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -95,8 +96,14 @@ namespace TvForms
         //register new user in App
         private void linkLbPassForm_Register_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var actions = new AddUserDataForm(UserDetailType.User);
+            var actions = new AddUserDataForm(UserDetailType.User)
+            {
+                Text = @"Register new user",
+                Icon = new Icon(@"icons\evolution-contacts_8297.ico")
+            };
+            this.Visible = false;
             actions.ShowDialog();
+            this.Visible = true;
         }
 
 
@@ -104,7 +111,11 @@ namespace TvForms
         private void linkLbPassForm_FogotPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             var actions = new AddUserDataForm(UserDetailType.Password);
+            actions.Text = @"Recovery password";
+            actions.Icon = new Icon(@"icons\password_2806.ico");
+            this.Visible = false;
             actions.ShowDialog();
+            this.Visible = true;
         }
     }
 }

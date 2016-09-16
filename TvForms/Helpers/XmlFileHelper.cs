@@ -81,7 +81,7 @@ namespace TvForms
                     var tvShowList = new List<TvShow>();
                     
                     var progressBar = new ProgressForm();
-                    progressBar.Show();
+                    progressBar.ShowDialog();
                     //id for progress bar
                     var id = 1;
 

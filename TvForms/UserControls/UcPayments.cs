@@ -9,7 +9,7 @@ using TvContext;
 
 namespace TvForms
 {
-    public partial class UcPayments : UserControl
+    public sealed partial class UcPayments : UserControl
     {
         private int CurrentUserId { get; set; }
 
@@ -63,7 +63,11 @@ namespace TvForms
                 //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
                 Icon = new Icon(@"icons\wallet.ico")
             };
-            actions.Show();
+            if (ParentForm != null)
+            {
+                ParentForm.Close();
+                actions.ShowDialog();
+            }
         }
 
         private void btChargeAccount_Click(object sender, EventArgs e)
@@ -82,7 +86,12 @@ namespace TvForms
                 //copy icons folder to ...//TvForms/bin/Debug/icons - folder for icons
                 Icon = new Icon(@"icons\mastercard_1450.ico")
             };
-            actions.Show();
+            if (ParentForm != null)
+            {
+                ParentForm.Visible = false;
+                actions.ShowDialog();
+                ParentForm.Visible = true;
+            }
         }
 
         private void lvPayments_SelectedIndexChanged(object sender, EventArgs e)

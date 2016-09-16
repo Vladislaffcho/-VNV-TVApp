@@ -63,7 +63,7 @@
             this.btCancel.UseVisualStyleBackColor = true;
             this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
-            // ActionFormLittle
+            // AcFLittleWithoutValid
             // 
             this.AcceptButton = this.btOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -74,7 +74,9 @@
             this.Controls.Add(this.pnActionFormLittle);
             this.Controls.Add(this.btCancel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "ActionFormLittle";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "AcFLittleWithoutValid";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Action Form Little";
             this.ResumeLayout(false);
