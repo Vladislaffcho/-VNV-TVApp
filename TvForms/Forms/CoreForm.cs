@@ -172,7 +172,7 @@ namespace TvForms
 
             XmlFileHelper.XmlFavouriteWriter(saveFile.FileName, CurrentUserId);
 
-            MessageBox.Show(@"Файл XML сохранен", @"Save",
+            MessageBox.Show(@"XML file was saved successfully", @"Save",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -193,7 +193,7 @@ namespace TvForms
             ZipHelper.CreateZipFile(saveFile.FileName, saveFile.FileName.Split('.')[0] + ".xml");
             Helper.DeleteFileIfExist(saveFile.FileName.Split('.')[0] + ".xml");
 
-            MessageBox.Show(@"Файл ZIP сохранен", @"Save",
+            MessageBox.Show(@"ZIP file was saved successfully", @"Save",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 

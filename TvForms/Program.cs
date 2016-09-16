@@ -8,7 +8,7 @@ namespace TvForms
     static class Program
     {
         /// <summary>
-        /// Главная точка входа для приложения.
+        /// Application stars point.
         /// </summary>
         [STAThread]
         static void Main()

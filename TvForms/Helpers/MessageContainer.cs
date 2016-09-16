@@ -7,29 +7,29 @@ namespace TvForms
     {
         public static void ChannelsLoadGood()
         {
-            MessageBox.Show(@"Каналы успешно импорторировались", @"Ok", 
+            MessageBox.Show(@"Channells have been imported successfully", @"Ok", 
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public static void ProgrammsLoadGood()
         {
-            MessageBox.Show(@"Каналы успешно импорторировались", @"Ok",
+            MessageBox.Show(@"Programs have been imported successfully", @"Ok",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public static void SomethingWrongInFileLoad()
         {
-            MessageBox.Show(@"Что-то пошло не так при импорте файла!!!");
+            MessageBox.Show(@"Something went wrong while importing the file!");
         }
 
         public static void SomethingWrongInProgrammLoad(Exception ex)
         {
-            MessageBox.Show(@"Что-то пошло не так при импорте каналов!!!" + ex.Message);
+            MessageBox.Show(@"Something went wrong while importing programs!" + ex.Message);
         }
 
         public static void SomethingWrongInChannelLoad(Exception ex)
         {
-            MessageBox.Show(@"Что-то пошло не так при импорте каналов!!!" + ex.Message);
+            MessageBox.Show(@"Something went wrong while importing channels!" + ex.Message);
         }
 
         public static void DisplayError(string text, string caption)

@@ -6,6 +6,7 @@ using TvContext;
 
 namespace TvForms
 {
+    // class to update user's address
     public partial class UcUpdateAddress : UserControl
     {
         // create variable for further validation

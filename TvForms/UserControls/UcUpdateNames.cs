@@ -6,6 +6,7 @@ using TvContext;
 
 namespace TvForms
 {
+    // class to update user's names
     public partial class UcUpdateNames : UserControl
     {
         public UcUpdateNames()

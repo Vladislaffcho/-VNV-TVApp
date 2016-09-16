@@ -42,26 +42,31 @@ namespace TvForms
                 RegexOptions.IgnoreCase);
         }
 
+        // check email number uniqueness
         public static bool IsUniqueEmail(this string email)
         {
             return new BaseRepository<UserEmail>().Get(x => x.EmailName == email).Any();
         }
 
+        // check phone number uniqueness
         public static bool IsUniqueNumber(this int number)
         {
             return new BaseRepository<UserPhone>().Get(x => x.Number == number).Any();
         }
 
+        // chack if the newly-added address is unique
         public static bool IsUniqueAddress(this string address)
         {
             return new BaseRepository<UserAddress>().Get(x => x.Address == address).Any();
         }
 
+        // validate phone number
         public static bool IsValidPhone(this string number)
         {
             return Regex.IsMatch(number, @"^([0-9]{5,9})$");
         }
 
+        // validate comment length
         public static bool IsValidComment(this string comment)
         {
             if (comment.Length <= 500)

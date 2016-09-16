@@ -4,6 +4,7 @@ using TvContext;
 
 namespace TvForms
 {
+    // class to remove user data
     public static class DeleteUserData
     {
         // Remove phone functionality
