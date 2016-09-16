@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
+using TvContext;
 
 namespace TvForms
 {
@@ -42,6 +47,43 @@ namespace TvForms
         {
             MessageBox.Show(text, caption,
                 MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+        }
+
+
+        public static async void Remind()
+        {
+            var usersShedules = await new BaseRepository<UserSchedule>()
+                .GetAll().Include(u => u.User)
+                .Include(u => u.User.UserEmails)
+                .Include(u => u.User.UserPhones).ToListAsync();
+            const int minuteIntervalToTvProgrammStart = 10;
+            if (usersShedules.Count > 0)
+            {
+                foreach (var sched in usersShedules)
+                {
+                    var anyShowHour = sched.TvShow.Date.Hour;
+                    var anyShowMinute = sched.TvShow.Date.Minute;
+                    var currentTime = DateTime.Now.AddMinutes(minuteIntervalToTvProgrammStart);
+                    var currentHour = currentTime.Hour;
+                    var currentMinute = currentTime.Minute;
+
+                    if (anyShowHour == currentHour && anyShowMinute == currentMinute)
+                    {
+                        var th = new Thread(() => RemindWindow(sched, minuteIntervalToTvProgrammStart));
+                        th.Start();
+                    }
+                }
+            }
+            
+        }
+
+        private static void RemindWindow(UserSchedule sched, int minuteIntervalToTvProgrammStart)
+        {
+            var remind = new ReminderForm(sched)
+            {
+                Text = $@"Your programme starts in {minuteIntervalToTvProgrammStart} minutes"
+            };
+            remind.ShowDialog();
         }
     }
 }

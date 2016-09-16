@@ -48,6 +48,7 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain = new System.Windows.Forms.MenuStrip();
             this.panelCore = new System.Windows.Forms.Panel();
+            this.backWorker = new System.ComponentModel.BackgroundWorker();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -204,6 +205,10 @@
             this.panelCore.Size = new System.Drawing.Size(784, 437);
             this.panelCore.TabIndex = 3;
             // 
+            // backWorker
+            // 
+            this.backWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backWorker_DoWork);
+            // 
             // CoreForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,6 +251,7 @@
         private System.Windows.Forms.ToolStripMenuItem zipToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addServiceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeServicesToolStripMenuItem;
+        private System.ComponentModel.BackgroundWorker backWorker;
     }
 }
 

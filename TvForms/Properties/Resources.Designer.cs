@@ -63,6 +63,26 @@ namespace TvForms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap clock_icon_2 {
+            get {
+                object obj = ResourceManager.GetObject("clock-icon_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap clock_icon_png_10763_150_150 {
+            get {
+                object obj = ResourceManager.GetObject("clock-icon-png-10763_150_150", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TVset_1 {
             get {
                 object obj = ResourceManager.GetObject("TVset_1", resourceCulture);

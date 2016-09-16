@@ -148,7 +148,8 @@ namespace TvForms
 
                 case CheckState.Unchecked:
                     var userSchedRepo = new BaseRepository<UserSchedule>(userRepo.ContextDb);
-                    var removeCh = orderChannelRepo.Get(x => x.Channel.OriginalId == idOrigin).FirstOrDefault();
+                    var removeCh = orderChannelRepo.Get(x => x.Channel.OriginalId == idOrigin 
+                            && x.Order == null).FirstOrDefault();
                     if (removeCh != null)
                     {
                         ControlForShows.RemoveTvShowsFromControl(removeCh.Channel.OriginalId);

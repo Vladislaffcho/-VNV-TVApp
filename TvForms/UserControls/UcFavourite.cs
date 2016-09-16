@@ -74,7 +74,7 @@ namespace TvForms
                 var item = new ListViewItem(number.ToString());
                 
                 item.SubItems.Add(ch.Channel.Name);
-                item.SubItems.Add(ch.Channel.IsAgeLimit ? "+" : "none");
+                item.SubItems.Add(ch.Channel.IsAgeLimit ? "+" : "");
                 item.SubItems.Add(Math.Abs(ch.Channel.Price) < 0.00 ? "-" : ch.Channel.Price.ToString(CultureInfo.CurrentCulture));
                 lvFavouriteProgs.Items.Add(item);
                 number++;

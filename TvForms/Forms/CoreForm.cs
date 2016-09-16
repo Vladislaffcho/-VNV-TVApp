@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using TvForms.Forms;
 using TvContext;
@@ -21,6 +23,7 @@ namespace TvForms
 
             InitializeComponent();
             LoadMainControl();
+            backWorker.RunWorkerAsync();
 
             Text += @" - " + new BaseRepository<User>().Get(u => u.Id == CurrentUserId).FirstOrDefault()?.Login;
             
@@ -296,5 +299,15 @@ namespace TvForms
             removeCompanyServices.ShowDialog();
             this.ShowInTaskbar = true;
         }
+
+        private void backWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            while (true)
+            {
+                Thread.Sleep(30000);
+                MessageContainer.Remind();
+            }
+        }
+
     }
 }

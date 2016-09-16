@@ -117,20 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="TVset_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\TVset_1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="clock-icon-png-10763_150_150" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\clock-icon-png-10763_150_150.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TVset_21" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\TVset_2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TVset_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\TVset_2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="clock-icon_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\clock-icon_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAzMzNWMzMzggAAAAAzMzMYMzMzPjMzMz4zMzMYAAAAADMzM4IzMzNWAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAMzMzHDMzM/QzMzPGMzMz/zMzM/8zMzP/MzMz/zMzM8YzMzP0MzMzHAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAADMzM34zMzP/MzMz6jMzM4wzMzPMMzMzzDMzM4wzMzPqMzMz/zMz
+        M34AAAAAAAAAAAAAAAAAAAAAAAAAADMzM2IzMzP/MzMztDMzMxAAAAAAMzMzNjMzMzYAAAAAMzMzEDMz
+        M7QzMzP/MzMzYgAAAAAAAAAAAAAAADMzMw4zMzPsMzMz0DMzMwgAAAAAAAAAAAAAAAAAAAAAMzMzCDMz
+        MywzMzMIMzMz0DMzM+wzMzMOAAAAAAAAAAAzMzNgMzMz/zMzM04AAAAAAAAAAAAAAAAAAAAAMzMzEjMz
+        M8IzMzOCAAAAADMzM04zMzP/MzMzYAAAAAAAAAAAMzMzljMzM/8zMzNEAAAAAAAAAAAAAAAAMzMzXjMz
+        M9gzMzOuMzMzAgAAAAAzMzNEMzMz/zMzM5YAAAAAAAAAADMzM6QzMzP/MzMz9DMzMwgAAAAAAAAAADMz
+        M+gzMzPsMzMzCgAAAAAzMzMIMzMz9DMzM/8zMzOkAAAAAAAAAAAzMzOMMzMz/zMzMxwAAAAAAAAAAAAA
+        AAAzMzOOMzMzigAAAAAAAAAAAAAAADMzMxwzMzP/MzMzjAAAAAAAAAAAMzMzTDMzM/8zMzNmAAAAAAAA
+        AAAAAAAAMzMzfjMzM3gAAAAAAAAAAAAAAAAzMzNmMzMz/zMzM0wAAAAAAAAAADMzMwQzMzPYMzMz6DMz
+        MxwAAAAAAAAAADMzM3AzMzNuAAAAAAAAAAAzMzMcMzMz6DMzM9gzMzMEAAAAADMzM0IzMzNiMzMzPDMz
+        M/gzMzPcMzMzOAAAAAAzMzN0MzMzdAAAAAAzMzM4MzMz3DMzM/gzMzM8MzMzYjMzM0IzMzOkMzMz/DMz
+        M2IzMzNKMzMz7jMzM/8zMzPGMzMz2DMzM9gzMzPGMzMz/zMzM+4zMzNKMzMzYjMzM/wzMzOkMzMzjjMz
+        M/8zMzP8MzMzYjMzMxgzMzOKMzMz2jMzM/wzMzP8MzMz2jMzM4ozMzMYMzMzYjMzM/wzMzP/MzMzjjMz
+        MxwzMzPmMzMz/zMzM/wzMzNiAAAAADIyMgwyMjI+MjIyPjIyMgwAAAAAMzMzYjMzM/wzMzP/MzMz5jMz
+        MxwAAAAAMzMzHDMzM5IzMzOqMzMzSgAAAAAyMjIMMzMzvDMzM7oyMjIMAAAAADMzM0ozMzOqMzMzkjMz
+        MxwAAAAA9+8AAPAPAADwDwAA5+cAAM/zAADfmwAAnzkAAI5xAACeeQAA3/sAAM/zAADn5wAAMAwAABgY
+        AACP8QAAznMAAA==
+</value>
   </data>
 </root>
